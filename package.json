@@ -12,10 +12,20 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "resourceScheme == 'file' && explorerResourceIsFolder == true",
+          "command": "ts2uml.generateUml",
+          "title": "Generate UML Diagram",
+          "group": "ts2uml"
+        }
+      ]
+    },
     "commands": [
       {
-        "command": "ts2uml.helloWorld",
-        "title": "Hello World"
+        "command": "ts2uml.generateUml",
+        "title": "Generate UML Diagram"
       }
     ]
   },
@@ -34,16 +44,19 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.96.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
+    "@types/vscode": "^1.96.0",
     "@typescript-eslint/eslint-plugin": "^8.17.0",
     "@typescript-eslint/parser": "^8.17.0",
-    "eslint": "^9.16.0",
-    "esbuild": "^0.24.0",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^5.7.2",
     "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "@vscode/test-electron": "^2.4.1",
+    "esbuild": "^0.24.0",
+    "eslint": "^9.16.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "ts-morph": "^25.0.0"
   }
 }
