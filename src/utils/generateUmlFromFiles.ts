@@ -8,7 +8,6 @@ export function generateUmlFromFiles(files: string[]): string {
     // Helper function to simplify and transform types
     const simplifyType = (type?: string): string => {
         if(type === undefined) return "";
-        // let cleanType = type.replace(/import\(["'].*\/([^"']+)["']\)\./g, '$1');
         let cleanType = type;
         // Convert array types to Mermaid-compatible syntax
         if (cleanType.endsWith('[]')) {
@@ -16,7 +15,7 @@ export function generateUmlFromFiles(files: string[]): string {
         }
     
         // Replace { with object~ and } with ~
-        cleanType = cleanType.replace(/^\{\s*/, 'object~').replace(/\s*}$/, '~');
+        cleanType = cleanType.replace(/^\{\s*/, 'Object~').replace(/\s*}$/, '~');
     
         // Trim trailing semicolons or extra whitespace
         cleanType = cleanType.trim().replace(';', '');
