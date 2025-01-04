@@ -13,7 +13,8 @@ export function umlToMermaid(umlText: string): string {
             currentClassName = className;
             mermaidLines.push(`class ${className} {`);
             if (line.startsWith('interface')) {
-                mermaidLines.push('    &lt;&lt;interface&gt;&gt;');
+                // mermaidLines.push('    &lt;&lt;interface&gt;&gt;');
+                mermaidLines.push('    <<interface>>');
             }
         } else if (line.startsWith('+')) {
             // Process properties

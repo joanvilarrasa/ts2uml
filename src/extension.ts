@@ -1,50 +1,66 @@
 import * as vscode from 'vscode';
 import { findTsFiles } from './utils/findTsFiles';
 import { generateUmlFromFiles } from './utils/generateUmlFromFiles';
-import { umlToMermaid } from './utils/umlToMermaid';
+import { getDefaultConfig, updateConfig } from './models/Config';
 
-// This method is called when your extension is activated
-export function activate(context: vscode.ExtensionContext) {
+
+export async function activate(context: vscode.ExtensionContext) {
     const disposable = vscode.commands.registerCommand('ts2uml.generateUml', async (uri: vscode.Uri) => {
-        try {
-            const dir = uri.fsPath;
+        const panel = vscode.window.createWebviewPanel(
+            'umlDiagram',
+            'UML Diagram',
+            vscode.ViewColumn.One,
+            { enableScripts: true }
+        );
 
-            // Get all .ts and .tsx files in the directory and subdirectories
-            const tsFiles = await findTsFiles(dir);
+        const dir = uri.fsPath;
+        let config = getDefaultConfig();
 
-            if (tsFiles.length === 0) {
-                vscode.window.showInformationMessage(`No .ts or .tsx files found in the directory: ${dir}`);
-                return;
-            }
-
-            // Generate UML content from the files
-            const umlText = generateUmlFromFiles(tsFiles);
-            // Generate Mermaid content from the UML content
-            const mermaidContent = umlToMermaid(umlText);
-            console.log("mermaidContent :>> ", mermaidContent);
-
-            // Create and show a new webview panel
-            const panel = vscode.window.createWebviewPanel(
-                'umlDiagram', // Internal identifier
-                'UML Diagram', // Title of the tab
-                vscode.ViewColumn.One, // Editor column to display the panel
-                { enableScripts: true } // Webview options
-            );
-
-            // Set the webview's HTML content
-            panel.webview.html = getWebviewContent(mermaidContent);
-        } catch (err) {
-            vscode.window.showErrorMessage(`Failed to process the directory: ${(err as Error).message}`);
+        // Initial content generation
+        let tsFiles = await findTsFiles(dir, config);
+        let umlText = generateUmlFromFiles(tsFiles, config);
+        let mermaidContent = {
+            type: 'UpdatedContent',
+            content: {
+                classes: [
+                    { name: 'Person', attributes: [{ name: 'name', type: 'string' }], methods: [{ name: 'greet', params: [], returnType: 'void' }] },
+                ],
+                links: [
+                    { source: 'Person', target: 'Employee', type: 'inheritance' },
+                ],
+            },
         }
+
+        panel.webview.html = getWebviewContent(panel, context.extensionUri);
+
+        // Listen for messages from the webview
+        panel.webview.onDidReceiveMessage(async (message) => {
+            console.log("Recieved message", message)
+            if (message.type === 'UpdateConfig') {
+                console.log('Received updated config:', message.config);
+                config = updateConfig(config, message.config)
+
+                // Regenerate content with the updated config
+                tsFiles = await findTsFiles(dir, config); // Optional if file filtering might change
+                umlText = generateUmlFromFiles(tsFiles, config);
+
+                // Send updated content back to the webview
+                panel.webview.postMessage({
+                    type: 'UpdatedContent',
+                    content: mermaidContent,
+                });
+            }
+        });
     });
 
     context.subscriptions.push(disposable);
 }
 
-// This method is called when your extension is deactivated
-export function deactivate() { }
+function getWebviewContent(panel: vscode.WebviewPanel, extensionUri: vscode.Uri): string {
+    const jointUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'joint.js'));
+    const jointCssUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'dist', 'extension.css'));
+    const scriptUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'jointScript.js'));
 
-function getWebviewContent(content: string): string {
     return `
         <!DOCTYPE html>
         <html lang="en">
@@ -52,54 +68,16 @@ function getWebviewContent(content: string): string {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>UML Diagram</title>
-            <script type="module">
-                import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-
-                window.addEventListener('DOMContentLoaded', () => {
-                    const config = {
-                        startOnLoad: true,
-                        securityLevel: 'loose',
-                    };
-                    mermaid.initialize(config);
-                    renderMermaid();
-                });
-
-                function renderMermaid() {
-                    const container = document.querySelector('.mermaid');
-                    mermaid.init(undefined, container);
-                }
-
-                // Attach functions to the global window object
-                window.handleRefresh = () => {
-                    renderMermaid();
-                };
-
-                window.handleExport = () => {
-                    alert('Export functionality not implemented yet.');
-                };
-
-                window.handleZoomIn = () => {
-                    const container = document.querySelector('#diagram-container');
-                    const scale = parseFloat(container.style.zoom || '1') + 0.1;
-                    container.style.zoom = scale.toString();
-                };
-
-                window.handleZoomOut = () => {
-                    const container = document.querySelector('#diagram-container');
-                    const scale = parseFloat(container.style.zoom || '1') - 0.1;
-                    container.style.zoom = Math.max(scale, 0.5).toString();
-                };
-
-                window.handleResetZoom = () => {
-                    const container = document.querySelector('#diagram-container');
-                    container.style.zoom = '1';
-                };
-            </script>
+            <script src="${jointUri}"></script>
+            <link rel="stylesheet" href="${jointCssUri}">
             <style>
                 body {
                     font-family: Arial, sans-serif;
                     margin: 0;
                     padding: 0;
+                    display: flex;
+                    flex-direction: column;
+                    height: 100vh;
                 }
                 #toolbar {
                     display: flex;
@@ -119,28 +97,20 @@ function getWebviewContent(content: string): string {
                     background-color: #fff;
                 }
                 #diagram-container {
-                    padding: 20px;
-                }
-                .mermaid {
-                    margin-top: 20px;
+                    flex: 1;
+                    position: relative;
                 }
             </style>
         </head>
         <body>
             <div id="toolbar">
-                <button onclick="handleRefresh()">Refresh</button>
-                <button onclick="handleExport()">Export</button>
-                <button onclick="handleZoomIn()">Zoom In</button>
-                <button onclick="handleZoomOut()">Zoom Out</button>
-                <button onclick="handleResetZoom()">Reset Zoom</button>
+                <button onclick="scaleToFit()">Scale to Fit</button>
             </div>
-            <div id="diagram-container">
-                <pre class="mermaid">
-                    ${content}
-                </pre>
-            </div>
+            <div id="diagram-container"></div>
+            <script type="module" src="${scriptUri}"></script>
         </body>
         </html>
     `;
 }
+
 
