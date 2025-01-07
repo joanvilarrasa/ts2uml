@@ -1,71 +1,65 @@
 # ts2uml README
 
-This is the README for your extension "ts2uml". After writing up a brief description, we recommend including the following sections.
+Welcome to **ts2uml**, a Visual Studio Code extension designed to bridge the gap between TypeScript code and UML diagrams. Whether you're a developer visualizing relationships in complex TypeScript projects or an architect documenting system designs, `ts2uml` provides an intuitive, integrated solution.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### 1. TypeScript to UML Conversion
+Effortlessly parse your TypeScript files and convert them into detailed UML diagrams. Visualize classes, interfaces, and relationships directly within your editor.
 
-For example if there is an image subfolder under your extension project workspace:
+### 2. Interactive Diagram Generation
+Harness the power of **D3.js** to generate dynamic, interactive diagrams that bring your TypeScript structures to life.
 
-\!\[feature X\]\(images/feature-x.png\)
+### 3. Seamless VS Code Integration
+Run commands, view diagrams, and export visualizations without leaving your coding environment.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+> Note: Screenshots and animations showcasing the extension's capabilities will be added in future updates.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+To use `ts2uml`, ensure the following dependencies are installed:
+
+- **Node.js**: Required for running the extension.
+- **TypeScript**: Installed globally or in your project.
+
+Refer to the official installation guides if needed:
+
+- [Node.js](https://nodejs.org/)
+- [TypeScript](https://www.typescriptlang.org/download)
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+As the extension evolves, we plan to introduce configurable settings. Stay tuned for updates in this section.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+This is an early version of the extension, and there may be bugs or incomplete features. Please report issues via our GitHub repository.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.1.0
+- Initial release of `ts2uml`.
+- Added basic TypeScript parsing using `ts-morph`.
+- Integrated D3.js for UML diagram generation.
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+### 0.2.0 (Planned)
+- Improved visualization features.
+- Enhanced parsing for advanced TypeScript constructs.
+- Export functionality for UML diagrams.
 
 ---
 
-## Following extension guidelines
+## Following Extension Guidelines
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+To ensure the best user experience, this extension adheres to the [VS Code Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines).
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+## For More Information
 
-## Working with Markdown
+Learn more about:
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+- [Visual Studio Code's Extension API](https://code.visualstudio.com/api)
+- [ts-morph](https://ts-morph.com/): The library used for TypeScript parsing.
+- [D3.js](https://d3js.org/): The library powering diagram generation.
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+We hope `ts2uml` becomes an essential tool in your development workflow. Feedback and contributions are always welcome!
 
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
