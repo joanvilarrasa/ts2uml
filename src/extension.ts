@@ -1,7 +1,8 @@
 import * as vscode from 'vscode';
 import { findTsFiles } from './utils/findTsFiles';
-import { generateUmlFromFiles } from './utils/generateUmlFromFiles';
-import { getDefaultConfig, updateConfig } from './models/Config';
+import { getDefaultConfig } from './models/Config';
+import { Project } from 'ts-morph';
+import { D3Graph, generateD3Graph } from './utils/generateD3Graph';
 
 
 export async function activate(context: vscode.ExtensionContext) {
@@ -18,37 +19,33 @@ export async function activate(context: vscode.ExtensionContext) {
 
         // Initial content generation
         let tsFiles = await findTsFiles(dir, config);
-        let umlText = generateUmlFromFiles(tsFiles, config);
-        let mermaidContent = {
-            type: 'UpdatedContent',
-            content: {
-                classes: [
-                    { name: 'Person', attributes: [{ name: 'name', type: 'string' }], methods: [{ name: 'greet', params: [], returnType: 'void' }] },
-                ],
-                links: [
-                    { source: 'Person', target: 'Employee', type: 'inheritance' },
-                ],
-            },
+        const project = new Project();
+        for (const file of tsFiles) {
+            const sourceFile = project.addSourceFileAtPath(file);
         }
 
-        panel.webview.html = getWebviewContent(panel, context.extensionUri);
+        const initialD3Graph = generateD3Graph(project);
+
+
+
+        panel.webview.html = getWebviewContent(panel, context.extensionUri, initialD3Graph);
 
         // Listen for messages from the webview
         panel.webview.onDidReceiveMessage(async (message) => {
-            console.log("Recieved message", message)
+            // console.log("Recieved message", message)
             if (message.type === 'UpdateConfig') {
-                console.log('Received updated config:', message.config);
-                config = updateConfig(config, message.config)
+                // console.log('Received updated config:', message.config);
+                // config = updateConfig(config, message.config)
 
-                // Regenerate content with the updated config
-                tsFiles = await findTsFiles(dir, config); // Optional if file filtering might change
-                umlText = generateUmlFromFiles(tsFiles, config);
+                // // Regenerate content with the updated config
+                // tsFiles = await findTsFiles(dir, config); // Optional if file filtering might change
+                // umlText = generateUmlFromFiles(tsFiles, config);
 
-                // Send updated content back to the webview
-                panel.webview.postMessage({
-                    type: 'UpdatedContent',
-                    content: mermaidContent,
-                });
+                // // Send updated content back to the webview
+                // panel.webview.postMessage({
+                //     type: 'UpdatedContent',
+                //     content: mermaidContent,
+                // });
             }
         });
     });
@@ -56,10 +53,13 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposable);
 }
 
-function getWebviewContent(panel: vscode.WebviewPanel, extensionUri: vscode.Uri): string {
-    const jointUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'joint.js'));
-    const jointCssUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'dist', 'extension.css'));
-    const scriptUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'jointScript.js'));
+function getWebviewContent(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, initialGraph: D3Graph): string {
+    const scriptUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'd3', 'd3.js'));
+
+    panel.webview.postMessage({
+        type: 'UpdatedContent',
+        graph: initialGraph,
+    });
 
     return `
         <!DOCTYPE html>
@@ -68,45 +68,12 @@ function getWebviewContent(panel: vscode.WebviewPanel, extensionUri: vscode.Uri)
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>UML Diagram</title>
-            <script src="${jointUri}"></script>
-            <link rel="stylesheet" href="${jointCssUri}">
-            <style>
-                body {
-                    font-family: Arial, sans-serif;
-                    margin: 0;
-                    padding: 0;
-                    display: flex;
-                    flex-direction: column;
-                    height: 100vh;
-                }
-                #toolbar {
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: center;
-                    background-color: #f4f4f4;
-                    padding: 10px;
-                    border-bottom: 1px solid #ccc;
-                }
-                #toolbar button {
-                    margin-right: 10px;
-                    padding: 5px 10px;
-                    font-size: 14px;
-                    cursor: pointer;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                    background-color: #fff;
-                }
-                #diagram-container {
-                    flex: 1;
-                    position: relative;
-                }
-            </style>
+            <script src="https://d3js.org/d3.v7.min.js"></script>
         </head>
         <body>
-            <div id="toolbar">
-                <button onclick="scaleToFit()">Scale to Fit</button>
+            <div id="diagram-container">
+                <svg id="diagram" width="800" height="600"></svg>
             </div>
-            <div id="diagram-container"></div>
             <script type="module" src="${scriptUri}"></script>
         </body>
         </html>
