@@ -1,9 +1,10 @@
-import { Project } from "ts-morph";
+import { Project, PropertyDeclaration, MethodDeclaration } from "ts-morph";
 
 export type D3Node = {
     id: string;
     name: string;
-    type: "class" | "interface" | "other";
+    type: "title" | "attribute" | "method";
+    groupId: string;
 };
 
 export type D3Link = {
@@ -12,78 +13,104 @@ export type D3Link = {
     relationship: string;
 };
 
-export type D3Graph = {
+export type D3Group = {
+    groupId: string;
     nodes: D3Node[];
+};
+
+export type D3StructuredGraph = {
+    groups: D3Group[];
     links: D3Link[];
 };
 
 /**
- * Generates a D3-compatible graph from a ts-morph project.
- * @param project - The ts-morph project instance.
- * @returns A D3-compatible graph (nodes and links).
+ * Determines if a type is basic (e.g., string, number, etc.)
+ * @param typeName - The name of the type to check.
+ * @returns True if the type is basic, false otherwise.
  */
-export function generateD3Graph(project: Project): D3Graph {
-    const nodes: D3Node[] = [];
+function isBasicType(typeName: string): boolean {
+    const basicTypes = ["string", "number", "boolean", "any", "void", "undefined", "null"];
+    return basicTypes.includes(typeName.toLowerCase());
+}
+
+/**
+ * Maps a ts-morph visibility keyword to our representation.
+ * @param member - The class or interface member.
+ * @returns The visibility as "public", "private", or "protected".
+ */
+function getVisibility(member: PropertyDeclaration | MethodDeclaration): "public" | "private" | "protected" {
+    return (member.getScope() as "public" | "private" | "protected") || "public";
+}
+
+/**
+ * Generates a D3-structured graph from a ts-morph project, processing only interfaces.
+ * @param project - The ts-morph project instance.
+ * @returns A D3-structured graph (groups and links).
+ */
+export function generateD3Graph(project: Project): D3StructuredGraph {
+    const groups: D3Group[] = [];
     const links: D3Link[] = [];
 
     project.getSourceFiles().forEach((sourceFile) => {
-        sourceFile.getClasses().forEach((cls) => {
-            const className = cls.getName();
-            if (!className) return;
-
-            // Add the class as a node
-            nodes.push({
-                id: className,
-                name: className,
-                type: "class",
-            });
-
-            // Add links for extends relationships
-            const baseClass = cls.getBaseClass();
-            if (baseClass) {
-                const baseClassName = baseClass.getName();
-                if (baseClassName) {
-                    links.push({
-                        source: className,
-                        target: baseClassName,
-                        relationship: "extends",
-                    });
-                }
-            }
-
-            // Add links for implements relationships
-            cls.getImplements().forEach((impl) => {
-                const interfaceName = impl.getExpression().getText();
-                links.push({
-                    source: className,
-                    target: interfaceName,
-                    relationship: "implements",
-                });
-            });
-        });
-
         sourceFile.getInterfaces().forEach((iface) => {
             const interfaceName = iface.getName();
             if (!interfaceName) return;
 
-            // Add the interface as a node
-            nodes.push({
-                id: interfaceName,
+            const groupId = `${interfaceName}-group`;
+
+            // Create the title node
+            const titleNode: D3Node = {
+                id: `${interfaceName}-title`,
                 name: interfaceName,
-                type: "interface",
+                type: "title",
+                groupId,
+            };
+
+            // Create attribute nodes
+            const attributeNodes: D3Node[] = iface.getProperties().map((prop, index) => ({
+                id: `${interfaceName}-attr-${index}`,
+                name: prop.getName(),
+                type: "attribute",
+                groupId,
+            }));
+
+            // Create method nodes
+            const methodNodes: D3Node[] = iface.getMethods().map((method, index) => ({
+                id: `${interfaceName}-method-${index}`,
+                name: method.getName(),
+                type: "method",
+                groupId,
+            }));
+
+            // Add the group
+            groups.push({
+                groupId,
+                nodes: [titleNode, ...attributeNodes, ...methodNodes],
             });
 
             // Add links for extends relationships
             iface.getExtends().forEach((ext) => {
                 const extendedInterfaceName = ext.getExpression().getText();
                 links.push({
-                    source: interfaceName,
-                    target: extendedInterfaceName,
+                    source: `${interfaceName}-title`,
+                    target: `${extendedInterfaceName}-title`,
                     relationship: "extends",
                 });
+            });
+
+            // Add links for attributes referencing other types
+            attributeNodes.forEach((attrNode, i) => {
+                const attrType = iface.getProperties()[i]?.getTypeNode()?.getText() || "any";
+                if (!isBasicType(attrType)) {
+                    links.push({
+                        source: attrNode.id,
+                        target: `${attrType}-title`,
+                        relationship: "has",
+                    });
+                }
             });
         });
     });
 
-    return { nodes, links };
+    return { groups, links };
 }

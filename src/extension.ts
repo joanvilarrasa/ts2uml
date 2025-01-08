@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { findTsFiles } from './utils/findTsFiles';
 import { getDefaultConfig } from './models/Config';
 import { Project } from 'ts-morph';
-import { D3Graph, generateD3Graph } from './utils/generateD3Graph';
+import { generateD3Graph, D3StructuredGraph } from './utils/generateD3Graph';
 
 
 export async function activate(context: vscode.ExtensionContext) {
@@ -53,7 +53,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposable);
 }
 
-function getWebviewContent(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, initialGraph: D3Graph): string {
+function getWebviewContent(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, initialGraph: D3StructuredGraph): string {
     const scriptUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'd3', 'd3.js'));
 
     panel.webview.postMessage({

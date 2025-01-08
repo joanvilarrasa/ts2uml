@@ -1,4 +1,4 @@
-function renderDiagram(graph) {
+function renderDiagram({ groups }) {
     const width = 800;
     const height = 600;
 
@@ -6,98 +6,98 @@ function renderDiagram(graph) {
         .attr("viewBox", [0, 0, width, height])
         .attr("style", "border: 1px solid black; background-color: white;");
 
-    // Add zoom behavior
     const zoom = d3.zoom()
-        .scaleExtent([0.5, 3]) // Zoom scale
-        .on("zoom", (event) => {
-            g.attr("transform", event.transform);
-        });
+        .scaleExtent([0.5, 3])
+        .on("zoom", (event) => g.attr("transform", event.transform));
 
     svg.call(zoom);
 
-    const g = svg.append("g"); // Container for the graph elements
+    const g = svg.append("g");
 
-    const simulation = d3
-        .forceSimulation(graph.nodes)
-        .force(
-            "link",
-            d3.forceLink(graph.links).id(d => d.id).distance(150)
-        )
-        .force("charge", d3.forceManyBody().strength(-500))
-        .force("center", d3.forceCenter(width / 2, height / 2));
+    const gridSpacingX = 300; // Horizontal spacing between groups
+    const gridSpacingY = 300; // Vertical spacing between groups
 
-    const link = g
-        .append("g")
-        .attr("class", "links")
-        .selectAll("line")
-        .data(graph.links)
-        .enter()
-        .append("line")
-        .attr("stroke", "#aaa")
-        .attr("stroke-width", 2);
-
-    const node = g
-        .append("g")
-        .attr("class", "nodes")
-        .selectAll("g")
-        .data(graph.nodes)
-        .enter()
-        .append("g")
-        .call(
-            d3.drag()
-                .on("start", (event, d) => {
-                    if (!event.active) simulation.alphaTarget(0.3).restart();
-                    d.fx = d.x;
-                    d.fy = d.y;
-                })
-                .on("drag", (event, d) => {
-                    d.fx = event.x;
-                    d.fy = event.y;
-                })
-                .on("end", (event, d) => {
-                    if (!event.active) simulation.alphaTarget(0);
-                    d.fx = null;
-                    d.fy = null;
-                })
-        );
-
-    // Append rectangles for nodes of type "class" or "interface"
-    node.filter(d => d.type === "class" || d.type === "interface")
-        .append("rect")
-        .attr("width", 120)
-        .attr("height", 50)
-        .attr("x", -60)
-        .attr("y", -25)
-        .attr("fill", d => d.type === "class" ? "#3498db" : "#2ecc71") // Different colors for classes and interfaces
-        .attr("stroke", d => d.type === "class" ? "#2980b9" : "#27ae60")
-        .attr("stroke-width", 2);
-
-    // Add text labels to all nodes
-    node.append("text")
-        .attr("text-anchor", "middle")
-        .attr("dy", 5) // Center the text vertically
-        .text(d => d.name)
-        .attr("fill", "#fff")
-        .attr("font-size", "12px")
-        .attr("font-family", "Arial");
-
-    simulation.on("tick", () => {
-        link
-            .attr("x1", d => d.source.x)
-            .attr("y1", d => d.source.y)
-            .attr("x2", d => d.target.x)
-            .attr("y2", d => d.target.y);
-
-        node.attr("transform", d => `translate(${d.x},${d.y})`);
+    // Render each group on a grid
+    groups.forEach((group, index) => {
+        const startX = (index % 3) * gridSpacingX; // 3 groups per row
+        const startY = Math.floor(index / 3) * gridSpacingY; // Move to the next row
+        renderGroup(group, g, startX, startY);
     });
 }
 
+function renderGroup(group, container, startX = 0, startY = 0, spacingY = 30) {
+    const groupG = container
+        .append("g")
+        .attr("class", "group")
+        .attr("transform", `translate(${startX}, ${startY})`)
+        .call(
+            d3.drag()
+                .on("start", (event) => {
+                    // Bring the dragged group to the front
+                    d3.select(event.sourceEvent.target).raise();
+                })
+                .on("drag", (event) => {
+                    // Extract the current transform values
+                    const currentTransform = d3.select(event.sourceEvent.target.parentNode).attr("transform");
+                    const [currentX, currentY] = currentTransform
+                        .match(/translate\(([^,]+),\s*([^)]+)\)/)
+                        .slice(1, 3)
+                        .map(Number);
+
+                    // Update the group's position
+                    d3.select(event.sourceEvent.target.parentNode)
+                        .attr("transform", `translate(${currentX + event.dx}, ${currentY + event.dy})`);
+                })
+        );
+
+    // Add nodes to the group
+    const nodes = groupG
+        .selectAll("g.node")
+        .data(group.nodes)
+        .enter()
+        .append("g")
+        .attr("class", (d) => `node ${d.type}`)
+        .attr("transform", (d, i) => {
+            if (d.type === "title") {
+                return `translate(0, 0)`; // Title node at the top
+            } else if (d.type === "attribute") {
+                const attributeIndex = group.nodes.filter((n) => n.type === "attribute").indexOf(d);
+                return `translate(0, ${(attributeIndex + 1) * spacingY})`; // Attributes below the title
+            } else if (d.type === "method") {
+                const methodIndex = group.nodes.filter((n) => n.type === "method").indexOf(d);
+                const attributesCount = group.nodes.filter((n) => n.type === "attribute").length;
+                return `translate(0, ${(attributesCount + methodIndex + 1) * spacingY})`; // Methods below attributes
+            }
+        });
+
+    // Append rectangles for nodes
+    nodes.append("rect")
+        .attr("width", 150)
+        .attr("height", 30)
+        .attr("x", -75)
+        .attr("y", -15)
+        .attr("fill", (d) => (d.type === "title" ? "#3498db" : "#2ecc71"))
+        .attr("stroke", "#000")
+        .attr("stroke-width", 1);
+
+    // Append text labels for nodes
+    nodes.append("text")
+        .attr("x", 0)
+        .attr("y", 5)
+        .attr("text-anchor", "middle")
+        .attr("font-size", "12px")
+        .attr("fill", "#fff")
+        .text((d) => d.name);
+
+    return groupG;
+}
+
 // Listen for messages from the VS Code extension
-window.addEventListener('message', (event) => {
+window.addEventListener("message", (event) => {
     const message = event.data;
 
-    if (message.type === 'UpdatedContent') {
-        console.log('Received updated content:', message.content);
+    if (message.type === "UpdatedContent") {
+        console.log("Received updated content:", message.content);
         renderDiagram(message.graph);
     }
 });
