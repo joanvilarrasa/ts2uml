@@ -26,8 +26,6 @@ export async function activate(context: vscode.ExtensionContext) {
 
         const initialD3Graph = generateD3Graph(project);
 
-
-
         panel.webview.html = getWebviewContent(panel, context.extensionUri, initialD3Graph);
 
         // Listen for messages from the webview
@@ -54,7 +52,7 @@ export async function activate(context: vscode.ExtensionContext) {
 }
 
 function getWebviewContent(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, initialGraph: D3StructuredGraph): string {
-    const scriptUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'd3', 'd3.js'));
+    const d3ScriptUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'd3', 'd3.js'));
 
     panel.webview.postMessage({
         type: 'UpdatedContent',
@@ -68,13 +66,13 @@ function getWebviewContent(panel: vscode.WebviewPanel, extensionUri: vscode.Uri,
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>UML Diagram</title>
-            <script src="https://d3js.org/d3.v7.min.js"></script>
         </head>
         <body>
-            <div id="diagram-container">
-                <svg id="diagram" width="800" height="600"></svg>
+            <div id="diagram-container" style="width: 1200px; height: 500px;">
+                <div id="paper"></div>
             </div>
-            <script type="module" src="${scriptUri}"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@joint/core@4.1.1/dist/joint.js"></script>
+            <script type="text/javascript" src="${d3ScriptUri}"></script>
         </body>
         </html>
     `;

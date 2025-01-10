@@ -5,8 +5,8 @@ import { isBoolean, isPlainObject, isString } from "../lib/is-what/dist";
  ************************************************************/
 
 // Define possible types for item filters
-export type ItemType = "class" | "interface" | "type" | "const" | "enum" | "function";
-export const ItemTypeList: ItemType[] = ["class", "interface", "type", "const", "enum", "function"];
+export type ItemType = "class" | "interface" | "type"  | "enum" | "function" | "variable";
+export const ItemTypeList: ItemType[] = ["class", "interface", "type", "enum", "function", "variable"];
 
 // Define possible types for relationship filters
 export type RelationshipType = "inheritance" | "association" | "aggregation" | "composition" | "dependency" | "realization";
@@ -43,6 +43,7 @@ export interface Config {
 export interface ConfigItems {
     filter: ConfigItemsFilter;
     options: ConfigItemsOptions;
+    styles: {[K in ItemType]: ConfigItemsStyles };
 };
 
 // Filters for items to be displayed.
@@ -93,6 +94,11 @@ export interface ConfigItemsOptions {
     hide_methods_protected?: boolean;
 
 };
+
+// Styles for items to be displayed.
+export interface ConfigItemsStyles {
+    primaryColor: string;
+}
 
 // Configuration for displaying relationships between items.
 export interface ConfigRelations {
@@ -164,6 +170,7 @@ export function validateConfigItems(data: any): data is ConfigItems {
     }
     validateConfigItemsFilter(data.filter);
     validateConfigItemsOptions(data.options);
+    validateConfigItemsStyles(data.styles);
 
     return true;
 }
@@ -250,6 +257,18 @@ export function validateConfigItemsOptions(data: any): data is ConfigItemsOption
     return true;
 }
 
+export function validateConfigItemsStyles(data: any): data is ConfigItemsStyles {
+    if (!isPlainObject(data)) {
+        console.debug("data must be an object, recieved: ", data);
+        throw new Error("data must be an object");
+    }
+    if (!isString(data.primaryColor)) {
+        console.debug("data.primaryColor must be a string, recieved: ", data.primaryColor);
+        throw new Error("primaryColor must be a string");
+    }
+    return true;
+}
+
 export function validateConfigRelations(data: any): data is ConfigRelationsFilter {
     if (!isPlainObject(data)) {
         console.debug("data must be an object, recieved: ", data);
@@ -324,6 +343,11 @@ export function isConfigItemsOptions(data: any): data is ConfigItemsOptions {
     catch (e) { return false; }
 }
 
+export function isConfigItemsStyles(data: any): data is ConfigItemsStyles {
+    try { return validateConfigItemsStyles(data); }
+    catch (e) { return false; }
+}
+
 export function isConfigRelations(data: any): data is ConfigRelations {
     try { return validateConfigRelations(data); }
     catch (e) { return false; }
@@ -343,72 +367,86 @@ export function isConfigRelationsOptions(data: any): data is ConfigRelationsOpti
  * defaults
  ************************************************************/
 
-export function getDefaultConfig(): Config {
+export function getDefaultConfig(data?: Partial<Config>): Config {
     return {
         diagram: {
-            show_legend: false
+            show_legend: data?.diagram?.show_legend === true,
         },
-        items: getDefaultConfigItems(),
+        items: getDefaultConfigItems(data?.items),
         metadata: {
-            version: "1.0"
+            version: data?.metadata?.version || "1.0.0",
         },
-        relations: getDefaultConfigRelations(),
-        theme: "dark"
+        relations: getDefaultConfigRelations(data?.relations),
+        theme: data?.theme || "light"
     };
 }
 
-export function getDefaultConfigItems(): ConfigItems {
+export function getDefaultConfigItems(data?: Partial<ConfigItems>): ConfigItems {
     return {
-        filter: getDefaultConfigItemsFilter(),
-        options: getDefaultConfigItemsOptions()
+        filter: getDefaultConfigItemsFilter(data?.filter),
+        options: getDefaultConfigItemsOptions(data?.options),
+        styles: {
+            class: data?.styles?.class ? getDefaultConfigItemsStyles(data?.styles?.class) : getDefaultConfigItemsStyles({ primaryColor: "#4980af" }),
+            interface: data?.styles?.interface ? getDefaultConfigItemsStyles(data?.styles?.interface) : getDefaultConfigItemsStyles({ primaryColor: "#4B999A" }),
+            type: data?.styles?.type ? getDefaultConfigItemsStyles(data?.styles?.type) : getDefaultConfigItemsStyles({ primaryColor: "#8d578c" }),
+            enum: data?.styles?.enum ? getDefaultConfigItemsStyles(data?.styles?.enum) : getDefaultConfigItemsStyles({ primaryColor: "#8d578c" }),
+            function: data?.styles?.function ? getDefaultConfigItemsStyles(data?.styles?.function) : getDefaultConfigItemsStyles({ primaryColor: "#e9d382" }),
+            variable: data?.styles?.variable ? getDefaultConfigItemsStyles(data?.styles?.variable) : getDefaultConfigItemsStyles({ primaryColor: "#e9d382" })
+        }
     };
 }
 
-export function getDefaultConfigItemsFilter(): ConfigItemsFilter {
+export function getDefaultConfigItemsFilter(data?: Partial<ConfigItemsFilter>): ConfigItemsFilter {
     return {
-        filter_path: [],
-        filter_type: []
+        filter_path: data?.filter_path || [],
+        filter_type: data?.filter_type || []
     };
 }
 
-export function getDefaultConfigItemsOptions(): ConfigItemsOptions {
+export function getDefaultConfigItemsOptions(data?: Partial<ConfigItemsOptions>): ConfigItemsOptions {
     return {
-        hide_description: true,
-        hide_type: false,
-        hide_all_public: false,
-        hide_all_private: false,
-        hide_all_protected: false,
-        hide_all_static: false,
-        hide_attributes: false,
-        hide_attributes_public: false,
-        hide_attributes_private: false,
-        hide_attributes_protected: false,
-        hide_methods: false,
-        hide_methods_public: false,
-        hide_methods_private: false,
-        hide_methods_protected: false,
+        hide_description: data?.hide_description === false ? false : true,
+        hide_type: data?.hide_type === true,
+        hide_all_public: data?.hide_all_public === true,
+        hide_all_private: data?.hide_all_private === true,
+        hide_all_protected: data?.hide_all_protected === true,
+        hide_all_static: data?.hide_all_static === true,
+        hide_attributes: data?.hide_all_static === true,
+        hide_attributes_public: data?.hide_all_static === true,
+        hide_attributes_private: data?.hide_all_static === true,
+        hide_attributes_protected: data?.hide_all_static === true,
+        hide_methods: data?.hide_all_static === true,
+        hide_methods_public: data?.hide_all_static === true,
+        hide_methods_private: data?.hide_all_static === true,
+        hide_methods_protected: data?.hide_all_static === true,
     };
 }
 
-export function getDefaultConfigRelations(): ConfigRelations {
+export function getDefaultConfigItemsStyles(data?: Partial<ConfigItemsStyles>): ConfigItemsStyles {
     return {
-        filter: getDefaultConfigRelationsFilter(),
-        options: getDefaultConfigRelationsOptions()
+        primaryColor: data?.primaryColor || "black"
     };
 }
 
-export function getDefaultConfigRelationsFilter(): ConfigRelationsFilter {
+export function getDefaultConfigRelations(data?: Partial<ConfigRelations>): ConfigRelations {
     return {
-        filter_type: []
+        filter: getDefaultConfigRelationsFilter(data?.filter),
+        options: getDefaultConfigRelationsOptions(data?.options)
     };
 }
 
-export function getDefaultConfigRelationsOptions(): ConfigRelationsOptions {
+export function getDefaultConfigRelationsFilter(data?: Partial<ConfigRelationsFilter>): ConfigRelationsFilter {
     return {
-        hide: false,
-        hide_arrows: false,
-        hide_cardinality: false,
-        hide_labels: false
+        filter_type: data?.filter_type || []
+    };
+}
+
+export function getDefaultConfigRelationsOptions(data?: Partial<ConfigRelationsOptions>): ConfigRelationsOptions {
+    return {
+        hide: data?.hide === true,
+        hide_arrows: data?.hide === true,
+        hide_cardinality: data?.hide === true,
+        hide_labels: data?.hide === true
     };
 }
 
@@ -434,7 +472,15 @@ export function updateConfig(config: Config, updates: Partial<Config>): Config {
 export function updateConfigItems(config: ConfigItems, updates: Partial<ConfigItems>): ConfigItems {
     return {
         filter: updateConfigItemsFilter(config.filter, updates.filter ?? {}),
-        options: updateConfigItemsOptions(config.options, updates.options ?? {})
+        options: updateConfigItemsOptions(config.options, updates.options ?? {}),
+        styles: {
+            class: updateConfigItemsStyles(config.styles.class, updates.styles?.class ?? {}),
+            interface: updateConfigItemsStyles(config.styles.interface, updates.styles?.interface ?? {}),
+            type: updateConfigItemsStyles(config.styles.type, updates.styles?.type ?? {}),
+            enum: updateConfigItemsStyles(config.styles.enum, updates.styles?.enum ?? {}),
+            function: updateConfigItemsStyles(config.styles.function, updates.styles?.function ?? {}),
+            variable: updateConfigItemsStyles(config.styles.variable, updates.styles?.variable ?? {})
+        }
     };
 }
 
@@ -446,6 +492,13 @@ export function updateConfigItemsFilter(config: ConfigItemsFilter, updates: Part
 }
 
 export function updateConfigItemsOptions(config: ConfigItemsOptions, updates: Partial<ConfigItemsOptions>): ConfigItemsOptions {
+    return {
+        ...config,
+        ...updates
+    };
+}
+
+export function updateConfigItemsStyles(config: ConfigItemsStyles, updates: Partial<ConfigItemsStyles>): ConfigItemsStyles {
     return {
         ...config,
         ...updates
