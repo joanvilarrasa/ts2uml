@@ -1,4 +1,5 @@
 import { isBoolean, isPlainObject, isString } from "../lib/is-what/dist";
+import { LinkType, LinkTypeList } from "./graph/Link";
 
 /************************************************************
  * Type definitions
@@ -7,10 +8,6 @@ import { isBoolean, isPlainObject, isString } from "../lib/is-what/dist";
 // Define possible types for item filters
 export type ItemType = "class" | "interface" | "type"  | "enum" | "function" | "variable";
 export const ItemTypeList: ItemType[] = ["class", "interface", "type", "enum", "function", "variable"];
-
-// Define possible types for relationship filters
-export type RelationshipType = "inheritance" | "association" | "aggregation" | "composition" | "dependency" | "realization";
-export const RelationshipTypeList: RelationshipType[] = ["inheritance", "association", "aggregation", "composition", "dependency", "realization"];
 
 // Define the possible themes for the diagram.
 export type Theme = "light" | "dark";
@@ -109,7 +106,7 @@ export interface ConfigRelations {
 // Filters for relationships to be displayed.
 export interface ConfigRelationsFilter {
     // Filter relationships by type (e.g., inheritance, association, etc.).
-    filter_type: RelationshipType[];
+    filter_type: LinkType[];
 };
 
 // Display options for relationships.
@@ -285,9 +282,9 @@ export function validateConfigRelationsFilter(data: any): data is ConfigRelation
         console.debug("data must be an object, recieved: ", data);
         throw new Error("data must be an object");
     }
-    if (!Array.isArray(data.filter_type) || !data.filter_type.every((item) => RelationshipTypeList.includes(item))) {
-        console.debug("data.filter_type must be an array of strings and one of ", RelationshipTypeList, " recieved: ", data.filter_type);
-        throw new Error("filter_type must be an array of strings and one of " + RelationshipTypeList);
+    if (!Array.isArray(data.filter_type) || !data.filter_type.every((item) => LinkTypeList.includes(item))) {
+        console.debug("data.filter_type must be an array of strings and one of ", LinkTypeList, " recieved: ", data.filter_type);
+        throw new Error("filter_type must be an array of strings and one of " + LinkTypeList);
     }
 
     return true;

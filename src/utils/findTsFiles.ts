@@ -4,7 +4,6 @@ import { Config } from '../models/Config';
 
 export async function findTsFiles(directory: string, config: Config): Promise<string[]> {
 
-    console.log(directory, config);
     let results: string[] = [];
     const filterPaths = config.items.filter.filter_path;
     const items = await fs.promises.readdir(directory, { withFileTypes: true });

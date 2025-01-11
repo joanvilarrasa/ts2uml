@@ -5,6 +5,7 @@ export interface Node {
     type: NodeType;
     title: NodeTitle;
     attributes: NodeAttribute[];
+    style?: Style;
 }
 export function getDefaultNode(data?: Partial<Node>): Node {
     return {
@@ -12,6 +13,7 @@ export function getDefaultNode(data?: Partial<Node>): Node {
         type: data?.type || "interface",
         title: getDefaultNodeTitle(data?.title),
         attributes: data?.attributes ? data?.attributes.map(getDefaultNodeAttribute) : [],
+        style: getDefaultStyle(data?.style),
     };
 }
 
