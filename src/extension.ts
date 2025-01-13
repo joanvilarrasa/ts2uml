@@ -40,7 +40,7 @@ export async function activate(context: vscode.ExtensionContext) {
 function getWebviewContent(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, initialGraph: Graph): string {
     const fontCssUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'joint', 'font.css'));
     const jointShapesUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'joint', 'shapes.js'));
-    const jointScriptUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'joint', 'joint.js'));
+    const jointDirUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'joint'));
 
     panel.webview.postMessage({
         type: 'UpdatedContent',
@@ -65,7 +65,10 @@ function getWebviewContent(panel: vscode.WebviewPanel, extensionUri: vscode.Uri,
                 <div id="paper"></div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/@joint/core@4.1.1/dist/joint.js"></script>
-            <script type="text/javascript" src="${jointScriptUri}"></script>
+            <script src="${jointDirUri}/lib/graphlib.core.js"></script>
+            <script src="${jointDirUri}/lib/dagre.js"></script>
+            <script src="${jointDirUri}/lib/DirectedGraph.js"></script>
+            <script type="text/javascript" src="${jointDirUri}/joint.js"></script>
         </body>
         </html>
     `;

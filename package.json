@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "@joint/core": "^4.1.1",
+    "@joint/layout-directed-graph": "^4.1.1",
     "d3": "^7.9.0",
     "ts-morph": "^25.0.0"
   }

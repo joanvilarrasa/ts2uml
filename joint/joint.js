@@ -276,6 +276,14 @@ function renderDiagram({ nodes, links }) {
         // graphLinks.push(link);
         link.addTo(graph);
     }
+
+
+    joint.layout.DirectedGraph.layout(graph, {
+        setLinkVertices: false,
+        rankDir: 'LR',
+        marginX: 50,
+        marginY: 50,
+    });
   
 
 }
