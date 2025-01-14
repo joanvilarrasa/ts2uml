@@ -1,66 +1,27 @@
 {
   "name": "ts2uml",
-  "displayName": "ts2uml",
-  "description": "Generate uml diagrams from a typescript project typescript project",
+  "private": "true",
   "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.96.0"
-  },
-  "categories": [
-    "Other"
+  "workspaces": [
+    "packages/models",
+    "packages/npm-lib",
+    "packages/vscode-ext"
   ],
-  "activationEvents": [],
-  "main": "./dist/extension.js",
-  "contributes": {
-    "menus": {
-      "explorer/context": [
-        {
-          "when": "resourceScheme == 'file' && explorerResourceIsFolder == true",
-          "command": "ts2uml.generateUml",
-          "title": "Generate UML Diagram",
-          "group": "ts2uml"
-        }
-      ]
-    },
-    "commands": [
-      {
-        "command": "ts2uml.generateUml",
-        "title": "Generate UML Diagram"
-      }
-    ]
-  },
   "scripts": {
-    "vscode:prepublish": "npm run package",
-    "compile": "npm run check-types && npm run lint && node esbuild.js",
-    "watch": "npm-run-all -p watch:*",
-    "watch:esbuild": "node esbuild.js --watch",
-    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-    "package": "npm run check-types && npm run lint && node esbuild.js --production",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "npm run compile-tests && npm run compile && npm run lint",
-    "check-types": "tsc --noEmit",
-    "lint": "eslint src",
-    "test": "vscode-test"
+    "dev:models": "cd packages/models && bun index.ts",
+    "build": "bun run build:all",
+    "build:all": "bun run build:models && bun run build:npm && bun run build:vscode",
+    "build:models": "cd packages/models && bun run build",
+    "build:npm": "cd packages/npm-package && bun run build",
+    "build:vscode": "cd packages/vscode-extension && bun run build"
   },
   "devDependencies": {
-    "@types/d3": "^7.4.3",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "20.x",
-    "@types/vscode": "^1.96.0",
-    "@typescript-eslint/eslint-plugin": "^8.17.0",
-    "@typescript-eslint/parser": "^8.17.0",
-    "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1",
-    "esbuild": "^0.24.0",
-    "eslint": "^9.16.0",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^5.7.2"
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.7.3"
   },
   "dependencies": {
-    "@joint/core": "^4.1.1",
-    "@joint/layout-directed-graph": "^4.1.1",
-    "d3": "^7.9.0",
-    "ts-morph": "^25.0.0"
+    "is-what": "^5.0.2"
   }
 }

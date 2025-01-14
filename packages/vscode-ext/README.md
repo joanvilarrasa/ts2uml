@@ -1,4 +1,4 @@
-# ts2uml
+# vscode-ext
 
 To install dependencies:
 

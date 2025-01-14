@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { findTsFiles } from './utils/findTsFiles';
 import { getDefaultConfig } from './models/Config';
 import { Project } from 'ts-morph';
-import { generateGraph, Graph } from './utils/generateGraph';
+import { generateGraph, type Graph } from './utils/generateGraph';
 
 export async function activate(context: vscode.ExtensionContext) {
     const disposable = vscode.commands.registerCommand('ts2uml.generateUml', async (uri: vscode.Uri) => {

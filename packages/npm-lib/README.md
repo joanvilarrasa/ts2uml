@@ -1,4 +1,4 @@
-# ts2uml
+# npm-lib
 
 To install dependencies:
 

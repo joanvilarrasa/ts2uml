@@ -1,4 +1,4 @@
-# ts2uml
+# models
 
 To install dependencies:
 

@@ -11,7 +11,7 @@ export type Link = {
     text?: string;
 };
 
-export function getDefaultLink(data?: Partial<Link>): Link {
+export function newLink(data?: Partial<Link>): Link {
     return {
         sourceId: data?.sourceId ?? "",
         sourcePortId: data?.sourcePortId ?? undefined,

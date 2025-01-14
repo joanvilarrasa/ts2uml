@@ -1,5 +1,5 @@
-import { isBoolean, isPlainObject, isString } from "../lib/is-what/dist";
-import { LinkType, LinkTypeList } from "./graph/Link";
+import { isBoolean, isPlainObject, isString } from "../../vscode-ext/src/lib/is-what/dist";
+import { type LinkType, LinkTypeList } from "./graph/Link";
 
 /************************************************************
  * Type definitions

@@ -1,7 +1,7 @@
 import { Project } from "ts-morph";
-import { Link } from "../models/graph/Link";
-import { getDefaultNode, getDefaultNodeAttribute, getDefaultNodeTitle, getDefaultStyle, Node, NodeAttribute } from "../models/graph/Node";
-import { Config } from "../models/Config";
+import type { Link } from "../models/graph/Link";
+import { getDefaultNode, getDefaultNodeAttribute, getDefaultNodeTitle, getDefaultStyle, type Node, type NodeAttribute } from "../models/graph/Node";
+import type { Config } from "../models/Config";
 
 function getRelativeFilePath(basePath: string, sourceFilePath: string) {
     // Normalize paths for cross-platform compatibility

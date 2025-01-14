@@ -1,4 +1,10 @@
 # Based on https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore
+out
+dist
+node_modules
+.vscode-test/
+*.vsix
+
 
 # Logs
 
