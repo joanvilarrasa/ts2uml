@@ -11,7 +11,8 @@ export type Theme = "light" | "dark";
 export const ThemeList = ["light", "dark"];
 
 /**
- * Interface defining the main configuration for the diagram.
+ * Main configuration object that controls the overall diagram appearance and behavior.
+ * Contains settings for theme, display options, and filtering of nodes and relationships.
  */
 export interface Config {
     /** 
