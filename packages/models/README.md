@@ -2,6 +2,25 @@
 
 This package contains the core data models used throughout the ts2uml project. Each model is defined as a TypeScript interface in its own file, with the filename matching the model name.
 
+
+## Table of Contents
+
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [Structure](#structure)
+   - [Auxiliary Functions](#auxiliary-functions)
+4. [Available Models](#available-models)
+
+This README covers:
+
+- **Installation**: How to add this package to your project
+- **Usage**: Examples of how to use the models and their helper functions
+- **Structure**: The consistent pattern followed by all model files, including the auxiliary functions provided for each model
+- **Available Models**: Auto-generated documentation of all models, their purposes, and categorization To update the README with the latest models, run:
+```bash
+bun run build
+```
+
 ## Structure
 
 Each model file follows a consistent pattern, providing an interface definition along with four auxiliary functions:
@@ -31,14 +50,6 @@ For each model `<Model>`, the following functions are provided:
   - Creates a copy of the <Model> with updated fields
   - Preserves existing data for fields not included in updates
   - Returns a new, complete <Model> instance
-
-### Docs
-
-This README is generated from the JSDoc comments in the source code and serves as the main documentation for the repository.
-To update the README with the latest models, run:
-```bash
-bun run build
-```
 
 ## Installation
 
@@ -96,7 +107,7 @@ if (isConfig(someData)) {
 - `ConfigNodesOptions` - Interface defining display options that control what information is shown inside the nodes.
 
 ### Graph Models
-- `Cardinality` - 
+- `Cardinality` - Represents the cardinality of a relationship in a graph.
 - `Link` - Represents the different types of relationships between nodes in the diagram. - "aggregation": Indicates a has-a relationship where parts can exist independently - "association": Indicates a basic association between nodes - "composition": Indicates a contains relationship where parts cannot exist independently - "dependency": Indicates a uses/depends-on relationship - "inheritance": Indicates an inheritance/extends relationship - "realization": Indicates an implements/realizes relationship
 - `Node` - Represents a node in the diagram, which can be a class, interface, type, enum, function, or variable.
 - `NodeAttribute` - Represents the different types of attributes that can be displayed in a node. - "attribute": Represents a class/interface property or field - "enumOrTypeOption": Represents an enum value or type union option - "method": Represents a class/interface method or function - "separator": Represents a visual separator line

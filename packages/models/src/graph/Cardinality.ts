@@ -1,7 +1,14 @@
 import { isArray, isNumber } from "is-what";
 
+/**
+ * Represents the cardinality of a relationship in a graph.
+ * @typedef {number | "*" | "?" | [(number | "*"), (number | "*")]} Cardinality
+ */
 export type Cardinality = number | "*" | "?" | [(number | "*"), (number | "*")];
 
+/**
+ * Converts a Cardinality object to a string representation.
+ */
 export function stringifyCardinality(cardinality: Cardinality): string {
     if (isNumber(cardinality)) return cardinality.toString();
     if (cardinality === "*") return "*";
