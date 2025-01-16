@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 import { findTsFiles } from './utils/findTsFiles';
-import { getDefaultConfig } from './models/Config';
 import { Project } from 'ts-morph';
 import { generateGraph, type Graph } from './utils/generateGraph';
+import { newConfig } from '@ts2uml/models';
 
 export async function activate(context: vscode.ExtensionContext) {
     const disposable = vscode.commands.registerCommand('ts2uml.generateUml', async (uri: vscode.Uri) => {
@@ -14,7 +14,7 @@ export async function activate(context: vscode.ExtensionContext) {
         );
 
         const dir = uri.fsPath;
-        let config = getDefaultConfig();
+        let config = newConfig();
 
         // Initial content generation
         let tsFiles = await findTsFiles(dir, config);
