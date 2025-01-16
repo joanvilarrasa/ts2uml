@@ -1148,7 +1148,7 @@ module.exports = buildLayerGraph;
  * Constructs a graph that can be used to sort a layer of nodes. The graph will
  * contain all base and subgraph nodes from the request layer in their original
  * hierarchy and any edges that are incident on these nodes and are of the type
- * requested by the "relationship" parameter.
+ * requested by the "linkship" parameter.
  *
  * Nodes from the requested rank that do not have parents are assigned a root
  * node in the output graph, which is set in the root graph attribute. This
@@ -1168,13 +1168,13 @@ module.exports = buildLayerGraph;
  *    2. Root nodes in the movable layer are made children of the node
  *       indicated by the root attribute of the graph.
  *    3. Non-movable nodes incident on movable nodes, selected by the
- *       relationship parameter, are included in the graph (without hierarchy).
- *    4. Edges incident on movable nodes, selected by the relationship
+ *       linkship parameter, are included in the graph (without hierarchy).
+ *    4. Edges incident on movable nodes, selected by the linkship
  *       parameter, are added to the output graph.
  *    5. The weights for copied edges are aggregated as need, since the output
  *       graph is not a multi-graph.
  */
-function buildLayerGraph(g, rank, relationship) {
+function buildLayerGraph(g, rank, linkship) {
   let root = createRootNode(g),
     result = new Graph({ compound: true }).setGraph({ root: root })
       .setDefaultNodeLabel(v => g.node(v));
@@ -1188,7 +1188,7 @@ function buildLayerGraph(g, rank, relationship) {
       result.setParent(v, parent || root);
 
       // This assumes we have only short edges!
-      g[relationship](v).forEach(e => {
+      g[linkship](v).forEach(e => {
         let u = e.v === v ? e.w : e.v,
           edge = result.edge(u, v),
           weight = edge !== undefined ? edge.weight : 0;
@@ -1335,9 +1335,9 @@ function order(g) {
   assignOrder(g, best);
 }
 
-function buildLayerGraphs(g, ranks, relationship) {
+function buildLayerGraphs(g, ranks, linkship) {
   return ranks.map(function(rank) {
-    return buildLayerGraph(g, rank, relationship);
+    return buildLayerGraph(g, rank, linkship);
   });
 }
 
