@@ -5,18 +5,10 @@ This package contains the core data models used throughout the ts2uml project. E
 
 ## Table of Contents
 
-1. [Installation](#installation)
-2. [Usage](#usage)
-3. [Structure](#structure)
-   - [Auxiliary Functions](#auxiliary-functions)
-4. [Available Models](#available-models)
-
-This README covers:
-
-- **Installation**: How to add this package to your project
-- **Usage**: Examples of how to use the models and their helper functions
-- **Structure**: The consistent pattern followed by all model files, including the auxiliary functions provided for each model
-- **Available Models**: Auto-generated documentation of all models, their purposes, and categorization To update the README with the latest models, run:
+1. [Installation](#installation) : How to add this package to your project
+2. [Usage](#usage) : Examples of how to use the models and their helper functions
+3. [Structure](#structure) : The consistent pattern followed by all model files, including the auxiliary functions provided for each model
+4. [Available Models](#available-models) : Auto-generated documentation of all models, their purposes, and categorization To update the README with the latest models, run:
 ```bash
 bun run build
 ```
