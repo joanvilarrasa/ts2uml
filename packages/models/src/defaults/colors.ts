@@ -1,5 +1,4 @@
 import type { Theme } from "../config/Config";
-import type { NodeStyle } from "../graph/NodeStyle";
 
 export const DEFAULT_THEME: Theme = "light";
 

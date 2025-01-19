@@ -4,8 +4,10 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
+    "clean": "rm -rf .turbo node_modules dist",
     "lint": "biome check .",
     "format": "biome format --write .",
-    "build": "bun run scripts/updateReadme.ts"
+    "build": "bun run scripts/updateReadme.ts && tsup --clean",
+    "test": "bun test"
   }
 }

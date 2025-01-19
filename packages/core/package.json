@@ -2,5 +2,10 @@
   "name": "@ts2uml/core",
   "version": "0.0.1",
   "module": "index.ts",
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "build": "bun build"
+  }
 }
