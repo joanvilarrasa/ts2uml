@@ -3,23 +3,25 @@
   "private": "true",
   "version": "0.0.1",
   "workspaces": [
+    "apps/web",
+    "apps/vscode-ext",
     "packages/models",
-    "packages/npm-lib",
-    "packages/vscode-ext"
+    "packages/npm-lib"
   ],
   "scripts": {
+    "dev:web": "cd apps/web && bun run dev",
     "dev:models": "cd packages/models && bun index.ts",
     "build": "bun run build:all",
     "build:all": "bun run build:models && bun run build:npm && bun run build:vscode",
     "build:models": "cd packages/models && bun run build",
     "build:npm": "cd packages/npm-package && bun run build",
-    "build:vscode": "cd packages/vscode-extension && bun run build"
+    "build:vscode": "cd apps/vscode-extension && bun run build"
   },
   "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.7.3"
+    "@biomejs/biome": "1.9.4",
+    "@types/bun": "latest",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.7"
   },
   "dependencies": {
     "is-what": "^5.0.2"
