@@ -4,14 +4,8 @@
 		"enabled": true
 	},
 	"linter": {
-		"ignore": [
-			"node_modules",
-			".next",
-			"*.json",
-			"test",
-			"dist"
-		],
 		"enabled": true,
+		"ignore": ["node_modules", ".next", "*.json", "test", "dist"],
 		"rules": {
 			"recommended": true,
 			"a11y": {
@@ -28,11 +22,12 @@
 	},
 	"formatter": {
 		"indentStyle": "tab",
-		"ignore": [
-			"*.json",
-			".next",
-			"dist",
-			"test"
-		]
+		"ignore": ["node_modules", "*.json", ".next", "dist", "test"],
+		"lineWidth": 300
+	},
+	"json": {
+		"formatter": {
+			"enabled": true
+		}
 	}
 }
