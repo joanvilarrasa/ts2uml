@@ -1,27 +1,6 @@
+import { newLink, newNode, newNodeAttribute, newNodeStyle, newNodeTitle, type Config, type Link, type Node, type NodeAttribute, type Graph } from "@ts2uml/models";
 import { Project } from "ts-morph";
-import { newLink, newNode, newNodeAttribute, newNodeStyle, newNodeTitle, type Config, type Link, type Node, type NodeAttribute } from "@ts2uml/models";
-
-function getRelativeFilePath(basePath: string, sourceFilePath: string) {
-    // Normalize paths for cross-platform compatibility
-    const normalizedBasePath = basePath.replace(/\\/g, "/");
-    const normalizedSourceFilePath = sourceFilePath.replace(/\\/g, "/");
-
-    // Replace base path in source file path
-    let relativePath = normalizedSourceFilePath.startsWith(normalizedBasePath)
-        ? normalizedSourceFilePath.replace(normalizedBasePath, "")
-        : normalizedSourceFilePath;
-
-    // Remove the file extension
-    relativePath = relativePath.replace(/\.[^/.]+$/, ""); // Regex to match and remove the extension
-
-    return relativePath;
-}
-
-export type Graph = {
-    nodes: Node[];
-    links: Link[];
-};
-
+import { getRelativeFilePath } from "./getRelativePath";
 
 export function generateGraph(project: Project, filePath: string, config: Config): Graph {
     const nodes: Node[] = [];
@@ -46,18 +25,18 @@ export function generateGraph(project: Project, filePath: string, config: Config
             const attributeNodes: NodeAttribute[] = iface.getProperties().map((prop, index) => {
                 const sourcePortId = `${ifaceId}-${prop.getName()}`;
                 const targetIds = [];
-                
+
                 // This is some weird shit to know if the type is basic or not
                 const descendands = prop.getTypeNode()?.getDescendants() ?? [];
-                for(const descendant of descendands) {
+                for (const descendant of descendands) {
                     const descendantText = descendant.getType().getText();
-                    if(descendantText.startsWith("import(") && !descendant.getType().isArray()) {
+                    if (descendantText.startsWith("import(") && !descendant.getType().isArray()) {
                         // get the text that inside the import(" ... ")
                         const importText = descendantText.match(/import\(\"(.*?)\"\)/)?.[1];
-                        if(importText) {
+                        if (importText) {
                             const targetSourceFileRelativePath = getRelativeFilePath(filePath, importText);
                             const targetId = `${targetSourceFileRelativePath}-${descendant.getText()}`;
-                            if(targetIds.indexOf(targetId) === -1) {
+                            if (targetIds.indexOf(targetId) === -1) {
                                 targetIds.push(targetId);
                             }
                         }
@@ -65,7 +44,7 @@ export function generateGraph(project: Project, filePath: string, config: Config
                 }
 
                 // Push the links
-                for(const targetId of targetIds) {
+                for (const targetId of targetIds) {
                     links.push(newLink({
                         sourceId: ifaceId,
                         sourcePortId: sourcePortId,
@@ -73,7 +52,7 @@ export function generateGraph(project: Project, filePath: string, config: Config
                         type: "association",
                     }))
                 }
-                
+
                 return newNodeAttribute({
                     type: "attribute",
                     text: prop.getText(),

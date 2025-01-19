@@ -44,6 +44,9 @@ export {
 export type { Cardinality } from "./src/graph/Cardinality";
 export { stringifyCardinality, validateCardinality, isCardinality } from "./src/graph/Cardinality";
 
+export type { Graph } from "./src/graph/Graph";
+export { validateGraph, isGraph, newGraph, updateGraph } from "./src/graph/Graph";
+
 export type { Link, LinkType } from "./src/graph/Link";
 export {
 	LinkTypeList,

@@ -100,6 +100,7 @@ if (isConfig(someData)) {
 
 ### Graph Models
 - `Cardinality` - Represents the cardinality of a relationship in a graph.
+- `Graph` - Represents a graph/diagram containing nodes and their links.
 - `Link` - Represents the different types of relationships between nodes in the diagram. - "aggregation": Indicates a has-a relationship where parts can exist independently - "association": Indicates a basic association between nodes - "composition": Indicates a contains relationship where parts cannot exist independently - "dependency": Indicates a uses/depends-on relationship - "inheritance": Indicates an inheritance/extends relationship - "realization": Indicates an implements/realizes relationship
 - `Node` - Represents a node in the diagram, which can be a class, interface, type, enum, function, or variable.
 - `NodeAttribute` - Represents the different types of attributes that can be displayed in a node. - "attribute": Represents a class/interface property or field - "enumOrTypeOption": Represents an enum value or type union option - "method": Represents a class/interface method or function - "separator": Represents a visual separator line
