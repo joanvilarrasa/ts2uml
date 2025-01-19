@@ -5,6 +5,7 @@
   "workspaces": [
     "apps/web",
     "apps/vscode-ext",
+    "packages/core",
     "packages/models",
     "packages/npm-lib"
   ],
@@ -43,11 +44,13 @@
 
     "dev": "bun run dev:all",
     "dev:all": "bun run dev:models && bun run dev:core && bun run dev:npm && bun run dev:vscode && bun run dev:web",
-    "dev:models": "cd packages/models && bun index.ts",
-    "dev:core": "cd packages/core && bun index.ts",
-    "dev:npm": "cd packages/npm-lib && bun index.ts",
-    "dev:vscode": "cd apps/vscode-ext && bun index.ts",
-    "dev:web": "cd apps/web && bun index.ts"
+    "dev:models": "cd packages/models && bun run dev",
+    "dev:core": "cd packages/core && bun run dev",
+    "dev:npm": "cd packages/npm-lib && bun run dev",
+    "dev:vscode": "cd apps/vscode-ext && bun run dev",
+    "dev:web": "cd apps/web && bun run dev",
+
+    "generate-demo-graph": "cd packages/core && bun run generate-demo-graph"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",

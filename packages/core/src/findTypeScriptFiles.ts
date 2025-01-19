@@ -7,7 +7,6 @@ export async function findTypeScriptFiles(directory: string, config: Config): Pr
 	const results: string[] = [];
 	const filterPaths = config.nodes.filter.filter_path;
 	const items = await readdir(directory, { recursive: true });
-
 	await Promise.all(
 		items.map(async (itemName) => {
 			if (!filterPaths.some((filterPath) => itemName.includes(filterPath))) {

@@ -1,0 +1,1284 @@
+{
+  "nodes": [
+    {
+      "id": "/graph/Graph-Graph",
+      "type": "interface",
+      "title": {
+        "nodeType": "interface",
+        "style": {
+          "backgroundColor": "white",
+          "borderColor": "black",
+          "borderWidth": "1px",
+          "color": "black",
+          "fontSize": "16px",
+          "fontWeight": "normal",
+          "height": "20px",
+          "width": "100px"
+        },
+        "text": "Graph"
+      },
+      "attributes": [
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "nodes: Node[];",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "links: Link[];",
+          "type": "attribute"
+        }
+      ],
+      "style": {
+        "backgroundColor": "white",
+        "borderColor": "black",
+        "borderWidth": "1px",
+        "color": "black",
+        "fontSize": "16px",
+        "fontWeight": "normal",
+        "height": "20px",
+        "width": "100px"
+      }
+    },
+    {
+      "id": "/graph/Node-Node",
+      "type": "interface",
+      "title": {
+        "nodeType": "interface",
+        "style": {
+          "backgroundColor": "white",
+          "borderColor": "black",
+          "borderWidth": "1px",
+          "color": "black",
+          "fontSize": "16px",
+          "fontWeight": "normal",
+          "height": "20px",
+          "width": "100px"
+        },
+        "text": "Node"
+      },
+      "attributes": [
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "attributes: NodeAttribute[];",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "style?: NodeStyle;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "title: NodeTitle;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "type: NodeType;",
+          "type": "attribute"
+        }
+      ],
+      "style": {
+        "backgroundColor": "white",
+        "borderColor": "black",
+        "borderWidth": "1px",
+        "color": "black",
+        "fontSize": "16px",
+        "fontWeight": "normal",
+        "height": "20px",
+        "width": "100px"
+      }
+    },
+    {
+      "id": "/graph/NodeAttribute-NodeAttribute",
+      "type": "interface",
+      "title": {
+        "nodeType": "interface",
+        "style": {
+          "backgroundColor": "white",
+          "borderColor": "black",
+          "borderWidth": "1px",
+          "color": "black",
+          "fontSize": "16px",
+          "fontWeight": "normal",
+          "height": "20px",
+          "width": "100px"
+        },
+        "text": "NodeAttribute"
+      },
+      "attributes": [
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "scope?: NodeAttributeScope;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "style?: NodeStyle;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "text: string;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "type: NodeAttributeType;",
+          "type": "attribute"
+        }
+      ],
+      "style": {
+        "backgroundColor": "white",
+        "borderColor": "black",
+        "borderWidth": "1px",
+        "color": "black",
+        "fontSize": "16px",
+        "fontWeight": "normal",
+        "height": "20px",
+        "width": "100px"
+      }
+    },
+    {
+      "id": "/graph/NodeStyle-NodeStyle",
+      "type": "interface",
+      "title": {
+        "nodeType": "interface",
+        "style": {
+          "backgroundColor": "white",
+          "borderColor": "black",
+          "borderWidth": "1px",
+          "color": "black",
+          "fontSize": "16px",
+          "fontWeight": "normal",
+          "height": "20px",
+          "width": "100px"
+        },
+        "text": "NodeStyle"
+      },
+      "attributes": [
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "backgroundColor: string;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "borderColor: string;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "borderWidth: string;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "color: string;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "fontSize: string;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "fontWeight: string;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "height: string;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "width: string;",
+          "type": "attribute"
+        }
+      ],
+      "style": {
+        "backgroundColor": "white",
+        "borderColor": "black",
+        "borderWidth": "1px",
+        "color": "black",
+        "fontSize": "16px",
+        "fontWeight": "normal",
+        "height": "20px",
+        "width": "100px"
+      }
+    },
+    {
+      "id": "/graph/NodeTitle-NodeTitle",
+      "type": "interface",
+      "title": {
+        "nodeType": "interface",
+        "style": {
+          "backgroundColor": "white",
+          "borderColor": "black",
+          "borderWidth": "1px",
+          "color": "black",
+          "fontSize": "16px",
+          "fontWeight": "normal",
+          "height": "20px",
+          "width": "100px"
+        },
+        "text": "NodeTitle"
+      },
+      "attributes": [
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "nodeType: NodeType;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "style?: NodeStyle;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "text: string;",
+          "type": "attribute"
+        }
+      ],
+      "style": {
+        "backgroundColor": "white",
+        "borderColor": "black",
+        "borderWidth": "1px",
+        "color": "black",
+        "fontSize": "16px",
+        "fontWeight": "normal",
+        "height": "20px",
+        "width": "100px"
+      }
+    },
+    {
+      "id": "/config/Config-Config",
+      "type": "interface",
+      "title": {
+        "nodeType": "interface",
+        "style": {
+          "backgroundColor": "white",
+          "borderColor": "black",
+          "borderWidth": "1px",
+          "color": "black",
+          "fontSize": "16px",
+          "fontWeight": "normal",
+          "height": "20px",
+          "width": "100px"
+        },
+        "text": "Config"
+      },
+      "attributes": [
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "diagram: {\n\t\t/**\n\t\t * Whether to display a legend explaining diagram elements.\n\t\t */\n\t\tshow_legend: boolean;\n\t};",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "links: ConfigLinks;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "metadata: {\n\t\t/**\n\t\t * A version identifier for the configuration format.\n\t\t */\n\t\tversion: string;\n\t};",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "nodes: ConfigNodes;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "theme: Theme;",
+          "type": "attribute"
+        }
+      ],
+      "style": {
+        "backgroundColor": "white",
+        "borderColor": "black",
+        "borderWidth": "1px",
+        "color": "black",
+        "fontSize": "16px",
+        "fontWeight": "normal",
+        "height": "20px",
+        "width": "100px"
+      }
+    },
+    {
+      "id": "/config/ConfigLinks-ConfigLinks",
+      "type": "interface",
+      "title": {
+        "nodeType": "interface",
+        "style": {
+          "backgroundColor": "white",
+          "borderColor": "black",
+          "borderWidth": "1px",
+          "color": "black",
+          "fontSize": "16px",
+          "fontWeight": "normal",
+          "height": "20px",
+          "width": "100px"
+        },
+        "text": "ConfigLinks"
+      },
+      "attributes": [
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "filter: ConfigLinksFilter;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "options: ConfigLinksOptions;",
+          "type": "attribute"
+        }
+      ],
+      "style": {
+        "backgroundColor": "white",
+        "borderColor": "black",
+        "borderWidth": "1px",
+        "color": "black",
+        "fontSize": "16px",
+        "fontWeight": "normal",
+        "height": "20px",
+        "width": "100px"
+      }
+    },
+    {
+      "id": "/config/ConfigLinksFilter-ConfigLinksFilter",
+      "type": "interface",
+      "title": {
+        "nodeType": "interface",
+        "style": {
+          "backgroundColor": "white",
+          "borderColor": "black",
+          "borderWidth": "1px",
+          "color": "black",
+          "fontSize": "16px",
+          "fontWeight": "normal",
+          "height": "20px",
+          "width": "100px"
+        },
+        "text": "ConfigLinksFilter"
+      },
+      "attributes": [
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "filter_type: LinkType[];",
+          "type": "attribute"
+        }
+      ],
+      "style": {
+        "backgroundColor": "white",
+        "borderColor": "black",
+        "borderWidth": "1px",
+        "color": "black",
+        "fontSize": "16px",
+        "fontWeight": "normal",
+        "height": "20px",
+        "width": "100px"
+      }
+    },
+    {
+      "id": "/config/ConfigLinksOptions-ConfigLinksOptions",
+      "type": "interface",
+      "title": {
+        "nodeType": "interface",
+        "style": {
+          "backgroundColor": "white",
+          "borderColor": "black",
+          "borderWidth": "1px",
+          "color": "black",
+          "fontSize": "16px",
+          "fontWeight": "normal",
+          "height": "20px",
+          "width": "100px"
+        },
+        "text": "ConfigLinksOptions"
+      },
+      "attributes": [
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_arrows?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_cardinality?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_labels?: boolean;",
+          "type": "attribute"
+        }
+      ],
+      "style": {
+        "backgroundColor": "white",
+        "borderColor": "black",
+        "borderWidth": "1px",
+        "color": "black",
+        "fontSize": "16px",
+        "fontWeight": "normal",
+        "height": "20px",
+        "width": "100px"
+      }
+    },
+    {
+      "id": "/config/ConfigNodes-ConfigNodes",
+      "type": "interface",
+      "title": {
+        "nodeType": "interface",
+        "style": {
+          "backgroundColor": "white",
+          "borderColor": "black",
+          "borderWidth": "1px",
+          "color": "black",
+          "fontSize": "16px",
+          "fontWeight": "normal",
+          "height": "20px",
+          "width": "100px"
+        },
+        "text": "ConfigNodes"
+      },
+      "attributes": [
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "filter: ConfigNodesFilter;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "options: ConfigNodesOptions;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "styles: { [K in NodeType]: NodeStyle };",
+          "type": "attribute"
+        }
+      ],
+      "style": {
+        "backgroundColor": "white",
+        "borderColor": "black",
+        "borderWidth": "1px",
+        "color": "black",
+        "fontSize": "16px",
+        "fontWeight": "normal",
+        "height": "20px",
+        "width": "100px"
+      }
+    },
+    {
+      "id": "/config/ConfigNodesFilter-ConfigNodesFilter",
+      "type": "interface",
+      "title": {
+        "nodeType": "interface",
+        "style": {
+          "backgroundColor": "white",
+          "borderColor": "black",
+          "borderWidth": "1px",
+          "color": "black",
+          "fontSize": "16px",
+          "fontWeight": "normal",
+          "height": "20px",
+          "width": "100px"
+        },
+        "text": "ConfigNodesFilter"
+      },
+      "attributes": [
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "filter_path: string[];",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "filter_type: NodeType[];",
+          "type": "attribute"
+        }
+      ],
+      "style": {
+        "backgroundColor": "white",
+        "borderColor": "black",
+        "borderWidth": "1px",
+        "color": "black",
+        "fontSize": "16px",
+        "fontWeight": "normal",
+        "height": "20px",
+        "width": "100px"
+      }
+    },
+    {
+      "id": "/config/ConfigNodesOptions-ConfigNodesOptions",
+      "type": "interface",
+      "title": {
+        "nodeType": "interface",
+        "style": {
+          "backgroundColor": "white",
+          "borderColor": "black",
+          "borderWidth": "1px",
+          "color": "black",
+          "fontSize": "16px",
+          "fontWeight": "normal",
+          "height": "20px",
+          "width": "100px"
+        },
+        "text": "ConfigNodesOptions"
+      },
+      "attributes": [
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_all_private?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_all_protected?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_all_public?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_all_static?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_attributes?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_attributes_private?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_attributes_protected?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_attributes_public?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_description?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_methods?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_methods_private?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_methods_protected?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_methods_public?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "style": {
+            "backgroundColor": "white",
+            "borderColor": "black",
+            "borderWidth": "1px",
+            "color": "black",
+            "fontSize": "16px",
+            "fontWeight": "normal",
+            "height": "20px",
+            "width": "100px"
+          },
+          "text": "hide_type?: boolean;",
+          "type": "attribute"
+        }
+      ],
+      "style": {
+        "backgroundColor": "white",
+        "borderColor": "black",
+        "borderWidth": "1px",
+        "color": "black",
+        "fontSize": "16px",
+        "fontWeight": "normal",
+        "height": "20px",
+        "width": "100px"
+      }
+    }
+  ],
+  "links": [
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/graph/Graph-Graph",
+      "sourcePortId": "/graph/Graph-Graph-nodes",
+      "targetCardinality": "*",
+      "targetId": "/graph/Node-Node",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/graph/Graph-Graph",
+      "sourcePortId": "/graph/Graph-Graph-links",
+      "targetCardinality": "*",
+      "targetId": "/graph/Link-Link",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/graph/Node-Node",
+      "sourcePortId": "/graph/Node-Node-attributes",
+      "targetCardinality": "*",
+      "targetId": "/graph/NodeAttribute-NodeAttribute",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/graph/Node-Node",
+      "sourcePortId": "/graph/Node-Node-style",
+      "targetCardinality": "*",
+      "targetId": "/graph/NodeStyle-NodeStyle",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/graph/Node-Node",
+      "sourcePortId": "/graph/Node-Node-title",
+      "targetCardinality": "*",
+      "targetId": "/graph/NodeTitle-NodeTitle",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/graph/Node-Node",
+      "sourcePortId": "/graph/Node-Node-type",
+      "targetCardinality": "*",
+      "targetId": "/graph/NodeType-NodeType",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/graph/NodeAttribute-NodeAttribute",
+      "sourcePortId": "/graph/NodeAttribute-NodeAttribute-scope",
+      "targetCardinality": "*",
+      "targetId": "/graph/NodeAttribute-NodeAttributeScope",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/graph/NodeAttribute-NodeAttribute",
+      "sourcePortId": "/graph/NodeAttribute-NodeAttribute-style",
+      "targetCardinality": "*",
+      "targetId": "/graph/NodeStyle-NodeStyle",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/graph/NodeAttribute-NodeAttribute",
+      "sourcePortId": "/graph/NodeAttribute-NodeAttribute-type",
+      "targetCardinality": "*",
+      "targetId": "/graph/NodeAttribute-NodeAttributeType",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/graph/NodeTitle-NodeTitle",
+      "sourcePortId": "/graph/NodeTitle-NodeTitle-nodeType",
+      "targetCardinality": "*",
+      "targetId": "/graph/NodeType-NodeType",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/graph/NodeTitle-NodeTitle",
+      "sourcePortId": "/graph/NodeTitle-NodeTitle-style",
+      "targetCardinality": "*",
+      "targetId": "/graph/NodeStyle-NodeStyle",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/config/Config-Config",
+      "sourcePortId": "/config/Config-Config-links",
+      "targetCardinality": "*",
+      "targetId": "/config/ConfigLinks-ConfigLinks",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/config/Config-Config",
+      "sourcePortId": "/config/Config-Config-nodes",
+      "targetCardinality": "*",
+      "targetId": "/config/ConfigNodes-ConfigNodes",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/config/Config-Config",
+      "sourcePortId": "/config/Config-Config-theme",
+      "targetCardinality": "*",
+      "targetId": "/config/Config-Theme",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/config/ConfigLinks-ConfigLinks",
+      "sourcePortId": "/config/ConfigLinks-ConfigLinks-filter",
+      "targetCardinality": "*",
+      "targetId": "/config/ConfigLinksFilter-ConfigLinksFilter",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/config/ConfigLinks-ConfigLinks",
+      "sourcePortId": "/config/ConfigLinks-ConfigLinks-options",
+      "targetCardinality": "*",
+      "targetId": "/config/ConfigLinksOptions-ConfigLinksOptions",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/config/ConfigLinksFilter-ConfigLinksFilter",
+      "sourcePortId": "/config/ConfigLinksFilter-ConfigLinksFilter-filter_type",
+      "targetCardinality": "*",
+      "targetId": "/graph/Link-LinkType",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/config/ConfigNodes-ConfigNodes",
+      "sourcePortId": "/config/ConfigNodes-ConfigNodes-filter",
+      "targetCardinality": "*",
+      "targetId": "/config/ConfigNodesFilter-ConfigNodesFilter",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/config/ConfigNodes-ConfigNodes",
+      "sourcePortId": "/config/ConfigNodes-ConfigNodes-options",
+      "targetCardinality": "*",
+      "targetId": "/config/ConfigNodesOptions-ConfigNodesOptions",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/config/ConfigNodes-ConfigNodes",
+      "sourcePortId": "/config/ConfigNodes-ConfigNodes-styles",
+      "targetCardinality": "*",
+      "targetId": "/graph/NodeType-NodeType",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/config/ConfigNodes-ConfigNodes",
+      "sourcePortId": "/config/ConfigNodes-ConfigNodes-styles",
+      "targetCardinality": "*",
+      "targetId": "/graph/NodeStyle-NodeStyle",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/config/ConfigNodesFilter-ConfigNodesFilter",
+      "sourcePortId": "/config/ConfigNodesFilter-ConfigNodesFilter-filter_type",
+      "targetCardinality": "*",
+      "targetId": "/graph/NodeType-NodeType",
+      "type": "association"
+    }
+  ]
+}
