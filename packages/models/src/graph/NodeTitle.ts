@@ -1,6 +1,6 @@
 import { isPlainObject, isString } from "is-what";
-import { newNodeStyle, validateNodeStyle, type NodeStyle } from "./NodeStyle";
-import { validateNodeType, type NodeType } from "./NodeType";
+import { type NodeStyle, newNodeStyle, validateNodeStyle } from "./NodeStyle";
+import { type NodeType, validateNodeType } from "./NodeType";
 
 /**
  * Represents the title/header section of a node in the diagram.

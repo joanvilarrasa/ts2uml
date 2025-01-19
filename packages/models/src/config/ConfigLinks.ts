@@ -1,6 +1,6 @@
 import { isPlainObject } from "is-what";
-import { type ConfigLinksFilter, validateConfigLinksFilter, newConfigLinksFilter, updateConfigLinksFilter } from "./ConfigLinksFilter";
-import { type ConfigLinksOptions, validateConfigLinksOptions, newConfigLinksOptions, updateConfigLinksOptions } from "./ConfigLinksOptions";
+import { type ConfigLinksFilter, newConfigLinksFilter, updateConfigLinksFilter, validateConfigLinksFilter } from "./ConfigLinksFilter";
+import { type ConfigLinksOptions, newConfigLinksOptions, updateConfigLinksOptions, validateConfigLinksOptions } from "./ConfigLinksOptions";
 
 /**
  * Interface defining the configuration for displaying links (relationships) in the diagram.

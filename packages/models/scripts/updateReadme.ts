@@ -1,5 +1,5 @@
-import { readFileSync, writeFileSync, readdirSync } from "fs";
-import { join } from "path";
+import { readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 
 interface ModelInfo {
 	name: string;
@@ -28,7 +28,7 @@ function getModelInfo(): ModelInfo[] {
 
 	// Config Models
 	const configDir = join(__dirname, "../src/config");
-	readdirSync(configDir).forEach((file) => {
+	readdirSync(configDir).map((file) => {
 		if (!file.endsWith(".ts")) return;
 		const content = readFileSync(join(configDir, file), "utf-8");
 		const name = file.replace(".ts", "");
@@ -41,7 +41,7 @@ function getModelInfo(): ModelInfo[] {
 
 	// Graph Models
 	const graphDir = join(__dirname, "../src/graph");
-	readdirSync(graphDir).forEach((file) => {
+	readdirSync(graphDir).map((file) => {
 		if (!file.endsWith(".ts")) return;
 		const content = readFileSync(join(graphDir, file), "utf-8");
 		const name = file.replace(".ts", "");
@@ -54,11 +54,11 @@ function getModelInfo(): ModelInfo[] {
 
 	// Default exports
 	const defaultsDir = join(__dirname, "../src/defaults");
-	readdirSync(defaultsDir).forEach((file) => {
+	readdirSync(defaultsDir).map((file) => {
 		if (!file.endsWith(".ts")) return;
 		const content = readFileSync(join(defaultsDir, file), "utf-8");
 		const exportMatches = content.match(/export const ([A-Z_]+)/g) || [];
-		exportMatches.forEach((match) => {
+		exportMatches.map((match) => {
 			const name = match.replace("export const ", "");
 			models.push({
 				name,
@@ -78,7 +78,7 @@ function generateModelSection(models: ModelInfo[]): string {
 	section += "### Config Models\n";
 	models
 		.filter((m) => m.category === "Config")
-		.forEach((m) => {
+		.map((m) => {
 			section += `- \`${m.name}\` - ${m.description}\n`;
 		});
 	section += "\n";
@@ -87,7 +87,7 @@ function generateModelSection(models: ModelInfo[]): string {
 	section += "### Graph Models\n";
 	models
 		.filter((m) => m.category === "Graph")
-		.forEach((m) => {
+		.map((m) => {
 			section += `- \`${m.name}\` - ${m.description}\n`;
 		});
 	section += "\n";
@@ -96,7 +96,7 @@ function generateModelSection(models: ModelInfo[]): string {
 	section += "### Defaults\n";
 	models
 		.filter((m) => m.category === "Defaults")
-		.forEach((m) => {
+		.map((m) => {
 			section += `- \`${m.name}\` - ${m.description}\n`;
 		});
 	section += "\n";
@@ -136,7 +136,7 @@ function updateReadme() {
 		writeFileSync(readmePath, updatedReadme);
 	} else {
 		// If neither section exists, append models to the end
-		writeFileSync(readmePath, readme + "\n" + newModelSection);
+		writeFileSync(readmePath, `${readme}\n${newModelSection}`);
 	}
 }
 

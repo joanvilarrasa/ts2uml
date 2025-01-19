@@ -1,6 +1,6 @@
 import { isBoolean, isPlainObject, isString } from "is-what";
-import { newConfigNodes, updateConfigNodes, validateConfigNodes, type ConfigNodes } from "./ConfigNodes";
-import { newConfigLinks, updateConfigLinks, validateConfigLinks, type ConfigLinks } from "./ConfigLinks";
+import { type ConfigLinks, newConfigLinks, updateConfigLinks, validateConfigLinks } from "./ConfigLinks";
+import { type ConfigNodes, newConfigNodes, updateConfigNodes, validateConfigNodes } from "./ConfigNodes";
 
 /**
  * Represents the available themes for the diagram appearance.

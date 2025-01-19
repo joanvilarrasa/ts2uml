@@ -1,9 +1,9 @@
 import { isPlainObject } from "is-what";
-import { type ConfigNodesFilter, validateConfigNodesFilter, newConfigNodesFilter, updateConfigNodesFilter } from "./ConfigNodesFilter";
-import { type ConfigNodesOptions, validateConfigNodesOptions, newConfigNodesOptions, updateConfigNodesOptions } from "./ConfigNodesOptions";
-import type { NodeType } from "../graph/NodeType";
-import { newNodeStyle, updateNodeStyle, validateNodeStyle, type NodeStyle } from "../graph/NodeStyle";
 import { DEFAULT_LIGHT_CLASS_STYLE, DEFAULT_LIGHT_ENUM_STYLE, DEFAULT_LIGHT_FUNCTION_STYLE, DEFAULT_LIGHT_INTERFACE_STYLE, DEFAULT_LIGHT_TYPE_STYLE, DEFAULT_LIGHT_VARIABLE_STYLE } from "../defaults/lightNodeStyles";
+import { type NodeStyle, newNodeStyle, updateNodeStyle, validateNodeStyle } from "../graph/NodeStyle";
+import type { NodeType } from "../graph/NodeType";
+import { type ConfigNodesFilter, newConfigNodesFilter, updateConfigNodesFilter, validateConfigNodesFilter } from "./ConfigNodesFilter";
+import { type ConfigNodesOptions, newConfigNodesOptions, updateConfigNodesOptions, validateConfigNodesOptions } from "./ConfigNodesOptions";
 
 /**
  * Interface defining the configuration for displaying nodes in the diagram.

@@ -1,4 +1,4 @@
-import { isPlainObject, isBoolean } from "is-what";
+import { isBoolean, isPlainObject } from "is-what";
 
 /**
  * Interface defining the display options for links (relationships) in the diagram.

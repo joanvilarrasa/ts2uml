@@ -1,5 +1,5 @@
 import { isPlainObject, isString } from "is-what";
-import { isNodeStyle, newNodeStyle, validateNodeStyle, type NodeStyle } from "./NodeStyle";
+import { type NodeStyle, newNodeStyle, validateNodeStyle } from "./NodeStyle";
 
 /**
  * Represents the different types of attributes that can be displayed in a node.

@@ -1,6 +1,6 @@
 import { isArray, isPlainObject } from "is-what";
-import { newNode, validateNode, type Node } from "./Node";
-import { newLink, validateLink, type Link } from "./Link";
+import { type Link, newLink, validateLink } from "./Link";
+import { type Node, newNode, validateNode } from "./Node";
 
 /**
  * Represents a graph/diagram containing nodes and their links.

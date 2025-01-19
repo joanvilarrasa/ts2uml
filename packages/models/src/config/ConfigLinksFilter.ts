@@ -21,7 +21,7 @@ export function validateConfigLinksFilter(data: unknown): data is ConfigLinksFil
 	}
 	if (!Array.isArray(data.filter_type)) {
 		console.debug("data.filter_type must be an array of strings and one of ", LinkTypeList, " recieved: ", data.filter_type);
-		throw new Error("filter_type must be an array of strings and one of " + LinkTypeList);
+		throw new Error(`filter_type must be an array of strings and one of ${LinkTypeList.join(", ")}`);
 	}
 	for (const linkType of data.filter_type) {
 		validateLinkType(linkType);

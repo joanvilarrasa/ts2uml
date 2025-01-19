@@ -1,8 +1,8 @@
 import { isArray, isPlainObject, isString } from "is-what";
-import { newNodeTitle, validateNodeTitle, type NodeTitle } from "./NodeTitle";
-import { newNodeStyle, validateNodeStyle, type NodeStyle } from "./NodeStyle";
-import { newNodeAttribute, validateNodeAttribute, type NodeAttribute } from "./NodeAttribute";
-import { validateNodeType, type NodeType } from "./NodeType";
+import { type NodeAttribute, newNodeAttribute, validateNodeAttribute } from "./NodeAttribute";
+import { type NodeStyle, newNodeStyle, validateNodeStyle } from "./NodeStyle";
+import { type NodeTitle, newNodeTitle, validateNodeTitle } from "./NodeTitle";
+import { type NodeType, validateNodeType } from "./NodeType";
 
 /**
  * Represents a node in the diagram, which can be a class, interface, type, enum, function, or variable.

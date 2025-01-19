@@ -1,5 +1,5 @@
 import { isPlainObject, isString } from "is-what";
-import { NodeTypeList, validateNodeType, type NodeType } from "../graph/NodeType";
+import { type NodeType, NodeTypeList, validateNodeType } from "../graph/NodeType";
 
 /**
  * Interface defining filters for nodes to be displayed in the diagram.

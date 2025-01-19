@@ -1,5 +1,5 @@
 import { isPlainObject, isString } from "is-what";
-import { validateCardinality, type Cardinality } from "./Cardinality";
+import { type Cardinality, validateCardinality } from "./Cardinality";
 
 /**
  * Represents the different types of relationships between nodes in the diagram.
