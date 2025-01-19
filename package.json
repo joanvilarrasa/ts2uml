@@ -33,13 +33,21 @@
     "format:vscode": "cd apps/vscode-ext && bun run format",
     "format:web": "cd apps/web && bun run format",
 
-    "dev:web": "cd apps/web && bun run dev",
-    "dev:models": "cd packages/models && bun index.ts",
     "build": "bun run build:all",
-    "build:all": "bun run build:models && bun run build:npm && bun run build:vscode",
+    "build:all": "bun run build:models && bun run build:core && bun run build:npm && bun run build:vscode && bun run build:web",
     "build:models": "cd packages/models && bun run build",
-    "build:npm": "cd packages/npm-package && bun run build",
-    "build:vscode": "cd apps/vscode-extension && bun run build"
+    "build:core": "cd packages/core && bun run build",
+    "build:npm": "cd packages/npm-lib && bun run build",
+    "build:vscode": "cd apps/vscode-ext && bun run build",
+    "build:web": "cd apps/web && bun run build",
+
+    "dev": "bun run dev:all",
+    "dev:all": "bun run dev:models && bun run dev:core && bun run dev:npm && bun run dev:vscode && bun run dev:web",
+    "dev:models": "cd packages/models && bun index.ts",
+    "dev:core": "cd packages/core && bun index.ts",
+    "dev:npm": "cd packages/npm-lib && bun index.ts",
+    "dev:vscode": "cd apps/vscode-ext && bun index.ts",
+    "dev:web": "cd apps/web && bun index.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
