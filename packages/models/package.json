@@ -8,6 +8,6 @@
     "lint": "biome check --fix .",
     "format": "biome format --write .",
     "build": "bun run scripts/updateReadme.ts",
-    "test": "bun test"
+    "testing": "bun index.ts"
   }
 }

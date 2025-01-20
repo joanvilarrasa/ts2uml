@@ -34,6 +34,7 @@ export {
 
 export type { ConfigNodesOptions } from "./src/config/ConfigNodesOptions";
 export {
+	ZConfigNodesOptions,
 	validateConfigNodesOptions,
 	isConfigNodesOptions,
 	newConfigNodesOptions,

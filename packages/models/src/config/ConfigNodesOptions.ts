@@ -1,5 +1,6 @@
-import { isBoolean, isPlainObject } from "is-what";
 import { z } from "zod";
+import { fromError, type ValidationError } from 'zod-validation-error';
+
 /**
  * Interface defining display options that control what information is shown inside the nodes.
  */
@@ -70,8 +71,13 @@ export type ConfigNodesOptions = z.infer<typeof ZConfigNodesOptions>;
 
 
 export function validateConfigNodesOptions(data: unknown): data is ConfigNodesOptions {
-	ZConfigNodesOptions.parse(data);
-	return true;
+	try {
+		ZConfigNodesOptions.parse(data);
+		return true;
+	} catch (e) {
+		const validationError:ValidationError = fromError(e);
+		throw validationError;
+	}
 }
 
 export function isConfigNodesOptions(data: unknown): data is ConfigNodesOptions {
