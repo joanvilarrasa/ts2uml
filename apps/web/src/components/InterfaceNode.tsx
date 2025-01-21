@@ -10,7 +10,7 @@ export function InterfaceNodeComponent(props: RF_NodeProps<RF_Node<{data: Node;}
     return (
 
         <Card>
-            <CardHeader>
+            <CardHeader className='bg-interface'>
                 <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
                 <CardTitle>{title.text}</CardTitle>
             </CardHeader>
@@ -26,5 +26,3 @@ export function InterfaceNodeComponent(props: RF_NodeProps<RF_Node<{data: Node;}
         </Card>
     );
 }
-
-

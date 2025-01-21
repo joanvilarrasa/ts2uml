@@ -10,6 +10,13 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+        interface: 'hsl(var(--interface))',
+        class: 'hsl(var(--class))',
+        enum: 'hsl(var(--enum))', 
+        function: 'hsl(var(--function))',
+        type: 'hsl(var(--type))',
+        variable: 'hsl(var(--variable))',
+
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
