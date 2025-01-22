@@ -1,4 +1,4 @@
-import { isString } from "is-what";
+import { z } from "zod";
 
 /**
  * Represents the different types of nodes that can be displayed in the diagram.
@@ -9,26 +9,20 @@ import { isString } from "is-what";
  * - "type": Represents a type definition
  * - "variable": Represents a variable declaration
  */
-export type NodeType = "class" | "enum" | "function" | "interface" | "type" | "variable";
+export enum NodeType {
+	class = "class",
+	enum = "enum",
+	function = "function",
+	interface = "interface",
+	type = "type",
+	variable = "variable",
+}
+
+
 
 /**
  * Array containing all valid node types that can be used in the diagram.
  * @see {@link NodeType}
  */
-export const NodeTypeList: NodeType[] = ["class", "enum", "function", "interface", "type", "variable"];
+export const NodeTypeList: NodeType[] = Object.values(NodeType);
 
-export function validateNodeType(data: unknown): data is NodeType {
-	if (!isString(data) || !NodeTypeList.includes(data as NodeType)) {
-		console.debug("data must be a valid NodeType, recieved: ", data);
-		throw new Error("data must be a valid NodeType");
-	}
-	return true;
-}
-
-export function isNodeType(data: unknown): data is NodeType {
-	try {
-		return validateNodeType(data);
-	} catch (e) {
-		return false;
-	}
-}

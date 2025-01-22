@@ -1,5 +1,5 @@
-import { isPlainObject, isString } from "is-what";
-import { type NodeType, NodeTypeList, validateNodeType } from "../graph/NodeType";
+import { z } from "zod";
+import { type NodeType, ZNodeType } from "../graph/NodeType";
 
 /**
  * Interface defining filters for nodes to be displayed in the diagram.
@@ -13,7 +13,7 @@ export interface ConfigNodesFilter {
 	 * If a concrete node id is provided, the node with that id will be excluded from the diagram.
 	 * Empty array means no path filtering.
 	 */
-	filter_path: string[];
+	filter_path: string[],
 
 	/**
 	 * Array of node types to filter nodes by their type (e.g., class, interface, enum, etc.).
@@ -21,43 +21,14 @@ export interface ConfigNodesFilter {
 	 * Empty array means no type filtering.
 	 * @see {@link NodeType}
 	 */
-	filter_type: NodeType[];
+	filter_type: NodeType[],
 }
 
-export function validateConfigNodesFilter(data: unknown): data is ConfigNodesFilter {
-	if (!isPlainObject(data)) {
-		console.debug("data must be an object, recieved: ", data);
-		throw new Error("data must be an object");
-	}
-	if (!Array.isArray(data.filter_path) || !data.filter_path.every((node) => isString(node))) {
-		console.debug("data.filter_path must be an array of strings, recieved: ", data.filter_path);
-		throw new Error("filter_path must be an array of strings");
-	}
-	if (!Array.isArray(data.filter_type)) {
-		console.debug("data.filter_type must be an array of strings and one of ", NodeTypeList, " recieved: ", data.filter_type);
-		throw new Error(`filter_type must be an array of strings and one of ${NodeTypeList.join(", ")}`);
-	}
-	for (const node of data.filter_type) {
-		validateNodeType(node);
-	}
-
-	return true;
-}
-
-export function isConfigNodesFilter(data: unknown): data is ConfigNodesFilter {
-	try {
-		return validateConfigNodesFilter(data);
-	} catch (e) {
-		return false;
-	}
-}
-
-export function newConfigNodesFilter(data?: Partial<ConfigNodesFilter>): ConfigNodesFilter {
-	return {
-		filter_path: data?.filter_path || [],
-		filter_type: data?.filter_type || [],
-	};
-}
+export const _ZConfigNodesFilter = z.object({
+	filter_path: z.array(z.string()).default([]),
+	filter_type: ZNodeType.array().default([]),
+}) as z.ZodType<ConfigNodesFilter>;
+export const ZConfigNodesFilter: z.ZodType<ConfigNodesFilter> = _ZConfigNodesFilter;
 
 export function updateConfigNodesFilter(config: ConfigNodesFilter, updates: Partial<ConfigNodesFilter>): ConfigNodesFilter {
 	return {
