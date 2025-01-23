@@ -1,7 +1,7 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from 'tsup';
 
 export default defineConfig({
-	dts: true,
-	format: "esm",
-	entry: ["index.ts"],
+  dts: true,
+  format: 'esm',
+  entry: ['index.ts'],
 });

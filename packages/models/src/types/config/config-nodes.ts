@@ -46,7 +46,7 @@ export const ZConfigNodes = z.object({
   }),
 }) as z.ZodType<ConfigNodes>;
 
-export function createConfigNodes(data?: Partial<ConfigNodes>) {
+export function createConfigNodes(data?: Partial<ConfigNodes>): ConfigNodes {
   return ZConfigNodes.parse({
     filter: createConfigNodesFilter(data?.filter),
     options: createConfigNodesOptions(data?.options),

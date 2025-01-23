@@ -23,7 +23,7 @@ export const ZConfigLinks = z.object({
   options: ZConfigLinksOptions,
 }) as z.ZodType<ConfigLinks>;
 
-export function createConfigLinks(data?: Partial<ConfigLinks>) {
+export function createConfigLinks(data?: Partial<ConfigLinks>): ConfigLinks {
   return ZConfigLinks.parse({
     filter: createConfigLinksFilter(data?.filter),
     options: createConfigLinksOptions(data?.options),

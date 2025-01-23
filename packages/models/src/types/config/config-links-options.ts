@@ -36,7 +36,7 @@ export const ZConfigLinksOptions = z.object({
   hide_labels: z.boolean({ invalid_type_error: 'hide_labels must be a boolean' }).optional(),
 }) as z.ZodType<ConfigLinksOptions>;
 
-export function createConfigLinksOptions(data?: Partial<ConfigLinksOptions>) {
+export function createConfigLinksOptions(data?: Partial<ConfigLinksOptions>): ConfigLinksOptions {
   return ZConfigLinksOptions.parse({
     hide: data?.hide,
     hide_arrows: data?.hide_arrows,

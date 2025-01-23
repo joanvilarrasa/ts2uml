@@ -46,7 +46,7 @@ export const ZNodeStyle = z.object({
   width: z.string({ invalid_type_error: 'width must be a string' }).optional(),
 }) as z.ZodType<NodeStyle>;
 
-export function createNodeStyle(data?: Partial<NodeStyle>) {
+export function createNodeStyle(data?: Partial<NodeStyle>): NodeStyle {
   return ZNodeStyle.parse({
     backgroundColor: data?.backgroundColor,
     borderColor: data?.borderColor,

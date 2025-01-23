@@ -18,7 +18,7 @@ export const ZConfigLinksFilter = z.object({
   filter_type: ZLinkType.array().optional(),
 }) as z.ZodType<ConfigLinksFilter>;
 
-export function createConfigLinksFilter(data?: Partial<ConfigLinksFilter>) {
+export function createConfigLinksFilter(data?: Partial<ConfigLinksFilter>): ConfigLinksFilter {
   return ZConfigLinksFilter.parse({
     filter_type: data?.filter_type ?? [],
   });

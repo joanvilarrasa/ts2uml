@@ -83,7 +83,7 @@ export const ZConfigNodesOptions = z.object({
   hide_type: z.boolean({ invalid_type_error: 'hide_type must be a boolean' }).optional(),
 }) as z.ZodType<ConfigNodesOptions>;
 
-export function createConfigNodesOptions(data?: Partial<ConfigNodesOptions>) {
+export function createConfigNodesOptions(data?: Partial<ConfigNodesOptions>): ConfigNodesOptions {
   return ZConfigNodesOptions.parse({
     hide_all_private: data?.hide_all_private,
     hide_all_protected: data?.hide_all_protected,

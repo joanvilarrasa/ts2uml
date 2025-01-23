@@ -65,7 +65,7 @@ export const ZLink = z.object({
   type: ZLinkType,
 }) as z.ZodType<Link>;
 
-export function createLink(data?: Partial<Link>) {
+export function createLink(data?: Partial<Link>): Link {
   return ZLink.parse({
     sourceCardinality: data?.sourceCardinality ?? '*',
     sourceId: data?.sourceId ?? 'sourceId',

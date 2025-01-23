@@ -48,7 +48,7 @@ export const ZConfig = z.object({
   nodes: ZConfigNodes,
 }) as z.ZodType<Config>;
 
-export function createConfig(data?: Partial<Config>) {
+export function createConfig(data?: Partial<Config>): Config {
   return ZConfig.parse({
     diagram: {
       show_legend: data?.diagram?.show_legend ?? true,

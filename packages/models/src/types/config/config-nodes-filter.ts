@@ -30,7 +30,7 @@ export const ZConfigNodesFilter = z.object({
   filter_type: ZNodeType.array().optional(),
 }) as z.ZodType<ConfigNodesFilter>;
 
-export function createConfigNodesFilter(data?: Partial<ConfigNodesFilter>) {
+export function createConfigNodesFilter(data?: Partial<ConfigNodesFilter>): ConfigNodesFilter {
   return ZConfigNodesFilter.parse({
     filter_path: data?.filter_path ?? [],
     filter_type: data?.filter_type ?? [],

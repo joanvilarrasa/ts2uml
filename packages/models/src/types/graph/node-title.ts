@@ -28,7 +28,7 @@ export const ZNodeTitle = z.object({
   text: z.string({ invalid_type_error: 'text must be a string' }),
 }) as z.ZodType<NodeTitle>;
 
-export function createNodeTitle(data?: Partial<NodeTitle>) {
+export function createNodeTitle(data?: Partial<NodeTitle>): NodeTitle {
   return ZNodeTitle.parse({
     nodeType: data?.nodeType ?? 'class',
     style: createNodeStyle(data?.style),

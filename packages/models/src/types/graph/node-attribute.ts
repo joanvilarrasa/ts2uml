@@ -38,7 +38,7 @@ export const ZNodeAttribute = z.object({
   type: ZNodeAttributeType,
 }) as z.ZodType<NodeAttribute>;
 
-export function createNodeAttribute(data?: Partial<NodeAttribute>) {
+export function createNodeAttribute(data?: Partial<NodeAttribute>): NodeAttribute {
   return ZNodeAttribute.parse({
     scope: data?.scope,
     style: createNodeStyle(data?.style),

@@ -44,7 +44,7 @@ export const ZNode = z.object({
   type: ZNodeType,
 }) as z.ZodType<Node>;
 
-export function createNode(data: Partial<Node>) {
+export function createNode(data: Partial<Node>): Node {
   return ZNode.parse({
     attributes: data?.attributes ? data.attributes.map((a) => createNodeAttribute(a)) : [],
     id: data?.id ?? 'id',
