@@ -66,7 +66,7 @@ export interface ConfigNodesOptions {
   hide_type?: boolean;
 }
 
-const _ZConfigNodesOptions = z.object({
+export const ZConfigNodesOptions = z.object({
   hide_all_private: z.boolean({ invalid_type_error: 'hide_all_private must be a boolean' }).optional().default(false),
   hide_all_protected: z.boolean({ invalid_type_error: 'hide_all_protected must be a boolean' }).optional().default(false),
   hide_all_public: z.boolean({ invalid_type_error: 'hide_all_public must be a boolean' }).optional().default(false),
@@ -81,5 +81,4 @@ const _ZConfigNodesOptions = z.object({
   hide_methods_protected: z.boolean({ invalid_type_error: 'hide_methods_protected must be a boolean' }).optional().default(false),
   hide_methods_public: z.boolean({ invalid_type_error: 'hide_methods_public must be a boolean' }).optional().default(false),
   hide_type: z.boolean({ invalid_type_error: 'hide_type must be a boolean' }).optional().default(false),
-});
-export const ZConfigNodesOptions: z.ZodType<ConfigNodesOptions> = _ZConfigNodesOptions;
+}) as z.ZodType<ConfigNodesOptions>;

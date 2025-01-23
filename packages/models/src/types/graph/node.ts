@@ -36,11 +36,10 @@ export interface Node {
   type: NodeType;
 }
 
-export const _ZNode = z.object({
+export const ZNode = z.object({
   attributes: ZNodeAttribute.array().default([]),
-  id: z.string({ invalid_type_error: 'id must be a string' }),
+  id: z.string({ invalid_type_error: 'id must be a string' }).default('id'),
   style: ZNodeStyle.optional(),
   title: ZNodeTitle,
   type: ZNodeType,
 }) as z.ZodType<Node>;
-export const ZNode: z.ZodType<Node> = _ZNode;

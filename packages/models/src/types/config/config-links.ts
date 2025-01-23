@@ -18,8 +18,7 @@ export interface ConfigLinks {
   options: ConfigLinksOptions;
 }
 
-export const _ZConfigLinks = z.object({
+export const ZConfigLinks = z.object({
   filter: ZConfigLinksFilter,
   options: ZConfigLinksOptions,
 }) as z.ZodType<ConfigLinks>;
-export const ZConfigLinks: z.ZodType<ConfigLinks> = _ZConfigLinks;

@@ -14,7 +14,6 @@ export interface ConfigLinksFilter {
   filter_type: LinkType[];
 }
 
-export const _ZConfigLinksFilter = z.object({
+export const ZConfigLinksFilter = z.object({
   filter_type: ZLinkType.array().default([]),
 }) as z.ZodType<ConfigLinksFilter>;
-export const ZConfigLinksFilter: z.ZodType<ConfigLinksFilter> = _ZConfigLinksFilter;

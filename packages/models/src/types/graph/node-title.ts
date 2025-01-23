@@ -22,9 +22,8 @@ export interface NodeTitle {
   text: string;
 }
 
-export const _ZNodeTitle = z.object({
+export const ZNodeTitle = z.object({
   nodeType: ZNodeType,
   style: ZNodeStyle.optional(),
-  text: z.string({ invalid_type_error: 'text must be a string' }),
-});
-export const ZNodeTitle: z.ZodType<NodeTitle> = _ZNodeTitle;
+  text: z.string({ invalid_type_error: 'text must be a string' }).default('text'),
+}) as z.ZodType<NodeTitle>;

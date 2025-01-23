@@ -31,10 +31,9 @@ export interface NodeAttribute {
   type: NodeAttributeType;
 }
 
-export const _ZNodeAttribute = z.object({
+export const ZNodeAttribute = z.object({
   scope: ZNodeAttributeScope.optional(),
   style: ZNodeStyle.optional(),
-  text: z.string({ invalid_type_error: 'text must be a string' }),
+  text: z.string({ invalid_type_error: 'text must be a string' }).default('text'),
   type: ZNodeAttributeType,
 }) as z.ZodType<NodeAttribute>;
-export const ZNodeAttribute: z.ZodType<NodeAttribute> = _ZNodeAttribute;

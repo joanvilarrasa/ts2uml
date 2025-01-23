@@ -36,15 +36,14 @@ export interface Config {
   nodes: ConfigNodes;
 }
 
-export const _ZConfig = z.object({
+export const ZConfig = z.object({
   diagram: z.object({
-    show_legend: z.boolean().optional(),
+    show_legend: z.boolean().optional().default(true),
     theme: ZTheme,
   }),
   links: ZConfigLinks,
   metadata: z.object({
-    version: z.string(),
+    version: z.string().default('0.0.1'),
   }),
   nodes: ZConfigNodes,
 }) as z.ZodType<Config>;
-export const ZConfig: z.ZodType<Config> = _ZConfig;

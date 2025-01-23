@@ -33,7 +33,7 @@ export interface ConfigNodes {
   styles: { [k in NodeType]?: NodeStyle };
 }
 
-export const _ZConfigNodes = z.object({
+export const ZConfigNodes = z.object({
   filter: ZConfigNodesFilter,
   options: ZConfigNodesOptions,
   styles: z.object({
@@ -44,5 +44,4 @@ export const _ZConfigNodes = z.object({
     [ZNodeType.enum.type]: ZNodeStyle.default(DEFAULT_LIGHT_TYPE_STYLE),
     [ZNodeType.enum.variable]: ZNodeStyle.default(DEFAULT_LIGHT_VARIABLE_STYLE),
   }),
-});
-export const ZConfigNodes: z.ZodType<ConfigNodes> = _ZConfigNodes;
+}) as z.ZodType<ConfigNodes>;

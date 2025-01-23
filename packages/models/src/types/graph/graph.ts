@@ -26,9 +26,8 @@ export interface Graph {
   links: Link[];
 }
 
-export const _ZGraph = z.object({
+export const ZGraph = z.object({
   config: ZConfig,
   nodes: ZNode.array().default([]),
   links: ZLink.array().default([]),
 }) as z.ZodType<Graph>;
-export const ZGraph: z.ZodType<Graph> = _ZGraph;

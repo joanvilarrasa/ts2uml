@@ -29,10 +29,9 @@ export interface ConfigLinksOptions {
   hide_labels?: boolean;
 }
 
-export const _ZConfigLinksOptions = z.object({
+export const ZConfigLinksOptions = z.object({
   hide: z.boolean({ invalid_type_error: 'hide must be a boolean' }).optional().default(false),
   hide_arrows: z.boolean({ invalid_type_error: 'hide_arrows must be a boolean' }).optional().default(false),
   hide_cardinality: z.boolean({ invalid_type_error: 'hide_cardinality must be a boolean' }).optional().default(false),
   hide_labels: z.boolean({ invalid_type_error: 'hide_labels must be a boolean' }).optional().default(false),
-});
-export const ZConfigLinksOptions: z.ZodType<ConfigLinksOptions> = _ZConfigLinksOptions;
+}) as z.ZodType<ConfigLinksOptions>;

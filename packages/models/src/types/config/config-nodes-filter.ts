@@ -25,8 +25,7 @@ export interface ConfigNodesFilter {
   filter_type: NodeType[];
 }
 
-export const _ZConfigNodesFilter = z.object({
+export const ZConfigNodesFilter = z.object({
   filter_path: z.array(z.string()).default([]),
   filter_type: ZNodeType.array().default([]),
 }) as z.ZodType<ConfigNodesFilter>;
-export const ZConfigNodesFilter: z.ZodType<ConfigNodesFilter> = _ZConfigNodesFilter;

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const ZTheme = z.enum(['light', 'dark']);
+export const ZTheme = z.enum(['light', 'dark']).default('light');
 
 /**
  * Represents the theme of the diagram.

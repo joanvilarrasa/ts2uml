@@ -35,7 +35,7 @@ export interface NodeStyle {
   width?: string;
 }
 
-export const _ZNodeStyle = z.object({
+export const ZNodeStyle = z.object({
   backgroundColor: z.string({ invalid_type_error: 'backgroundColor must be a string' }).optional().default('white'),
   borderColor: z.string({ invalid_type_error: 'borderColor must be a string' }).optional().default('black'),
   borderWidth: z.string({ invalid_type_error: 'borderWidth must be a string' }).optional().default('1px'),
@@ -44,5 +44,4 @@ export const _ZNodeStyle = z.object({
   fontWeight: z.string({ invalid_type_error: 'fontWeight must be a string' }).optional().default('normal'),
   height: z.string({ invalid_type_error: 'height must be a string' }).optional().default('20px'),
   width: z.string({ invalid_type_error: 'width must be a string' }).optional().default('100px'),
-});
-export const ZNodeStyle: z.ZodType<NodeStyle> = _ZNodeStyle;
+}) as z.ZodType<NodeStyle>;

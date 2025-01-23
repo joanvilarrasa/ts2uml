@@ -54,14 +54,13 @@ export type Link = {
   type: LinkType;
 };
 
-export const _ZLink = z.object({
+export const ZLink = z.object({
   sourceCardinality: ZCardinality,
-  sourceId: z.string({ invalid_type_error: 'sourceId must be a string' }),
+  sourceId: z.string({ invalid_type_error: 'sourceId must be a string' }).default('sourceId'),
   sourcePortId: z.string().optional(),
   targetCardinality: ZCardinality,
-  targetId: z.string({ invalid_type_error: 'targetId must be a string' }),
+  targetId: z.string({ invalid_type_error: 'targetId must be a string' }).default('targetId'),
   targetPortId: z.string().optional(),
   text: z.string().optional(),
   type: ZLinkType,
 }) as z.ZodType<Link>;
-export const ZLink: z.ZodType<Link> = _ZLink;
