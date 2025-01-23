@@ -1,33 +1,22 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-	"organizeImports": {
-		"enabled": true
-	},
-	"linter": {
-		"enabled": true,
-		"ignore": ["node_modules", ".next", "*.json", "test", "dist"],
-		"rules": {
-			"recommended": true,
-			"a11y": {
-				"noSvgWithoutTitle": "off",
-				"useKeyWithClickEvents": "off"
-			},
-			"style": {
-				"noNonNullAssertion": "off"
-			},
-			"correctness": {
-				"useExhaustiveDependencies": "off"
-			}
-		}
-	},
-	"formatter": {
-		"indentStyle": "tab",
-		"ignore": ["node_modules", "*.json", ".next", "dist", "test"],
-		"lineWidth": 300
-	},
-	"json": {
-		"formatter": {
-			"enabled": true
-		}
-	}
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "extends": ["ultracite"],
+  "formatter": {
+    "lineWidth": 150
+  },
+  "javascript": {
+    "formatter": {
+      "lineWidth": 150
+    }
+  },
+  "css": {
+    "formatter": {
+      "lineWidth": 150
+    }
+  },
+  "json": {
+    "formatter": {
+      "lineWidth": 150
+    }
+  }
 }

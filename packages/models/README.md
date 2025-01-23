@@ -90,23 +90,21 @@ if (isConfig(someData)) {
 ## Available Models
 
 ### Config Models
-- `Config` - Main configuration object that controls the overall diagram appearance and behavior. Contains settings for theme, display options, and filtering of nodes and relationships.
-- `ConfigLinks` - Interface defining the configuration for displaying links (relationships) in the diagram.
-- `ConfigLinksFilter` - Interface defining the configuration for filtering links (relationships) in the diagram.
-- `ConfigLinksOptions` - Interface defining the display options for links (relationships) in the diagram.
-- `ConfigNodes` - Interface defining the configuration for displaying nodes in the diagram.
-- `ConfigNodesFilter` - Interface defining filters for nodes to be displayed in the diagram.
-- `ConfigNodesOptions` - Interface defining display options that control what information is shown inside the nodes.
+- `config-links-filter` - 
+- `config-links-options` - 
+- `config-links` - 
+- `config-nodes-filter` - 
+- `config-nodes-options` - 
+- `config-nodes` - 
+- `config` - 
 
 ### Graph Models
-- `Cardinality` - Represents the cardinality of a relationship in a graph.
-- `Graph` - Represents a graph/diagram containing nodes and their links.
-- `Link` - Represents the different types of relationships between nodes in the diagram. - "aggregation": Indicates a has-a relationship where parts can exist independently - "association": Indicates a basic association between nodes - "composition": Indicates a contains relationship where parts cannot exist independently - "dependency": Indicates a uses/depends-on relationship - "inheritance": Indicates an inheritance/extends relationship - "realization": Indicates an implements/realizes relationship
-- `Node` - Represents a node in the diagram, which can be a class, interface, type, enum, function, or variable.
-- `NodeAttribute` - Represents the different types of attributes that can be displayed in a node. - "attribute": Represents a class/interface property or field - "enumOrTypeOption": Represents an enum value or type union option - "method": Represents a class/interface method or function - "separator": Represents a visual separator line
-- `NodeStyle` - Represents the styling configuration for an element inside a node in the diagram.
-- `NodeTitle` - Represents the title/header section of a node in the diagram.
-- `NodeType` - Represents the different types of nodes that can be displayed in the diagram. - "class": Represents a class definition - "enum": Represents an enumeration - "function": Represents a function declaration - "interface": Represents an interface definition - "type": Represents a type definition - "variable": Represents a variable declaration
+- `graph` - 
+- `link` - 
+- `node-attribute` - 
+- `node-style` - 
+- `node-title` - 
+- `node` - 
 
 ### Defaults
 - `DEFAULT_THEME` - Default styling configuration

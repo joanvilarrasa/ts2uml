@@ -1,4 +1,6 @@
-import { z } from "zod";
+import { z } from 'zod';
+
+export const ZNodeType = z.enum(['class', 'enum', 'function', 'interface', 'type', 'variable']);
 
 /**
  * Represents the different types of nodes that can be displayed in the diagram.
@@ -9,20 +11,10 @@ import { z } from "zod";
  * - "type": Represents a type definition
  * - "variable": Represents a variable declaration
  */
-export enum NodeType {
-	class = "class",
-	enum = "enum",
-	function = "function",
-	interface = "interface",
-	type = "type",
-	variable = "variable",
-}
-
-
+export type NodeType = z.infer<typeof ZNodeType>;
 
 /**
  * Array containing all valid node types that can be used in the diagram.
  * @see {@link NodeType}
  */
-export const NodeTypeList: NodeType[] = Object.values(NodeType);
-
+export const NodeTypeList: NodeType[] = ZNodeType.options;

@@ -48,10 +48,11 @@
     "generate-demo-graph": "cd packages/core && bun run generate-demo-graph"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "^1.9.4",
     "@types/bun": "latest",
     "tsup": "^8.3.5",
     "typescript": "^5.7.3",
+    "ultracite": "^4.1.15",
     "vite": "^6.0.7",
     "zod": "^3.24.1",
     "zod-validation-error": "^3.4.0"
