@@ -30,8 +30,17 @@ export interface ConfigLinksOptions {
 }
 
 export const ZConfigLinksOptions = z.object({
-  hide: z.boolean({ invalid_type_error: 'hide must be a boolean' }).optional().default(false),
-  hide_arrows: z.boolean({ invalid_type_error: 'hide_arrows must be a boolean' }).optional().default(false),
-  hide_cardinality: z.boolean({ invalid_type_error: 'hide_cardinality must be a boolean' }).optional().default(false),
-  hide_labels: z.boolean({ invalid_type_error: 'hide_labels must be a boolean' }).optional().default(false),
+  hide: z.boolean({ invalid_type_error: 'hide must be a boolean' }).optional(),
+  hide_arrows: z.boolean({ invalid_type_error: 'hide_arrows must be a boolean' }).optional(),
+  hide_cardinality: z.boolean({ invalid_type_error: 'hide_cardinality must be a boolean' }).optional(),
+  hide_labels: z.boolean({ invalid_type_error: 'hide_labels must be a boolean' }).optional(),
 }) as z.ZodType<ConfigLinksOptions>;
+
+export function createConfigLinksOptions(data?: Partial<ConfigLinksOptions>) {
+  return ZConfigLinksOptions.parse({
+    hide: data?.hide,
+    hide_arrows: data?.hide_arrows,
+    hide_cardinality: data?.hide_cardinality,
+    hide_labels: data?.hide_labels,
+  });
+}

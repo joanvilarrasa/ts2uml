@@ -15,5 +15,11 @@ export interface ConfigLinksFilter {
 }
 
 export const ZConfigLinksFilter = z.object({
-  filter_type: ZLinkType.array().default([]),
+  filter_type: ZLinkType.array().optional(),
 }) as z.ZodType<ConfigLinksFilter>;
+
+export function createConfigLinksFilter(data?: Partial<ConfigLinksFilter>) {
+  return ZConfigLinksFilter.parse({
+    filter_type: data?.filter_type ?? [],
+  });
+}

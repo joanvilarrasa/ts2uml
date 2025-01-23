@@ -14,6 +14,22 @@ export type { NodeAttribute } from './src/types/graph/node-attribute.ts';
 export type { NodeStyle } from './src/types/graph/node-style.ts';
 export type { NodeTitle } from './src/types/graph/node-title.ts';
 
+// Export create methods for the types and interfaces
+export { createConfig } from './src/types/config/config.ts';
+export { createConfigLinks } from './src/types/config/config-links.ts';
+export { createConfigLinksFilter } from './src/types/config/config-links-filter.ts';
+export { createConfigLinksOptions } from './src/types/config/config-links-options.ts';
+export { createConfigNodes } from './src/types/config/config-nodes.ts';
+export { createConfigNodesFilter } from './src/types/config/config-nodes-filter.ts';
+export { createConfigNodesOptions } from './src/types/config/config-nodes-options.ts';
+
+export { createGraph } from './src/types/graph/graph.ts';
+export { createLink } from './src/types/graph/link.ts';
+export { createNode } from './src/types/graph/node.ts';
+export { createNodeAttribute } from './src/types/graph/node-attribute.ts';
+export { createNodeStyle } from './src/types/graph/node-style.ts';
+export { createNodeTitle } from './src/types/graph/node-title.ts';
+
 // Export enums and their types
 export type { Cardinality } from './src/types/enums/cardinality.ts';
 export type { LinkType } from './src/types/enums/link-type.ts';
@@ -77,7 +93,6 @@ export {
 } from './src/defaults/light-node-styles.ts';
 
 // Export utility functions (assuming they exist in the mentioned files)
-export { create } from './src/utils/create.ts';
 export { validate } from './src/utils/validate.ts';
 export { is } from './src/utils/is.ts';
 export { update, updateDeep } from './src/utils/update.ts';

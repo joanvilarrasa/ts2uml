@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { type ConfigLinksFilter, ZConfigLinksFilter } from './config-links-filter.ts';
-import { type ConfigLinksOptions, ZConfigLinksOptions } from './config-links-options.ts';
+import { type ConfigLinksFilter, ZConfigLinksFilter, createConfigLinksFilter } from './config-links-filter.ts';
+import { type ConfigLinksOptions, ZConfigLinksOptions, createConfigLinksOptions } from './config-links-options.ts';
 
 /**
  * Interface defining the configuration for displaying links (relationships) in the diagram.
@@ -22,3 +22,10 @@ export const ZConfigLinks = z.object({
   filter: ZConfigLinksFilter,
   options: ZConfigLinksOptions,
 }) as z.ZodType<ConfigLinks>;
+
+export function createConfigLinks(data?: Partial<ConfigLinks>) {
+  return ZConfigLinks.parse({
+    filter: createConfigLinksFilter(data?.filter),
+    options: createConfigLinksOptions(data?.options),
+  });
+}

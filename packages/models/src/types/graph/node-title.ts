@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { type NodeType, ZNodeType } from '../enums/node-type.ts';
-import { type NodeStyle, ZNodeStyle } from './node-style.ts';
+import { type NodeStyle, ZNodeStyle, createNodeStyle } from './node-style.ts';
 
 /**
  * Represents the title/header section of a node in the diagram.
@@ -25,5 +25,13 @@ export interface NodeTitle {
 export const ZNodeTitle = z.object({
   nodeType: ZNodeType,
   style: ZNodeStyle.optional(),
-  text: z.string({ invalid_type_error: 'text must be a string' }).default('text'),
+  text: z.string({ invalid_type_error: 'text must be a string' }),
 }) as z.ZodType<NodeTitle>;
+
+export function createNodeTitle(data?: Partial<NodeTitle>) {
+  return ZNodeTitle.parse({
+    nodeType: data?.nodeType ?? 'class',
+    style: createNodeStyle(data?.style),
+    text: data?.text ?? 'text',
+  });
+}

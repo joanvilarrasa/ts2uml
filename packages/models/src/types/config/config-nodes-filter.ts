@@ -26,6 +26,13 @@ export interface ConfigNodesFilter {
 }
 
 export const ZConfigNodesFilter = z.object({
-  filter_path: z.array(z.string()).default([]),
-  filter_type: ZNodeType.array().default([]),
+  filter_path: z.array(z.string()).optional(),
+  filter_type: ZNodeType.array().optional(),
 }) as z.ZodType<ConfigNodesFilter>;
+
+export function createConfigNodesFilter(data?: Partial<ConfigNodesFilter>) {
+  return ZConfigNodesFilter.parse({
+    filter_path: data?.filter_path ?? [],
+    filter_type: data?.filter_type ?? [],
+  });
+}

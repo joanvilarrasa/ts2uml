@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { type NodeType, ZNodeType } from '../enums/node-type.ts';
-import { type NodeAttribute, ZNodeAttribute } from './node-attribute.ts';
+import { type NodeAttribute, ZNodeAttribute, createNodeAttribute } from './node-attribute.ts';
 import { type NodeStyle, ZNodeStyle } from './node-style.ts';
-import { type NodeTitle, ZNodeTitle } from './node-title.ts';
+import { type NodeTitle, ZNodeTitle, createNodeTitle } from './node-title.ts';
 
 /**
  * Represents a node in the diagram, which can be a class, interface, type, enum, function, or variable.
@@ -37,9 +37,18 @@ export interface Node {
 }
 
 export const ZNode = z.object({
-  attributes: ZNodeAttribute.array().default([]),
-  id: z.string({ invalid_type_error: 'id must be a string' }).default('id'),
+  attributes: ZNodeAttribute.array(),
+  id: z.string({ invalid_type_error: 'id must be a string' }),
   style: ZNodeStyle.optional(),
   title: ZNodeTitle,
   type: ZNodeType,
 }) as z.ZodType<Node>;
+
+export function createNode(data: Partial<Node>) {
+  return ZNode.parse({
+    attributes: data?.attributes ? data.attributes.map((a) => createNodeAttribute(a)) : [],
+    id: data?.id ?? 'id',
+    title: createNodeTitle(data?.title),
+    type: data?.type ?? 'class',
+  });
+}

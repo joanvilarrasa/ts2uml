@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { type Config, ZConfig } from '../config/config.ts';
-import { type Link, ZLink } from './link.ts';
-import { type Node, ZNode } from './node.ts';
+import { type Config, ZConfig, createConfig } from '../config/config.ts';
+import { type Link, ZLink, createLink } from './link.ts';
+import { type Node, ZNode, createNode } from './node.ts';
 
 /**
  * Represents a graph/diagram containing nodes and their links.
@@ -31,3 +31,11 @@ export const ZGraph = z.object({
   nodes: ZNode.array().default([]),
   links: ZLink.array().default([]),
 }) as z.ZodType<Graph>;
+
+export function createGraph(data: Partial<Graph>) {
+  return ZGraph.parse({
+    config: createConfig(data?.config),
+    nodes: data?.nodes ? data.nodes.map((n) => createNode(n)) : [],
+    links: data?.links ? data.links.map((l) => createLink(l)) : [],
+  });
+}

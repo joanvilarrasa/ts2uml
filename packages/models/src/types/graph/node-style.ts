@@ -36,12 +36,25 @@ export interface NodeStyle {
 }
 
 export const ZNodeStyle = z.object({
-  backgroundColor: z.string({ invalid_type_error: 'backgroundColor must be a string' }).optional().default('white'),
-  borderColor: z.string({ invalid_type_error: 'borderColor must be a string' }).optional().default('black'),
-  borderWidth: z.string({ invalid_type_error: 'borderWidth must be a string' }).optional().default('1px'),
-  color: z.string({ invalid_type_error: 'color must be a string' }).optional().default('black'),
-  fontSize: z.string({ invalid_type_error: 'fontSize must be a string' }).optional().default('16px'),
-  fontWeight: z.string({ invalid_type_error: 'fontWeight must be a string' }).optional().default('normal'),
-  height: z.string({ invalid_type_error: 'height must be a string' }).optional().default('20px'),
-  width: z.string({ invalid_type_error: 'width must be a string' }).optional().default('100px'),
+  backgroundColor: z.string({ invalid_type_error: 'backgroundColor must be a string' }).optional(),
+  borderColor: z.string({ invalid_type_error: 'borderColor must be a string' }).optional(),
+  borderWidth: z.string({ invalid_type_error: 'borderWidth must be a string' }).optional(),
+  color: z.string({ invalid_type_error: 'color must be a string' }).optional(),
+  fontSize: z.string({ invalid_type_error: 'fontSize must be a string' }).optional(),
+  fontWeight: z.string({ invalid_type_error: 'fontWeight must be a string' }).optional(),
+  height: z.string({ invalid_type_error: 'height must be a string' }).optional(),
+  width: z.string({ invalid_type_error: 'width must be a string' }).optional(),
 }) as z.ZodType<NodeStyle>;
+
+export function createNodeStyle(data?: Partial<NodeStyle>) {
+  return ZNodeStyle.parse({
+    backgroundColor: data?.backgroundColor,
+    borderColor: data?.borderColor,
+    borderWidth: data?.borderWidth,
+    color: data?.color,
+    fontSize: data?.fontSize,
+    fontWeight: data?.fontWeight,
+    height: data?.height,
+    width: data?.width,
+  });
+}

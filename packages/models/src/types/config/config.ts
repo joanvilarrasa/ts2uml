@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { type Theme, ZTheme } from '../enums/theme.ts';
-import { type ConfigLinks, ZConfigLinks } from './config-links.ts';
-import { type ConfigNodes, ZConfigNodes } from './config-nodes.ts';
+import { type ConfigLinks, ZConfigLinks, createConfigLinks } from './config-links.ts';
+import { type ConfigNodes, ZConfigNodes, createConfigNodes } from './config-nodes.ts';
 
 /**
  * Main configuration object that controls the overall diagram appearance and behavior.
@@ -38,7 +38,7 @@ export interface Config {
 
 export const ZConfig = z.object({
   diagram: z.object({
-    show_legend: z.boolean().optional().default(true),
+    show_legend: z.boolean().optional(),
     theme: ZTheme,
   }),
   links: ZConfigLinks,
@@ -47,3 +47,17 @@ export const ZConfig = z.object({
   }),
   nodes: ZConfigNodes,
 }) as z.ZodType<Config>;
+
+export function createConfig(data?: Partial<Config>) {
+  return ZConfig.parse({
+    diagram: {
+      show_legend: data?.diagram?.show_legend ?? true,
+      theme: data?.diagram?.theme ?? 'light',
+    },
+    links: createConfigLinks(data?.links),
+    metadata: {
+      version: data?.metadata?.version ?? '0.0.1',
+    },
+    nodes: createConfigNodes(data?.nodes),
+  });
+}
