@@ -7,6 +7,10 @@ import { type NodeStyle, ZNodeStyle, createNodeStyle } from './node-style.ts';
  */
 export interface NodeTitle {
   /**
+   * Unique identifier for the title
+   */
+  id: string;
+  /**
    * The type of node (class, interface, etc)
    * @see {@link NodeType}
    */
@@ -23,6 +27,7 @@ export interface NodeTitle {
 }
 
 export const ZNodeTitle = z.object({
+  id: z.string({ invalid_type_error: 'id must be a string' }),
   nodeType: ZNodeType,
   style: ZNodeStyle.optional(),
   text: z.string({ invalid_type_error: 'text must be a string' }),
@@ -30,6 +35,7 @@ export const ZNodeTitle = z.object({
 
 export function createNodeTitle(data?: Partial<NodeTitle>): NodeTitle {
   return ZNodeTitle.parse({
+    id: data?.id ?? 'id',
     nodeType: data?.nodeType ?? 'class',
     style: createNodeStyle(data?.style),
     text: data?.text ?? 'text',

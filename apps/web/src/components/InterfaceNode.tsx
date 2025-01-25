@@ -17,23 +17,14 @@ export function InterfaceNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node 
       <CardHeader className="bg-interface">
         <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
         <CardTitle>{title.text}</CardTitle>
+        <RF_Handle type="target" position={RF_Position.Top} id={node.id} />
       </CardHeader>
       <CardContent>
         {attributes.map((attribute, index) => (
           <div key={`${node.id}-${index}`} className="flex items-center justify-start" style={{ height: NODE_ATTRIBUTE_HEIGHT }}>
             <p>{attribute.text}</p>
-            <RF_Handle
-              type="source"
-              position={RF_Position.Left}
-              style={{ top: getAttributeTop(index) }}
-              id={`${node.id}-${index}-${RF_Position.Right}`}
-            />
-            <RF_Handle
-              type="source"
-              position={RF_Position.Right}
-              style={{ top: getAttributeTop(index) }}
-              id={`${node.id}-${index}-${RF_Position.Left}`}
-            />
+            <RF_Handle type="source" position={RF_Position.Left} style={{ top: getAttributeTop(index) }} id={`${attribute.id}`} />
+            {/* <RF_Handle type="source" position={RF_Position.Right} style={{ top: getAttributeTop(index) }} id={`${attribute.id}`} /> */}
           </div>
         ))}
       </CardContent>

@@ -48,6 +48,7 @@ function createInterfaceMetadata(iface: InterfaceDeclaration, filePath: string) 
 
   // Create title
   const nodeTitle = createNodeTitle({
+    id: `${sourceFileRelativePath}-${ifaceName}-TITLE`,
     nodeType: ifaceType,
     text: ifaceName,
     style: createNodeStyle(),
@@ -74,6 +75,7 @@ function createAttributeNodes(iface: InterfaceDeclaration, ifaceId: string, file
     });
 
     return createNodeAttribute({
+      id: sourcePortId,
       type: 'attribute',
       text: prop.getText(),
       style: createNodeStyle(),

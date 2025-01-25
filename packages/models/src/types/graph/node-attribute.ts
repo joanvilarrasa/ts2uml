@@ -8,6 +8,11 @@ import { type NodeStyle, ZNodeStyle, createNodeStyle } from './node-style.ts';
  */
 export interface NodeAttribute {
   /**
+   * Unique identifier for the attribute
+   */
+  id: string;
+
+  /**
    * The visibility/access level of the attribute (public, protected, private)
    * @see {@link NodeAttributeScope}
    */
@@ -32,6 +37,7 @@ export interface NodeAttribute {
 }
 
 export const ZNodeAttribute = z.object({
+  id: z.string({ invalid_type_error: 'id must be a string' }),
   scope: ZNodeAttributeScope.optional(),
   style: ZNodeStyle.optional(),
   text: z.string({ invalid_type_error: 'text must be a string' }),
@@ -40,6 +46,7 @@ export const ZNodeAttribute = z.object({
 
 export function createNodeAttribute(data?: Partial<NodeAttribute>): NodeAttribute {
   return ZNodeAttribute.parse({
+    id: data?.id ?? 'id',
     scope: data?.scope,
     style: createNodeStyle(data?.style),
     text: data?.text ?? 'text',

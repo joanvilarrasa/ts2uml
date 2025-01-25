@@ -1,5 +1,6 @@
 import {
   type Connection,
+  type Edge as RF_Edge,
   type Node as RF_Node,
   type NodeProps as RF_NodeProps,
   ReactFlow,
@@ -20,11 +21,23 @@ let initialX = 0;
 let initialY = 0;
 for (const node of initialGraph.nodes) {
   initialNodes.push({ id: node.id, type: 'interface', position: { x: initialX, y: initialY }, data: { data: node } });
-  initialX += 100;
-  initialY += 100;
+  initialX += 200;
+  initialY += 200;
 }
 
-const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
+const initialEdges: RF_Edge[] = [];
+
+console.log(initialGraph.links);
+for (const link of initialGraph.links) {
+  const sourceId = link.sourcePortId ?? link.sourceId;
+  initialEdges.push({
+    id: `${sourceId}-${link.targetId}`,
+    source: link.sourceId,
+    // sourceHandle: link.sourcePortId,
+    target: link.targetId,
+  });
+}
+console.log(initialEdges);
 
 // Export a component for each node type
 type CustomNodeComponents = { [K in NodeType]: (props: RF_NodeProps<RF_Node<{ data: Node }>>) => JSX.Element };
