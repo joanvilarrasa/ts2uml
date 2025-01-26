@@ -5,7 +5,7 @@ import { type LinkType, ZLinkType } from '../enums/link-type.ts';
 /**
  * Represents a relationship/link between two nodes in the diagram.
  */
-export type Link = {
+export interface Link {
   /**
    *  The cardinality (multiplicity) at the source end of the relationship
    * @see {@link Cardinality}
@@ -52,7 +52,7 @@ export type Link = {
    * @see {@link LinkType}
    */
   type: LinkType;
-};
+}
 
 export const ZLink = z.object({
   sourceCardinality: ZCardinality,

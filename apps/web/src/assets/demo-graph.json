@@ -3,16 +3,19 @@
     {
       "attributes": [
         {
+          "id": "/scripts/update-readme-ModelInfo-name",
           "style": {},
           "text": "name: string;",
           "type": "attribute"
         },
         {
+          "id": "/scripts/update-readme-ModelInfo-description",
           "style": {},
           "text": "description: string;",
           "type": "attribute"
         },
         {
+          "id": "/scripts/update-readme-ModelInfo-category",
           "style": {},
           "text": "category: 'Config' | 'Graph' | 'Defaults';",
           "type": "attribute"
@@ -20,6 +23,7 @@
       ],
       "id": "/scripts/update-readme-ModelInfo",
       "title": {
+        "id": "/scripts/update-readme-ModelInfo-TITLE",
         "nodeType": "interface",
         "style": {},
         "text": "ModelInfo"
@@ -29,243 +33,19 @@
     {
       "attributes": [
         {
-          "style": {},
-          "text": "filter_type: LinkType[];",
-          "type": "attribute"
-        }
-      ],
-      "id": "/types/config/config-links-filter-ConfigLinksFilter",
-      "title": {
-        "nodeType": "interface",
-        "style": {},
-        "text": "ConfigLinksFilter"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "style": {},
-          "text": "hide?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_arrows?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_cardinality?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_labels?: boolean;",
-          "type": "attribute"
-        }
-      ],
-      "id": "/types/config/config-links-options-ConfigLinksOptions",
-      "title": {
-        "nodeType": "interface",
-        "style": {},
-        "text": "ConfigLinksOptions"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "style": {},
-          "text": "filter: ConfigLinksFilter;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "options: ConfigLinksOptions;",
-          "type": "attribute"
-        }
-      ],
-      "id": "/types/config/config-links-ConfigLinks",
-      "title": {
-        "nodeType": "interface",
-        "style": {},
-        "text": "ConfigLinks"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "style": {},
-          "text": "filter_path: string[];",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "filter_type: NodeType[];",
-          "type": "attribute"
-        }
-      ],
-      "id": "/types/config/config-nodes-filter-ConfigNodesFilter",
-      "title": {
-        "nodeType": "interface",
-        "style": {},
-        "text": "ConfigNodesFilter"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "style": {},
-          "text": "hide_all_private?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_all_protected?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_all_public?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_all_static?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_attributes?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_attributes_private?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_attributes_protected?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_attributes_public?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_description?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_methods?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_methods_private?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_methods_protected?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_methods_public?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "hide_type?: boolean;",
-          "type": "attribute"
-        }
-      ],
-      "id": "/types/config/config-nodes-options-ConfigNodesOptions",
-      "title": {
-        "nodeType": "interface",
-        "style": {},
-        "text": "ConfigNodesOptions"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "style": {},
-          "text": "filter: ConfigNodesFilter;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "options: ConfigNodesOptions;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "styles: { [k in NodeType]?: NodeStyle };",
-          "type": "attribute"
-        }
-      ],
-      "id": "/types/config/config-nodes-ConfigNodes",
-      "title": {
-        "nodeType": "interface",
-        "style": {},
-        "text": "ConfigNodes"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "style": {},
-          "text": "diagram: {\n    show_legend: boolean;\n    theme: Theme;\n  };",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "links: ConfigLinks;",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "metadata: {\n    version: string;\n  };",
-          "type": "attribute"
-        },
-        {
-          "style": {},
-          "text": "nodes: ConfigNodes;",
-          "type": "attribute"
-        }
-      ],
-      "id": "/types/config/config-Config",
-      "title": {
-        "nodeType": "interface",
-        "style": {},
-        "text": "Config"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
+          "id": "/types/graph/graph-Graph-config",
           "style": {},
           "text": "config: Config;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/graph-Graph-nodes",
           "style": {},
           "text": "nodes: Node[];",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/graph-Graph-links",
           "style": {},
           "text": "links: Link[];",
           "type": "attribute"
@@ -273,6 +53,7 @@
       ],
       "id": "/types/graph/graph-Graph",
       "title": {
+        "id": "/types/graph/graph-Graph-TITLE",
         "nodeType": "interface",
         "style": {},
         "text": "Graph"
@@ -282,21 +63,91 @@
     {
       "attributes": [
         {
+          "id": "/types/graph/link-Link-sourceCardinality",
+          "style": {},
+          "text": "sourceCardinality: Cardinality;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/graph/link-Link-sourceId",
+          "style": {},
+          "text": "sourceId: string;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/graph/link-Link-sourcePortId",
+          "style": {},
+          "text": "sourcePortId?: string;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/graph/link-Link-targetCardinality",
+          "style": {},
+          "text": "targetCardinality: Cardinality;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/graph/link-Link-targetId",
+          "style": {},
+          "text": "targetId: string;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/graph/link-Link-targetPortId",
+          "style": {},
+          "text": "targetPortId?: string;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/graph/link-Link-text",
+          "style": {},
+          "text": "text?: string;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/graph/link-Link-type",
+          "style": {},
+          "text": "type: LinkType;",
+          "type": "attribute"
+        }
+      ],
+      "id": "/types/graph/link-Link",
+      "title": {
+        "id": "/types/graph/link-Link-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Link"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/graph/node-attribute-NodeAttribute-id",
+          "style": {},
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/graph/node-attribute-NodeAttribute-scope",
           "style": {},
           "text": "scope?: NodeAttributeScope;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-attribute-NodeAttribute-style",
           "style": {},
           "text": "style?: NodeStyle;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-attribute-NodeAttribute-text",
           "style": {},
           "text": "text: string;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-attribute-NodeAttribute-type",
           "style": {},
           "text": "type: NodeAttributeType;",
           "type": "attribute"
@@ -304,6 +155,7 @@
       ],
       "id": "/types/graph/node-attribute-NodeAttribute",
       "title": {
+        "id": "/types/graph/node-attribute-NodeAttribute-TITLE",
         "nodeType": "interface",
         "style": {},
         "text": "NodeAttribute"
@@ -313,41 +165,49 @@
     {
       "attributes": [
         {
+          "id": "/types/graph/node-style-NodeStyle-backgroundColor",
           "style": {},
           "text": "backgroundColor?: string;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-style-NodeStyle-borderColor",
           "style": {},
           "text": "borderColor?: string;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-style-NodeStyle-borderWidth",
           "style": {},
           "text": "borderWidth?: string;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-style-NodeStyle-color",
           "style": {},
           "text": "color?: string;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-style-NodeStyle-fontSize",
           "style": {},
           "text": "fontSize?: string;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-style-NodeStyle-fontWeight",
           "style": {},
           "text": "fontWeight?: string;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-style-NodeStyle-height",
           "style": {},
           "text": "height?: string;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-style-NodeStyle-width",
           "style": {},
           "text": "width?: string;",
           "type": "attribute"
@@ -355,6 +215,7 @@
       ],
       "id": "/types/graph/node-style-NodeStyle",
       "title": {
+        "id": "/types/graph/node-style-NodeStyle-TITLE",
         "nodeType": "interface",
         "style": {},
         "text": "NodeStyle"
@@ -364,16 +225,25 @@
     {
       "attributes": [
         {
+          "id": "/types/graph/node-title-NodeTitle-id",
+          "style": {},
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/graph/node-title-NodeTitle-nodeType",
           "style": {},
           "text": "nodeType: NodeType;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-title-NodeTitle-style",
           "style": {},
           "text": "style?: NodeStyle;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-title-NodeTitle-text",
           "style": {},
           "text": "text: string;",
           "type": "attribute"
@@ -381,6 +251,7 @@
       ],
       "id": "/types/graph/node-title-NodeTitle",
       "title": {
+        "id": "/types/graph/node-title-NodeTitle-TITLE",
         "nodeType": "interface",
         "style": {},
         "text": "NodeTitle"
@@ -390,26 +261,31 @@
     {
       "attributes": [
         {
+          "id": "/types/graph/node-Node-attributes",
           "style": {},
           "text": "attributes: NodeAttribute[];",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-Node-id",
           "style": {},
           "text": "id: string;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-Node-style",
           "style": {},
           "text": "style?: NodeStyle;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-Node-title",
           "style": {},
           "text": "title: NodeTitle;",
           "type": "attribute"
         },
         {
+          "id": "/types/graph/node-Node-type",
           "style": {},
           "text": "type: NodeType;",
           "type": "attribute"
@@ -417,70 +293,279 @@
       ],
       "id": "/types/graph/node-Node",
       "title": {
+        "id": "/types/graph/node-Node-TITLE",
         "nodeType": "interface",
         "style": {},
         "text": "Node"
       },
       "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/config/config-links-filter-ConfigLinksFilter-filter_type",
+          "style": {},
+          "text": "filter_type: LinkType[];",
+          "type": "attribute"
+        }
+      ],
+      "id": "/types/config/config-links-filter-ConfigLinksFilter",
+      "title": {
+        "id": "/types/config/config-links-filter-ConfigLinksFilter-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "ConfigLinksFilter"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/config/config-links-options-ConfigLinksOptions-hide",
+          "style": {},
+          "text": "hide?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-links-options-ConfigLinksOptions-hide_arrows",
+          "style": {},
+          "text": "hide_arrows?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-links-options-ConfigLinksOptions-hide_cardinality",
+          "style": {},
+          "text": "hide_cardinality?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-links-options-ConfigLinksOptions-hide_labels",
+          "style": {},
+          "text": "hide_labels?: boolean;",
+          "type": "attribute"
+        }
+      ],
+      "id": "/types/config/config-links-options-ConfigLinksOptions",
+      "title": {
+        "id": "/types/config/config-links-options-ConfigLinksOptions-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "ConfigLinksOptions"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/config/config-links-ConfigLinks-filter",
+          "style": {},
+          "text": "filter: ConfigLinksFilter;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-links-ConfigLinks-options",
+          "style": {},
+          "text": "options: ConfigLinksOptions;",
+          "type": "attribute"
+        }
+      ],
+      "id": "/types/config/config-links-ConfigLinks",
+      "title": {
+        "id": "/types/config/config-links-ConfigLinks-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "ConfigLinks"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/config/config-nodes-filter-ConfigNodesFilter-filter_path",
+          "style": {},
+          "text": "filter_path: string[];",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-filter-ConfigNodesFilter-filter_type",
+          "style": {},
+          "text": "filter_type: NodeType[];",
+          "type": "attribute"
+        }
+      ],
+      "id": "/types/config/config-nodes-filter-ConfigNodesFilter",
+      "title": {
+        "id": "/types/config/config-nodes-filter-ConfigNodesFilter-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "ConfigNodesFilter"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_all_private",
+          "style": {},
+          "text": "hide_all_private?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_all_protected",
+          "style": {},
+          "text": "hide_all_protected?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_all_public",
+          "style": {},
+          "text": "hide_all_public?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_all_static",
+          "style": {},
+          "text": "hide_all_static?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_attributes",
+          "style": {},
+          "text": "hide_attributes?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_attributes_private",
+          "style": {},
+          "text": "hide_attributes_private?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_attributes_protected",
+          "style": {},
+          "text": "hide_attributes_protected?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_attributes_public",
+          "style": {},
+          "text": "hide_attributes_public?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_description",
+          "style": {},
+          "text": "hide_description?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_methods",
+          "style": {},
+          "text": "hide_methods?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_methods_private",
+          "style": {},
+          "text": "hide_methods_private?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_methods_protected",
+          "style": {},
+          "text": "hide_methods_protected?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_methods_public",
+          "style": {},
+          "text": "hide_methods_public?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_type",
+          "style": {},
+          "text": "hide_type?: boolean;",
+          "type": "attribute"
+        }
+      ],
+      "id": "/types/config/config-nodes-options-ConfigNodesOptions",
+      "title": {
+        "id": "/types/config/config-nodes-options-ConfigNodesOptions-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "ConfigNodesOptions"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/config/config-nodes-ConfigNodes-filter",
+          "style": {},
+          "text": "filter: ConfigNodesFilter;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-ConfigNodes-options",
+          "style": {},
+          "text": "options: ConfigNodesOptions;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-nodes-ConfigNodes-styles",
+          "style": {},
+          "text": "styles: { [k in NodeType]?: NodeStyle };",
+          "type": "attribute"
+        }
+      ],
+      "id": "/types/config/config-nodes-ConfigNodes",
+      "title": {
+        "id": "/types/config/config-nodes-ConfigNodes-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "ConfigNodes"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/config/config-Config-diagram",
+          "style": {},
+          "text": "diagram: {\n    show_legend: boolean;\n    theme: Theme;\n  };",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-Config-links",
+          "style": {},
+          "text": "links: ConfigLinks;",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-Config-metadata",
+          "style": {},
+          "text": "metadata: {\n    version: string;\n  };",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/config/config-Config-nodes",
+          "style": {},
+          "text": "nodes: ConfigNodes;",
+          "type": "attribute"
+        }
+      ],
+      "id": "/types/config/config-Config",
+      "title": {
+        "id": "/types/config/config-Config-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Config"
+      },
+      "type": "interface"
     }
   ],
   "links": [
-    {
-      "sourceCardinality": "*",
-      "sourceId": "/types/config/config-links-ConfigLinks",
-      "sourcePortId": "/types/config/config-links-ConfigLinks-filter",
-      "targetCardinality": "*",
-      "targetId": "/types/config/config-links-filter-ConfigLinksFilter",
-      "type": "association"
-    },
-    {
-      "sourceCardinality": "*",
-      "sourceId": "/types/config/config-links-ConfigLinks",
-      "sourcePortId": "/types/config/config-links-ConfigLinks-options",
-      "targetCardinality": "*",
-      "targetId": "/types/config/config-links-options-ConfigLinksOptions",
-      "type": "association"
-    },
-    {
-      "sourceCardinality": "*",
-      "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourcePortId": "/types/config/config-nodes-ConfigNodes-filter",
-      "targetCardinality": "*",
-      "targetId": "/types/config/config-nodes-filter-ConfigNodesFilter",
-      "type": "association"
-    },
-    {
-      "sourceCardinality": "*",
-      "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourcePortId": "/types/config/config-nodes-ConfigNodes-options",
-      "targetCardinality": "*",
-      "targetId": "/types/config/config-nodes-options-ConfigNodesOptions",
-      "type": "association"
-    },
-    {
-      "sourceCardinality": "*",
-      "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourcePortId": "/types/config/config-nodes-ConfigNodes-styles",
-      "targetCardinality": "*",
-      "targetId": "/types/graph/node-style-NodeStyle",
-      "type": "association"
-    },
-    {
-      "sourceCardinality": "*",
-      "sourceId": "/types/config/config-Config",
-      "sourcePortId": "/types/config/config-Config-links",
-      "targetCardinality": "*",
-      "targetId": "/types/config/config-links-ConfigLinks",
-      "type": "association"
-    },
-    {
-      "sourceCardinality": "*",
-      "sourceId": "/types/config/config-Config",
-      "sourcePortId": "/types/config/config-Config-nodes",
-      "targetCardinality": "*",
-      "targetId": "/types/config/config-nodes-ConfigNodes",
-      "type": "association"
-    },
     {
       "sourceCardinality": "*",
       "sourceId": "/types/graph/graph-Graph",
@@ -543,6 +628,62 @@
       "sourcePortId": "/types/graph/node-Node-title",
       "targetCardinality": "*",
       "targetId": "/types/graph/node-title-NodeTitle",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/types/config/config-links-ConfigLinks",
+      "sourcePortId": "/types/config/config-links-ConfigLinks-filter",
+      "targetCardinality": "*",
+      "targetId": "/types/config/config-links-filter-ConfigLinksFilter",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/types/config/config-links-ConfigLinks",
+      "sourcePortId": "/types/config/config-links-ConfigLinks-options",
+      "targetCardinality": "*",
+      "targetId": "/types/config/config-links-options-ConfigLinksOptions",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/types/config/config-nodes-ConfigNodes",
+      "sourcePortId": "/types/config/config-nodes-ConfigNodes-filter",
+      "targetCardinality": "*",
+      "targetId": "/types/config/config-nodes-filter-ConfigNodesFilter",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/types/config/config-nodes-ConfigNodes",
+      "sourcePortId": "/types/config/config-nodes-ConfigNodes-options",
+      "targetCardinality": "*",
+      "targetId": "/types/config/config-nodes-options-ConfigNodesOptions",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/types/config/config-nodes-ConfigNodes",
+      "sourcePortId": "/types/config/config-nodes-ConfigNodes-styles",
+      "targetCardinality": "*",
+      "targetId": "/types/graph/node-style-NodeStyle",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/types/config/config-Config",
+      "sourcePortId": "/types/config/config-Config-links",
+      "targetCardinality": "*",
+      "targetId": "/types/config/config-links-ConfigLinks",
+      "type": "association"
+    },
+    {
+      "sourceCardinality": "*",
+      "sourceId": "/types/config/config-Config",
+      "sourcePortId": "/types/config/config-Config-nodes",
+      "targetCardinality": "*",
+      "targetId": "/types/config/config-nodes-ConfigNodes",
       "type": "association"
     }
   ],
