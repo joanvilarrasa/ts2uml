@@ -22,6 +22,7 @@ export const getInitialEdges = () => {
       id: `${sourceId}-${link.targetId}`,
       source: link.sourceId,
       target: link.targetId,
+      type: 'step',
     });
   }
   return newInitialEdges;

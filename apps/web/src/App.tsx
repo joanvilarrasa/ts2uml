@@ -38,7 +38,11 @@ const useLayoutedElements = () => {
         width: 500,
         height: 500,
       })),
-      edges: getEdges(),
+      edges: getEdges().map((edge) => ({
+        ...edge,
+        sources: [edge.source],
+        targets: [edge.target],
+      })),
     };
 
     elk.layout(graph).then(({ children }) => {
