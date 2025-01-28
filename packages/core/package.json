@@ -4,7 +4,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "clean": "rm -rf .turbo node_modules dist",
+    "clean": "rm -rf node_modules dist",
     "lint": "biome check --fix .",
     "format": "biome format --write .",
     "build": "biome check --fix . && biome format --write . && tsup --clean",
