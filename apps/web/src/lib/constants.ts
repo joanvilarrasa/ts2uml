@@ -1,2 +1,2 @@
-export const NODE_TITLE_HEIGHT = 100;
-export const NODE_ATTRIBUTE_HEIGHT = 40;
+export const NODE_TITLE_HEIGHT = 70;
+export const NODE_ATTRIBUTE_HEIGHT = 30;

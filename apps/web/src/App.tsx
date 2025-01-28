@@ -7,36 +7,40 @@ import {
   useNodesState,
   useReactFlow,
 } from '@xyflow/react';
+import type React from 'react';
 import { useCallback, useEffect, useMemo } from 'react';
 import '@xyflow/react/dist/style.css';
 import type { Node, NodeType } from '@ts2uml/models';
-import ELK from 'elkjs/lib/elk.bundled.js';
-import { InterfaceNodeComponent } from './components/InterfaceNode';
+import ELK, { type LayoutOptions, type ElkNode } from 'elkjs/lib/elk.bundled.js';
+import { InterfaceNodeComponent } from './components/interface-node';
+import { computeNodeHeight, computeNodeWidth } from './utils/compute-node-size';
 import { getInitialEdges, getInitialNodes } from './utils/get-data';
 
 // Export a component for each node type
-type CustomNodeComponents = { [K in NodeType]: (props: RF_NodeProps<RF_Node<{ data: Node }>>) => JSX.Element };
+type CustomNodeComponents = { [K in NodeType]: (props: RF_NodeProps<RF_Node<{ data: Node }>>) => React.JSX.Element };
 
 const elk = new ELK();
 
 const useLayoutedElements = () => {
   const { getNodes, setNodes, getEdges, fitView } = useReactFlow();
-  const defaultOptions = {
-    'elk.algorithm': 'org.eclipse.elk.radial',
-    'elk.layered.spacing.nodeNodeBetweenLayers': 100,
-    'elk.spacing.nodeNode': 80,
+  const defaultOptions: LayoutOptions = {
+    'elk.algorithm': 'org.eclipse.elk.layered',
+    'elk.layered.spacing.nodeNodeBetweenLayers': '100',
+    'elk.spacing.nodeNode': '80',
   };
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const getLayoutedElements = useCallback((options) => {
     const layoutOptions = { ...defaultOptions, ...options };
+
+    getNodes().map((n) => console.log(n));
     const graph = {
       id: 'root',
       layoutOptions: layoutOptions,
-      children: getNodes().map((node) => ({
+      children: getNodes().map((node: RF_Node<{ data: Node }>) => ({
         ...node,
-        width: 500,
-        height: 500,
+        width: computeNodeWidth(node.data.data),
+        height: computeNodeHeight(node.data.data),
       })),
       edges: getEdges().map((edge) => ({
         ...edge,
@@ -46,15 +50,14 @@ const useLayoutedElements = () => {
     };
 
     elk.layout(graph).then(({ children }) => {
-      // By mutating the children in-place we saves ourselves from creating a
-      // needless copy of the nodes array.
-      for (const node of children) {
-        node.position = { x: node.x, y: node.y };
-      }
+      const newNodes: RF_Node<{ data: Node }>[] = children.map((n: ElkNode & RF_Node<{ data: Node }>) => ({
+        ...n,
+        position: { x: n.x, y: n.y },
+      }));
 
-      setNodes(children as unknown as RF_Node<{ data: Node }>[]);
+      setNodes(newNodes);
       window.requestAnimationFrame(() => {
-        fitView();
+        fitView({ nodes: newNodes });
       });
     });
   }, []);
@@ -79,11 +82,9 @@ const LayoutFlow = () => {
   const [nodes, , onNodesChange] = useNodesState<RF_Node>(getInitialNodes());
   const [edges, , onEdgesChange] = useEdgesState(getInitialEdges());
 
-  // const onConnect = useCallback((params: Connection) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
-
   useEffect(() => {
     getLayoutedElements({
-      'elk.algorithm': 'org.eclipse.elk.mrtree',
+      'elk.algorithm': 'org.eclipse.elk.layered',
     });
   }, [getLayoutedElements]);
 

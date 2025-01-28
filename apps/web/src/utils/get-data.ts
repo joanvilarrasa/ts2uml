@@ -4,13 +4,9 @@ import demoGraph from '../assets/demo-graph.json';
 
 const initialGraph = demoGraph as Graph;
 export const getInitialNodes = () => {
-  let initialX = 0;
-  let initialY = 0;
   const newInitialNodes: RF_Node<{ data: Node }>[] = [];
   for (const node of initialGraph.nodes) {
-    newInitialNodes.push({ id: node.id, type: 'interface', position: { x: initialX, y: initialY }, data: { data: node } });
-    initialX += 200;
-    initialY += 200;
+    newInitialNodes.push({ id: node.id, type: 'interface', position: { x: 0, y: 0 }, data: { data: node } });
   }
   return newInitialNodes;
 };
@@ -21,6 +17,7 @@ export const getInitialEdges = () => {
     newInitialEdges.push({
       id: `${sourceId}-${link.targetId}`,
       source: link.sourceId,
+      sourceHandle: link.sourcePortId,
       target: link.targetId,
       type: 'step',
     });
