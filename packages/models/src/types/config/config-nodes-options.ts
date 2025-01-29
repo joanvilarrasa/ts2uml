@@ -67,19 +67,43 @@ export interface ConfigNodesOptions {
 }
 
 export const ZConfigNodesOptions = z.object({
-  hide_all_private: z.boolean({ invalid_type_error: 'hide_all_private must be a boolean' }).optional(),
-  hide_all_protected: z.boolean({ invalid_type_error: 'hide_all_protected must be a boolean' }).optional(),
-  hide_all_public: z.boolean({ invalid_type_error: 'hide_all_public must be a boolean' }).optional(),
-  hide_all_static: z.boolean({ invalid_type_error: 'hide_all_static must be a boolean' }).optional(),
-  hide_attributes: z.boolean({ invalid_type_error: 'hide_attributes must be a boolean' }).optional(),
-  hide_attributes_private: z.boolean({ invalid_type_error: 'hide_attributes_private must be a boolean' }).optional(),
-  hide_attributes_protected: z.boolean({ invalid_type_error: 'hide_attributes_protected must be a boolean' }).optional(),
-  hide_attributes_public: z.boolean({ invalid_type_error: 'hide_attributes_public must be a boolean' }).optional(),
-  hide_description: z.boolean({ invalid_type_error: 'hide_description must be a boolean' }).optional(),
+  hide_all_private: z
+    .boolean({ invalid_type_error: 'hide_all_private must be a boolean' })
+    .optional(),
+  hide_all_protected: z
+    .boolean({ invalid_type_error: 'hide_all_protected must be a boolean' })
+    .optional(),
+  hide_all_public: z
+    .boolean({ invalid_type_error: 'hide_all_public must be a boolean' })
+    .optional(),
+  hide_all_static: z
+    .boolean({ invalid_type_error: 'hide_all_static must be a boolean' })
+    .optional(),
+  hide_attributes: z
+    .boolean({ invalid_type_error: 'hide_attributes must be a boolean' })
+    .optional(),
+  hide_attributes_private: z
+    .boolean({ invalid_type_error: 'hide_attributes_private must be a boolean' })
+    .optional(),
+  hide_attributes_protected: z
+    .boolean({ invalid_type_error: 'hide_attributes_protected must be a boolean' })
+    .optional(),
+  hide_attributes_public: z
+    .boolean({ invalid_type_error: 'hide_attributes_public must be a boolean' })
+    .optional(),
+  hide_description: z
+    .boolean({ invalid_type_error: 'hide_description must be a boolean' })
+    .optional(),
   hide_methods: z.boolean({ invalid_type_error: 'hide_methods must be a boolean' }).optional(),
-  hide_methods_private: z.boolean({ invalid_type_error: 'hide_methods_private must be a boolean' }).optional(),
-  hide_methods_protected: z.boolean({ invalid_type_error: 'hide_methods_protected must be a boolean' }).optional(),
-  hide_methods_public: z.boolean({ invalid_type_error: 'hide_methods_public must be a boolean' }).optional(),
+  hide_methods_private: z
+    .boolean({ invalid_type_error: 'hide_methods_private must be a boolean' })
+    .optional(),
+  hide_methods_protected: z
+    .boolean({ invalid_type_error: 'hide_methods_protected must be a boolean' })
+    .optional(),
+  hide_methods_public: z
+    .boolean({ invalid_type_error: 'hide_methods_public must be a boolean' })
+    .optional(),
   hide_type: z.boolean({ invalid_type_error: 'hide_type must be a boolean' }).optional(),
 }) as z.ZodType<ConfigNodesOptions>;
 

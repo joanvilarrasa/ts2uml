@@ -9,8 +9,16 @@ import {
 } from '../../defaults/light-node-styles.ts';
 import { type NodeType, ZNodeType } from '../enums/node-type.ts';
 import { type NodeStyle, ZNodeStyle, createNodeStyle } from '../graph/node-style.ts';
-import { type ConfigNodesFilter, ZConfigNodesFilter, createConfigNodesFilter } from './config-nodes-filter.ts';
-import { type ConfigNodesOptions, ZConfigNodesOptions, createConfigNodesOptions } from './config-nodes-options.ts';
+import {
+  type ConfigNodesFilter,
+  ZConfigNodesFilter,
+  createConfigNodesFilter,
+} from './config-nodes-filter.ts';
+import {
+  type ConfigNodesOptions,
+  ZConfigNodesOptions,
+  createConfigNodesOptions,
+} from './config-nodes-options.ts';
 
 /**
  * Interface defining the configuration for displaying nodes in the diagram.

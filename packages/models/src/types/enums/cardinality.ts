@@ -4,7 +4,9 @@ export const ZCardinality = z
   .union([
     z.string().length(1).startsWith('*'),
     z.number().nonnegative().int(),
-    z.array(z.union([z.string().length(1).startsWith('*'), z.number().nonnegative().int()])).length(2),
+    z
+      .array(z.union([z.string().length(1).startsWith('*'), z.number().nonnegative().int()]))
+      .length(2),
   ])
   .default('*');
 

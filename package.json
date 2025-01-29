@@ -2,50 +2,46 @@
   "name": "ts2uml",
   "private": "true",
   "version": "0.0.1",
-  "workspaces": ["apps/web", "apps/vscode-ext", "packages/core", "packages/models", "packages/npm-lib"],
+  "workspaces": [
+    "apps/web",
+    "apps/vscode-ext",
+    "packages/core",
+    "packages/models",
+    "packages/npm-lib"
+  ],
   "scripts": {
     "clean": "rm -rf node_modules dist",
-    "clean:all": "bun run clean:models && bun run clean:core && bun run clean:npm && bun run clean:vscode && bun run clean:web",
+    "clean:all": "bun run clean:models && bun run clean:core && bun run clean:web",
     "clean:models": "cd packages/models && bun run clean",
     "clean:core": "cd packages/core && bun run clean",
-    "clean:npm": "cd packages/npm-lib && bun run clean",
-    "clean:vscode": "cd apps/vscode-ext && bun run clean",
     "clean:web": "cd apps/web && bun run clean",
 
     "lint": "biome check .",
-    "lint:all": "bun run lint:models && bun run lint:core && bun run lint:npm && bun run lint:vscode && bun run lint:web",
+    "lint:all": "bun run lint:models && bun run lint:core && bun run lint:web",
     "lint:models": "cd packages/models && bun run lint",
     "lint:core": "cd packages/core && bun run lint",
-    "lint:npm": "cd packages/npm-lib && bun run lint",
-    "lint:vscode": "cd apps/vscode-ext && bun run lint",
     "lint:web": "cd apps/web && bun run lint",
 
     "format": "biome format --write .",
-    "format:all": "bun run format:models && bun run format:core && bun run format:npm && bun run format:vscode && bun run format:web",
+    "format:all": "bun run format:models && bun run format:core && bun run format:web",
     "format:models": "cd packages/models && bun run format",
     "format:core": "cd packages/core && bun run format",
-    "format:npm": "cd packages/npm-lib && bun run format",
-    "format:vscode": "cd apps/vscode-ext && bun run format",
     "format:web": "cd apps/web && bun run format",
 
     "build": "bun run build:all",
-    "build:all": "bun run build:models && bun run build:core && bun run build:npm && bun run build:vscode && bun run build:web",
+    "build:all": "bun run build:models && bun run build:core && bun run build:web",
     "build:models": "cd packages/models && bun run build",
     "build:core": "cd packages/core && bun run build",
-    "build:npm": "cd packages/npm-lib && bun run build",
-    "build:vscode": "cd apps/vscode-ext && bun run build",
     "build:web": "cd apps/web && bun run build",
 
     "dev": "bun run dev:all",
-    "dev:all": "bun run dev:models && bun run dev:core && bun run dev:npm && bun run dev:vscode && bun run dev:web",
+    "dev:all": "bun run dev:models && bun run dev:core && bun run dev:web",
     "dev:models": "cd packages/models && bun run dev",
     "dev:core": "cd packages/core && bun run dev",
-    "dev:npm": "cd packages/npm-lib && bun run dev",
-    "dev:vscode": "cd apps/vscode-ext && bun run dev",
     "dev:web": "cd apps/web && bun run dev",
 
     "preview:web": "cd apps/web && bun run preview",
-    "generate-demo-graph": "cd packages/core && bun run generate-demo-graph"
+    "demo": "cd packages/core && bun run generate-demo-graph"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

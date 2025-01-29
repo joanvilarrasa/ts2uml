@@ -1,6 +1,14 @@
 import { z } from 'zod';
-import { type ConfigLinksFilter, ZConfigLinksFilter, createConfigLinksFilter } from './config-links-filter.ts';
-import { type ConfigLinksOptions, ZConfigLinksOptions, createConfigLinksOptions } from './config-links-options.ts';
+import {
+  type ConfigLinksFilter,
+  ZConfigLinksFilter,
+  createConfigLinksFilter,
+} from './config-links-filter.ts';
+import {
+  type ConfigLinksOptions,
+  ZConfigLinksOptions,
+  createConfigLinksOptions,
+} from './config-links-options.ts';
 
 /**
  * Interface defining the configuration for displaying links (relationships) in the diagram.

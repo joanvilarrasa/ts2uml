@@ -32,7 +32,7 @@ export const ZGraph = z.object({
   links: ZLink.array().default([]),
 }) as z.ZodType<Graph>;
 
-export function createGraph(data: Partial<Graph>): Graph {
+export function createGraph(data?: Partial<Graph>): Graph {
   return ZGraph.parse({
     config: createConfig(data?.config),
     nodes: data?.nodes ? data.nodes.map((n) => createNode(n)) : [],

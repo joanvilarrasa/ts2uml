@@ -7,7 +7,7 @@
     "clean": "rm -rf node_modules dist",
     "lint": "biome check --fix .",
     "format": "biome format --write .",
-    "build": "biome check --fix . && biome format --write . && bun run src/scripts/update-readme.ts && tsup --clean",
+    "build": "biome check --fix . && biome format --write . && tsup --clean",
     "testing": "bun index.ts"
   }
 }

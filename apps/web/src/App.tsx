@@ -17,16 +17,29 @@ import { computeNodeHeight, computeNodeWidth } from './utils/compute-node-size';
 import { getInitialEdges, getInitialNodes } from './utils/get-data';
 
 // Export a component for each node type
-type CustomNodeComponents = { [K in NodeType]: (props: RF_NodeProps<RF_Node<{ data: Node }>>) => React.JSX.Element };
+type CustomNodeComponents = {
+  [K in NodeType]: (props: RF_NodeProps<RF_Node<{ data: Node }>>) => React.JSX.Element;
+};
 
 const elk = new ELK();
 
 const useLayoutedElements = () => {
   const { getNodes, setNodes, getEdges, fitView } = useReactFlow();
   const defaultOptions: LayoutOptions = {
-    'elk.algorithm': 'org.eclipse.elk.layered',
-    'elk.layered.spacing.nodeNodeBetweenLayers': '100',
-    'elk.spacing.nodeNode': '80',
+    'elk.algorithm': 'layered',
+    'elk.direction': 'DOWN',
+    'elk.edgeRouting': 'ORTHOGONAL',
+    'elk.insideSelfLoops.activate': 'false',
+    'elk.interactiveLayout': 'true',
+    'elk.layered.crossingMinimization.semiInteractive': 'true',
+    'elk.layered.cycleBreaking.strategy': 'INTERACTIVE',
+    'elk.layered.nodePlacement.strategy': 'LINEAR_SEGMENTS',
+    // "elk.layered.layering.strategy": "LONGEST_PATH",
+    'elk.layered.spacing.edgeNodeBetweenLayers': '25', // default 10
+    'elk.layered.spacing.nodeNodeBetweenLayers': '50', // default 20
+    'elk.spacing.nodeNode': '50', // default 20
+    'elk.spacing.componentComponent': '100', // default 20
+    'elk.separateConnectedComponents': 'true',
   };
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
@@ -50,10 +63,12 @@ const useLayoutedElements = () => {
     };
 
     elk.layout(graph).then(({ children }) => {
-      const newNodes: RF_Node<{ data: Node }>[] = children.map((n: ElkNode & RF_Node<{ data: Node }>) => ({
-        ...n,
-        position: { x: n.x, y: n.y },
-      }));
+      const newNodes: RF_Node<{ data: Node }>[] = children.map(
+        (n: ElkNode & RF_Node<{ data: Node }>) => ({
+          ...n,
+          position: { x: n.x, y: n.y },
+        })
+      );
 
       setNodes(newNodes);
       window.requestAnimationFrame(() => {
@@ -88,7 +103,16 @@ const LayoutFlow = () => {
     });
   }, [getLayoutedElements]);
 
-  return <ReactFlow nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} nodeTypes={nodeTypes} fitView />;
+  return (
+    <ReactFlow
+      nodes={nodes}
+      edges={edges}
+      onNodesChange={onNodesChange}
+      onEdgesChange={onEdgesChange}
+      nodeTypes={nodeTypes}
+      fitView
+    />
+  );
 };
 
 export default function App() {

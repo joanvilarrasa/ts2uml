@@ -27,6 +27,10 @@ export function generateGraph(project: Project, filePath: string, config: Config
       const attributeNodes = createAttributeNodes(iface, ifaceId, filePath, links);
 
       const node: Node = createNode({
+        docs: iface
+          .getJsDocs()
+          .map((doc) => doc.getText())
+          .join('\n'),
         id: ifaceId,
         type: ifaceType,
         title: nodeTitle,
@@ -57,7 +61,12 @@ function createInterfaceMetadata(iface: InterfaceDeclaration, filePath: string) 
   return { ifaceId, ifaceType, nodeTitle };
 }
 
-function createAttributeNodes(iface: InterfaceDeclaration, ifaceId: string, filePath: string, links: Link[]): NodeAttribute[] {
+function createAttributeNodes(
+  iface: InterfaceDeclaration,
+  ifaceId: string,
+  filePath: string,
+  links: Link[]
+): NodeAttribute[] {
   return iface.getProperties().map((prop) => {
     const sourcePortId = `${ifaceId}-${prop.getName()}`;
     const targetIds = getTargetIds(prop, filePath);
@@ -75,6 +84,10 @@ function createAttributeNodes(iface: InterfaceDeclaration, ifaceId: string, file
     });
 
     return createNodeAttribute({
+      docs: prop
+        .getJsDocs()
+        .map((doc) => doc.getText())
+        .join('\n'),
       id: sourcePortId,
       type: 'attribute',
       text: prop.getText(),

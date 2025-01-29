@@ -1,6 +1,13 @@
 import { z } from 'zod';
 
-export const ZLinkType = z.enum(['aggregation', 'association', 'composition', 'dependency', 'inheritance', 'realization']);
+export const ZLinkType = z.enum([
+  'aggregation',
+  'association',
+  'composition',
+  'dependency',
+  'inheritance',
+  'realization',
+]);
 
 /**
  * Represents the different types of relationships between nodes in the diagram.

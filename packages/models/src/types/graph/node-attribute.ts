@@ -13,6 +13,11 @@ export interface NodeAttribute {
   id: string;
 
   /**
+   * jsdocs documentation for the attribute
+   */
+  docs?: string;
+
+  /**
    * The visibility/access level of the attribute (public, protected, private)
    * @see {@link NodeAttributeScope}
    */
@@ -37,6 +42,7 @@ export interface NodeAttribute {
 }
 
 export const ZNodeAttribute = z.object({
+  docs: z.string().optional(),
   id: z.string({ invalid_type_error: 'id must be a string' }),
   scope: ZNodeAttributeScope.optional(),
   style: ZNodeStyle.optional(),
@@ -46,6 +52,7 @@ export const ZNodeAttribute = z.object({
 
 export function createNodeAttribute(data?: Partial<NodeAttribute>): NodeAttribute {
   return ZNodeAttribute.parse({
+    docs: data?.docs,
     id: data?.id ?? 'id',
     scope: data?.scope,
     style: createNodeStyle(data?.style),

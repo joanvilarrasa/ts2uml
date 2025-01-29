@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { type NodeType, ZNodeType } from '../enums/node-type.ts';
 import { type NodeAttribute, ZNodeAttribute, createNodeAttribute } from './node-attribute.ts';
+import { type NodePosition, ZNodePosition, createNodePosition } from './node-position.ts';
 import { type NodeStyle, ZNodeStyle } from './node-style.ts';
 import { type NodeTitle, ZNodeTitle, createNodeTitle } from './node-title.ts';
 
@@ -14,8 +15,19 @@ export interface Node {
    */
   attributes: NodeAttribute[];
 
+  /**
+   * jsdocs documentation for the node
+   */
+  docs?: string;
+
   /** Unique identifier for the node */
   id: string;
+
+  /**
+   * The position of the node in the graph
+   * @see {@link NodePosition}
+   */
+  position: NodePosition;
 
   /**
    * Optional styling configuration for the node
@@ -38,16 +50,21 @@ export interface Node {
 
 export const ZNode = z.object({
   attributes: ZNodeAttribute.array(),
+  docs: z.string().optional(),
   id: z.string({ invalid_type_error: 'id must be a string' }),
+  position: ZNodePosition,
   style: ZNodeStyle.optional(),
   title: ZNodeTitle,
   type: ZNodeType,
 }) as z.ZodType<Node>;
 
-export function createNode(data: Partial<Node>): Node {
+export function createNode(data?: Partial<Node>): Node {
   return ZNode.parse({
     attributes: data?.attributes ? data.attributes.map((a) => createNodeAttribute(a)) : [],
+    docs: data?.docs,
     id: data?.id ?? 'id',
+    position: createNodePosition(data?.position),
+    style: data?.style,
     title: createNodeTitle(data?.title),
     type: data?.type ?? 'class',
   });
