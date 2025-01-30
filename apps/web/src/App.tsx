@@ -17,7 +17,7 @@ import ELK, { type LayoutOptions, type ElkNode } from 'elkjs/lib/elk.bundled.js'
 import { FloatingEdgeBezier } from './components/edges/floating-edge-bezier';
 import { FloatingEdgeStep } from './components/edges/floating-edge-step';
 import { FloatingEdgeStraight } from './components/edges/floating-edge-straight';
-import { InterfaceNodeComponent } from './components/interface-node';
+import { InterfaceNodeComponent } from './components/nodes/interface-node';
 import { computeNodeHeight, computeNodeWidth } from './utils/compute-node-size';
 import { getInitialEdges, getInitialNodes } from './utils/get-data';
 
