@@ -16,15 +16,14 @@ export const getInitialNodes = () => {
   return newInitialNodes;
 };
 export const getInitialEdges = () => {
+  const linkPathAlgorithm = initialGraph.config.links.linkPathAlgorithm;
   const newInitialEdges: RF_Edge[] = [];
   for (const link of initialGraph.links) {
-    const sourceId = link.sourcePortId ?? link.sourceId;
     newInitialEdges.push({
-      id: `${sourceId}-${link.targetId}`,
+      id: `${link.sourceId}-${link.targetId}`,
       source: link.sourceId,
-      sourceHandle: link.sourcePortId,
       target: link.targetId,
-      type: 'floating',
+      type: `floating-${linkPathAlgorithm}`,
     });
   }
   return newInitialEdges;

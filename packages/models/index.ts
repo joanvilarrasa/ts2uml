@@ -31,7 +31,6 @@ export { createNodeStyle } from './src/types/graph/node-style.ts';
 export { createNodeTitle } from './src/types/graph/node-title.ts';
 
 // Export enums and their types
-export type { Cardinality } from './src/types/enums/cardinality.ts';
 export type { LinkType } from './src/types/enums/link-type.ts';
 export type { NodeAttributeScope } from './src/types/enums/node-attribute-scope.ts';
 export type { NodeAttributeType } from './src/types/enums/node-attribute-type.ts';
@@ -45,7 +44,6 @@ export { NodeAttributeTypeList } from './src/types/enums/node-attribute-type.ts'
 export { NodeTypeList } from './src/types/enums/node-type.ts';
 
 // Export Zod schemas
-export { ZCardinality } from './src/types/enums/cardinality.ts';
 export { ZLinkType } from './src/types/enums/link-type.ts';
 export { ZNodeAttributeScope } from './src/types/enums/node-attribute-scope.ts';
 export { ZNodeAttributeType } from './src/types/enums/node-attribute-type.ts';
@@ -77,7 +75,6 @@ export {
 export {
   DEFAULT_DARK_CLASS_STYLE,
   DEFAULT_DARK_ENUM_STYLE,
-  DEFAULT_DARK_FUNCTION_STYLE,
   DEFAULT_DARK_INTERFACE_STYLE,
   DEFAULT_DARK_TYPE_STYLE,
   DEFAULT_DARK_VARIABLE_STYLE,
@@ -86,7 +83,6 @@ export {
 export {
   DEFAULT_LIGHT_CLASS_STYLE,
   DEFAULT_LIGHT_ENUM_STYLE,
-  DEFAULT_LIGHT_FUNCTION_STYLE,
   DEFAULT_LIGHT_INTERFACE_STYLE,
   DEFAULT_LIGHT_TYPE_STYLE,
   DEFAULT_LIGHT_VARIABLE_STYLE,

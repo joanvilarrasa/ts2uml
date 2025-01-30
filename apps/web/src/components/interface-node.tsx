@@ -1,4 +1,4 @@
-import { NODE_ATTRIBUTE_HEIGHT, NODE_TITLE_HEIGHT } from '@/lib/constants';
+import { NODE_ATTRIBUTE_HEIGHT } from '@/lib/constants';
 import type { Node } from '@ts2uml/models';
 import {
   Handle as RF_Handle,
@@ -7,10 +7,6 @@ import {
   Position as RF_Position,
 } from '@xyflow/react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-
-function getAttributeTop(index: number) {
-  return NODE_TITLE_HEIGHT + index * NODE_ATTRIBUTE_HEIGHT + NODE_ATTRIBUTE_HEIGHT / 2;
-}
 
 export function InterfaceNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>) {
   const node = props.data.data;
@@ -27,27 +23,15 @@ export function InterfaceNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node 
         {attributes.map((attribute, index) => (
           <div
             key={`${node.id}-${index}`}
-            className="flex items-center justify-start"
+            className="flex items-center justify-start border-border/10 border-b px-4"
             style={{ height: NODE_ATTRIBUTE_HEIGHT }}
           >
             <p>{attribute.text}</p>
-            <RF_Handle
-              type="source"
-              position={RF_Position.Right}
-              style={{ top: getAttributeTop(index) }}
-              id={`${attribute.id}-${RF_Position.Right}`}
-            />
-            <RF_Handle
-              type="source"
-              position={RF_Position.Left}
-              style={{ top: getAttributeTop(index) }}
-              id={`${attribute.id}`}
-            />
           </div>
         ))}
       </CardContent>
-      <RF_Handle type="target" position={RF_Position.Top} id={`${node.id}-top`} />
-      <RF_Handle type="target" position={RF_Position.Bottom} id={`${node.id}-bottom`} />
+      <RF_Handle type="source" position={RF_Position.Top} id={`${node.id}`} />
+      <RF_Handle type="target" position={RF_Position.Top} id={`${node.id}`} />
     </Card>
   );
 }

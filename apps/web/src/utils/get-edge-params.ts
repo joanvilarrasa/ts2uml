@@ -1,101 +1,41 @@
-import type { Node } from '@ts2uml/models';
-import type { InternalNode, Node as RF_Node } from '@xyflow/react';
-import { Position } from '@xyflow/react';
+import type { InternalNode } from '@xyflow/react';
 
-// returns the position (top,right,bottom or right) passed node compared to
-function getParams(
-  nodeA: InternalNode & RF_Node<{ data: Node }>,
-  nodeB: InternalNode & RF_Node<{ data: Node }>,
-  type: 'source' | 'target',
-  sourceHandleId: string
-) {
-  const centerA = getNodeCenter(nodeA);
-  const centerB = getNodeCenter(nodeB);
-  const positionX = centerA.x > centerB.x ? Position.Left : Position.Right;
-  const positionY = centerA.y > centerB.y ? Position.Top : Position.Bottom;
+// this helper function returns the intersection point
+// of the line between the center of the intersectionNode and the target node
+function getNodeIntersection(intersectionNode: InternalNode, targetNode: InternalNode) {
+  // https://math.stackexchange.com/questions/1724792/an-algorithm-for-finding-the-intersection-point-between-a-center-of-vision-and-a
+  const { width: intersectionNodeWidth, height: intersectionNodeHeight } = intersectionNode.measured;
+  const intersectionNodePosition = intersectionNode.internals.positionAbsolute;
+  const targetPosition = targetNode.internals.positionAbsolute;
 
-  if (type === 'source' && sourceHandleId) {
-    const sourceHandleIdToFind =
-      positionX === Position.Left ? `${sourceHandleId}` : `${sourceHandleId}-${Position.Right}`;
+  const w = intersectionNodeWidth / 2;
+  const h = intersectionNodeHeight / 2;
 
-    const sourceHandle = nodeA.internals.handleBounds.source.find(
-      (h) => h.id === sourceHandleIdToFind
-    );
-    if (sourceHandle) {
-      const sourcePosition = nodeA.internals.positionAbsolute;
-      const sourceX = sourcePosition.x + sourceHandle.x;
-      const sourceY = sourcePosition.y + sourceHandle.y;
+  const x2 = intersectionNodePosition.x + w;
+  const y2 = intersectionNodePosition.y + h;
+  const x1 = targetPosition.x + targetNode.measured.width / 2;
+  const y1 = targetPosition.y + targetNode.measured.height / 2;
 
-      let position: Position = Position.Left;
-      if (sourcePosition.x > nodeB.internals.positionAbsolute.x) {
-        position = Position.Left;
-      } else {
-        position = Position.Right;
-      }
+  const xx1 = (x1 - x2) / (2 * w) - (y1 - y2) / (2 * h);
+  const yy1 = (x1 - x2) / (2 * w) + (y1 - y2) / (2 * h);
+  const a = 1 / (Math.abs(xx1) + Math.abs(yy1));
+  const xx3 = a * xx1;
+  const yy3 = a * yy1;
+  const x = w * (xx3 + yy3) + x2;
+  const y = h * (-xx3 + yy3) + y2;
 
-      return [sourceX, sourceY, position];
-    }
-    throw new Error('Source handle not found');
-  }
-
-  const [x, y] = getHandleCoordsByPosition(nodeA, positionY, type);
-  return [x, y, positionY];
-}
-
-function getHandleCoordsByPosition(node, handlePosition, type) {
-  // all handles are from type source, that's why we use handleBounds.source here
-  const handle =
-    type === 'source'
-      ? node.internals.handleBounds.source.find((h) => h.position === handlePosition)
-      : node.internals.handleBounds.target.find((h) => h.position === handlePosition);
-
-  let offsetX = handle.width / 2;
-  let offsetY = handle.height / 2;
-
-  // this is a tiny detail to make the markerEnd of an edge visible.
-  // The handle position that gets calculated has the origin top-left, so depending which side we are using, we add a little offset
-  // when the handlePosition is Position.Right for example, we need to add an offset as big as the handle itself in order to get the correct position
-  switch (handlePosition) {
-    case Position.Left:
-      offsetX = 0;
-      break;
-    case Position.Right:
-      offsetX = handle.width;
-      break;
-    case Position.Top:
-      offsetY = 0;
-      break;
-    case Position.Bottom:
-      offsetY = handle.height;
-      break;
-    default:
-      break;
-  }
-
-  const x = node.internals.positionAbsolute.x + handle.x + offsetX;
-  const y = node.internals.positionAbsolute.y + handle.y + offsetY;
-
-  return [x, y];
-}
-
-function getNodeCenter(node: InternalNode & RF_Node<{ data: Node }>) {
-  return {
-    x: node.internals.positionAbsolute.x + node.measured.width / 2,
-    y: node.internals.positionAbsolute.y + node.measured.height / 2,
-  };
+  return { x, y };
 }
 
 // returns the parameters (sx, sy, tx, ty, sourcePos, targetPos) you need to create an edge
-export function getEdgeParams(source, target, sourceHandleId: string) {
-  const [sx, sy, sourcePos] = getParams(source, target, 'source', sourceHandleId);
-  const [tx, ty, targetPos] = getParams(target, source, 'target', sourceHandleId);
+export function getEdgeParams(source: InternalNode, target: InternalNode) {
+  const sourceIntersectionPoint: { x: number; y: number } = getNodeIntersection(source, target);
+  const targetIntersectionPoint: { x: number; y: number } = getNodeIntersection(target, source);
 
   return {
-    sx,
-    sy,
-    tx,
-    ty,
-    sourcePos,
-    targetPos,
+    sx: sourceIntersectionPoint.x,
+    sy: sourceIntersectionPoint.y,
+    tx: targetIntersectionPoint.x,
+    ty: targetIntersectionPoint.y,
   };
 }

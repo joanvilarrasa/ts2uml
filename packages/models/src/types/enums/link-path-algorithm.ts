@@ -1,16 +1,16 @@
 import { z } from 'zod';
 
-export const ZLinkType = z.enum(['association', 'inheritance']);
+export const ZLinkPathAlgorithm = z.enum(['bezier', 'step', 'straight']);
 
 /**
  * Represents the different types of relationships between nodes in the diagram.
  * - "association": Indicates a basic association between nodes
  * - "inheritance": Indicates an inheritance/extends relationship
  */
-export type LinkType = z.infer<typeof ZLinkType>;
+export type LinkPathAlgorithm = z.infer<typeof ZLinkPathAlgorithm>;
 
 /**
  * Array containing all valid node types that can be used in the diagram.
- * @see {@link LinkType}
+ * @see {@link LinkPathAlgorithm}
  */
-export const LinkTypeList: LinkType[] = ZLinkType.options;
+export const LinkPathAlgorithmList: LinkPathAlgorithm[] = ZLinkPathAlgorithm.options;

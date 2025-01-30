@@ -68,19 +68,20 @@ function createAttributeNodes(
   links: Link[]
 ): NodeAttribute[] {
   return iface.getProperties().map((prop) => {
-    const sourcePortId = `${ifaceId}-${prop.getName()}`;
+    const attributeId = `${ifaceId}-${prop.getName()}`;
     const targetIds = getTargetIds(prop, filePath);
 
     // Push the links
     targetIds.map((targetId) => {
-      links.push(
-        createLink({
-          sourceId: ifaceId,
-          sourcePortId: sourcePortId,
-          targetId: targetId,
-          type: 'association',
-        })
-      );
+      if (!links.find((link) => link.sourceId === ifaceId && link.targetId === targetId)) {
+        links.push(
+          createLink({
+            sourceId: ifaceId,
+            targetId: targetId,
+            type: 'association',
+          })
+        );
+      }
     });
 
     return createNodeAttribute({
@@ -88,7 +89,7 @@ function createAttributeNodes(
         .getJsDocs()
         .map((doc) => doc.getText())
         .join('\n'),
-      id: sourcePortId,
+      id: attributeId,
       type: 'attribute',
       text: prop.getText(),
       style: createNodeStyle(),

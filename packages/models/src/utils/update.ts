@@ -7,11 +7,7 @@ export function update<T>(data: T, updates: Partial<T>, zSchema: z.ZodType<T>): 
   });
 }
 
-export function updateDeep<T extends Record<string, unknown>>(
-  data: T,
-  update: Partial<T>,
-  zSchema?: z.ZodType<T>
-): T {
+export function updateDeep<T extends Record<string, unknown>>(data: T, update: Partial<T>, zSchema?: z.ZodType<T>): T {
   for (const key of Object.keys(update)) {
     const value = update[key as keyof T];
     if (value && typeof value === 'object' && !Array.isArray(value)) {

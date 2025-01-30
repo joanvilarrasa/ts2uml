@@ -14,7 +14,9 @@ import { useCallback, useEffect, useMemo } from 'react';
 import '@xyflow/react/dist/style.css';
 import type { Link, Node, NodeType } from '@ts2uml/models';
 import ELK, { type LayoutOptions, type ElkNode } from 'elkjs/lib/elk.bundled.js';
-import { FloatingEdge } from './components/floating-edge';
+import { FloatingEdgeBezier } from './components/edges/floating-edge-bezier';
+import { FloatingEdgeStep } from './components/edges/floating-edge-step';
+import { FloatingEdgeStraight } from './components/edges/floating-edge-straight';
 import { InterfaceNodeComponent } from './components/interface-node';
 import { computeNodeHeight, computeNodeWidth } from './utils/compute-node-size';
 import { getInitialEdges, getInitialNodes } from './utils/get-data';
@@ -35,13 +37,11 @@ const useLayoutedElements = () => {
   const defaultOptions: LayoutOptions = {
     'elk.algorithm': 'layered',
     'elk.direction': 'DOWN',
-    'elk.edgeRouting': 'ORTHOGONAL',
     'elk.insideSelfLoops.activate': 'false',
     'elk.interactiveLayout': 'true',
     'elk.layered.crossingMinimization.semiInteractive': 'true',
     'elk.layered.cycleBreaking.strategy': 'INTERACTIVE',
     'elk.layered.nodePlacement.strategy': 'LINEAR_SEGMENTS',
-    // "elk.layered.layering.strategy": "LONGEST_PATH",
     'elk.layered.spacing.edgeNodeBetweenLayers': '25', // default 10
     'elk.layered.spacing.nodeNodeBetweenLayers': '50', // default 20
     'elk.spacing.nodeNode': '50', // default 20
@@ -69,12 +69,10 @@ const useLayoutedElements = () => {
     };
 
     elk.layout(graph).then(({ children }) => {
-      const newNodes: RF_Node<{ data: Node }>[] = children.map(
-        (n: ElkNode & RF_Node<{ data: Node }>) => ({
-          ...n,
-          position: { x: n.x, y: n.y },
-        })
-      );
+      const newNodes: RF_Node<{ data: Node }>[] = children.map((n: ElkNode & RF_Node<{ data: Node }>) => ({
+        ...n,
+        position: { x: n.x, y: n.y },
+      }));
 
       setNodes(newNodes);
       window.requestAnimationFrame(() => {
@@ -102,7 +100,9 @@ const LayoutFlow = () => {
 
   const edgeTypes = useMemo<CustomEdgeComponents>(
     () => ({
-      floating: FloatingEdge,
+      'floating-bezier': FloatingEdgeBezier,
+      'floating-step': FloatingEdgeStep,
+      'floating-straight': FloatingEdgeStraight,
     }),
     []
   );

@@ -2,21 +2,21 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "extends": ["ultracite"],
   "formatter": {
-    "lineWidth": 100
+    "lineWidth": 120
   },
   "javascript": {
     "formatter": {
-      "lineWidth": 100
+      "lineWidth": 120
     }
   },
   "css": {
     "formatter": {
-      "lineWidth": 100
+      "lineWidth": 120
     }
   },
   "json": {
     "formatter": {
-      "lineWidth": 100
+      "lineWidth": 120
     }
   }
 }
