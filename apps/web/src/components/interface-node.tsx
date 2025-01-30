@@ -1,6 +1,11 @@
 import { NODE_ATTRIBUTE_HEIGHT, NODE_TITLE_HEIGHT } from '@/lib/constants';
 import type { Node } from '@ts2uml/models';
-import { Handle as RF_Handle, type Node as RF_Node, type NodeProps as RF_NodeProps, Position as RF_Position } from '@xyflow/react';
+import {
+  Handle as RF_Handle,
+  type Node as RF_Node,
+  type NodeProps as RF_NodeProps,
+  Position as RF_Position,
+} from '@xyflow/react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 
 function getAttributeTop(index: number) {
@@ -17,17 +22,32 @@ export function InterfaceNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node 
       <CardHeader className="bg-interface">
         <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
         <CardTitle>{title.text}</CardTitle>
-        <RF_Handle type="target" position={RF_Position.Top} id={node.id} />
       </CardHeader>
       <CardContent>
         {attributes.map((attribute, index) => (
-          <div key={`${node.id}-${index}`} className="flex items-center justify-start" style={{ height: NODE_ATTRIBUTE_HEIGHT }}>
+          <div
+            key={`${node.id}-${index}`}
+            className="flex items-center justify-start"
+            style={{ height: NODE_ATTRIBUTE_HEIGHT }}
+          >
             <p>{attribute.text}</p>
-            <RF_Handle type="source" position={RF_Position.Left} style={{ top: getAttributeTop(index) }} id={`${attribute.id}`} />
-            {/* <RF_Handle type="source" position={RF_Position.Right} style={{ top: getAttributeTop(index) }} id={`${attribute.id}`} /> */}
+            <RF_Handle
+              type="source"
+              position={RF_Position.Right}
+              style={{ top: getAttributeTop(index) }}
+              id={`${attribute.id}-${RF_Position.Right}`}
+            />
+            <RF_Handle
+              type="source"
+              position={RF_Position.Left}
+              style={{ top: getAttributeTop(index) }}
+              id={`${attribute.id}`}
+            />
           </div>
         ))}
       </CardContent>
+      <RF_Handle type="target" position={RF_Position.Top} id={`${node.id}-top`} />
+      <RF_Handle type="target" position={RF_Position.Bottom} id={`${node.id}-bottom`} />
     </Card>
   );
 }

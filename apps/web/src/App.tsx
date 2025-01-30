@@ -1,4 +1,6 @@
 import {
+  type Edge as RF_Edge,
+  type EdgeProps as RF_EdgeProps,
   type Node as RF_Node,
   type NodeProps as RF_NodeProps,
   ReactFlow,
@@ -10,8 +12,9 @@ import {
 import type React from 'react';
 import { useCallback, useEffect, useMemo } from 'react';
 import '@xyflow/react/dist/style.css';
-import type { Node, NodeType } from '@ts2uml/models';
+import type { Link, Node, NodeType } from '@ts2uml/models';
 import ELK, { type LayoutOptions, type ElkNode } from 'elkjs/lib/elk.bundled.js';
+import { FloatingEdge } from './components/floating-edge';
 import { InterfaceNodeComponent } from './components/interface-node';
 import { computeNodeHeight, computeNodeWidth } from './utils/compute-node-size';
 import { getInitialEdges, getInitialNodes } from './utils/get-data';
@@ -19,6 +22,10 @@ import { getInitialEdges, getInitialNodes } from './utils/get-data';
 // Export a component for each node type
 type CustomNodeComponents = {
   [K in NodeType]: (props: RF_NodeProps<RF_Node<{ data: Node }>>) => React.JSX.Element;
+};
+
+type CustomEdgeComponents = {
+  [key: string]: (props: RF_EdgeProps<RF_Edge<{ data: Link }>>) => React.JSX.Element;
 };
 
 const elk = new ELK();
@@ -46,7 +53,6 @@ const useLayoutedElements = () => {
   const getLayoutedElements = useCallback((options) => {
     const layoutOptions = { ...defaultOptions, ...options };
 
-    getNodes().map((n) => console.log(n));
     const graph = {
       id: 'root',
       layoutOptions: layoutOptions,
@@ -94,6 +100,13 @@ const LayoutFlow = () => {
     []
   );
 
+  const edgeTypes = useMemo<CustomEdgeComponents>(
+    () => ({
+      floating: FloatingEdge,
+    }),
+    []
+  );
+
   const [nodes, , onNodesChange] = useNodesState<RF_Node>(getInitialNodes());
   const [edges, , onEdgesChange] = useEdgesState(getInitialEdges());
 
@@ -110,6 +123,7 @@ const LayoutFlow = () => {
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       nodeTypes={nodeTypes}
+      edgeTypes={edgeTypes}
       fitView
     />
   );
