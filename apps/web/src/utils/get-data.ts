@@ -1,7 +1,6 @@
 import type { Graph, Node } from '@ts2uml/models';
 import type { Edge as RF_Edge, Node as RF_Node } from '@xyflow/react';
 import demoGraph from '../assets/demo-graph.json';
-
 const initialGraph = demoGraph as Graph;
 export const getInitialNodes = () => {
   const newInitialNodes: RF_Node<{ data: Node }>[] = [];
@@ -15,8 +14,8 @@ export const getInitialNodes = () => {
   }
   return newInitialNodes;
 };
-export const getInitialEdges = () => {
-  const linkPathAlgorithm = initialGraph.config.links.linkPathAlgorithm;
+export const getInitialEdges = (overRideLinkPathAlgorithm?: string) => {
+  const linkPathAlgorithm = overRideLinkPathAlgorithm ?? initialGraph.config.links.linkPathAlgorithm;
   const newInitialEdges: RF_Edge[] = [];
   for (const link of initialGraph.links) {
     newInitialEdges.push({

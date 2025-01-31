@@ -1,4 +1,6 @@
 import {
+  Controls,
+  Panel,
   type Edge as RF_Edge,
   type EdgeProps as RF_EdgeProps,
   type Node as RF_Node,
@@ -10,16 +12,19 @@ import {
   useReactFlow,
 } from '@xyflow/react';
 import type React from 'react';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import '@xyflow/react/dist/style.css';
-import type { Link, Node, NodeType } from '@ts2uml/models';
+import type { Graph, Link, LinkPathAlgorithm, Node, NodeType } from '@ts2uml/models';
 import ELK, { type LayoutOptions, type ElkNode } from 'elkjs/lib/elk.bundled.js';
+import demoGraph from './assets/demo-graph.json';
+import { LinkPathAlgorithmSelect } from './components/config/link-path-algorithm-select';
 import { FloatingEdgeBezier } from './components/edges/floating-edge-bezier';
 import { FloatingEdgeStep } from './components/edges/floating-edge-step';
 import { FloatingEdgeStraight } from './components/edges/floating-edge-straight';
 import { InterfaceNodeComponent } from './components/nodes/interface-node';
 import { computeNodeHeight, computeNodeWidth } from './utils/compute-node-size';
 import { getInitialEdges, getInitialNodes } from './utils/get-data';
+const initialGraph = demoGraph as Graph;
 
 // Export a component for each node type
 type CustomNodeComponents = {
@@ -108,13 +113,20 @@ const LayoutFlow = () => {
   );
 
   const [nodes, , onNodesChange] = useNodesState<RF_Node>(getInitialNodes());
-  const [edges, , onEdgesChange] = useEdgesState(getInitialEdges());
+  const [edges, setEdges, onEdgesChange] = useEdgesState(getInitialEdges());
 
   useEffect(() => {
     getLayoutedElements({
       'elk.algorithm': 'org.eclipse.elk.layered',
     });
   }, [getLayoutedElements]);
+
+  const [lpa, setLpa] = useState<LinkPathAlgorithm>(initialGraph.config.links.linkPathAlgorithm);
+
+  const onChangeLpa = (value: LinkPathAlgorithm) => {
+    setLpa(value);
+    setEdges(getInitialEdges(value));
+  };
 
   return (
     <ReactFlow
@@ -125,7 +137,12 @@ const LayoutFlow = () => {
       nodeTypes={nodeTypes}
       edgeTypes={edgeTypes}
       fitView
-    />
+    >
+      <Panel position="top-left">
+        <LinkPathAlgorithmSelect value={lpa} onChange={onChangeLpa} />
+      </Panel>
+      <Controls />
+    </ReactFlow>
   );
 };
 
