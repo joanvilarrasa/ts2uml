@@ -11,9 +11,3 @@ export const ZNodeType = z.enum(['class', 'enum', 'interface', 'type', 'variable
  * - "variable": Represents a variable declaration
  */
 export type NodeType = z.infer<typeof ZNodeType>;
-
-/**
- * Array containing all valid node types that can be used in the diagram.
- * @see {@link NodeType}
- */
-export const NodeTypeList: NodeType[] = ZNodeType.options;

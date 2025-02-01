@@ -8,9 +8,3 @@ export const ZLinkPathAlgorithm = z.enum(['bezier', 'step', 'straight']);
  * - "inheritance": Indicates an inheritance/extends relationship
  */
 export type LinkPathAlgorithm = z.infer<typeof ZLinkPathAlgorithm>;
-
-/**
- * Array containing all valid node types that can be used in the diagram.
- * @see {@link LinkPathAlgorithm}
- */
-export const LinkPathAlgorithmList: LinkPathAlgorithm[] = ZLinkPathAlgorithm.options;

@@ -9,9 +9,3 @@ export const ZNodeAttributeScope = z.enum(['private', 'protected', 'public']);
  * - "public": Attribute is publicly accessible
  */
 export type NodeAttributeScope = z.infer<typeof ZNodeAttributeScope>;
-
-/**
- * Array containing all valid node attribute scopes that can be used.
- * @see {@link NodeAttributeScope}
- */
-export const NodeAttributeScopeList: NodeAttributeScope[] = ZNodeAttributeScope.options;

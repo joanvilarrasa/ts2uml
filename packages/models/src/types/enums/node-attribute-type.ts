@@ -10,9 +10,3 @@ export const ZNodeAttributeType = z.enum(['attribute', 'enumOrTypeOption', 'meth
  * - "separator": Represents a visual separator line
  */
 export type NodeAttributeType = z.infer<typeof ZNodeAttributeType>;
-
-/**
- * Array containing all valid node attribute types that can be used.
- * @see {@link NodeAttributeType}
- */
-export const NodeAttributeTypeList: NodeAttributeType[] = ZNodeAttributeType.options;

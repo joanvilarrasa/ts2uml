@@ -11,6 +11,7 @@ export type { Graph } from './src/types/graph/graph.ts';
 export type { Link } from './src/types/graph/link.ts';
 export type { Node } from './src/types/graph/node.ts';
 export type { NodeAttribute } from './src/types/graph/node-attribute.ts';
+export type { NodePosition } from './src/types/graph/node-position.ts';
 export type { NodeStyle } from './src/types/graph/node-style.ts';
 export type { NodeTitle } from './src/types/graph/node-title.ts';
 
@@ -27,27 +28,21 @@ export { createGraph } from './src/types/graph/graph.ts';
 export { createLink } from './src/types/graph/link.ts';
 export { createNode } from './src/types/graph/node.ts';
 export { createNodeAttribute } from './src/types/graph/node-attribute.ts';
+export { createNodePosition } from './src/types/graph/node-position.ts';
 export { createNodeStyle } from './src/types/graph/node-style.ts';
 export { createNodeTitle } from './src/types/graph/node-title.ts';
 
 // Export enums and their types
-export type { LinkType } from './src/types/enums/link-type.ts';
 export type { LinkPathAlgorithm } from './src/types/enums/link-path-algorithm.ts';
+export type { LinkType } from './src/types/enums/link-type.ts';
 export type { NodeAttributeScope } from './src/types/enums/node-attribute-scope.ts';
 export type { NodeAttributeType } from './src/types/enums/node-attribute-type.ts';
 export type { NodeType } from './src/types/enums/node-type.ts';
 export type { Theme } from './src/types/enums/theme.ts';
 
-// Export enum constants
-export { LinkTypeList } from './src/types/enums/link-type.ts';
-export { LinkPathAlgorithmList } from './src/types/enums/link-path-algorithm.ts';
-export { NodeAttributeScopeList } from './src/types/enums/node-attribute-scope.ts';
-export { NodeAttributeTypeList } from './src/types/enums/node-attribute-type.ts';
-export { NodeTypeList } from './src/types/enums/node-type.ts';
-
 // Export Zod schemas
-export { ZLinkType } from './src/types/enums/link-type.ts';
 export { ZLinkPathAlgorithm } from './src/types/enums/link-path-algorithm.ts';
+export { ZLinkType } from './src/types/enums/link-type.ts';
 export { ZNodeAttributeScope } from './src/types/enums/node-attribute-scope.ts';
 export { ZNodeAttributeType } from './src/types/enums/node-attribute-type.ts';
 export { ZNodeType } from './src/types/enums/node-type.ts';
