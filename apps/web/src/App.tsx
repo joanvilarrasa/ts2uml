@@ -14,9 +14,8 @@ import {
 import type React from 'react';
 import { useCallback, useEffect, useMemo } from 'react';
 import '@xyflow/react/dist/style.css';
-import type { Graph, Link, Node, NodeType } from '@ts2uml/models';
+import type { Link, Node, NodeType } from '@ts2uml/models';
 import ELK, { type LayoutOptions, type ElkNode } from 'elkjs/lib/elk.bundled.js';
-import demoGraph from './assets/demo-graph.json';
 import { FloatingEdgeBezier } from './components/graph/edges/floating-edge-bezier';
 import { FloatingEdgeStep } from './components/graph/edges/floating-edge-step';
 import { FloatingEdgeStraight } from './components/graph/edges/floating-edge-straight';
@@ -25,7 +24,6 @@ import { Toolbox } from './components/toolbox/toolbox';
 import { GraphProvider, useGraph } from './contexts/graph-context';
 import { computeNodeHeight, computeNodeWidth } from './utils/compute-node-size';
 import { getInitialEdges, getInitialNodes } from './utils/get-data';
-const initialGraph = demoGraph as Graph;
 
 // Export a component for each node type
 type CustomNodeComponents = {
@@ -41,7 +39,7 @@ const elk = new ELK();
 const useLayoutedElements = () => {
   const { getNodes, setNodes, getEdges, fitView } = useReactFlow();
   const defaultOptions: LayoutOptions = {
-    'elk.algorithm': 'mrtree',
+    'elk.algorithm': 'org.eclipse.elk.layered',
     'elk.direction': 'DOWN',
     'elk.insideSelfLoops.activate': 'false',
     'elk.interactiveLayout': 'true',
