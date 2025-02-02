@@ -6,7 +6,7 @@ import {
   type NodeProps as RF_NodeProps,
   Position as RF_Position,
 } from '@xyflow/react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../ui/card';
 
 export function InterfaceNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>) {
   const node = props.data.data;

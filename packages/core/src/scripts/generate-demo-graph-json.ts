@@ -9,7 +9,7 @@ async function createDefaultGraph() {
   const dir = join(process.cwd(), '..', 'models', 'src');
 
   const config = createConfig();
-  const tsFiles = await findTypeScriptFiles(dir, config);
+  const tsFiles = await findTypeScriptFiles(dir);
   const project = new Project();
   for (const file of tsFiles) {
     project.addSourceFileAtPath(file);

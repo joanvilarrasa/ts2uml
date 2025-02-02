@@ -6,6 +6,7 @@
     },
     "jsx": "react-jsx",
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true
   }
 }

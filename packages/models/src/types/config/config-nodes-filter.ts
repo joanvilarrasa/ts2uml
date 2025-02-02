@@ -14,7 +14,7 @@ export interface ConfigNodesFilter {
    * If a concrete node id is provided, the node with that id will be excluded from the diagram.
    * Empty array means no path filtering.
    */
-  filter_path: string[];
+  filter_node: string[];
 
   /**
    * Array of node types to filter nodes by their type (e.g., class, interface, enum, etc.).
@@ -26,13 +26,13 @@ export interface ConfigNodesFilter {
 }
 
 export const ZConfigNodesFilter = z.object({
-  filter_path: z.array(z.string()).optional(),
+  filter_node: z.array(z.string()).optional(),
   filter_type: ZNodeType.array().optional(),
 }) as z.ZodType<ConfigNodesFilter>;
 
 export function createConfigNodesFilter(data?: Partial<ConfigNodesFilter>): ConfigNodesFilter {
   return ZConfigNodesFilter.parse({
-    filter_path: data?.filter_path ?? [],
+    filter_node: data?.filter_node ?? [],
     filter_type: data?.filter_type ?? [],
   });
 }

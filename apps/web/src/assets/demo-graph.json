@@ -478,9 +478,9 @@
       "attributes": [
         {
           "docs": "/**\n   * Array of strings to filter nodes by their file path or name.\n   * This array can contain directories, files and concrete node ids.\n   * If a directory is provided, all nodes within that directory will be excluded from the diagram.\n   * If a file is provided, all nodes within that file will be excluded from the diagram.\n   * If a concrete node id is provided, the node with that id will be excluded from the diagram.\n   * Empty array means no path filtering.\n   */",
-          "id": "/types/config/config-nodes-filter-ConfigNodesFilter-filter_path",
+          "id": "/types/config/config-nodes-filter-ConfigNodesFilter-filter_node",
           "style": {},
-          "text": "filter_path: string[];",
+          "text": "filter_node: string[];",
           "type": "attribute"
         },
         {
@@ -807,7 +807,7 @@
     },
     "nodes": {
       "filter": {
-        "filter_path": [],
+        "filter_node": [],
         "filter_type": []
       },
       "options": {},

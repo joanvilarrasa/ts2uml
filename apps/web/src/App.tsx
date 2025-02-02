@@ -12,16 +12,17 @@ import {
   useReactFlow,
 } from '@xyflow/react';
 import type React from 'react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import '@xyflow/react/dist/style.css';
-import type { Graph, Link, LinkPathAlgorithm, Node, NodeType } from '@ts2uml/models';
+import type { Graph, Link, Node, NodeType } from '@ts2uml/models';
 import ELK, { type LayoutOptions, type ElkNode } from 'elkjs/lib/elk.bundled.js';
 import demoGraph from './assets/demo-graph.json';
-import { LinkPathAlgorithmSelect } from './components/config/link-path-algorithm-select';
-import { FloatingEdgeBezier } from './components/edges/floating-edge-bezier';
-import { FloatingEdgeStep } from './components/edges/floating-edge-step';
-import { FloatingEdgeStraight } from './components/edges/floating-edge-straight';
-import { InterfaceNodeComponent } from './components/nodes/interface-node';
+import { FloatingEdgeBezier } from './components/graph/edges/floating-edge-bezier';
+import { FloatingEdgeStep } from './components/graph/edges/floating-edge-step';
+import { FloatingEdgeStraight } from './components/graph/edges/floating-edge-straight';
+import { InterfaceNodeComponent } from './components/graph/nodes/interface-node';
+import { Toolbox } from './components/toolbox/toolbox';
+import { GraphProvider, useGraph } from './contexts/graph-context';
 import { computeNodeHeight, computeNodeWidth } from './utils/compute-node-size';
 import { getInitialEdges, getInitialNodes } from './utils/get-data';
 const initialGraph = demoGraph as Graph;
@@ -40,7 +41,7 @@ const elk = new ELK();
 const useLayoutedElements = () => {
   const { getNodes, setNodes, getEdges, fitView } = useReactFlow();
   const defaultOptions: LayoutOptions = {
-    'elk.algorithm': 'layered',
+    'elk.algorithm': 'mrtree',
     'elk.direction': 'DOWN',
     'elk.insideSelfLoops.activate': 'false',
     'elk.interactiveLayout': 'true',
@@ -91,6 +92,7 @@ const useLayoutedElements = () => {
 
 const LayoutFlow = () => {
   const { getLayoutedElements } = useLayoutedElements();
+  const { graph } = useGraph();
   const nodeTypes = useMemo<CustomNodeComponents>(
     () => ({
       interface: InterfaceNodeComponent,
@@ -112,21 +114,16 @@ const LayoutFlow = () => {
     []
   );
 
-  const [nodes, , onNodesChange] = useNodesState<RF_Node>(getInitialNodes());
-  const [edges, setEdges, onEdgesChange] = useEdgesState(getInitialEdges());
+  const [nodes, setNodes, onNodesChange] = useNodesState<RF_Node>(getInitialNodes(graph));
+  const [edges, setEdges, onEdgesChange] = useEdgesState(getInitialEdges(graph));
 
   useEffect(() => {
+    setNodes(getInitialNodes(graph));
+    setEdges(getInitialEdges(graph));
     getLayoutedElements({
       'elk.algorithm': 'org.eclipse.elk.layered',
     });
-  }, [getLayoutedElements]);
-
-  const [lpa, setLpa] = useState<LinkPathAlgorithm>(initialGraph.config.links.linkPathAlgorithm);
-
-  const onChangeLpa = (value: LinkPathAlgorithm) => {
-    setLpa(value);
-    setEdges(getInitialEdges(value));
-  };
+  }, [graph, setEdges, setNodes, getLayoutedElements]);
 
   return (
     <ReactFlow
@@ -138,8 +135,8 @@ const LayoutFlow = () => {
       edgeTypes={edgeTypes}
       fitView
     >
-      <Panel position="top-left">
-        <LinkPathAlgorithmSelect value={lpa} onChange={onChangeLpa} />
+      <Panel position="bottom-center">
+        <Toolbox />
       </Panel>
       <Controls />
     </ReactFlow>
@@ -149,9 +146,11 @@ const LayoutFlow = () => {
 export default function App() {
   return (
     <div className="h-screen w-screen">
-      <ReactFlowProvider>
-        <LayoutFlow />
-      </ReactFlowProvider>
+      <GraphProvider>
+        <ReactFlowProvider>
+          <LayoutFlow />
+        </ReactFlowProvider>
+      </GraphProvider>
     </div>
   );
 }

@@ -1,19 +1,15 @@
 import { readdir } from 'node:fs/promises';
 import { join } from 'node:path';
-import type { Config } from '@ts2uml/models';
 import { isTypeScriptFile } from './is-typescript-file.ts';
 
-export async function findTypeScriptFiles(directory: string, config: Config): Promise<string[]> {
+export async function findTypeScriptFiles(directory: string): Promise<string[]> {
   const results: string[] = [];
-  const filterPaths = config.nodes.filter.filter_path;
   const items = await readdir(directory, { recursive: true });
   await Promise.all(
-    items.map(async (itemName) => {
-      if (!filterPaths.some((filterPath) => itemName.includes(filterPath))) {
-        const fullPath = join(directory, itemName);
-        if (isTypeScriptFile(fullPath)) {
-          results.push(fullPath);
-        }
+    items.map((itemName) => {
+      const fullPath = join(directory, itemName);
+      if (isTypeScriptFile(fullPath)) {
+        results.push(fullPath);
       }
     })
   );

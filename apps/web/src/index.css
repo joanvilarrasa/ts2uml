@@ -80,3 +80,13 @@ body {
     @apply text-foreground;
   }
 }
+
+[data-state="open"] .chevron-right-collapsible-icon {
+  transform: rotate(90deg);
+  transition: transform 0.2s ease;
+}
+
+[data-state="closed"] .chevron-right-collapsible-icon {
+  transform: rotate(0deg);
+  transition: transform 0.2s ease;
+}

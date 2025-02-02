@@ -90,3 +90,7 @@ export {
 export { validate } from './src/utils/validate.ts';
 export { is } from './src/utils/is.ts';
 export { update, updateDeep } from './src/utils/update.ts';
+
+// Other models
+export type { TreeNode } from './src/types/utils/tree-node.ts';
+export type { CheckboxPartialCheckedStatus } from './src/types/utils/checkbox-partial-checked-status.ts';
