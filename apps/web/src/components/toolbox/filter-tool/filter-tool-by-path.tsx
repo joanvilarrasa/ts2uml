@@ -1,4 +1,6 @@
 import { useGraph } from '@/contexts/graph-context';
+import { createTreeNodeFromGraph } from '@/utils/tree-node/create-tree-node-from-graph';
+import { getLeafIds } from '@/utils/tree-node/get-leaf-ids';
 import type { TreeNode } from '@ts2uml/models';
 import { useEffect, useState } from 'react';
 import { ScrollArea } from '../../ui/scroll-area';
