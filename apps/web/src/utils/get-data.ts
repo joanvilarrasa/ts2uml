@@ -4,9 +4,7 @@ import type { Edge as RF_Edge, Node as RF_Node } from '@xyflow/react';
 export const getInitialNodes = (graph: Graph) => {
   const newInitialNodes: RF_Node<{ data: Node }>[] = [];
   const nodesToFilter = graph.config.nodes.filter.filter_node;
-  console.log(nodesToFilter);
   for (const node of graph.nodes) {
-    console.log(node.id, nodesToFilter.includes(node.id));
     newInitialNodes.push({
       id: node.id,
       type: 'interface',

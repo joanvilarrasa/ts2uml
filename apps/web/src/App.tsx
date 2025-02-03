@@ -57,15 +57,18 @@ const useLayoutedElements = () => {
   const getLayoutedElements = useCallback((options) => {
     const layoutOptions = { ...defaultOptions, ...options };
 
+    const filteredNodes = getNodes().filter((node: RF_Node<{ data: Node }>) => !node.hidden);
+    const filteredEdges = getEdges().filter((edge) => !edge.hidden);
+
     const graph = {
       id: 'root',
       layoutOptions: layoutOptions,
-      children: getNodes().map((node: RF_Node<{ data: Node }>) => ({
+      children: filteredNodes.map((node: RF_Node<{ data: Node }>) => ({
         ...node,
         width: computeNodeWidth(node.data.data),
         height: computeNodeHeight(node.data.data),
       })),
-      edges: getEdges().map((edge) => ({
+      edges: filteredEdges.map((edge) => ({
         ...edge,
         sources: [edge.source],
         targets: [edge.target],
@@ -79,9 +82,6 @@ const useLayoutedElements = () => {
       }));
 
       setNodes(newNodes);
-      window.requestAnimationFrame(() => {
-        fitView({ nodes: newNodes });
-      });
     });
   }, []);
 
@@ -118,9 +118,12 @@ const LayoutFlow = () => {
   useEffect(() => {
     setNodes(getInitialNodes(graph));
     setEdges(getInitialEdges(graph));
-    getLayoutedElements({
-      'elk.algorithm': 'org.eclipse.elk.layered',
-    });
+
+    setTimeout(() => {
+      getLayoutedElements({
+        'elk.algorithm': 'org.eclipse.elk.layered',
+      });
+    }, 500);
   }, [graph, setEdges, setNodes, getLayoutedElements]);
 
   return (
