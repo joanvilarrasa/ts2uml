@@ -2,156 +2,92 @@ import {
   Controls,
   Panel,
   type Edge as RF_Edge,
-  type EdgeProps as RF_EdgeProps,
   type Node as RF_Node,
-  type NodeProps as RF_NodeProps,
   ReactFlow,
-  ReactFlowProvider,
   useEdgesState,
   useNodesState,
   useReactFlow,
 } from '@xyflow/react';
-import type React from 'react';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect } from 'react';
 import '@xyflow/react/dist/style.css';
-import type { Link, Node, NodeType } from '@ts2uml/models';
+import type { Node } from '@ts2uml/models';
 import ELK, { type LayoutOptions, type ElkNode } from 'elkjs/lib/elk.bundled.js';
-import { FloatingEdgeBezier } from './components/graph/edges/floating-edge-bezier';
-import { FloatingEdgeStep } from './components/graph/edges/floating-edge-step';
-import { FloatingEdgeStraight } from './components/graph/edges/floating-edge-straight';
-import { InterfaceNodeComponent } from './components/graph/nodes/interface-node';
 import { Toolbox } from './components/toolbox/toolbox';
-import { GraphProvider, useGraph } from './contexts/graph-context';
-import { computeNodeHeight, computeNodeWidth } from './utils/compute-node-size';
-import { getInitialEdges, getInitialNodes } from './utils/get-data';
-
-// Export a component for each node type
-type CustomNodeComponents = {
-  [K in NodeType]: (props: RF_NodeProps<RF_Node<{ data: Node }>>) => React.JSX.Element;
-};
-
-type CustomEdgeComponents = {
-  [key: string]: (props: RF_EdgeProps<RF_Edge<{ data: Link }>>) => React.JSX.Element;
-};
+import { computeNodeHeight, computeNodeWidth } from './lib/compute-node-size';
+import { ELK_DEFAULT_LAYOUT_OPTIONS, RF_EDGE_TYPES, RF_NODE_TYPES } from './lib/constants';
+import { getInitialEdges, getInitialNodes } from './lib/get-data';
+import { GraphManager } from './lib/graph-manager';
 
 const elk = new ELK();
 
-const useLayoutedElements = () => {
-  const { getNodes, setNodes, getEdges, fitView } = useReactFlow();
-  const defaultOptions: LayoutOptions = {
-    'elk.algorithm': 'org.eclipse.elk.layered',
-    'elk.direction': 'DOWN',
-    'elk.insideSelfLoops.activate': 'false',
-    'elk.interactiveLayout': 'true',
-    'elk.layered.crossingMinimization.semiInteractive': 'true',
-    'elk.layered.cycleBreaking.strategy': 'INTERACTIVE',
-    'elk.layered.nodePlacement.strategy': 'LINEAR_SEGMENTS',
-    'elk.layered.spacing.edgeNodeBetweenLayers': '25', // default 10
-    'elk.layered.spacing.nodeNodeBetweenLayers': '50', // default 20
-    'elk.spacing.nodeNode': '50', // default 20
-    'elk.spacing.componentComponent': '100', // default 20
-    'elk.separateConnectedComponents': 'true',
-  };
+export default function App() {
+  const gm: GraphManager = GraphManager.getInstance();
+  const initialGraph = gm.getGraph();
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  const getLayoutedElements = useCallback((options) => {
-    const layoutOptions = { ...defaultOptions, ...options };
+  const [nodes, , onNodesChange] = useNodesState<RF_Node>(getInitialNodes(initialGraph));
+  const [edges, , onEdgesChange] = useEdgesState(getInitialEdges(initialGraph));
 
-    const filteredNodes = getNodes().filter((node: RF_Node<{ data: Node }>) => !node.hidden);
-    const filteredEdges = getEdges().filter((edge) => !edge.hidden);
+  const reactFlow = useReactFlow();
 
-    const graph = {
-      id: 'root',
-      layoutOptions: layoutOptions,
-      children: filteredNodes.map((node: RF_Node<{ data: Node }>) => ({
-        ...node,
-        width: computeNodeWidth(node.data.data),
-        height: computeNodeHeight(node.data.data),
-      })),
-      edges: filteredEdges.map((edge) => ({
-        ...edge,
-        sources: [edge.source],
-        targets: [edge.target],
-      })),
-    };
+  const getLayoutedElements = useCallback(
+    (options: LayoutOptions, nodes: RF_Node<{ data: Node }>[], edges: RF_Edge[]) => {
+      const layoutOptions = { ...ELK_DEFAULT_LAYOUT_OPTIONS, ...options };
 
-    elk.layout(graph).then(({ children }) => {
-      const newNodes: RF_Node<{ data: Node }>[] = children.map((n: ElkNode & RF_Node<{ data: Node }>) => ({
-        ...n,
-        position: { x: n.x, y: n.y },
-      }));
+      const graph = {
+        id: 'root',
+        layoutOptions: layoutOptions,
+        children: nodes.map((node: RF_Node<{ data: Node }>) => ({
+          ...node,
+          width: computeNodeWidth(node.data.data),
+          height: computeNodeHeight(node.data.data),
+        })),
+        edges: edges.map((edge) => ({
+          ...edge,
+          sources: [edge.source],
+          targets: [edge.target],
+        })),
+      };
 
-      setNodes(newNodes);
-    });
-  }, []);
+      elk.layout(graph).then(({ children }) => {
+        const newNodes: RF_Node<{ data: Node }>[] = children.map((n: ElkNode & RF_Node<{ data: Node }>) => ({
+          ...n,
+          position: { x: n.x, y: n.y },
+        }));
 
-  return { getLayoutedElements };
-};
-
-const LayoutFlow = () => {
-  const { getLayoutedElements } = useLayoutedElements();
-  const { graph } = useGraph();
-  const nodeTypes = useMemo<CustomNodeComponents>(
-    () => ({
-      interface: InterfaceNodeComponent,
-      class: InterfaceNodeComponent,
-      enum: InterfaceNodeComponent,
-      function: InterfaceNodeComponent,
-      type: InterfaceNodeComponent,
-      variable: InterfaceNodeComponent,
-    }),
-    []
+        reactFlow.setNodes(newNodes);
+      });
+    },
+    [reactFlow]
   );
-
-  const edgeTypes = useMemo<CustomEdgeComponents>(
-    () => ({
-      'floating-bezier': FloatingEdgeBezier,
-      'floating-step': FloatingEdgeStep,
-      'floating-straight': FloatingEdgeStraight,
-    }),
-    []
-  );
-
-  const [nodes, setNodes, onNodesChange] = useNodesState<RF_Node>(getInitialNodes(graph));
-  const [edges, setEdges, onEdgesChange] = useEdgesState(getInitialEdges(graph));
 
   useEffect(() => {
-    setNodes(getInitialNodes(graph));
-    setEdges(getInitialEdges(graph));
-
-    setTimeout(() => {
-      getLayoutedElements({
+    const filteredNodes = reactFlow.getNodes().filter((node: RF_Node<{ data: Node }>) => !node.hidden);
+    const filteredEdges = reactFlow.getEdges().filter((edge) => !edge.hidden);
+    getLayoutedElements(
+      {
         'elk.algorithm': 'org.eclipse.elk.layered',
-      });
-    }, 500);
-  }, [graph, setEdges, setNodes, getLayoutedElements]);
+      },
+      filteredNodes as RF_Node<{ data: Node }>[],
+      filteredEdges
+    );
+  }, [reactFlow.getNodes, reactFlow.getEdges, getLayoutedElements]);
 
-  return (
-    <ReactFlow
-      nodes={nodes}
-      edges={edges}
-      onNodesChange={onNodesChange}
-      onEdgesChange={onEdgesChange}
-      nodeTypes={nodeTypes}
-      edgeTypes={edgeTypes}
-      fitView
-    >
-      <Panel position="bottom-center">
-        <Toolbox />
-      </Panel>
-      <Controls />
-    </ReactFlow>
-  );
-};
-
-export default function App() {
   return (
     <div className="h-screen w-screen">
-      <GraphProvider>
-        <ReactFlowProvider>
-          <LayoutFlow />
-        </ReactFlowProvider>
-      </GraphProvider>
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        nodeTypes={RF_NODE_TYPES}
+        edgeTypes={RF_EDGE_TYPES}
+        fitView
+      >
+        <Panel position="bottom-center">
+          <Toolbox />
+        </Panel>
+        <Controls />
+      </ReactFlow>
     </div>
   );
 }

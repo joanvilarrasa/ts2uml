@@ -1,19 +1,19 @@
-import { useGraph } from '@/contexts/graph-context';
+import { GraphManager } from '@/lib/graph-manager';
 import { type NodeType, ZNodeType } from '@ts2uml/models';
 import { Checkbox } from '../../ui/checkbox';
 
 export function FilterToolByType() {
-  const { graph, updateGraph } = useGraph();
+  const gm: GraphManager = GraphManager.getInstance();
 
   const handleFilterTypeChange = (type: NodeType) => {
-    let filterByType = graph.config.nodes.filter.filter_type;
+    let filterByType = gm.getGraph().config.nodes.filter.filter_type;
     if (filterByType.includes(type)) {
       filterByType = filterByType.filter((t) => t !== type);
     } else {
       filterByType.push(type);
     }
 
-    updateGraph({
+    gm.updateGraph({
       config: {
         nodes: {
           filter: {
@@ -30,7 +30,7 @@ export function FilterToolByType() {
       {ZNodeType.options.map((t) => (
         <div key={t} className="flex items-center justify-start">
           <Checkbox
-            checked={!graph.config.nodes.filter.filter_type.includes(t)}
+            checked={!gm.getGraph().config.nodes.filter.filter_type.includes(t)}
             onClick={() => handleFilterTypeChange(t)}
           />
           <span className="text-sm">{t}</span>

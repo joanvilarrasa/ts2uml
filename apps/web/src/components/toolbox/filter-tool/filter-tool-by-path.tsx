@@ -1,31 +1,31 @@
-import { useGraph } from '@/contexts/graph-context';
-import { createTreeNodeFromGraph } from '@/utils/tree-node/create-tree-node-from-graph';
-import { getLeafIds } from '@/utils/tree-node/get-leaf-ids';
+import { GraphManager } from '@/lib/graph-manager';
+import { createTreeNodeFromGraph } from '@/lib/tree-node/create-tree-node-from-graph';
+import { getLeafIds } from '@/lib/tree-node/get-leaf-ids';
 import type { TreeNode } from '@ts2uml/models';
 import { useEffect, useState } from 'react';
 import { ScrollArea } from '../../ui/scroll-area';
 import { FilterToolByPathTreeNode } from './filter-tool-by-path-tree-node';
 
 export function FilterToolByPath() {
-  const { graph, updateGraph } = useGraph();
+  const gm: GraphManager = GraphManager.getInstance();
   const [treeNodes, setTreeNodes] = useState<{
     [key: string]: TreeNode;
   }>({});
 
   useEffect(() => {
-    const tree = createTreeNodeFromGraph(graph);
+    const tree = createTreeNodeFromGraph(gm.getGraph());
     setTreeNodes(tree);
-  }, [graph]);
+  }, [gm.getGraph]);
 
   function handleFilterByPathChange(treeNode: TreeNode) {
-    let newFilteredNodes = graph.config.nodes.filter.filter_node;
+    let newFilteredNodes = gm.getGraph().config.nodes.filter.filter_node;
     if (treeNode.isElement) {
       newFilteredNodes = getNewFilteredNodesFromElementNodeToggle(treeNode, newFilteredNodes);
     } else {
       newFilteredNodes = getNewFilteredNodesFromFolderOrFileNodeToggle(treeNode, newFilteredNodes);
     }
 
-    updateGraph({
+    gm.updateGraph({
       config: {
         nodes: {
           filter: {

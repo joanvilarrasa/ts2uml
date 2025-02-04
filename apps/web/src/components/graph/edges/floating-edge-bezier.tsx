@@ -1,4 +1,4 @@
-import { getEdgeParams } from '@/utils/get-edge-params';
+import { getEdgeParams } from '@/lib/get-edge-params';
 import { type InternalNode, getSimpleBezierPath, useInternalNode } from '@xyflow/react';
 
 export interface FloatingEdgeBezierProps {
