@@ -1,7 +1,7 @@
 import { GraphManager } from '@/lib/graph-manager';
 import { createTreeNodeFromGraph } from '@/lib/tree-node/create-tree-node-from-graph';
 import { getLeafIds } from '@/lib/tree-node/get-leaf-ids';
-import type { TreeNode } from '@ts2uml/models';
+import { type TreeNode, createMsgUpdateVisibleNodes } from '@ts2uml/models';
 import { useEffect, useState } from 'react';
 import { ScrollArea } from '../../ui/scroll-area';
 import { FilterToolByPathTreeNode } from './filter-tool-by-path-tree-node';
@@ -20,16 +20,6 @@ export function FilterToolByPath() {
   function updateTree() {
     const tree = createTreeNodeFromGraph(gm.getGraph());
     setTreeNodes(tree);
-  }
-
-  function sendUpdateVisibleNodesMsg(nodeIdsToAdd: string[], nodeIdsToRemove: string[]) {
-    window.postMessage({
-      type: 'update-visible-nodes',
-      data: {
-        nodeIdsToAdd,
-        nodeIdsToRemove,
-      },
-    });
   }
 
   function handleFilterByPathChange(treeNode: TreeNode) {
@@ -62,7 +52,7 @@ export function FilterToolByPath() {
     });
 
     updateTree();
-    sendUpdateVisibleNodesMsg(nodeIdsToAdd, nodeIdsToRemove);
+    window.postMessage(createMsgUpdateVisibleNodes({ nodeIdsToAdd, nodeIdsToRemove }));
   }
 
   function getNewFilteredNodesFromElementNodeToggle(treeNode: TreeNode, originalFilteredNodes: string[]) {
@@ -109,7 +99,7 @@ export function FilterToolByPath() {
     <div className="flex flex-col items-start justify-start">
       <span className="text-xs">By path</span>
 
-      <ScrollArea className="h-72 pr-4">
+      <ScrollArea className="h-96 pr-4">
         <div className="flex flex-col items-start justify-start">
           {Object.values(treeNodes).map((node) => (
             <FilterToolByPathTreeNode key={node.id} tree={node} onClick={handleFilterByPathChange} />

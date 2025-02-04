@@ -18,5 +18,12 @@
     "formatter": {
       "lineWidth": 120
     }
+  },
+  "linter": {
+    "rules": {
+      "correctness": {
+        "useExhaustiveDependencies": "off"
+      }
+    }
   }
 }

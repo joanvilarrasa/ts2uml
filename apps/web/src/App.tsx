@@ -1,109 +1,141 @@
 import {
   Controls,
   Panel,
-  type Edge as RF_Edge,
   type Node as RF_Node,
   ReactFlow,
   useEdgesState,
   useNodesState,
   useReactFlow,
 } from '@xyflow/react';
-import { useCallback, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import '@xyflow/react/dist/style.css';
-import type { Node } from '@ts2uml/models';
+import {
+  type Graph,
+  type MsgLoadGraph,
+  type MsgUpdateVisibleNodes,
+  type Node,
+  ZMsgUpdateVisibleNodes,
+  is,
+} from '@ts2uml/models';
 import ELK, { type LayoutOptions, type ElkNode } from 'elkjs/lib/elk.bundled.js';
+import initialGraph from './assets/demo-graph.json';
 import { Toolbox } from './components/toolbox/toolbox';
 import { computeNodeHeight, computeNodeWidth } from './lib/compute-node-size';
 import { ELK_DEFAULT_LAYOUT_OPTIONS, RF_EDGE_TYPES, RF_NODE_TYPES } from './lib/constants';
-import { getInitialEdges, getInitialNodes } from './lib/get-data';
 import { GraphManager } from './lib/graph-manager';
+import { linkToRFEdge } from './lib/link-to-rf-edge';
+import { nodeToRFNode } from './lib/node-to-rf-node';
 
 const elk = new ELK();
 
 export default function App() {
   const gm: GraphManager = GraphManager.getInstance();
-  const initialGraph = gm.getGraph();
   const reactFlow = useReactFlow();
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [alreadyAppliedLayout, setAlreadyAppliedLayout] = useState(false);
 
-  const [nodes, , onNodesChange] = useNodesState<RF_Node>(getInitialNodes(initialGraph));
-  const [edges, , onEdgesChange] = useEdgesState(getInitialEdges(initialGraph));
+  /***********************************************************
+   * MESSAGE HANDLERS
+   ***********************************************************/
 
   function messageHandler(event: MessageEvent) {
-    const { type, data } = event.data;
-    if (type === 'update-visible-nodes') {
-      const { nodeIdsToAdd, nodeIdsToRemove } = data;
-      if (nodeIdsToAdd.length > 0) {
-        for (const nodeId of nodeIdsToAdd) {
-          reactFlow.updateNode(nodeId, { hidden: false });
-        }
+    const data = event.data;
+    if (is<MsgUpdateVisibleNodes>(data, ZMsgUpdateVisibleNodes)) {
+      handleUpdateVisibleNodes(data);
+    }
+  }
+
+  function handleUpdateVisibleNodes({ nodeIdsToAdd, nodeIdsToRemove }: MsgUpdateVisibleNodes) {
+    if (nodeIdsToAdd.length > 0) {
+      for (const nodeId of nodeIdsToAdd) {
+        reactFlow.updateNode(nodeId, { hidden: false });
       }
-      if (nodeIdsToRemove.length > 0) {
-        for (const nodeId of nodeIdsToRemove) {
-          reactFlow.updateNode(nodeId, { hidden: true });
-        }
+    }
+    if (nodeIdsToRemove.length > 0) {
+      for (const nodeId of nodeIdsToRemove) {
+        reactFlow.updateNode(nodeId, { hidden: true });
       }
     }
   }
 
-  const getLayoutedElements = useCallback(
-    (options: LayoutOptions, nodes: RF_Node<{ data: Node }>[], edges: RF_Edge[]) => {
-      const layoutOptions = { ...ELK_DEFAULT_LAYOUT_OPTIONS, ...options };
+  function handleLoadGraph({ graph }: MsgLoadGraph) {
+    setAlreadyAppliedLayout(false);
+    gm.setGraph(graph);
+    const nodes = graph.nodes.map((node) => nodeToRFNode(node, false));
+    const edges = graph.links.map((link) => linkToRFEdge(link, graph.config.links.linkPathAlgorithm));
+    setNodes(nodes);
+    setEdges(edges);
+  }
 
-      const graph = {
-        id: 'root',
-        layoutOptions: layoutOptions,
-        children: nodes.map((node: RF_Node<{ data: Node }>) => ({
-          ...node,
-          width: computeNodeWidth(node.data.data),
-          height: computeNodeHeight(node.data.data),
-        })),
-        edges: edges.map((edge) => ({
-          ...edge,
-          sources: [edge.source],
-          targets: [edge.target],
-        })),
-      };
+  /***********************************************************
+   * LAYOUT
+   ***********************************************************/
 
-      elk.layout(graph).then(({ children }) => {
-        const newNodes: RF_Node<{ data: Node }>[] = children.map((n: ElkNode & RF_Node<{ data: Node }>) => ({
-          ...n,
-          position: { x: n.x, y: n.y },
-        }));
+  function getLayoutedElements(options: LayoutOptions) {
+    const layoutOptions = { ...ELK_DEFAULT_LAYOUT_OPTIONS, ...options };
 
+    const graph = {
+      id: 'root',
+      layoutOptions: layoutOptions,
+      children: nodes.map((node: RF_Node<{ data: Node }>) => ({
+        ...node,
+        width: computeNodeWidth(node.data.data),
+        height: computeNodeHeight(node.data.data),
+      })),
+      edges: edges.map((edge) => ({
+        ...edge,
+        sources: [edge.source],
+        targets: [edge.target],
+      })),
+    };
+
+    elk.layout(graph).then(({ children }) => {
+      const newNodes: RF_Node<{ data: Node }>[] = children.map((n: ElkNode & RF_Node<{ data: Node }>) => ({
+        ...n,
+        position: { x: n.x, y: n.y },
+      }));
+
+      if (!alreadyAppliedLayout) {
         reactFlow.setNodes(newNodes);
-      });
-    },
-    [reactFlow]
-  );
+        setAlreadyAppliedLayout(true);
+      }
+    });
+  }
 
-  // Initialize the layout
+  /***********************************************************
+   * INITIALIZE
+   ***********************************************************/
+
   useEffect(() => {
-    const filteredNodes = reactFlow.getNodes().filter((node: RF_Node<{ data: Node }>) => !node.hidden);
-    const filteredEdges = reactFlow.getEdges().filter((edge) => !edge.hidden);
-    getLayoutedElements(
-      {
-        'elk.algorithm': 'org.eclipse.elk.layered',
-      },
-      filteredNodes as RF_Node<{ data: Node }>[],
-      filteredEdges
-    );
+    // [START] TEMP for development
+    handleLoadGraph({ graph: initialGraph as Graph, type: 'load-graph' });
+    // [END] TEMP for development
 
     window.addEventListener('message', messageHandler);
     return () => {
       window.removeEventListener('message', messageHandler);
     };
-  }, [reactFlow.getNodes, reactFlow.getEdges, getLayoutedElements]);
+  }, []);
 
+  useEffect(() => {
+    if (!alreadyAppliedLayout) {
+      getLayoutedElements({});
+    }
+  }, [nodes]);
+
+  /***********************************************************
+   * RENDER
+   ***********************************************************/
   return (
     <div className="h-screen w-screen">
       <ReactFlow
+        nodeTypes={RF_NODE_TYPES}
+        edgeTypes={RF_EDGE_TYPES}
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
-        nodeTypes={RF_NODE_TYPES}
-        edgeTypes={RF_EDGE_TYPES}
-        fitView
       >
         <Panel position="bottom-center">
           <Toolbox />

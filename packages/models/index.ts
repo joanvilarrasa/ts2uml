@@ -15,6 +15,9 @@ export type { NodePosition } from './src/types/graph/node-position.ts';
 export type { NodeStyle } from './src/types/graph/node-style.ts';
 export type { NodeTitle } from './src/types/graph/node-title.ts';
 
+export type { MsgLoadGraph } from './src/types/messages/msg-load-graph.ts';
+export type { MsgUpdateVisibleNodes } from './src/types/messages/msg-update-visible-nodes.ts';
+
 // Export create methods for the types and interfaces
 export { createConfig } from './src/types/config/config.ts';
 export { createConfigLinks } from './src/types/config/config-links.ts';
@@ -31,6 +34,9 @@ export { createNodeAttribute } from './src/types/graph/node-attribute.ts';
 export { createNodePosition } from './src/types/graph/node-position.ts';
 export { createNodeStyle } from './src/types/graph/node-style.ts';
 export { createNodeTitle } from './src/types/graph/node-title.ts';
+
+export { createMsgLoadGraph } from './src/types/messages/msg-load-graph.ts';
+export { createMsgUpdateVisibleNodes } from './src/types/messages/msg-update-visible-nodes.ts';
 
 // Export enums and their types
 export type { LinkPathAlgorithm } from './src/types/enums/link-path-algorithm.ts';
@@ -62,6 +68,9 @@ export { ZNode } from './src/types/graph/node.ts';
 export { ZNodeAttribute } from './src/types/graph/node-attribute.ts';
 export { ZNodeStyle } from './src/types/graph/node-style.ts';
 export { ZNodeTitle } from './src/types/graph/node-title.ts';
+
+export { ZMsgLoadGraph } from './src/types/messages/msg-load-graph.ts';
+export { ZMsgUpdateVisibleNodes } from './src/types/messages/msg-update-visible-nodes.ts';
 
 // Export default styles and colors
 export {
