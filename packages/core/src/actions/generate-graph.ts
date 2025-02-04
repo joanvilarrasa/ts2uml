@@ -18,7 +18,7 @@ const IMPORT_REGEX = /import\("(.*?)"\)/;
 
 export function generateGraph(project: Project, filePath: string, config: Config): Graph {
   const nodes: Node[] = [];
-  const links: Link[] = [];
+  let links: Link[] = [];
 
   // Iterate over all source files in the project
   project.getSourceFiles().map((sourceFile) => {
@@ -40,6 +40,18 @@ export function generateGraph(project: Project, filePath: string, config: Config
       nodes.push(node);
     });
   });
+
+  // [START] TEMP for development
+  links = links.filter((link) => {
+    if (!nodes.some((node) => node.id === link.sourceId)) {
+      return false;
+    }
+    if (!nodes.some((node) => node.id === link.targetId)) {
+      return false;
+    }
+    return true;
+  });
+  // [END] TEMP for development
 
   return { nodes, links, config };
 }

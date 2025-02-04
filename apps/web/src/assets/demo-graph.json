@@ -3,6 +3,77 @@
     {
       "attributes": [
         {
+          "docs": "/**\n   * A list of node ids to add to the diagram\n   * @see {@link Graph}\n   */",
+          "id": "/types/messages/msg-load-graph-MsgLoadGraph-graph",
+          "style": {},
+          "text": "graph: Graph;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
+          "id": "/types/messages/msg-load-graph-MsgLoadGraph-type",
+          "style": {},
+          "text": "type: 'load-graph';",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/messages/msg-load-graph-MsgLoadGraph",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-load-graph-MsgLoadGraph-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "MsgLoadGraph"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * A list of node ids to add to the diagram\n   * @see {@link Node}\n   */",
+          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-nodeIdsToAdd",
+          "style": {},
+          "text": "nodeIdsToAdd: string[];",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * A list of node ids to remove from the diagram\n   * @see {@link Node}\n   */",
+          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-nodeIdsToRemove",
+          "style": {},
+          "text": "nodeIdsToRemove: string[];",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
+          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-type",
+          "style": {},
+          "text": "type: 'update-visible-nodes';",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "MsgUpdateVisibleNodes"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
           "docs": "/**\n   * Configuration for the graph\n   * @see {@link Config}\n   */",
           "id": "/types/graph/graph-Graph-config",
           "style": {},
@@ -374,6 +445,73 @@
     {
       "attributes": [
         {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-id",
+          "style": {},
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isFolder",
+          "style": {},
+          "text": "isFolder: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isFile",
+          "style": {},
+          "text": "isFile: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isElement",
+          "style": {},
+          "text": "isElement: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-checked",
+          "style": {},
+          "text": "checked: CheckboxPartialCheckedStatus;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-children",
+          "style": {},
+          "text": "children?: { [key: string]: TreeNode };",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-name",
+          "style": {},
+          "text": "name: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/types/utils/tree-node-TreeNode",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/utils/tree-node-TreeNode-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "TreeNode"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
           "docs": "/**\n   * Array of link types to filter links by their type (e.g., inheritance, implementation, etc.).\n   * If a link type is provided, all links of that type will be excluded from the diagram.\n   * Empty array means no type filtering.\n   * @see {@link LinkType}\n   */",
           "id": "/types/config/config-links-filter-ConfigLinksFilter-filter_type",
           "style": {},
@@ -710,6 +848,11 @@
   ],
   "links": [
     {
+      "sourceId": "/types/messages/msg-load-graph-MsgLoadGraph",
+      "targetId": "/types/graph/graph-Graph",
+      "type": "association"
+    },
+    {
       "sourceId": "/types/graph/graph-Graph",
       "targetId": "/types/config/config-Config",
       "type": "association"
@@ -752,6 +895,11 @@
     {
       "sourceId": "/types/graph/node-Node",
       "targetId": "/types/graph/node-title-NodeTitle",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/utils/tree-node-TreeNode",
+      "targetId": "/types/utils/tree-node-TreeNode",
       "type": "association"
     },
     {

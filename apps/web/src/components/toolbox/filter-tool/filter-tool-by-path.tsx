@@ -1,9 +1,13 @@
+import { CollapsibleTrigger } from '@/components/ui/collapsible';
+import { CollapsibleContent } from '@/components/ui/collapsible';
+import { Collapsible } from '@/components/ui/collapsible';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { GraphManager } from '@/lib/graph-manager';
 import { createTreeNodeFromGraph } from '@/lib/tree-node/create-tree-node-from-graph';
 import { getLeafIds } from '@/lib/tree-node/get-leaf-ids';
 import { type TreeNode, createMsgUpdateVisibleNodes } from '@ts2uml/models';
+import { ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { ScrollArea } from '../../ui/scroll-area';
 import { FilterToolByPathTreeNode } from './filter-tool-by-path-tree-node';
 
 export function FilterToolByPath() {
@@ -11,6 +15,14 @@ export function FilterToolByPath() {
   const [treeNodes, setTreeNodes] = useState<{
     [key: string]: TreeNode;
   }>({});
+
+  const [sortedTreeNodes, setSortedTreeNodes] = useState<TreeNode[]>([]);
+  useEffect(() => {
+    const sorted = Object.values(treeNodes).sort((a, b) => {
+      return a.name.localeCompare(b.name);
+    });
+    setSortedTreeNodes(sorted);
+  }, [treeNodes]);
 
   // Initialize the component
   useEffect(() => {
@@ -96,16 +108,22 @@ export function FilterToolByPath() {
   }
 
   return (
-    <div className="flex flex-col items-start justify-start">
-      <span className="text-xs">By path</span>
-
-      <ScrollArea className="h-96 pr-4">
-        <div className="flex flex-col items-start justify-start">
-          {Object.values(treeNodes).map((node) => (
+    <Collapsible defaultOpen={true} className="flex flex-col items-start justify-start">
+      <div className="flex w-full items-center justify-between">
+        <span className="text-xs">{'By folder / file / node'}</span>
+        <CollapsibleTrigger asChild>
+          <div className="chevron-right-collapsible-icon">
+            <ChevronRight className="chevron-icon h-4 w-4" />
+          </div>
+        </CollapsibleTrigger>
+      </div>
+      <CollapsibleContent>
+        <ScrollArea className="h-80 max-h-80 pr-4">
+          {sortedTreeNodes.map((node) => (
             <FilterToolByPathTreeNode key={node.id} tree={node} onClick={handleFilterByPathChange} />
           ))}
-        </div>
-      </ScrollArea>
-    </div>
+        </ScrollArea>
+      </CollapsibleContent>
+    </Collapsible>
   );
 }
