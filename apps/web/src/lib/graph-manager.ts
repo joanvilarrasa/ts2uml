@@ -28,5 +28,3 @@ export class GraphManager {
     this.graph = updateDeep<Graph>(this.graph, updates, ZGraph);
   }
 }
-
-export const graphManager = GraphManager.getInstance();

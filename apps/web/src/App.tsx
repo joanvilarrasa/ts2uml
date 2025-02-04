@@ -23,11 +23,27 @@ const elk = new ELK();
 export default function App() {
   const gm: GraphManager = GraphManager.getInstance();
   const initialGraph = gm.getGraph();
+  const reactFlow = useReactFlow();
 
   const [nodes, , onNodesChange] = useNodesState<RF_Node>(getInitialNodes(initialGraph));
   const [edges, , onEdgesChange] = useEdgesState(getInitialEdges(initialGraph));
 
-  const reactFlow = useReactFlow();
+  function messageHandler(event: MessageEvent) {
+    const { type, data } = event.data;
+    if (type === 'update-visible-nodes') {
+      const { nodeIdsToAdd, nodeIdsToRemove } = data;
+      if (nodeIdsToAdd.length > 0) {
+        for (const nodeId of nodeIdsToAdd) {
+          reactFlow.updateNode(nodeId, { hidden: false });
+        }
+      }
+      if (nodeIdsToRemove.length > 0) {
+        for (const nodeId of nodeIdsToRemove) {
+          reactFlow.updateNode(nodeId, { hidden: true });
+        }
+      }
+    }
+  }
 
   const getLayoutedElements = useCallback(
     (options: LayoutOptions, nodes: RF_Node<{ data: Node }>[], edges: RF_Edge[]) => {
@@ -60,6 +76,7 @@ export default function App() {
     [reactFlow]
   );
 
+  // Initialize the layout
   useEffect(() => {
     const filteredNodes = reactFlow.getNodes().filter((node: RF_Node<{ data: Node }>) => !node.hidden);
     const filteredEdges = reactFlow.getEdges().filter((edge) => !edge.hidden);
@@ -70,6 +87,11 @@ export default function App() {
       filteredNodes as RF_Node<{ data: Node }>[],
       filteredEdges
     );
+
+    window.addEventListener('message', messageHandler);
+    return () => {
+      window.removeEventListener('message', messageHandler);
+    };
   }, [reactFlow.getNodes, reactFlow.getEdges, getLayoutedElements]);
 
   return (

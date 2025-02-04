@@ -12,53 +12,97 @@ export function FilterToolByPath() {
     [key: string]: TreeNode;
   }>({});
 
+  // Initialize the component
   useEffect(() => {
+    updateTree();
+  }, []);
+
+  function updateTree() {
     const tree = createTreeNodeFromGraph(gm.getGraph());
     setTreeNodes(tree);
-  }, [gm.getGraph]);
+  }
 
-  function handleFilterByPathChange(treeNode: TreeNode) {
-    let newFilteredNodes = gm.getGraph().config.nodes.filter.filter_node;
-    if (treeNode.isElement) {
-      newFilteredNodes = getNewFilteredNodesFromElementNodeToggle(treeNode, newFilteredNodes);
-    } else {
-      newFilteredNodes = getNewFilteredNodesFromFolderOrFileNodeToggle(treeNode, newFilteredNodes);
-    }
-
-    gm.updateGraph({
-      config: {
-        nodes: {
-          filter: {
-            filter_node: newFilteredNodes,
-          },
-        },
+  function sendUpdateVisibleNodesMsg(nodeIdsToAdd: string[], nodeIdsToRemove: string[]) {
+    window.postMessage({
+      type: 'update-visible-nodes',
+      data: {
+        nodeIdsToAdd,
+        nodeIdsToRemove,
       },
     });
   }
 
-  function getNewFilteredNodesFromElementNodeToggle(treeNode: TreeNode, originalFilteredNodes: string[]) {
-    let newFilteredNodes = originalFilteredNodes;
-    if (treeNode.checked === 'checked') {
-      newFilteredNodes.push(treeNode.id);
+  function handleFilterByPathChange(treeNode: TreeNode) {
+    const currentFilteredNodeIds = gm.getGraph().config.nodes.filter.filter_node;
+    let newFilteredNodeIds = currentFilteredNodeIds;
+    let nodeIdsToAdd: string[] = [];
+    let nodeIdsToRemove: string[] = [];
+
+    if (treeNode.isElement) {
+      const res = getNewFilteredNodesFromElementNodeToggle(treeNode, currentFilteredNodeIds);
+      newFilteredNodeIds = res.newFilteredNodeIds;
+      nodeIdsToAdd = res.nodeIdsToAdd;
+      nodeIdsToRemove = res.nodeIdsToRemove;
     } else {
-      newFilteredNodes = newFilteredNodes.filter((id) => id !== treeNode.id);
+      const res = getNewFilteredNodesFromFolderOrFileNodeToggle(treeNode, currentFilteredNodeIds);
+      newFilteredNodeIds = res.newFilteredNodeIds;
+      nodeIdsToAdd = res.nodeIdsToAdd;
+      nodeIdsToRemove = res.nodeIdsToRemove;
     }
-    return newFilteredNodes;
+
+    // Update the graph
+    gm.updateGraph({
+      config: {
+        nodes: {
+          filter: {
+            filter_node: newFilteredNodeIds,
+          },
+        },
+      },
+    });
+
+    updateTree();
+    sendUpdateVisibleNodesMsg(nodeIdsToAdd, nodeIdsToRemove);
+  }
+
+  function getNewFilteredNodesFromElementNodeToggle(treeNode: TreeNode, originalFilteredNodes: string[]) {
+    let newFilteredNodeIds = originalFilteredNodes;
+    const nodeIdsToAdd: string[] = [];
+    const nodeIdsToRemove: string[] = [];
+    if (treeNode.checked === 'checked') {
+      nodeIdsToRemove.push(treeNode.id);
+      newFilteredNodeIds.push(treeNode.id);
+    } else {
+      nodeIdsToAdd.push(treeNode.id);
+      newFilteredNodeIds = newFilteredNodeIds.filter((id) => id !== treeNode.id);
+    }
+
+    return { newFilteredNodeIds, nodeIdsToAdd, nodeIdsToRemove };
   }
 
   function getNewFilteredNodesFromFolderOrFileNodeToggle(treeNode: TreeNode, originalFilteredNodes: string[]) {
-    let newFilteredNodes = originalFilteredNodes;
-    const filteredLeafIds = getLeafIds(treeNode);
+    let newFilteredNodeIds = originalFilteredNodes;
+    const leafIdsOfTreeNode = getLeafIds(treeNode);
+    const nodeIdsToAdd: string[] = [];
+    const nodeIdsToRemove: string[] = [];
+    // If the node is checked it means we want to remove all children from the graph, so add them to the nodesToRemove array
     if (treeNode.checked === 'checked') {
-      for (const leafId of filteredLeafIds) {
-        if (!newFilteredNodes.includes(leafId)) {
-          newFilteredNodes.push(leafId);
+      for (const leafId of leafIdsOfTreeNode) {
+        if (!newFilteredNodeIds.includes(leafId)) {
+          nodeIdsToRemove.push(leafId);
+          newFilteredNodeIds.push(leafId);
         }
       }
     } else {
-      newFilteredNodes = newFilteredNodes.filter((id) => !filteredLeafIds.includes(id));
+      newFilteredNodeIds = newFilteredNodeIds.filter((id) => {
+        if (leafIdsOfTreeNode.includes(id)) {
+          nodeIdsToAdd.push(id);
+          return false;
+        }
+        return true;
+      });
     }
-    return newFilteredNodes;
+    return { newFilteredNodeIds, nodeIdsToAdd, nodeIdsToRemove };
   }
 
   return (
