@@ -2,6 +2,7 @@ import { FloatingEdgeBezier } from '@/components/graph/edges/floating-edge-bezie
 import { FloatingEdgeStep } from '@/components/graph/edges/floating-edge-step';
 import { FloatingEdgeStraight } from '@/components/graph/edges/floating-edge-straight';
 import { InterfaceNodeComponent } from '@/components/graph/nodes/interface-node';
+import { TypeNodeComponent } from '@/components/graph/nodes/type-node';
 import type { LayoutOptions } from 'elkjs';
 
 /**
@@ -18,7 +19,7 @@ export const RF_NODE_TYPES = {
   class: InterfaceNodeComponent,
   enum: InterfaceNodeComponent,
   function: InterfaceNodeComponent,
-  type: InterfaceNodeComponent,
+  type: TypeNodeComponent,
   variable: InterfaceNodeComponent,
 };
 

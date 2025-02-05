@@ -12,11 +12,12 @@ body {
 
 @layer base {
   :root {
+    /* --var1: hsl(223, 41%, 60%); */
     --interface: 182 37% 54%;
     --class: 181 34% 45%;
     --enum: 181 34% 45%;
     --function: 181 34% 45%;
-    --type: 181 34% 45%;
+    --type: 223 41% 60%;
     --variable: 181 34% 45%;
 
     --background: 0 0% 84%;

@@ -4,7 +4,7 @@ import type { Node as RF_Node } from '@xyflow/react';
 export function nodeToRFNode(node: Node, hidden: boolean): RF_Node {
   return {
     id: node.id,
-    type: 'interface',
+    type: node.type,
     position: node.position,
     data: { data: node },
     hidden,
