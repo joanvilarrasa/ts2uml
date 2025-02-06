@@ -11,7 +11,7 @@ export function generateGraph(project: Project, filePath: string, config: Config
   // Iterate over all source files in the project
   const sourceFiles = project.getSourceFiles();
   for (const sourceFile of sourceFiles) {
-    console.log('sourceFile', sourceFile.getFilePath());
+    // console.log('sourceFile', sourceFile.getFilePath());
 
     // Interfaces
     const tsMorphInterfaces: InterfaceDeclaration[] = sourceFile.getInterfaces();

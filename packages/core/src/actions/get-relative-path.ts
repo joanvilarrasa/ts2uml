@@ -1,6 +1,13 @@
 const RELATIVE_PATH_REGEX = /\.[^/.]+$/;
 
-export function getRelativeFilePath(basePath: string, sourceFilePath: string) {
+export function getRelativeFilePath(basePath: string, sourceFilePath: string | null | undefined) {
+  if (sourceFilePath === null) {
+    return null;
+  }
+  if (sourceFilePath === undefined) {
+    return null;
+  }
+
   // Normalize paths for cross-platform compatibility
   const normalizedBasePath = basePath.replace(/\\/g, '/');
   const normalizedSourceFilePath = sourceFilePath.replace(/\\/g, '/');
