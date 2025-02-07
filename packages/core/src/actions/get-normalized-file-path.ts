@@ -1,6 +1,6 @@
 const RELATIVE_PATH_REGEX = /\.[^/.]+$/;
 
-export function getRelativeFilePath(basePath: string, sourceFilePath: string | null | undefined) {
+export function getNormalizedFilePath(basePath: string, sourceFilePath: string | null | undefined) {
   if (sourceFilePath === null) {
     return null;
   }

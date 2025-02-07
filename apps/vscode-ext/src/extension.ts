@@ -1,77 +1,30 @@
+import { generateGraph } from '@ts2uml/core';
+import { createMsgLoadGraph } from '@ts2uml/models';
 import * as vscode from 'vscode';
-import { findTsFiles } from './utils/findTsFiles';
-import { Project } from 'ts-morph';
-import { generateGraph, type Graph } from './utils/generateGraph';
-import { newConfig } from '@ts2uml/models';
 
-export async function activate(context: vscode.ExtensionContext) {
-    const disposable = vscode.commands.registerCommand('ts2uml.generateUml', async (uri: vscode.Uri) => {
-        const panel = vscode.window.createWebviewPanel(
-            'umlDiagram',
-            'UML Diagram',
-            vscode.ViewColumn.One,
-            { enableScripts: true }
-        );
-
-        const dir = uri.fsPath;
-        let config = newConfig();
-
-        // Initial content generation
-        let tsFiles = await findTsFiles(dir, config);
-        const project = new Project();
-        for (const file of tsFiles) {
-            project.addSourceFileAtPath(file);
-        }
-
-        const initialD3Graph = generateGraph(project, dir, config);
-
-        panel.webview.html = getWebviewContent(panel, context.extensionUri, initialD3Graph);
-
-        // Listen for messages from the webview
-        panel.webview.onDidReceiveMessage(async (message) => {
-            if (message.type === 'UpdateConfig') {
-            }
-        });
+export function activate(context: vscode.ExtensionContext) {
+  const disposable = vscode.commands.registerCommand('ts2uml.generateUml', async (uri: vscode.Uri) => {
+    const panel = vscode.window.createWebviewPanel('umlDiagram', 'UML Diagram', vscode.ViewColumn.One, {
+      enableScripts: true,
     });
 
-    context.subscriptions.push(disposable);
+    const dir = uri.fsPath;
+    const initialD3Graph = await generateGraph(dir);
+    panel.webview.html = getWebviewContent(panel, context.extensionUri);
+
+    // Listen for messages from the webview
+    // panel.webview.onDidReceiveMessage(async (message) => {
+    //   if (message.type === 'UpdateConfig') {
+    //   }
+    // });
+
+    panel.webview.postMessage(createMsgLoadGraph({ graph: initialD3Graph }));
+  });
+
+  context.subscriptions.push(disposable);
 }
 
-function getWebviewContent(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, initialGraph: Graph): string {
-    const fontCssUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'joint', 'font.css'));
-    const jointShapesUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'joint', 'shapes.js'));
-    const jointDirUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'joint'));
-
-    panel.webview.postMessage({
-        type: 'UpdatedContent',
-        graph: initialGraph,
-    });
-
-    return `
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Sometype+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-            <link href="${fontCssUri}" rel="stylesheet">
-            <title>UML Diagram</title>
-        </head>
-        <body>
-            <div id="diagram-container">
-                <button id="button">Toggle opacity</button>
-                <div id="paper"></div>
-            </div>
-            <script src="https://cdn.jsdelivr.net/npm/@joint/core@4.1.1/dist/joint.js"></script>
-            <script src="${jointDirUri}/lib/graphlib.core.js"></script>
-            <script src="${jointDirUri}/lib/dagre.js"></script>
-            <script src="${jointDirUri}/lib/DirectedGraph.js"></script>
-            <script type="text/javascript" src="${jointDirUri}/joint.js"></script>
-        </body>
-        </html>
-    `;
+function getWebviewContent(panel: vscode.WebviewPanel, extensionUri: vscode.Uri): string {
+  const targetHtmlFile = panel.webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'src', 'web-dist', 'index.html'));
+  return targetHtmlFile.toString();
 }
-
-

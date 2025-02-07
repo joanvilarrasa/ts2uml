@@ -8,10 +8,10 @@ import {
   createNodeTitle,
 } from '@ts2uml/models';
 import type { EnumDeclaration } from 'ts-morph';
-import { getRelativeFilePath } from '../actions/get-relative-path.ts';
+import { getNormalizedFilePath } from '../actions/get-normalized-file-path.ts';
 
 export function addEnumNode(tsMorphEnum: EnumDeclaration, filePath: string, nodes: Node[]) {
-  const sourceFileRelativePath = getRelativeFilePath(filePath, tsMorphEnum.getSourceFile().getFilePath());
+  const sourceFileRelativePath = getNormalizedFilePath(filePath, tsMorphEnum.getSourceFile().getFilePath());
   const enumName = tsMorphEnum.getName();
   const enumId = `${sourceFileRelativePath}-${enumName}`;
   const enumType: NodeType = 'enum';

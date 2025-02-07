@@ -1,12 +1,11 @@
-import { type Graph, ZGraph, updateDeep } from '@ts2uml/models';
-import initialGraph from '../assets/demo-graph.json';
+import { type Graph, ZGraph, createGraph, updateDeep } from '@ts2uml/models';
 
 export class GraphManager {
   private static instance: GraphManager;
   private graph: Graph;
 
   private constructor() {
-    this.graph = initialGraph as Graph;
+    this.graph = createGraph();
   }
 
   static getInstance(): GraphManager {

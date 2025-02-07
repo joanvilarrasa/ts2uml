@@ -10,11 +10,11 @@ import {
 import { useEffect, useState } from 'react';
 import '@xyflow/react/dist/style.css';
 import {
-  type Graph,
   type MsgLoadGraph,
   type MsgUpdateLinkPathAlgorithm,
   type MsgUpdateVisibleNodes,
   type Node,
+  ZMsgLoadGraph,
   ZMsgUpdateLinkPathAlgorithm,
   ZMsgUpdateVisibleNodes,
   is,
@@ -24,7 +24,6 @@ import {
   ZMsgUpdateLayoutAlgorithm,
 } from '@ts2uml/models/src/types/messages/msg-update-layout-algorithm';
 import ELK, { type LayoutOptions, type ElkNode } from 'elkjs/lib/elk.bundled.js';
-import initialGraph from './assets/demo-graph.json';
 import { Toolbox } from './components/toolbox/toolbox';
 import { computeNodeHeight, computeNodeWidth } from './lib/compute-node-size';
 import { ELK_DEFAULT_LAYOUT_OPTIONS, RF_EDGE_TYPES, RF_NODE_TYPES } from './lib/constants';
@@ -39,7 +38,6 @@ export default function App() {
   const reactFlow = useReactFlow();
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const [alreadyAppliedLayout, setAlreadyAppliedLayout] = useState(false);
   const [layoutOptions, setLayoutOptions] = useState<LayoutOptions>(ELK_DEFAULT_LAYOUT_OPTIONS);
 
   /***********************************************************
@@ -48,13 +46,13 @@ export default function App() {
 
   function messageHandler(event: MessageEvent) {
     const data = event.data;
-    if (is<MsgUpdateVisibleNodes>(data, ZMsgUpdateVisibleNodes)) {
+    if (is<MsgLoadGraph>(data, ZMsgLoadGraph)) {
+      handleLoadGraph(data);
+    } else if (is<MsgUpdateVisibleNodes>(data, ZMsgUpdateVisibleNodes)) {
       handleUpdateVisibleNodes(data);
-    }
-    if (is<MsgUpdateLayoutAlgorithm>(data, ZMsgUpdateLayoutAlgorithm)) {
+    } else if (is<MsgUpdateLayoutAlgorithm>(data, ZMsgUpdateLayoutAlgorithm)) {
       handleUpdateLayoutAlgorithm(data);
-    }
-    if (is<MsgUpdateLinkPathAlgorithm>(data, ZMsgUpdateLinkPathAlgorithm)) {
+    } else if (is<MsgUpdateLinkPathAlgorithm>(data, ZMsgUpdateLinkPathAlgorithm)) {
       handleUpdateLinkPathAlgorithm(data);
     }
   }
@@ -73,16 +71,18 @@ export default function App() {
   }
 
   function handleLoadGraph({ graph }: MsgLoadGraph) {
-    setAlreadyAppliedLayout(false);
     gm.setGraph(graph);
     const nodes = graph.nodes.map((node) => nodeToRFNode(node, false));
     const edges = graph.links.map((link) => linkToRFEdge(link, graph.config.links.linkPathAlgorithm));
     setNodes(nodes);
     setEdges(edges);
+    setLayoutOptions({
+      ...layoutOptions,
+      'elk.algorithm': `org.eclipse.elk.${graph.config.layoutAlgorithm}`,
+    });
   }
 
   function handleUpdateLayoutAlgorithm({ layoutAlgorithm }: MsgUpdateLayoutAlgorithm) {
-    setAlreadyAppliedLayout(false);
     setLayoutOptions({
       ...layoutOptions,
       'elk.algorithm': `org.eclipse.elk.${layoutAlgorithm}`,
@@ -126,10 +126,7 @@ export default function App() {
         position: { x: n.x, y: n.y },
       }));
 
-      if (!alreadyAppliedLayout) {
-        reactFlow.setNodes(newNodes);
-        setAlreadyAppliedLayout(true);
-      }
+      reactFlow.setNodes(newNodes);
     });
   }
 
@@ -138,21 +135,11 @@ export default function App() {
    ***********************************************************/
 
   useEffect(() => {
-    // [START] TEMP for development
-    handleLoadGraph({ graph: initialGraph as Graph, type: 'load-graph' });
-    // [END] TEMP for development
-
     window.addEventListener('message', messageHandler);
     return () => {
       window.removeEventListener('message', messageHandler);
     };
   }, []);
-
-  useEffect(() => {
-    if (!alreadyAppliedLayout) {
-      getLayoutedElements({});
-    }
-  }, [nodes]);
 
   useEffect(() => {
     getLayoutedElements(layoutOptions);

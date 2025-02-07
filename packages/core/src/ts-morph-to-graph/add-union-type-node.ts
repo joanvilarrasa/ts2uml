@@ -10,12 +10,12 @@ import {
   createNodeTitle,
 } from '@ts2uml/models';
 import type { Type, TypeAliasDeclaration } from 'ts-morph';
-import { getRelativeFilePath } from '../actions/get-relative-path.ts';
+import { getNormalizedFilePath } from '../actions/get-normalized-file-path.ts';
 import { getImportedName, getImportedPath } from './regex.ts';
 import { isImported } from './regex.ts';
 
 export function addUnionTypeNode(tsMorphType: TypeAliasDeclaration, filePath: string, links: Link[], nodes: Node[]) {
-  const sourceFileRelativePath = getRelativeFilePath(filePath, tsMorphType.getSourceFile().getFilePath());
+  const sourceFileRelativePath = getNormalizedFilePath(filePath, tsMorphType.getSourceFile().getFilePath());
   const typeName = tsMorphType.getName();
   const typeId = `${sourceFileRelativePath}-${typeName}`;
   const typeType: NodeType = 'type';
@@ -95,7 +95,7 @@ function getDefaultDescendantTargetId(descendant: Type, filePath: string) {
     return null;
   }
 
-  const targetSourceFileRelativePath: string | null = getRelativeFilePath(filePath, importText);
+  const targetSourceFileRelativePath: string | null = getNormalizedFilePath(filePath, importText);
   if (targetSourceFileRelativePath === null) {
     return null;
   }

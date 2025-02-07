@@ -1,7 +1,7 @@
-import { addEnumNode } from '@/ts-morph-to-graph/add-enum-node.ts';
-import { addUnionTypeNode } from '@/ts-morph-to-graph/add-union-type-node.ts';
 import type { Config, Graph, Link, Node } from '@ts2uml/models';
 import type { EnumDeclaration, InterfaceDeclaration, Project, TypeAliasDeclaration } from 'ts-morph';
+import { addEnumNode } from './add-enum-node.ts';
+import { addUnionTypeNode } from './add-union-type-node.ts';
 
 import { addInterfaceNode } from '../ts-morph-to-graph/add-interface-node.ts';
 

@@ -1,13 +1,11 @@
 {
   "name": "@ts2uml/vscode-ext",
   "displayName": "ts2uml",
-  "description": "Generate uml diagrams from a typescript project",
+  "description": "Generate UML diagrams from a typescript project",
   "engines": {
     "vscode": "^1.96.0"
   },
-  "categories": [
-    "Other"
-  ],
+  "categories": ["Other"],
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
@@ -50,8 +48,6 @@
   },
   "dependencies": {
     "@ts2uml/models": "^0.0.1",
-    "@joint/core": "^4.1.1",
-    "@joint/layout-directed-graph": "^4.1.1",
-    "ts-morph": "^25.0.0"
+    "@ts2uml/core": "^0.0.1"
   }
 }

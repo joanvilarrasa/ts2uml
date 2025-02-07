@@ -1,5 +1,5 @@
 import type { PropertySignature, Node as TS_Node } from 'ts-morph';
-import { getRelativeFilePath } from '../actions/get-relative-path.ts';
+import { getNormalizedFilePath } from '../actions/get-normalized-file-path.ts';
 import { getImportedPath, isImported } from './regex.ts';
 
 export function getTargetIds(prop: PropertySignature, filePath: string): string[] {
@@ -40,13 +40,13 @@ function getEnumTargetId(descendant: TS_Node, filePath: string) {
       importDeclaration.getNamedImports().some((importSpecifier) => importSpecifier.getName() === descendant.getText())
     );
   if (importDeclaration) {
-    targetSourceFileRelativePath = getRelativeFilePath(
+    targetSourceFileRelativePath = getNormalizedFilePath(
       filePath,
       importDeclaration.getModuleSpecifierSourceFile()?.getFilePath() ?? ''
     );
   }
   if (targetSourceFileRelativePath === null) {
-    targetSourceFileRelativePath = getRelativeFilePath(filePath, descendant.getSourceFile().getFilePath());
+    targetSourceFileRelativePath = getNormalizedFilePath(filePath, descendant.getSourceFile().getFilePath());
   }
   if (targetSourceFileRelativePath === null) {
     return null;
@@ -64,7 +64,7 @@ function getDefaultDescendantTargetId(descendant: TS_Node, filePath: string) {
     return null;
   }
 
-  const targetSourceFileRelativePath: string | null = getRelativeFilePath(filePath, importText);
+  const targetSourceFileRelativePath: string | null = getNormalizedFilePath(filePath, importText);
   if (targetSourceFileRelativePath === null) {
     return null;
   }
