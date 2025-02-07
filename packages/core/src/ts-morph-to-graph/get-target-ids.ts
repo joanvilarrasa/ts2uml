@@ -1,7 +1,6 @@
 import type { PropertySignature, Node as TS_Node } from 'ts-morph';
 import { getRelativeFilePath } from '../actions/get-relative-path.ts';
-
-const IMPORT_REGEX = /import\("(.*?)"\)/;
+import { getImportedPath, isImported } from './regex.ts';
 
 export function getTargetIds(prop: PropertySignature, filePath: string): string[] {
   const targetIds: string[] = [];
@@ -57,10 +56,10 @@ function getEnumTargetId(descendant: TS_Node, filePath: string) {
 
 function getDefaultDescendantTargetId(descendant: TS_Node, filePath: string) {
   const descendantText = descendant.getType().getText();
-  if (!descendantText.startsWith('import(') || descendant.getType().isArray()) {
+  if (!isImported(descendantText) || descendant.getType().isArray()) {
     return null;
   }
-  const importText = descendantText.match(IMPORT_REGEX)?.[1];
+  const importText = getImportedPath(descendantText);
   if (importText === undefined) {
     return null;
   }

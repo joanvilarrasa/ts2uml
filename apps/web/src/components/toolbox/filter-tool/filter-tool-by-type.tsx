@@ -38,21 +38,13 @@ export function FilterToolByType() {
 
   const handleFilterTypeChange = (type: NodeType) => {
     let filterByType = gm.getGraph().config.nodes.filter.filter_type;
-    const nodeIdsToAdd: string[] = [];
-    const nodeIdsToRemove: string[] = [];
+    let nodeIdsToAdd: string[] = [];
+    let nodeIdsToRemove: string[] = [];
     if (filterByType.includes(type)) {
-      for (const node of gm.getGraph().nodes) {
-        if (node.type === type) {
-          nodeIdsToAdd.push(node.id);
-        }
-      }
+      nodeIdsToAdd = getNodeIdsByType(type);
       filterByType = filterByType.filter((t) => t !== type);
     } else {
-      for (const node of gm.getGraph().nodes) {
-        if (node.type === type) {
-          nodeIdsToRemove.push(node.id);
-        }
-      }
+      nodeIdsToRemove = getNodeIdsByType(type);
       filterByType.push(type);
     }
 
@@ -68,6 +60,16 @@ export function FilterToolByType() {
 
     updateCheckedStatusByType();
     window.postMessage(createMsgUpdateVisibleNodes({ nodeIdsToAdd, nodeIdsToRemove }));
+  };
+
+  const getNodeIdsByType = (type: NodeType) => {
+    const nodeIds: string[] = [];
+    for (const node of gm.getGraph().nodes) {
+      if (node.type === type) {
+        nodeIds.push(node.id);
+      }
+    }
+    return nodeIds;
   };
 
   return (

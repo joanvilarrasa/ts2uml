@@ -1,10 +1,11 @@
 import { addEnumNode } from '@/ts-morph-to-graph/add-enum-node.ts';
-import { addTypeNode } from '@/ts-morph-to-graph/add-type-node.ts';
+import { addUnionTypeNode } from '@/ts-morph-to-graph/add-union-type-node.ts';
 import type { Config, Graph, Link, Node } from '@ts2uml/models';
 import type { EnumDeclaration, InterfaceDeclaration, Project, TypeAliasDeclaration } from 'ts-morph';
+
 import { addInterfaceNode } from '../ts-morph-to-graph/add-interface-node.ts';
 
-export function generateGraph(project: Project, filePath: string, config: Config): Graph {
+export function getGraphFromProject(project: Project, filePath: string, config: Config): Graph {
   const nodes: Node[] = [];
   let links: Link[] = [];
 
@@ -33,7 +34,11 @@ export function generateGraph(project: Project, filePath: string, config: Config
     // Types
     const tsMorphTypes: TypeAliasDeclaration[] = sourceFile.getTypeAliases();
     for (const tsMorphType of tsMorphTypes) {
-      addTypeNode(tsMorphType, filePath, links, nodes);
+      if (tsMorphType.getType().isUnion()) {
+        addUnionTypeNode(tsMorphType, filePath, links, nodes);
+      } else {
+        // Missing implementation for normal type node
+      }
     }
   }
 

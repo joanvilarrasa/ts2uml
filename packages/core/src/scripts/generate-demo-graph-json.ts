@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { createConfig } from '@ts2uml/models';
 import { Project } from 'ts-morph';
 import { findTypeScriptFiles } from '../actions/find-typescript-files.ts';
-import { generateGraph } from '../actions/generate-graph.ts';
+import { getGraphFromProject } from '../ts-morph-to-graph/get-graph-from-project.ts';
 
 async function createDefaultGraph() {
   const dir = join(process.cwd(), '..', 'models', 'src');
@@ -14,7 +14,7 @@ async function createDefaultGraph() {
   for (const file of tsFiles) {
     project.addSourceFileAtPath(file);
   }
-  const demoGraph = generateGraph(project, dir, config);
+  const demoGraph = getGraphFromProject(project, dir, config);
 
   await writeFile('src/scripts/demo-graph.json', JSON.stringify(demoGraph, null, 2));
 }

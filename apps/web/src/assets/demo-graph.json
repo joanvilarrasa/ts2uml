@@ -3,6 +3,462 @@
     {
       "attributes": [
         {
+          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-checked",
+          "style": {},
+          "text": "checked",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-unchecked",
+          "style": {},
+          "text": "unchecked",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-partial",
+          "style": {},
+          "text": "partial",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents the different types of messages that are sent between components of the web\n */",
+      "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-TITLE",
+        "nodeType": "type",
+        "style": {},
+        "text": "CheckboxPartialCheckedStatus"
+      },
+      "type": "type"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-id",
+          "style": {},
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isFolder",
+          "style": {},
+          "text": "isFolder: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isFile",
+          "style": {},
+          "text": "isFile: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isElement",
+          "style": {},
+          "text": "isElement: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-checked",
+          "style": {},
+          "text": "checked: CheckboxPartialCheckedStatus;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-children",
+          "style": {},
+          "text": "children?: { [key: string]: TreeNode };",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-name",
+          "style": {},
+          "text": "name: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/types/utils/tree-node-TreeNode",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/utils/tree-node-TreeNode-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "TreeNode"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * A list of node ids to add to the diagram\n   * @see {@link Graph}\n   */",
+          "id": "/types/messages/msg-load-graph-MsgLoadGraph-graph",
+          "style": {},
+          "text": "graph: Graph;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
+          "id": "/types/messages/msg-load-graph-MsgLoadGraph-type",
+          "style": {},
+          "text": "type: 'load-graph';",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/messages/msg-load-graph-MsgLoadGraph",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-load-graph-MsgLoadGraph-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "MsgLoadGraph"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * A list of node ids to add to the diagram\n   * @see {@link Node}\n   */",
+          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-nodeIdsToAdd",
+          "style": {},
+          "text": "nodeIdsToAdd: string[];",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * A list of node ids to remove from the diagram\n   * @see {@link Node}\n   */",
+          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-nodeIdsToRemove",
+          "style": {},
+          "text": "nodeIdsToRemove: string[];",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
+          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-type",
+          "style": {},
+          "text": "type: 'update-visible-nodes';",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "MsgUpdateVisibleNodes"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/enums/link-path-algorithm-LinkPathAlgorithm-bezier",
+          "style": {},
+          "text": "bezier",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/link-path-algorithm-LinkPathAlgorithm-step",
+          "style": {},
+          "text": "step",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/link-path-algorithm-LinkPathAlgorithm-straight",
+          "style": {},
+          "text": "straight",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents the different types of relationships between nodes in the diagram.\n * - \"association\": Indicates a basic association between nodes\n * - \"inheritance\": Indicates an inheritance/extends relationship\n */",
+      "id": "/types/enums/link-path-algorithm-LinkPathAlgorithm",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/enums/link-path-algorithm-LinkPathAlgorithm-TITLE",
+        "nodeType": "type",
+        "style": {},
+        "text": "LinkPathAlgorithm"
+      },
+      "type": "type"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/enums/link-type-LinkType-association",
+          "style": {},
+          "text": "association",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/link-type-LinkType-inheritance",
+          "style": {},
+          "text": "inheritance",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents the different types of relationships between nodes in the diagram.\n * - \"association\": Indicates a basic association between nodes\n * - \"inheritance\": Indicates an inheritance/extends relationship\n */",
+      "id": "/types/enums/link-type-LinkType",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/enums/link-type-LinkType-TITLE",
+        "nodeType": "type",
+        "style": {},
+        "text": "LinkType"
+      },
+      "type": "type"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/enums/link-type-SomeTestType4-SomeTestType2",
+          "style": {},
+          "text": "SomeTestType2",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/link-type-SomeTestType4-hello",
+          "style": {},
+          "text": "hello",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/types/enums/link-type-SomeTestType4",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/enums/link-type-SomeTestType4-TITLE",
+        "nodeType": "type",
+        "style": {},
+        "text": "SomeTestType4"
+      },
+      "type": "type"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/enums/msg-type-MsgType-load-graph",
+          "style": {},
+          "text": "load-graph",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/msg-type-MsgType-update-visible-nodes",
+          "style": {},
+          "text": "update-visible-nodes",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents the different types of messages that are sent between components of the web\n */",
+      "id": "/types/enums/msg-type-MsgType",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/enums/msg-type-MsgType-TITLE",
+        "nodeType": "type",
+        "style": {},
+        "text": "MsgType"
+      },
+      "type": "type"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/enums/node-attribute-scope-NodeAttributeScope-private",
+          "style": {},
+          "text": "private",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/node-attribute-scope-NodeAttributeScope-protected",
+          "style": {},
+          "text": "protected",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/node-attribute-scope-NodeAttributeScope-public",
+          "style": {},
+          "text": "public",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents the visibility/access level of a node attribute.\n * - \"private\": Attribute is only accessible within the class\n * - \"protected\": Attribute is only accessible to the class and its subclasses\n * - \"public\": Attribute is publicly accessible\n */",
+      "id": "/types/enums/node-attribute-scope-NodeAttributeScope",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/enums/node-attribute-scope-NodeAttributeScope-TITLE",
+        "nodeType": "type",
+        "style": {},
+        "text": "NodeAttributeScope"
+      },
+      "type": "type"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/enums/node-attribute-type-NodeAttributeType-attribute",
+          "style": {},
+          "text": "attribute",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/node-attribute-type-NodeAttributeType-enumOrTypeOption",
+          "style": {},
+          "text": "enumOrTypeOption",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/node-attribute-type-NodeAttributeType-method",
+          "style": {},
+          "text": "method",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/node-attribute-type-NodeAttributeType-separator",
+          "style": {},
+          "text": "separator",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents the different types of attributes that can be displayed in a node.\n * - \"attribute\": Represents a class/interface property or field\n * - \"enumOrTypeOption\": Represents an enum value or type union option\n * - \"method\": Represents a class/interface method or function\n * - \"separator\": Represents a visual separator line\n */",
+      "id": "/types/enums/node-attribute-type-NodeAttributeType",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/enums/node-attribute-type-NodeAttributeType-TITLE",
+        "nodeType": "type",
+        "style": {},
+        "text": "NodeAttributeType"
+      },
+      "type": "type"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/enums/node-type-NodeType-class",
+          "style": {},
+          "text": "class",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/node-type-NodeType-enum",
+          "style": {},
+          "text": "enum",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/node-type-NodeType-interface",
+          "style": {},
+          "text": "interface",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/node-type-NodeType-type",
+          "style": {},
+          "text": "type",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/node-type-NodeType-variable",
+          "style": {},
+          "text": "variable",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents the different types of nodes that can be displayed in the diagram.\n * - \"class\": Represents a class definition\n * - \"enum\": Represents an enumeration\n * - \"interface\": Represents an interface definition\n * - \"type\": Represents a type definition\n * - \"variable\": Represents a variable declaration\n */",
+      "id": "/types/enums/node-type-NodeType",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/enums/node-type-NodeType-TITLE",
+        "nodeType": "type",
+        "style": {},
+        "text": "NodeType"
+      },
+      "type": "type"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/enums/theme-Theme-light",
+          "style": {},
+          "text": "light",
+          "type": "attribute"
+        },
+        {
+          "id": "/types/enums/theme-Theme-dark",
+          "style": {},
+          "text": "dark",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents the theme of the diagram.\n * Can be \"light\" or \"dark\"\n */",
+      "id": "/types/enums/theme-Theme",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/enums/theme-Theme-TITLE",
+        "nodeType": "type",
+        "style": {},
+        "text": "Theme"
+      },
+      "type": "type"
+    },
+    {
+      "attributes": [
+        {
           "docs": "/**\n   * Configuration for the graph\n   * @see {@link Config}\n   */",
           "id": "/types/graph/graph-Graph-config",
           "style": {},
@@ -706,435 +1162,24 @@
         "text": "Config"
       },
       "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-checked",
-          "style": {},
-          "text": "checked",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-unchecked",
-          "style": {},
-          "text": "unchecked",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-partial",
-          "style": {},
-          "text": "partial",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of messages that are sent between components of the web\n */",
-      "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-TITLE",
-        "nodeType": "type",
-        "style": {},
-        "text": "CheckboxPartialCheckedStatus"
-      },
-      "type": "type"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-id",
-          "style": {},
-          "text": "id: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-isFolder",
-          "style": {},
-          "text": "isFolder: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-isFile",
-          "style": {},
-          "text": "isFile: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-isElement",
-          "style": {},
-          "text": "isElement: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-checked",
-          "style": {},
-          "text": "checked: CheckboxPartialCheckedStatus;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-children",
-          "style": {},
-          "text": "children?: { [key: string]: TreeNode };",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-name",
-          "style": {},
-          "text": "name: string;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "",
-      "id": "/types/utils/tree-node-TreeNode",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/utils/tree-node-TreeNode-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "TreeNode"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/enums/link-path-algorithm-LinkPathAlgorithm-bezier",
-          "style": {},
-          "text": "bezier",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/enums/link-path-algorithm-LinkPathAlgorithm-step",
-          "style": {},
-          "text": "step",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/enums/link-path-algorithm-LinkPathAlgorithm-straight",
-          "style": {},
-          "text": "straight",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of relationships between nodes in the diagram.\n * - \"association\": Indicates a basic association between nodes\n * - \"inheritance\": Indicates an inheritance/extends relationship\n */",
-      "id": "/types/enums/link-path-algorithm-LinkPathAlgorithm",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/enums/link-path-algorithm-LinkPathAlgorithm-TITLE",
-        "nodeType": "type",
-        "style": {},
-        "text": "LinkPathAlgorithm"
-      },
-      "type": "type"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/enums/link-type-LinkType-association",
-          "style": {},
-          "text": "association",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/enums/link-type-LinkType-inheritance",
-          "style": {},
-          "text": "inheritance",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of relationships between nodes in the diagram.\n * - \"association\": Indicates a basic association between nodes\n * - \"inheritance\": Indicates an inheritance/extends relationship\n */",
-      "id": "/types/enums/link-type-LinkType",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/enums/link-type-LinkType-TITLE",
-        "nodeType": "type",
-        "style": {},
-        "text": "LinkType"
-      },
-      "type": "type"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/enums/msg-type-MsgType-load-graph",
-          "style": {},
-          "text": "load-graph",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/enums/msg-type-MsgType-update-visible-nodes",
-          "style": {},
-          "text": "update-visible-nodes",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of messages that are sent between components of the web\n */",
-      "id": "/types/enums/msg-type-MsgType",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/enums/msg-type-MsgType-TITLE",
-        "nodeType": "type",
-        "style": {},
-        "text": "MsgType"
-      },
-      "type": "type"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/enums/node-attribute-scope-NodeAttributeScope-private",
-          "style": {},
-          "text": "private",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/enums/node-attribute-scope-NodeAttributeScope-protected",
-          "style": {},
-          "text": "protected",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/enums/node-attribute-scope-NodeAttributeScope-public",
-          "style": {},
-          "text": "public",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents the visibility/access level of a node attribute.\n * - \"private\": Attribute is only accessible within the class\n * - \"protected\": Attribute is only accessible to the class and its subclasses\n * - \"public\": Attribute is publicly accessible\n */",
-      "id": "/types/enums/node-attribute-scope-NodeAttributeScope",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/enums/node-attribute-scope-NodeAttributeScope-TITLE",
-        "nodeType": "type",
-        "style": {},
-        "text": "NodeAttributeScope"
-      },
-      "type": "type"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/enums/node-attribute-type-NodeAttributeType-attribute",
-          "style": {},
-          "text": "attribute",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/enums/node-attribute-type-NodeAttributeType-enumOrTypeOption",
-          "style": {},
-          "text": "enumOrTypeOption",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/enums/node-attribute-type-NodeAttributeType-method",
-          "style": {},
-          "text": "method",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/enums/node-attribute-type-NodeAttributeType-separator",
-          "style": {},
-          "text": "separator",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of attributes that can be displayed in a node.\n * - \"attribute\": Represents a class/interface property or field\n * - \"enumOrTypeOption\": Represents an enum value or type union option\n * - \"method\": Represents a class/interface method or function\n * - \"separator\": Represents a visual separator line\n */",
-      "id": "/types/enums/node-attribute-type-NodeAttributeType",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/enums/node-attribute-type-NodeAttributeType-TITLE",
-        "nodeType": "type",
-        "style": {},
-        "text": "NodeAttributeType"
-      },
-      "type": "type"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/enums/node-type-NodeType-class",
-          "style": {},
-          "text": "class",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/enums/node-type-NodeType-enum",
-          "style": {},
-          "text": "enum",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/enums/node-type-NodeType-interface",
-          "style": {},
-          "text": "interface",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/enums/node-type-NodeType-type",
-          "style": {},
-          "text": "type",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/enums/node-type-NodeType-variable",
-          "style": {},
-          "text": "variable",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of nodes that can be displayed in the diagram.\n * - \"class\": Represents a class definition\n * - \"enum\": Represents an enumeration\n * - \"interface\": Represents an interface definition\n * - \"type\": Represents a type definition\n * - \"variable\": Represents a variable declaration\n */",
-      "id": "/types/enums/node-type-NodeType",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/enums/node-type-NodeType-TITLE",
-        "nodeType": "type",
-        "style": {},
-        "text": "NodeType"
-      },
-      "type": "type"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/enums/theme-Theme-light",
-          "style": {},
-          "text": "light",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/enums/theme-Theme-dark",
-          "style": {},
-          "text": "dark",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents the theme of the diagram.\n * Can be \"light\" or \"dark\"\n */",
-      "id": "/types/enums/theme-Theme",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/enums/theme-Theme-TITLE",
-        "nodeType": "type",
-        "style": {},
-        "text": "Theme"
-      },
-      "type": "type"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * A list of node ids to add to the diagram\n   * @see {@link Graph}\n   */",
-          "id": "/types/messages/msg-load-graph-MsgLoadGraph-graph",
-          "style": {},
-          "text": "graph: Graph;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
-          "id": "/types/messages/msg-load-graph-MsgLoadGraph-type",
-          "style": {},
-          "text": "type: 'load-graph';",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
-      "id": "/types/messages/msg-load-graph-MsgLoadGraph",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/messages/msg-load-graph-MsgLoadGraph-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "MsgLoadGraph"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * A list of node ids to add to the diagram\n   * @see {@link Node}\n   */",
-          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-nodeIdsToAdd",
-          "style": {},
-          "text": "nodeIdsToAdd: string[];",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * A list of node ids to remove from the diagram\n   * @see {@link Node}\n   */",
-          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-nodeIdsToRemove",
-          "style": {},
-          "text": "nodeIdsToRemove: string[];",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
-          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-type",
-          "style": {},
-          "text": "type: 'update-visible-nodes';",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
-      "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "MsgUpdateVisibleNodes"
-      },
-      "type": "interface"
     }
   ],
   "links": [
+    {
+      "sourceId": "/types/utils/tree-node-TreeNode",
+      "targetId": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/utils/tree-node-TreeNode",
+      "targetId": "/types/utils/tree-node-TreeNode",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/messages/msg-load-graph-MsgLoadGraph",
+      "targetId": "/types/graph/graph-Graph",
+      "type": "association"
+    },
     {
       "sourceId": "/types/graph/graph-Graph",
       "targetId": "/types/config/config-Config",
@@ -1263,21 +1308,6 @@
     {
       "sourceId": "/types/config/config-Config",
       "targetId": "/types/config/config-nodes-ConfigNodes",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/utils/tree-node-TreeNode",
-      "targetId": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/utils/tree-node-TreeNode",
-      "targetId": "/types/utils/tree-node-TreeNode",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/messages/msg-load-graph-MsgLoadGraph",
-      "targetId": "/types/graph/graph-Graph",
       "type": "association"
     }
   ],
