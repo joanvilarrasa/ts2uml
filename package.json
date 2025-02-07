@@ -2,44 +2,33 @@
   "name": "ts2uml",
   "private": "true",
   "version": "0.0.1",
-  "workspaces": [
-    "apps/web",
-    "apps/vscode-ext",
-    "packages/core",
-    "packages/models",
-    "packages/npm-lib"
-  ],
+  "workspaces": ["apps/web", "packages/core", "packages/models"],
   "scripts": {
     "clean": "rm -rf node_modules dist",
     "clean:all": "bun run clean:models && bun run clean:core && bun run clean:web",
     "clean:models": "cd packages/models && bun run clean",
     "clean:core": "cd packages/core && bun run clean",
     "clean:web": "cd apps/web && bun run clean",
-
     "lint": "biome check .",
     "lint:all": "bun run lint:models && bun run lint:core && bun run lint:web",
     "lint:models": "cd packages/models && bun run lint",
     "lint:core": "cd packages/core && bun run lint",
     "lint:web": "cd apps/web && bun run lint",
-
     "format": "biome format --write .",
     "format:all": "bun run format:models && bun run format:core && bun run format:web",
     "format:models": "cd packages/models && bun run format",
     "format:core": "cd packages/core && bun run format",
     "format:web": "cd apps/web && bun run format",
-
     "build": "bun run build:all",
     "build:all": "bun run build:models && bun run build:core && bun run build:web",
     "build:models": "cd packages/models && bun run build",
     "build:core": "cd packages/core && bun run build",
     "build:web": "cd apps/web && bun run build",
-
     "dev": "bun run dev:all",
     "dev:all": "bun run dev:models && bun run dev:core && bun run dev:web",
     "dev:models": "cd packages/models && bun run dev",
     "dev:core": "cd packages/core && bun run dev",
     "dev:web": "cd apps/web && bun run dev",
-
     "preview:web": "cd apps/web && bun run preview",
     "demo": "cd packages/core && bun run generate-demo-graph"
   },

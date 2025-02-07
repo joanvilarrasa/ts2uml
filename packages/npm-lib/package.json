@@ -1,6 +1,0 @@
-{
-  "name": "@ts2uml/npm-lib",
-  "version": "0.0.1",
-  "module": "index.ts",
-  "type": "module"
-}
