@@ -25,5 +25,8 @@
         "useExhaustiveDependencies": "off"
       }
     }
+  },
+  "files": {
+    "ignore": ["vscode-ext/*"]
   }
 }

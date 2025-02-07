@@ -1,0 +1,38 @@
+html {
+    scrollbar-color: transparent transparent;
+}
+
+body {
+    overscroll-behavior-x: none;
+}
+
+#root{
+    height: 100vh; 
+    width: calc(100vw - 40px);
+    padding-bottom: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 1px;
+    height: 1px;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: transparent;
+}
+::highlight(find-highlight) {
+    background-color: transparent;
+}
+::highlight(current-find-highlight) {
+    background-color: transparent;
+}

@@ -45,7 +45,7 @@ If you find any issues, please let me know at [@joan_vilarrasa](https://x.com/jo
 
 Here are the release notes for the extension. Please remember that this is an alpha version and nothing is stable yet.
 
-### [0.0.1] - Hello world
+### [0.0.5] - Hello world
 
 This is the first release of the extension.
 Here are the features implemented in this first release:
@@ -71,6 +71,7 @@ Here are the features implemented in this first release:
 - **Zoom and Pan and move nodes around (React Flow features --> no work has been done for this):**  
     - Use the mouse wheel to zoom in and out, and drag to pan around the diagram.
     - You can also move the nodes around by dragging them with the mouse.
+
 ---
 
 ## Contributing

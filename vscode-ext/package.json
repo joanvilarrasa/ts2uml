@@ -3,14 +3,23 @@
   "displayName": "ts2uml",
   "description": "Generate UML graphs from yout typescript code",
   "publisher": "jvilarrasa",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "engines": {
-    "vscode": "^1.97.0"
+    "vscode": "^1.86.0"
   },
   "categories": ["Other", "Visualization", "Programming Languages"],
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "type": "webview",
+          "id": "ts2uml.umlView",
+          "name": "ts2uml"
+        }
+      ]
+    },
     "menus": {
       "explorer/context": [
         {
@@ -43,7 +52,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.97.0",
+    "@types/vscode": "^1.86.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
     "@typescript-eslint/eslint-plugin": "^8.22.0",

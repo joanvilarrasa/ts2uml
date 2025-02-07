@@ -2,8 +2,7 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
-
-### [v0.0.1] - Hello world
+### [v0.0.5] - Hello world
 
 This is the first release of the extension.
 Here are the features implemented in this first release:

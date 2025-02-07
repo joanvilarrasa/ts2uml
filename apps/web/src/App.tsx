@@ -149,7 +149,7 @@ export default function App() {
    * RENDER
    ***********************************************************/
   return (
-    <div className="h-screen w-screen overflow-hidden">
+    <div className="h-full w-full overflow-hidden">
       <ReactFlow
         nodeTypes={RF_NODE_TYPES}
         edgeTypes={RF_EDGE_TYPES}
