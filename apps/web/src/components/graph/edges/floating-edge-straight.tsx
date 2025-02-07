@@ -10,7 +10,6 @@ export interface FloatingEdgeStraightProps {
 
 export function FloatingEdgeStraight({ id, source, target, markerEnd }: FloatingEdgeStraightProps) {
   const sourceNode: InternalNode = useInternalNode(source);
-
   const targetNode: InternalNode = useInternalNode(target);
 
   if (!sourceNode || !targetNode) {

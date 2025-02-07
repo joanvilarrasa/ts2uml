@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { ZMsgType } from '../enums/msg-type.ts';
 import { type Graph, ZGraph, createGraph } from '../graph/graph.ts';
+import { ZMsgType } from './msg-type.ts';
 
 /**
  * Represents a relationship/link between two nodes in the diagram.

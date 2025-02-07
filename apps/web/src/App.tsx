@@ -12,11 +12,17 @@ import '@xyflow/react/dist/style.css';
 import {
   type Graph,
   type MsgLoadGraph,
+  type MsgUpdateLinkPathAlgorithm,
   type MsgUpdateVisibleNodes,
   type Node,
+  ZMsgUpdateLinkPathAlgorithm,
   ZMsgUpdateVisibleNodes,
   is,
 } from '@ts2uml/models';
+import {
+  type MsgUpdateLayoutAlgorithm,
+  ZMsgUpdateLayoutAlgorithm,
+} from '@ts2uml/models/src/types/messages/msg-update-layout-algorithm';
 import ELK, { type LayoutOptions, type ElkNode } from 'elkjs/lib/elk.bundled.js';
 import initialGraph from './assets/demo-graph.json';
 import { Toolbox } from './components/toolbox/toolbox';
@@ -34,6 +40,7 @@ export default function App() {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [alreadyAppliedLayout, setAlreadyAppliedLayout] = useState(false);
+  const [layoutOptions, setLayoutOptions] = useState<LayoutOptions>(ELK_DEFAULT_LAYOUT_OPTIONS);
 
   /***********************************************************
    * MESSAGE HANDLERS
@@ -43,6 +50,12 @@ export default function App() {
     const data = event.data;
     if (is<MsgUpdateVisibleNodes>(data, ZMsgUpdateVisibleNodes)) {
       handleUpdateVisibleNodes(data);
+    }
+    if (is<MsgUpdateLayoutAlgorithm>(data, ZMsgUpdateLayoutAlgorithm)) {
+      handleUpdateLayoutAlgorithm(data);
+    }
+    if (is<MsgUpdateLinkPathAlgorithm>(data, ZMsgUpdateLinkPathAlgorithm)) {
+      handleUpdateLinkPathAlgorithm(data);
     }
   }
 
@@ -66,6 +79,23 @@ export default function App() {
     const edges = graph.links.map((link) => linkToRFEdge(link, graph.config.links.linkPathAlgorithm));
     setNodes(nodes);
     setEdges(edges);
+  }
+
+  function handleUpdateLayoutAlgorithm({ layoutAlgorithm }: MsgUpdateLayoutAlgorithm) {
+    setAlreadyAppliedLayout(false);
+    setLayoutOptions({
+      ...layoutOptions,
+      'elk.algorithm': `org.eclipse.elk.${layoutAlgorithm}`,
+    });
+  }
+
+  function handleUpdateLinkPathAlgorithm({ linkPathAlgorithm }: MsgUpdateLinkPathAlgorithm) {
+    const edges = reactFlow.getEdges();
+    for (const edge of edges) {
+      reactFlow.updateEdge(edge.id, {
+        type: `floating-${linkPathAlgorithm}`,
+      });
+    }
   }
 
   /***********************************************************
@@ -124,6 +154,10 @@ export default function App() {
     }
   }, [nodes]);
 
+  useEffect(() => {
+    getLayoutedElements(layoutOptions);
+  }, [layoutOptions]);
+
   /***********************************************************
    * RENDER
    ***********************************************************/
@@ -136,6 +170,8 @@ export default function App() {
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
+        maxZoom={10}
+        minZoom={0.1}
       >
         <Panel position="bottom-center">
           <Toolbox />

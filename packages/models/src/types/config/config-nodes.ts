@@ -6,8 +6,8 @@ import {
   DEFAULT_LIGHT_TYPE_STYLE,
   DEFAULT_LIGHT_VARIABLE_STYLE,
 } from '../../defaults/light-node-styles.ts';
-import { type NodeType, ZNodeType } from '../enums/node-type.ts';
 import { type NodeStyle, ZNodeStyle, createNodeStyle } from '../graph/node-style.ts';
+import { type NodeType, ZNodeType } from '../graph/node-type.ts';
 import { type ConfigNodesFilter, ZConfigNodesFilter, createConfigNodesFilter } from './config-nodes-filter.ts';
 import { type ConfigNodesOptions, ZConfigNodesOptions, createConfigNodesOptions } from './config-nodes-options.ts';
 

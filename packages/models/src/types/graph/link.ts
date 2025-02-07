@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { type LinkType, ZLinkType } from '../enums/link-type.ts';
+import { type LinkType, ZLinkType } from './link-type.ts';
 
 /**
  * Represents a relationship/link between two nodes in the diagram.

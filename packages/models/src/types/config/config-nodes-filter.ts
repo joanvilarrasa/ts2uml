@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { type NodeType, ZNodeType } from '../enums/node-type.ts';
+import { type NodeType, ZNodeType } from '../graph/node-type.ts';
 
 /**
 /**

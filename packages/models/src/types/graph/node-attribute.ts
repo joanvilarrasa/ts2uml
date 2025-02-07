@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { type NodeAttributeScope, ZNodeAttributeScope } from '../enums/node-attribute-scope.ts';
-import { type NodeAttributeType, ZNodeAttributeType } from '../enums/node-attribute-type.ts';
+import { type NodeAttributeScope, ZNodeAttributeScope } from './node-attribute-scope.ts';
+import { type NodeAttributeType, ZNodeAttributeType } from './node-attribute-type.ts';
 import { type NodeStyle, ZNodeStyle, createNodeStyle } from './node-style.ts';
 
 /**

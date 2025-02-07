@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { type NodeType, ZNodeType } from '../enums/node-type.ts';
 import { type NodeStyle, ZNodeStyle, createNodeStyle } from './node-style.ts';
+import { type NodeType, ZNodeType } from './node-type.ts';
 
 /**
  * Represents the title/header section of a node in the diagram.

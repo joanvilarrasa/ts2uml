@@ -1,4 +1,4 @@
-import type { Theme } from '../types/enums/theme.ts';
+import type { Theme } from '../types/config/theme.ts';
 
 export const DEFAULT_THEME: Theme = 'light';
 

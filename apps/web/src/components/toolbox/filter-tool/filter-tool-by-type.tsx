@@ -36,7 +36,7 @@ export function FilterToolByType() {
     });
   }
 
-  const handleFilterTypeChange = (type: NodeType) => {
+  function handleFilterTypeChange(type: NodeType) {
     let filterByType = gm.getGraph().config.nodes.filter.filter_type;
     let nodeIdsToAdd: string[] = [];
     let nodeIdsToRemove: string[] = [];
@@ -60,9 +60,9 @@ export function FilterToolByType() {
 
     updateCheckedStatusByType();
     window.postMessage(createMsgUpdateVisibleNodes({ nodeIdsToAdd, nodeIdsToRemove }));
-  };
+  }
 
-  const getNodeIdsByType = (type: NodeType) => {
+  function getNodeIdsByType(type: NodeType) {
     const nodeIds: string[] = [];
     for (const node of gm.getGraph().nodes) {
       if (node.type === type) {
@@ -70,7 +70,7 @@ export function FilterToolByType() {
       }
     }
     return nodeIds;
-  };
+  }
 
   return (
     <Collapsible defaultOpen={true} className="flex flex-col items-start justify-start">

@@ -6,16 +6,26 @@ export type { ConfigLinksOptions } from './src/types/config/config-links-options
 export type { ConfigNodes } from './src/types/config/config-nodes.ts';
 export type { ConfigNodesFilter } from './src/types/config/config-nodes-filter.ts';
 export type { ConfigNodesOptions } from './src/types/config/config-nodes-options.ts';
+export type { LayoutAlgorithm } from './src/types/config/layout-algorithm.ts';
+export type { LinkPathAlgorithm } from './src/types/config/link-path-algorithm.ts';
+export type { Theme } from './src/types/config/theme.ts';
 
 export type { Graph } from './src/types/graph/graph.ts';
 export type { Link } from './src/types/graph/link.ts';
+export type { LinkType } from './src/types/graph/link-type.ts';
 export type { Node } from './src/types/graph/node.ts';
+export type { NodeType } from './src/types/graph/node-type.ts';
 export type { NodeAttribute } from './src/types/graph/node-attribute.ts';
+export type { NodeAttributeScope } from './src/types/graph/node-attribute-scope.ts';
+export type { NodeAttributeType } from './src/types/graph/node-attribute-type.ts';
 export type { NodePosition } from './src/types/graph/node-position.ts';
 export type { NodeStyle } from './src/types/graph/node-style.ts';
 export type { NodeTitle } from './src/types/graph/node-title.ts';
 
 export type { MsgLoadGraph } from './src/types/messages/msg-load-graph.ts';
+export type { MsgType } from './src/types/messages/msg-type.ts';
+export type { MsgUpdateLayoutAlgorithm } from './src/types/messages/msg-update-layout-algorithm.ts';
+export type { MsgUpdateLinkPathAlgorithm } from './src/types/messages/msg-update-link-path-algorithm.ts';
 export type { MsgUpdateVisibleNodes } from './src/types/messages/msg-update-visible-nodes.ts';
 
 // Export create methods for the types and interfaces
@@ -36,24 +46,11 @@ export { createNodeStyle } from './src/types/graph/node-style.ts';
 export { createNodeTitle } from './src/types/graph/node-title.ts';
 
 export { createMsgLoadGraph } from './src/types/messages/msg-load-graph.ts';
+export { createMsgUpdateLayoutAlgorithm } from './src/types/messages/msg-update-layout-algorithm.ts';
+export { createMsgUpdateLinkPathAlgorithm } from './src/types/messages/msg-update-link-path-algorithm.ts';
 export { createMsgUpdateVisibleNodes } from './src/types/messages/msg-update-visible-nodes.ts';
 
-// Export enums and their types
-export type { LinkPathAlgorithm } from './src/types/enums/link-path-algorithm.ts';
-export type { LinkType } from './src/types/enums/link-type.ts';
-export type { NodeAttributeScope } from './src/types/enums/node-attribute-scope.ts';
-export type { NodeAttributeType } from './src/types/enums/node-attribute-type.ts';
-export type { NodeType } from './src/types/enums/node-type.ts';
-export type { Theme } from './src/types/enums/theme.ts';
-
 // Export Zod schemas
-export { ZLinkPathAlgorithm } from './src/types/enums/link-path-algorithm.ts';
-export { ZLinkType } from './src/types/enums/link-type.ts';
-export { ZNodeAttributeScope } from './src/types/enums/node-attribute-scope.ts';
-export { ZNodeAttributeType } from './src/types/enums/node-attribute-type.ts';
-export { ZNodeType } from './src/types/enums/node-type.ts';
-export { ZTheme } from './src/types/enums/theme.ts';
-
 export { ZConfig } from './src/types/config/config.ts';
 export { ZConfigLinks } from './src/types/config/config-links.ts';
 export { ZConfigLinksFilter } from './src/types/config/config-links-filter.ts';
@@ -61,15 +58,25 @@ export { ZConfigLinksOptions } from './src/types/config/config-links-options.ts'
 export { ZConfigNodes } from './src/types/config/config-nodes.ts';
 export { ZConfigNodesFilter } from './src/types/config/config-nodes-filter.ts';
 export { ZConfigNodesOptions } from './src/types/config/config-nodes-options.ts';
+export { ZLayoutAlgorithm } from './src/types/config/layout-algorithm.ts';
+export { ZLinkPathAlgorithm } from './src/types/config/link-path-algorithm.ts';
+export { ZTheme } from './src/types/config/theme.ts';
 
 export { ZGraph } from './src/types/graph/graph.ts';
 export { ZLink } from './src/types/graph/link.ts';
+export { ZLinkType } from './src/types/graph/link-type.ts';
 export { ZNode } from './src/types/graph/node.ts';
+export { ZNodeType } from './src/types/graph/node-type.ts';
 export { ZNodeAttribute } from './src/types/graph/node-attribute.ts';
+export { ZNodeAttributeScope } from './src/types/graph/node-attribute-scope.ts';
+export { ZNodeAttributeType } from './src/types/graph/node-attribute-type.ts';
 export { ZNodeStyle } from './src/types/graph/node-style.ts';
 export { ZNodeTitle } from './src/types/graph/node-title.ts';
 
 export { ZMsgLoadGraph } from './src/types/messages/msg-load-graph.ts';
+export { ZMsgType } from './src/types/messages/msg-type.ts';
+export { ZMsgUpdateLayoutAlgorithm } from './src/types/messages/msg-update-layout-algorithm.ts';
+export { ZMsgUpdateLinkPathAlgorithm } from './src/types/messages/msg-update-link-path-algorithm.ts';
 export { ZMsgUpdateVisibleNodes } from './src/types/messages/msg-update-visible-nodes.ts';
 
 // Export default styles and colors

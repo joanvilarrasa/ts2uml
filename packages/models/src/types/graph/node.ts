@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { type NodeType, ZNodeType } from '../enums/node-type.ts';
 import { type NodeAttribute, ZNodeAttribute, createNodeAttribute } from './node-attribute.ts';
 import { type NodePosition, ZNodePosition, createNodePosition } from './node-position.ts';
 import { type NodeStyle, ZNodeStyle } from './node-style.ts';
 import { type NodeTitle, ZNodeTitle, createNodeTitle } from './node-title.ts';
+import { type NodeType, ZNodeType } from './node-type.ts';
 
 /**
  * Represents a node in the diagram, which can be a class, interface, type, enum, function, or variable.

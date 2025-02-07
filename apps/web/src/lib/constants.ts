@@ -48,4 +48,6 @@ export const ELK_DEFAULT_LAYOUT_OPTIONS: LayoutOptions = {
   'elk.spacing.nodeNode': '50', // default 20
   'elk.spacing.componentComponent': '100', // default 20
   'elk.separateConnectedComponents': 'true',
+  'elk.radial.radius': '0.0',
+  'elk.radial.compactor': 'RADIAL_COMPACTION',
 };

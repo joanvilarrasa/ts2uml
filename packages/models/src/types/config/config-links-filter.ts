@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { type LinkType, ZLinkType } from '../enums/link-type.ts';
+import { type LinkType, ZLinkType } from '../graph/link-type.ts';
 
 /**
  * Interface defining the configuration for filtering links (relationships) in the diagram.

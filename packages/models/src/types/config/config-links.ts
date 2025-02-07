@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { type LinkPathAlgorithm, ZLinkPathAlgorithm } from '../enums/link-path-algorithm.ts';
 import { type ConfigLinksFilter, ZConfigLinksFilter, createConfigLinksFilter } from './config-links-filter.ts';
 import { type ConfigLinksOptions, ZConfigLinksOptions, createConfigLinksOptions } from './config-links-options.ts';
+import { type LinkPathAlgorithm, ZLinkPathAlgorithm } from './link-path-algorithm.ts';
 
 /**
  * Interface defining the configuration for displaying links (relationships) in the diagram.
