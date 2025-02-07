@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const ZLinkPathAlgorithm = z.enum(['bezier', 'step', 'straight']);
+export const ZLinkPathAlgorithm = z.enum(['straight', 'bezier', 'step']);
 
 /**
  * Represents the different types of relationships between nodes in the diagram.

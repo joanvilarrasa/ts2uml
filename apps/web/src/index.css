@@ -6,6 +6,7 @@ body {
   font-family: "Sometype Mono", serif;
   font-optical-sizing: auto;
   font-style: normal;
+  background-color: #f1ede2;
   background-image: url("./assets/noise.png");
   background-repeat: repeat;
 }

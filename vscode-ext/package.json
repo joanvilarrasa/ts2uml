@@ -1,0 +1,58 @@
+{
+  "name": "ts2uml",
+  "displayName": "ts2uml",
+  "description": "Generate UML graphs from yout typescript code",
+  "publisher": "jvilarrasa",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.97.0"
+  },
+  "categories": ["Other", "Visualization", "Programming Languages"],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "resourceScheme == 'file' && explorerResourceIsFolder == true",
+          "command": "ts2uml.generateUml",
+          "title": "Generate UML Diagram",
+          "group": "ts2uml"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "ts2uml.generateUml",
+        "title": "Generate UML Diagram"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.97.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
+    "eslint": "^9.19.0",
+    "esbuild": "^0.24.2",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.7.3",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
