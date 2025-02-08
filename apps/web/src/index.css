@@ -6,8 +6,8 @@ body {
   font-family: "Sometype Mono", serif;
   font-optical-sizing: auto;
   font-style: normal;
-  background-color: #f1ede2;
-  background-image: url("./assets/noise.png");
+  background-color: hsl(var(--background));
+  background-image: var(--background-image-url) !important;
   background-repeat: repeat;
 }
 
@@ -19,6 +19,7 @@ body {
     --functionRgb: #ffd1d1;
     --variableRgb: #ffd1d1;
     --typeRgb: #bdd8ff;
+    --background-image-url: url("./assets/noise.png");
 
     --interface: 183 37% 63%;
     --class: 198 100% 89%;
@@ -39,7 +40,7 @@ body {
     --secondary-foreground: 0 0% 9%;
     --muted: 40 9% 87%;
     --muted-foreground: 42 26% 15%;
-    --accent: 182, 37%, 54%;
+    --accent: 183 37% 63%;
     --accent-foreground: 41, 35%, 11%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -52,21 +53,40 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+
+    --xy-background-color: transparent;
+    --xy-background-color-default: transparent;
   }
   .dark {
-    --background: 0 0% 3.9%;
+    --interfaceRgb: #316d72;
+    --classRgb: #29657f;
+    --unionRgb: #785492;
+    --functionRgb: #7e3430;
+    --variableRgb: #7d332f;
+    --typeRgb: #2e496b;
+
+    --background-image-url: url("./assets/noise-dark.png");
+
+    --interface: 185 40% 32%;
+    --class: 198 51% 33%;
+    --union: 275 27% 45%;
+    --function: 3 45% 34%;
+    --type: 213 40% 30%;
+    --variable: 3 45% 34%;
+
+    --background: 60, 3%, 14%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
+    --primary: 185 40% 32%;
     --primary-foreground: 0 0% 9%;
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
+    --accent: 185 40% 32%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
@@ -78,6 +98,9 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    --xy-background-color: transparent;
+    --xy-background-color-default: transparent;
   }
 }
 @layer base {

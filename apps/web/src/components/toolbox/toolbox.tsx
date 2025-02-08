@@ -7,6 +7,7 @@ import { Separator } from '../ui/separator';
 import { ExportTool } from './export-tool/export-tool';
 import { FilterTool } from './filter-tool/filter-tool';
 import { LayoutTool } from './layout-tool/layout-tool';
+import ThemeToggle from './theme-toggle';
 
 export function Toolbox() {
   function loadGraph() {
@@ -27,6 +28,7 @@ export function Toolbox() {
         <Button variant="outline" size="icon" disabled onClick={loadGraph}>
           <Settings />
         </Button>
+        <ThemeToggle />
       </CardContent>
     </Card>
   );

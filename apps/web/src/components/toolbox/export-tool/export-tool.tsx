@@ -80,7 +80,7 @@ export function ExportTool() {
     const viewport = getViewportForBounds(nodesBounds, EXPORT_IMAGE_WIDTH, EXPORT_IMAGE_HEIGHT, 0.1, 10, 0);
 
     const options: { [key: string]: unknown } = {
-      backgroundColor: withBackground ? '#f1ede2' : 'transparent',
+      backgroundColor: withBackground ? 'hsl(var(--background))' : 'transparent',
       width: EXPORT_IMAGE_WIDTH,
       height: EXPORT_IMAGE_HEIGHT,
       style: {

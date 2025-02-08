@@ -30,11 +30,13 @@ import { ELK_DEFAULT_LAYOUT_OPTIONS, RF_EDGE_TYPES, RF_NODE_TYPES } from './lib/
 import { GraphManager } from './lib/graph-manager';
 import { linkToRFEdge } from './lib/link-to-rf-edge';
 import { nodeToRFNode } from './lib/node-to-rf-node';
+import { useTheme } from './theme-provider';
 
 const elk = new ELK();
 
 export default function App() {
   const gm: GraphManager = GraphManager.getInstance();
+  const { theme } = useTheme();
   const reactFlow = useReactFlow();
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
@@ -151,6 +153,7 @@ export default function App() {
   return (
     <div className="h-full w-full overflow-hidden">
       <ReactFlow
+        colorMode={theme}
         nodeTypes={RF_NODE_TYPES}
         edgeTypes={RF_EDGE_TYPES}
         nodes={nodes}

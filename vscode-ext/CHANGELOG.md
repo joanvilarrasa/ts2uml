@@ -2,6 +2,14 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.11] - Small bug fix
+
+- Small bug fix
+
+### [v0.0.10] - Welcoming the dark side
+
+- Added a new button to change the theme of the diagram.
+
 ### [v0.0.9] - Fix export bug
 
 - Fix font bug when exporting from the extension.

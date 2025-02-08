@@ -18,7 +18,7 @@ export function dataURLToBlob(dataURL: string): Blob {
   }
   const mime = mimeMatch[1];
   const binary = atob(base64Data);
-  const array = [];
+  const array: number[] = [];
   for (let i = 0; i < binary.length; i++) {
     array.push(binary.charCodeAt(i));
   }
