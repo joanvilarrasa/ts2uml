@@ -31,6 +31,7 @@
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",
     "elkjs": "^0.9.3",
+    "html-to-image": "^1.11.11",
     "lucide-react": "^0.473.0",
     "next-themes": "^0.4.4",
     "react": "^18.3.1",

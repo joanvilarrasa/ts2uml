@@ -2,9 +2,9 @@ import { z } from 'zod';
 
 export const ZMsgType = z.enum([
   'load-graph',
-  'update-visible-nodes',
   'update-layout-algorithm',
   'update-link-path-algorithm',
+  'update-visible-nodes',
 ]);
 
 /**

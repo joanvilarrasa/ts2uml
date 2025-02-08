@@ -26,7 +26,6 @@ export function LayoutTool() {
           <Separator className="mt-1 mb-2" orientation="horizontal" />
 
           {/* <div>Button to refresh the layout</div> */}
-          <Separator className="mt-1 mb-2 bg-border/20" orientation="horizontal" />
           <LayoutToolLayoutAlgorithm />
           <Separator className="mt-1 mb-2 bg-border/20" orientation="horizontal" />
           <LayoutToolLinkPathAlgorithm />

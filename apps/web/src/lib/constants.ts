@@ -53,3 +53,9 @@ export const ELK_DEFAULT_LAYOUT_OPTIONS: LayoutOptions = {
   'elk.radial.radius': '0.0',
   'elk.radial.compactor': 'RADIAL_COMPACTION',
 };
+
+/**
+ * Default image size for export
+ */
+export const EXPORT_IMAGE_WIDTH = 3840;
+export const EXPORT_IMAGE_HEIGHT = 2160;

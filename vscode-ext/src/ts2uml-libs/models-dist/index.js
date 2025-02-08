@@ -4357,9 +4357,9 @@ function createGraph(data) {
 // src/types/messages/msg-type.ts
 var ZMsgType = z.enum([
   "load-graph",
-  "update-visible-nodes",
   "update-layout-algorithm",
-  "update-link-path-algorithm"
+  "update-link-path-algorithm",
+  "update-visible-nodes"
 ]);
 
 // src/types/messages/msg-load-graph.ts
@@ -4411,6 +4411,9 @@ function createMsgUpdateVisibleNodes(data) {
     type: "update-visible-nodes"
   });
 }
+
+// src/types/export/export-format.ts
+var ZExportFormat = z.enum(["json", "png", "png-transparent"]);
 
 // src/defaults/colors.ts
 var DEFAULT_THEME = "light";
@@ -4720,6 +4723,7 @@ export {
   ZConfigNodes,
   ZConfigNodesFilter,
   ZConfigNodesOptions,
+  ZExportFormat,
   ZGraph,
   ZLayoutAlgorithm,
   ZLink,

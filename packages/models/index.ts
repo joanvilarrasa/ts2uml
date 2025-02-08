@@ -10,6 +10,8 @@ export type { LayoutAlgorithm } from './src/types/config/layout-algorithm.ts';
 export type { LinkPathAlgorithm } from './src/types/config/link-path-algorithm.ts';
 export type { Theme } from './src/types/config/theme.ts';
 
+export type { ExportFormat } from './src/types/export/export-format.ts';
+
 export type { Graph } from './src/types/graph/graph.ts';
 export type { Link } from './src/types/graph/link.ts';
 export type { LinkType } from './src/types/graph/link-type.ts';
@@ -61,6 +63,8 @@ export { ZConfigNodesOptions } from './src/types/config/config-nodes-options.ts'
 export { ZLayoutAlgorithm } from './src/types/config/layout-algorithm.ts';
 export { ZLinkPathAlgorithm } from './src/types/config/link-path-algorithm.ts';
 export { ZTheme } from './src/types/config/theme.ts';
+
+export { ZExportFormat } from './src/types/export/export-format.ts';
 
 export { ZGraph } from './src/types/graph/graph.ts';
 export { ZLink } from './src/types/graph/link.ts';

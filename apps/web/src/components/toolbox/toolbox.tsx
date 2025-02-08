@@ -1,9 +1,10 @@
 import { type Graph, createMsgLoadGraph } from '@ts2uml/models';
-import { Settings, SquareArrowOutUpRight } from 'lucide-react';
+import { Settings } from 'lucide-react';
 import demoGraph from '../../assets/demo-graph.json';
 import { Button } from '../ui/button';
 import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
+import { ExportTool } from './export-tool/export-tool';
 import { FilterTool } from './filter-tool/filter-tool';
 import { LayoutTool } from './layout-tool/layout-tool';
 
@@ -20,13 +21,10 @@ export function Toolbox() {
         {/* <Button variant="outline" size="icon">
           <LockKeyholeOpen />
         </Button> */}
-        <Separator orientation="vertical" />
-        <Button variant="outline" disabled onClick={loadGraph}>
-          <SquareArrowOutUpRight />
-          <span>Export</span>
-        </Button>
-        <Separator orientation="vertical" />
-        <Button variant="outline" size="icon" disabled>
+        <Separator orientation="vertical" className="h-4 bg-border/20" />
+        <ExportTool />
+        <Separator orientation="vertical" className="h-4 bg-border/20" />
+        <Button variant="outline" size="icon" disabled onClick={loadGraph}>
           <Settings />
         </Button>
       </CardContent>
