@@ -2,6 +2,15 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.9] - Fix export bug
+
+- Fix font bug when exporting from the extension.
+
+### [v0.0.8] - Fix export bug
+
+- Fix bug where exporting png was not allowed
+- A known bug remains in the exported pngs the font is not loaded correctly.
+
 ### [v0.0.7] - Export your Diagram
 
 - Added a new button to export the diagram to the clipboard or download it as a File.

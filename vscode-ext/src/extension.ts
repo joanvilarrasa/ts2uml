@@ -119,50 +119,88 @@ class UMLPanel {
   }
 
   private async _getHtmlForWebview(webview: vscode.Webview) {
-    // Get all files in media directory that end in .js
-    const mediaDir = vscode.Uri.joinPath(this._extensionUri, 'media');
+    // Determine locations of your bundled files
+    const mediaDir = vscode.Uri.joinPath(this._extensionUri, "media");
     const files = await vscode.workspace.fs.readDirectory(mediaDir);
-    const jsFile = files.find(([name]) => name.endsWith('.js'));
-    const cssFile = files.find(([name]) => name.startsWith('index') && name.endsWith('.css'));
-
-    console.log(jsFile, cssFile);
+    const jsFile = files.find(([name]) => name.endsWith(".js"));
+    const cssFile = files.find(
+      ([name]) => name.startsWith("index") && name.endsWith(".css")
+    );
     if (!jsFile || !cssFile) {
-      throw new Error('No JS or CSS file found in media directory');
+      throw new Error("No JS or CSS file found in media directory");
     }
 
-    // Local path to main script run in the webview
-    const scriptPathOnDisk = vscode.Uri.joinPath(this._extensionUri, 'media', jsFile[0]);
-    // And the uri we use to load this script in the webview
+    // Build URIs for your JavaScript file and the main css file.
+    const scriptPathOnDisk = vscode.Uri.joinPath(
+      this._extensionUri,
+      "media",
+      jsFile[0]
+    );
     const scriptUri = webview.asWebviewUri(scriptPathOnDisk);
 
-    // Local path to css styles
+    const cssPath = vscode.Uri.joinPath(
+      this._extensionUri,
+      "media",
+      cssFile[0]
+    );
+    
+    // Read the CSS file as text
+    const fontsCssPath = vscode.Uri.joinPath(this._extensionUri, "media", "font.css");
+    const fontsCssContent = await getFileContent(fontsCssPath);
+    const cssContent = await getFileContent(cssPath);
+    // If you have additional fonts (e.g. bold, italic) repeat the check or refine the regex.
 
-    const styleResetPath = vscode.Uri.joinPath(this._extensionUri, 'media', cssFile[0]);
-    const stylesPathMainPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'vscode.css');
-    // Uri to load styles into webview
-    const stylesResetUri = webview.asWebviewUri(styleResetPath);
+    // Get the URI for your additional CSS file (if needed)
+    const stylesPathMainPath = vscode.Uri.joinPath(
+      this._extensionUri,
+      "media",
+      "vscode.css"
+    );
     const stylesMainUri = webview.asWebviewUri(stylesPathMainPath);
-    // Use a nonce to only allow specific scripts to be run
+
+    // Use a nonce to allow only specific scripts to run
     const nonce = getNonce();
 
     return `<!DOCTYPE html>
-			<html lang="en">
-			<head>
-				<meta charset="UTF-8">
-				<meta http-equiv="Content-Security-Policy" content="default-src 'none'; font-src https:; style-src ${webview.cspSource} https:; img-src ${webview.cspSource} https:; script-src 'nonce-${nonce}';">
-				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://fonts.googleapis.com/css2?family=Sometype+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">      
-				<link href="${stylesResetUri}" rel="stylesheet">
-        <link href="${stylesMainUri}" rel="stylesheet">
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Security-Policy" content="
+          default-src 'none'; 
+          font-src ${webview.cspSource} data:; 
+          style-src ${webview.cspSource} 'unsafe-inline'; 
+          img-src ${webview.cspSource} data: https:; 
+          script-src 'nonce-${nonce}';
+        ">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-				<title>ts2uml</title>
-			</head>
+        <!-- Inject the modified CSS inline -->
+        <style>
+          ${fontsCssContent}
+        </style>
+        <style>
+          ${cssContent}
+        </style>
+
+        <!-- Link to the additional main CSS if needed -->
+        <link href="${stylesMainUri}" rel="stylesheet">
+        
+        <title>ts2uml</title>
+      </head>
       <body>
-				<div id="root"></div>
-				<script nonce="${nonce}" src="${scriptUri}"></script>
-			</body>
-			</html>`;
+        <div id="root"></div>
+        <script nonce="${nonce}">
+          document.addEventListener('DOMContentLoaded', function() {
+            document.fonts.ready.then(function() {
+              console.log('Fonts are loaded.');
+            });
+          });
+        </script>
+        <script nonce="${nonce}" src="${scriptUri}"></script>
+      </body>
+    </html>`;
   }
+
 }
 
 function getWebviewOptions(extensionUri: vscode.Uri): vscode.WebviewOptions {
@@ -179,4 +217,9 @@ function getNonce() {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return text;
+}
+
+async function getFileContent(uri: vscode.Uri): Promise<string> {
+  const bytes = await vscode.workspace.fs.readFile(uri);
+  return Buffer.from(bytes).toString("utf-8");
 }
