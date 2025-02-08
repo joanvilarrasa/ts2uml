@@ -4088,54 +4088,19 @@ function createConfigLinks(data) {
 
 // src/defaults/light-node-styles.ts
 var DEFAULT_LIGHT_CLASS_STYLE = {
-  backgroundColor: "white",
-  borderColor: "black",
-  borderWidth: "1px",
-  color: "black",
-  fontSize: "16px",
-  fontWeight: "normal",
-  height: "20px",
-  width: "100px"
+  backgroundColor: "#c7eeff"
 };
 var DEFAULT_LIGHT_UNION_STYLE = {
-  backgroundColor: "#8d578c",
-  borderColor: "black",
-  borderWidth: "1px",
-  color: "black",
-  fontSize: "16px",
-  fontWeight: "normal",
-  height: "20px",
-  width: "100px"
+  backgroundColor: "#e7ccff"
 };
 var DEFAULT_LIGHT_INTERFACE_STYLE = {
-  backgroundColor: "#4B999A",
-  borderColor: "black",
-  borderWidth: "1px",
-  color: "black",
-  fontSize: "16px",
-  fontWeight: "normal",
-  height: "20px",
-  width: "100px"
+  backgroundColor: "#7ec0c4"
 };
 var DEFAULT_LIGHT_TYPE_STYLE = {
-  backgroundColor: "#8d578c",
-  borderColor: "black",
-  borderWidth: "1px",
-  color: "black",
-  fontSize: "16px",
-  fontWeight: "normal",
-  height: "20px",
-  width: "100px"
+  backgroundColor: "#bdd8ff"
 };
 var DEFAULT_LIGHT_VARIABLE_STYLE = {
-  backgroundColor: "#e9d382",
-  borderColor: "black",
-  borderWidth: "1px",
-  color: "black",
-  fontSize: "16px",
-  fontWeight: "normal",
-  height: "20px",
-  width: "100px"
+  backgroundColor: "#ffd1d1"
 };
 
 // src/types/graph/node-style.ts
@@ -4450,7 +4415,7 @@ function createMsgUpdateVisibleNodes(data) {
 // src/defaults/colors.ts
 var DEFAULT_THEME = "light";
 var LIGHT_THEME_COLORS = {
-  background: "",
+  background: "#f1ede2",
   foreground: "#000000",
   text: "#4980af",
   border: "#8d578c"

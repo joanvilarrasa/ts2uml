@@ -57,9 +57,10 @@ function createAttributeNodes(
     .getType()
     .getProperties()
     .map((prop) => {
-      const propText = prop.getName();
-      const attributeId = `${typeId}-${propText}`;
+      const propName = prop.getName();
+      const attributeId = `${typeId}-${propName}`;
       const targetIds = getTargetIds(prop.getDeclarations(), filePath);
+      const declarationText = prop.getDeclarations()[0].getText() ?? propName;
 
       for (const targetId of targetIds) {
         if (targetId !== null && !links.find((link) => link.sourceId === typeId && link.targetId === targetId)) {
@@ -73,10 +74,11 @@ function createAttributeNodes(
         }
       }
 
+      // console.log(propText);
       return createNodeAttribute({
         id: attributeId,
-        type: 'unionOption',
-        text: propText,
+        type: 'attribute',
+        text: declarationText,
         style: createNodeStyle(),
       });
     });

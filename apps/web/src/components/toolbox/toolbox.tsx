@@ -21,7 +21,7 @@ export function Toolbox() {
           <LockKeyholeOpen />
         </Button> */}
         <Separator orientation="vertical" />
-        <Button variant="outline" onClick={loadGraph}>
+        <Button variant="outline" disabled onClick={loadGraph}>
           <SquareArrowOutUpRight />
           <span>Export</span>
         </Button>

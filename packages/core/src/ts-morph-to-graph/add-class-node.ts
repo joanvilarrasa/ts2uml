@@ -17,14 +17,13 @@ export function addClassNode(tsMorphClass: ClassDeclaration, filePath: string, l
   const sourceFileRelativePath = getNormalizedFilePath(filePath, tsMorphClass.getSourceFile().getFilePath());
   const className = tsMorphClass.getName();
   const classId = `${sourceFileRelativePath}-${className}`;
-  const classType: NodeType = 'interface';
+  const classType: NodeType = 'class';
 
   const titleNode = createTitleNode(classId, classType, className ?? '');
   const attributes = createAttributeNodes(tsMorphClass, classId, filePath, links);
   const methods = createMethodNodes(tsMorphClass, classId, filePath, links);
-  const separator = createNodeAttribute({ id: `${classId}-SEPARATOR`, type: 'separator' });
 
-  const attributeNodes = attributes.concat([separator]).concat(methods);
+  const attributeNodes = attributes.concat(methods);
 
   const node: Node = createNode({
     docs: tsMorphClass

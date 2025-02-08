@@ -275,25 +275,25 @@
       },
       "title": {
         "id": "/types/graph/graph-GraphManager-TITLE",
-        "nodeType": "interface",
+        "nodeType": "class",
         "style": {},
         "text": "GraphManager"
       },
-      "type": "interface"
+      "type": "class"
     },
     {
       "attributes": [
         {
           "id": "/types/graph/graph-SomeTestType-testAttribute",
           "style": {},
-          "text": "testAttribute",
-          "type": "unionOption"
+          "text": "testAttribute: string;",
+          "type": "attribute"
         },
         {
           "id": "/types/graph/graph-SomeTestType-somethingElse",
           "style": {},
-          "text": "somethingElse",
-          "type": "unionOption"
+          "text": "somethingElse: number;",
+          "type": "attribute"
         }
       ],
       "docs": "",
@@ -316,14 +316,14 @@
         {
           "id": "/types/graph/graph-SomeTestType2-name",
           "style": {},
-          "text": "name",
-          "type": "unionOption"
+          "text": "name: SomeTestType | string | LinkType;",
+          "type": "attribute"
         },
         {
           "id": "/types/graph/graph-SomeTestType2-age",
           "style": {},
-          "text": "age",
-          "type": "unionOption"
+          "text": "age: number;",
+          "type": "attribute"
         }
       ],
       "docs": "",
@@ -1600,54 +1600,19 @@
       "options": {},
       "styles": {
         "class": {
-          "backgroundColor": "white",
-          "borderColor": "black",
-          "borderWidth": "1px",
-          "color": "black",
-          "fontSize": "16px",
-          "fontWeight": "normal",
-          "height": "20px",
-          "width": "100px"
+          "backgroundColor": "#c7eeff"
         },
         "union": {
-          "backgroundColor": "#8d578c",
-          "borderColor": "black",
-          "borderWidth": "1px",
-          "color": "black",
-          "fontSize": "16px",
-          "fontWeight": "normal",
-          "height": "20px",
-          "width": "100px"
+          "backgroundColor": "#e7ccff"
         },
         "interface": {
-          "backgroundColor": "#4B999A",
-          "borderColor": "black",
-          "borderWidth": "1px",
-          "color": "black",
-          "fontSize": "16px",
-          "fontWeight": "normal",
-          "height": "20px",
-          "width": "100px"
+          "backgroundColor": "#7ec0c4"
         },
         "type": {
-          "backgroundColor": "#8d578c",
-          "borderColor": "black",
-          "borderWidth": "1px",
-          "color": "black",
-          "fontSize": "16px",
-          "fontWeight": "normal",
-          "height": "20px",
-          "width": "100px"
+          "backgroundColor": "#bdd8ff"
         },
         "variable": {
-          "backgroundColor": "#e9d382",
-          "borderColor": "black",
-          "borderWidth": "1px",
-          "color": "black",
-          "fontSize": "16px",
-          "fontWeight": "normal",
-          "height": "20px",
-          "width": "100px"
+          "backgroundColor": "#ffd1d1"
         }
       }
     },

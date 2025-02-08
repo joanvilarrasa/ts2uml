@@ -13,13 +13,19 @@ body {
 
 @layer base {
   :root {
-    /* --var1: hsl(223, 41%, 60%); */
-    --interface: 182 37% 54%;
-    --class: 181 34% 45%;
-    --enum: 181 34% 45%;
-    --function: 181 34% 45%;
-    --type: 223 41% 60%;
-    --variable: 181 34% 45%;
+    --interfaceRgb: #7ec0c4;
+    --classRgb: #c7eeff;
+    --unionRgb: #e7ccff;
+    --functionRgb: #ffd1d1;
+    --variableRgb: #ffd1d1;
+    --typeRgb: #bdd8ff;
+
+    --interface: 183 37% 63%;
+    --class: 198 100% 89%;
+    --union: 272 100% 90%;
+    --function: 0 100% 91%;
+    --type: 215 100% 87%;
+    --variable: 0 100% 91%;
 
     --background: 0 0% 84%;
     --foreground: 41 35% 11%;
@@ -27,7 +33,7 @@ body {
     --card-foreground: 41 35% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 182 37% 54%;
+    --primary: 183 37% 63%;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;

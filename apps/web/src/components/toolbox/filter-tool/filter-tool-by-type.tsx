@@ -20,7 +20,7 @@ export function FilterToolByType() {
 
   const [checkedStatusByType, setCheckedStatusByType] = useState<Record<NodeType, CheckboxPartialCheckedStatus>>({
     class: getCheckedStatus('class'),
-    enum: getCheckedStatus('enum'),
+    union: getCheckedStatus('union'),
     interface: getCheckedStatus('interface'),
     type: getCheckedStatus('type'),
     variable: getCheckedStatus('variable'),
@@ -29,7 +29,7 @@ export function FilterToolByType() {
   function updateCheckedStatusByType() {
     setCheckedStatusByType({
       class: getCheckedStatus('class'),
-      enum: getCheckedStatus('enum'),
+      union: getCheckedStatus('union'),
       interface: getCheckedStatus('interface'),
       type: getCheckedStatus('type'),
       variable: getCheckedStatus('variable'),

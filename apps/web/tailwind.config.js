@@ -12,7 +12,7 @@ export default {
       colors: {
         interface: 'hsl(var(--interface))',
         class: 'hsl(var(--class))',
-        enum: 'hsl(var(--enum))',
+        union: 'hsl(var(--union))',
         function: 'hsl(var(--function))',
         type: 'hsl(var(--type))',
         variable: 'hsl(var(--variable))',
