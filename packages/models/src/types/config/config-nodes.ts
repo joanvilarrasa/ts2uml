@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import {
   DEFAULT_LIGHT_CLASS_STYLE,
-  DEFAULT_LIGHT_ENUM_STYLE,
   DEFAULT_LIGHT_INTERFACE_STYLE,
   DEFAULT_LIGHT_TYPE_STYLE,
+  DEFAULT_LIGHT_UNION_STYLE,
   DEFAULT_LIGHT_VARIABLE_STYLE,
 } from '../../defaults/light-node-styles.ts';
 import { type NodeStyle, ZNodeStyle, createNodeStyle } from '../graph/node-style.ts';
@@ -37,7 +37,7 @@ export const ZConfigNodes = z.object({
   options: ZConfigNodesOptions,
   styles: z.object({
     [ZNodeType.enum.class]: ZNodeStyle.default(DEFAULT_LIGHT_CLASS_STYLE),
-    [ZNodeType.enum.enum]: ZNodeStyle.default(DEFAULT_LIGHT_ENUM_STYLE),
+    [ZNodeType.enum.union]: ZNodeStyle.default(DEFAULT_LIGHT_UNION_STYLE),
     [ZNodeType.enum.interface]: ZNodeStyle.default(DEFAULT_LIGHT_INTERFACE_STYLE),
     [ZNodeType.enum.type]: ZNodeStyle.default(DEFAULT_LIGHT_TYPE_STYLE),
     [ZNodeType.enum.variable]: ZNodeStyle.default(DEFAULT_LIGHT_VARIABLE_STYLE),
@@ -53,9 +53,9 @@ export function createConfigNodes(data?: Partial<ConfigNodes>): ConfigNodes {
         ...DEFAULT_LIGHT_CLASS_STYLE,
         ...data?.styles?.[ZNodeType.enum.class],
       }),
-      [ZNodeType.enum.enum]: createNodeStyle({
-        ...DEFAULT_LIGHT_ENUM_STYLE,
-        ...data?.styles?.[ZNodeType.enum.enum],
+      [ZNodeType.enum.union]: createNodeStyle({
+        ...DEFAULT_LIGHT_UNION_STYLE,
+        ...data?.styles?.[ZNodeType.enum.union],
       }),
       [ZNodeType.enum.interface]: createNodeStyle({
         ...DEFAULT_LIGHT_INTERFACE_STYLE,

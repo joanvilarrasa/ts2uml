@@ -4,6 +4,8 @@ import { addEnumNode } from './add-enum-node.ts';
 import { addUnionTypeNode } from './add-union-type-node.ts';
 
 import { addInterfaceNode } from '../ts-morph-to-graph/add-interface-node.ts';
+import { addClassNode } from './add-class-node.ts';
+import { addTypeNode } from './add-type-node.ts';
 
 export function getGraphFromProject(project: Project, filePath: string, config: Config): Graph {
   const nodes: Node[] = [];
@@ -21,9 +23,9 @@ export function getGraphFromProject(project: Project, filePath: string, config: 
     }
 
     // Classes
-    // sourceFile.getClasses().map((cls) => {
-    //   addClassNode(cls, filePath, links, nodes);
-    // });
+    sourceFile.getClasses().map((cls) => {
+      addClassNode(cls, filePath, links, nodes);
+    });
 
     // Enums
     const tsMorphEnums: EnumDeclaration[] = sourceFile.getEnums();
@@ -37,7 +39,7 @@ export function getGraphFromProject(project: Project, filePath: string, config: 
       if (tsMorphType.getType().isUnion()) {
         addUnionTypeNode(tsMorphType, filePath, links, nodes);
       } else {
-        // Missing implementation for normal type node
+        addTypeNode(tsMorphType, filePath, links, nodes);
       }
     }
   }

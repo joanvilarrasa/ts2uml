@@ -1,1 +1,1 @@
-export { generateGraph } from './src/actions/generate-graph.ts';
+export { generateGraph } from './src/main/generate-graph.ts';

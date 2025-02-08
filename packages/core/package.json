@@ -9,6 +9,6 @@
     "format": "biome format --write .",
     "build": "biome check --fix . && biome format --write . && tsup --clean",
     "test": "bun test",
-    "generate-demo-graph": "bun run src/scripts/generate-demo-graph-json.ts  "
+    "generate-demo-graph": "bun run src/main/generate-demo-graph-json.ts  "
   }
 }

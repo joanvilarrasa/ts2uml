@@ -11,7 +11,7 @@ export const DEFAULT_LIGHT_CLASS_STYLE: NodeStyle = {
   width: '100px',
 };
 
-export const DEFAULT_LIGHT_ENUM_STYLE: NodeStyle = {
+export const DEFAULT_LIGHT_UNION_STYLE: NodeStyle = {
   backgroundColor: '#8d578c',
   borderColor: 'black',
   borderWidth: '1px',

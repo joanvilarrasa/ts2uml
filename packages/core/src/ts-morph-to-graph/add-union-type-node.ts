@@ -10,7 +10,7 @@ import {
   createNodeTitle,
 } from '@ts2uml/models';
 import type { Type, TypeAliasDeclaration } from 'ts-morph';
-import { getNormalizedFilePath } from '../actions/get-normalized-file-path.ts';
+import { getNormalizedFilePath } from '../file-utils/get-normalized-file-path.ts';
 import { getImportedName, getImportedPath } from './regex.ts';
 import { isImported } from './regex.ts';
 
@@ -18,7 +18,7 @@ export function addUnionTypeNode(tsMorphType: TypeAliasDeclaration, filePath: st
   const sourceFileRelativePath = getNormalizedFilePath(filePath, tsMorphType.getSourceFile().getFilePath());
   const typeName = tsMorphType.getName();
   const typeId = `${sourceFileRelativePath}-${typeName}`;
-  const typeType: NodeType = 'type';
+  const typeType: NodeType = 'union';
 
   const titleNode = createTitleNode(typeId, typeType, typeName);
   const attributeNodes = createAttributeNodes(tsMorphType, typeId, filePath, links);
@@ -61,7 +61,7 @@ function createAttributeNodes(
       let propText = prop.getText().replace(/^['"]|['"]$/g, '');
       let attributeId = `${typeId}-${propText}`;
 
-      const targetId = getDefaultDescendantTargetId(prop, filePath);
+      const targetId = getDescendantTargetId(prop, filePath);
       if (targetId !== null) {
         propText = getImportedName(prop.getText()) ?? 'error';
         attributeId = `${typeId}-${propText}`;
@@ -78,14 +78,14 @@ function createAttributeNodes(
 
       return createNodeAttribute({
         id: attributeId,
-        type: 'enumOrTypeOption',
+        type: 'unionOption',
         text: propText,
         style: createNodeStyle(),
       });
     });
 }
 
-function getDefaultDescendantTargetId(descendant: Type, filePath: string) {
+function getDescendantTargetId(descendant: Type, filePath: string) {
   const descendantText = descendant.getText();
   if (!isImported(descendantText) || descendant.isArray()) {
     return null;

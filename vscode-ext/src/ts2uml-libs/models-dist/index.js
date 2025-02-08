@@ -4097,7 +4097,7 @@ var DEFAULT_LIGHT_CLASS_STYLE = {
   height: "20px",
   width: "100px"
 };
-var DEFAULT_LIGHT_ENUM_STYLE = {
+var DEFAULT_LIGHT_UNION_STYLE = {
   backgroundColor: "#8d578c",
   borderColor: "black",
   borderWidth: "1px",
@@ -4163,7 +4163,7 @@ function createNodeStyle(data) {
 }
 
 // src/types/graph/node-type.ts
-var ZNodeType = z.enum(["class", "enum", "interface", "type", "variable"]);
+var ZNodeType = z.enum(["class", "union", "interface", "type", "variable"]);
 
 // src/types/config/config-nodes-filter.ts
 var ZConfigNodesFilter = z.object({
@@ -4216,7 +4216,7 @@ var ZConfigNodes = z.object({
   options: ZConfigNodesOptions,
   styles: z.object({
     [ZNodeType.enum.class]: ZNodeStyle.default(DEFAULT_LIGHT_CLASS_STYLE),
-    [ZNodeType.enum.enum]: ZNodeStyle.default(DEFAULT_LIGHT_ENUM_STYLE),
+    [ZNodeType.enum.union]: ZNodeStyle.default(DEFAULT_LIGHT_UNION_STYLE),
     [ZNodeType.enum.interface]: ZNodeStyle.default(DEFAULT_LIGHT_INTERFACE_STYLE),
     [ZNodeType.enum.type]: ZNodeStyle.default(DEFAULT_LIGHT_TYPE_STYLE),
     [ZNodeType.enum.variable]: ZNodeStyle.default(DEFAULT_LIGHT_VARIABLE_STYLE)
@@ -4231,9 +4231,9 @@ function createConfigNodes(data) {
         ...DEFAULT_LIGHT_CLASS_STYLE,
         ...data?.styles?.[ZNodeType.enum.class]
       }),
-      [ZNodeType.enum.enum]: createNodeStyle({
-        ...DEFAULT_LIGHT_ENUM_STYLE,
-        ...data?.styles?.[ZNodeType.enum.enum]
+      [ZNodeType.enum.union]: createNodeStyle({
+        ...DEFAULT_LIGHT_UNION_STYLE,
+        ...data?.styles?.[ZNodeType.enum.union]
       }),
       [ZNodeType.enum.interface]: createNodeStyle({
         ...DEFAULT_LIGHT_INTERFACE_STYLE,
@@ -4299,12 +4299,13 @@ function createLink(data) {
 var ZNodeAttributeScope = z.enum(["private", "protected", "public"]);
 
 // src/types/graph/node-attribute-type.ts
-var ZNodeAttributeType = z.enum(["attribute", "enumOrTypeOption", "method", "separator"]);
+var ZNodeAttributeType = z.enum(["attribute", "unionOption", "method", "separator"]);
 
 // src/types/graph/node-attribute.ts
 var ZNodeAttribute = z.object({
   docs: z.string().optional(),
   id: z.string({ invalid_type_error: "id must be a string" }),
+  isStatic: z.boolean().optional(),
   scope: ZNodeAttributeScope.optional(),
   style: ZNodeStyle.optional(),
   text: z.string({ invalid_type_error: "text must be a string" }),
@@ -4314,6 +4315,7 @@ function createNodeAttribute(data) {
   return ZNodeAttribute.parse({
     docs: data?.docs,
     id: data?.id ?? "id",
+    isStatic: data?.isStatic,
     scope: data?.scope,
     style: createNodeStyle(data?.style),
     text: data?.text ?? "text",
@@ -4471,7 +4473,7 @@ var DEFAULT_DARK_CLASS_STYLE = {
   height: "20px",
   width: "100px"
 };
-var DEFAULT_DARK_ENUM_STYLE = {
+var DEFAULT_DARK_UNION_STYLE = {
   backgroundColor: "#8d578c",
   borderColor: "black",
   borderWidth: "1px",
@@ -4735,14 +4737,14 @@ function updateDeep(data, updates, schema) {
 export {
   DARK_THEME_COLORS,
   DEFAULT_DARK_CLASS_STYLE,
-  DEFAULT_DARK_ENUM_STYLE,
   DEFAULT_DARK_INTERFACE_STYLE,
   DEFAULT_DARK_TYPE_STYLE,
+  DEFAULT_DARK_UNION_STYLE,
   DEFAULT_DARK_VARIABLE_STYLE,
   DEFAULT_LIGHT_CLASS_STYLE,
-  DEFAULT_LIGHT_ENUM_STYLE,
   DEFAULT_LIGHT_INTERFACE_STYLE,
   DEFAULT_LIGHT_TYPE_STYLE,
+  DEFAULT_LIGHT_UNION_STYLE,
   DEFAULT_LIGHT_VARIABLE_STYLE,
   DEFAULT_THEME,
   LIGHT_THEME_COLORS,

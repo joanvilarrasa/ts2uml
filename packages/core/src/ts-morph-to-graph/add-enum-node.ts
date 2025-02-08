@@ -8,13 +8,13 @@ import {
   createNodeTitle,
 } from '@ts2uml/models';
 import type { EnumDeclaration } from 'ts-morph';
-import { getNormalizedFilePath } from '../actions/get-normalized-file-path.ts';
+import { getNormalizedFilePath } from '../file-utils/get-normalized-file-path.ts';
 
 export function addEnumNode(tsMorphEnum: EnumDeclaration, filePath: string, nodes: Node[]) {
   const sourceFileRelativePath = getNormalizedFilePath(filePath, tsMorphEnum.getSourceFile().getFilePath());
   const enumName = tsMorphEnum.getName();
   const enumId = `${sourceFileRelativePath}-${enumName}`;
-  const enumType: NodeType = 'enum';
+  const enumType: NodeType = 'union';
 
   const titleNode = createTitleNode(enumId, enumType, enumName);
   const attributeNodes = createAttributeNodes(tsMorphEnum, enumId);
@@ -53,7 +53,7 @@ function createAttributeNodes(tsMorphEnum: EnumDeclaration, enumId: string): Nod
         .map((doc) => doc.getText())
         .join('\n'),
       id: attributeId,
-      type: 'enumOrTypeOption',
+      type: 'unionOption',
       text: prop.getText(),
       style: createNodeStyle(),
     });

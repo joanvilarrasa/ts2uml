@@ -10,7 +10,7 @@ import {
   createNodeTitle,
 } from '@ts2uml/models';
 import type { InterfaceDeclaration } from 'ts-morph';
-import { getNormalizedFilePath } from '../actions/get-normalized-file-path.ts';
+import { getNormalizedFilePath } from '../file-utils/get-normalized-file-path.ts';
 import { getTargetIds } from './get-target-ids.ts';
 
 export function addInterfaceNode(
@@ -60,8 +60,7 @@ function createAttributeNodes(
 ): NodeAttribute[] {
   return tsMorphInterface.getProperties().map((prop) => {
     const attributeId = `${ifaceId}-${prop.getName()}`;
-    const targetIds = getTargetIds(prop, filePath);
-
+    const targetIds = getTargetIds(prop.getTypeNode()?.getDescendants() ?? [], filePath);
     // Push the links
     targetIds.map((targetId) => {
       if (!links.find((link) => link.sourceId === ifaceId && link.targetId === targetId)) {

@@ -114,11 +114,11 @@ interface NodeStyle {
 declare const ZNodeStyle: z.ZodType<NodeStyle>;
 declare function createNodeStyle(data?: Partial<NodeStyle>): NodeStyle;
 
-declare const ZNodeType: z.ZodEnum<["class", "enum", "interface", "type", "variable"]>;
+declare const ZNodeType: z.ZodEnum<["class", "union", "interface", "type", "variable"]>;
 /**
  * Represents the different types of nodes that can be displayed in the diagram.
  * - "class": Represents a class definition
- * - "enum": Represents an enumeration
+ * - "union": Represents a union type, it can be an enum or a type that unions multiple types
  * - "interface": Represents an interface definition
  * - "type": Represents a type definition
  * - "variable": Represents a variable declaration
@@ -321,12 +321,14 @@ declare const ZNodeAttributeScope: z.ZodEnum<["private", "protected", "public"]>
  */
 type NodeAttributeScope = z.infer<typeof ZNodeAttributeScope>;
 
-declare const ZNodeAttributeType: z.ZodEnum<["attribute", "enumOrTypeOption", "method", "separator"]>;
+declare const ZNodeAttributeType: z.ZodEnum<["attribute", "unionOption", "method", "separator"]>;
 /**
  * Represents the different types of attributes that can be displayed in a node.
  * - "attribute": Represents a class/interface property or field
- * - "enumOrTypeOption": Represents an enum value or type union option
+ * - "staticAttribute": Represents a class/interface static property or field
+ * - "unionOption": Represents an enum value or type union option
  * - "method": Represents a class/interface method or function
+ * - "staticMethod": Represents a class/interface static method or function
  * - "separator": Represents a visual separator line
  */
 type NodeAttributeType = z.infer<typeof ZNodeAttributeType>;
@@ -343,6 +345,10 @@ interface NodeAttribute {
      * jsdocs documentation for the attribute
      */
     docs?: string;
+    /**
+     * Whether the attribute is static
+     */
+    isStatic?: boolean;
     /**
      * The visibility/access level of the attribute (public, protected, private)
      * @see {@link NodeAttributeScope}
@@ -571,13 +577,13 @@ declare const DARK_THEME_COLORS: {
 };
 
 declare const DEFAULT_DARK_CLASS_STYLE: NodeStyle;
-declare const DEFAULT_DARK_ENUM_STYLE: NodeStyle;
+declare const DEFAULT_DARK_UNION_STYLE: NodeStyle;
 declare const DEFAULT_DARK_INTERFACE_STYLE: NodeStyle;
 declare const DEFAULT_DARK_TYPE_STYLE: NodeStyle;
 declare const DEFAULT_DARK_VARIABLE_STYLE: NodeStyle;
 
 declare const DEFAULT_LIGHT_CLASS_STYLE: NodeStyle;
-declare const DEFAULT_LIGHT_ENUM_STYLE: NodeStyle;
+declare const DEFAULT_LIGHT_UNION_STYLE: NodeStyle;
 declare const DEFAULT_LIGHT_INTERFACE_STYLE: NodeStyle;
 declare const DEFAULT_LIGHT_TYPE_STYLE: NodeStyle;
 declare const DEFAULT_LIGHT_VARIABLE_STYLE: NodeStyle;
@@ -620,4 +626,4 @@ interface TreeNode {
     name: string;
 }
 
-export { type CheckboxPartialCheckedStatus, type Config, type ConfigLinks, type ConfigLinksFilter, type ConfigLinksOptions, type ConfigNodes, type ConfigNodesFilter, type ConfigNodesOptions, DARK_THEME_COLORS, DEFAULT_DARK_CLASS_STYLE, DEFAULT_DARK_ENUM_STYLE, DEFAULT_DARK_INTERFACE_STYLE, DEFAULT_DARK_TYPE_STYLE, DEFAULT_DARK_VARIABLE_STYLE, DEFAULT_LIGHT_CLASS_STYLE, DEFAULT_LIGHT_ENUM_STYLE, DEFAULT_LIGHT_INTERFACE_STYLE, DEFAULT_LIGHT_TYPE_STYLE, DEFAULT_LIGHT_VARIABLE_STYLE, DEFAULT_THEME, type Graph, LIGHT_THEME_COLORS, type LayoutAlgorithm, type Link, type LinkPathAlgorithm, type LinkType, type MsgLoadGraph, type MsgType, type MsgUpdateLayoutAlgorithm, type MsgUpdateLinkPathAlgorithm, type MsgUpdateVisibleNodes, type Node, type NodeAttribute, type NodeAttributeScope, type NodeAttributeType, type NodePosition, type NodeStyle, type NodeTitle, type NodeType, type Theme, type TreeNode, ZConfig, ZConfigLinks, ZConfigLinksFilter, ZConfigLinksOptions, ZConfigNodes, ZConfigNodesFilter, ZConfigNodesOptions, ZGraph, ZLayoutAlgorithm, ZLink, ZLinkPathAlgorithm, ZLinkType, ZMsgLoadGraph, ZMsgType, ZMsgUpdateLayoutAlgorithm, ZMsgUpdateLinkPathAlgorithm, ZMsgUpdateVisibleNodes, ZNode, ZNodeAttribute, ZNodeAttributeScope, ZNodeAttributeType, ZNodeStyle, ZNodeTitle, ZNodeType, ZTheme, createConfig, createConfigLinks, createConfigLinksFilter, createConfigLinksOptions, createConfigNodes, createConfigNodesFilter, createConfigNodesOptions, createGraph, createLink, createMsgLoadGraph, createMsgUpdateLayoutAlgorithm, createMsgUpdateLinkPathAlgorithm, createMsgUpdateVisibleNodes, createNode, createNodeAttribute, createNodePosition, createNodeStyle, createNodeTitle, is, update, updateDeep, validate };
+export { type CheckboxPartialCheckedStatus, type Config, type ConfigLinks, type ConfigLinksFilter, type ConfigLinksOptions, type ConfigNodes, type ConfigNodesFilter, type ConfigNodesOptions, DARK_THEME_COLORS, DEFAULT_DARK_CLASS_STYLE, DEFAULT_DARK_INTERFACE_STYLE, DEFAULT_DARK_TYPE_STYLE, DEFAULT_DARK_UNION_STYLE, DEFAULT_DARK_VARIABLE_STYLE, DEFAULT_LIGHT_CLASS_STYLE, DEFAULT_LIGHT_INTERFACE_STYLE, DEFAULT_LIGHT_TYPE_STYLE, DEFAULT_LIGHT_UNION_STYLE, DEFAULT_LIGHT_VARIABLE_STYLE, DEFAULT_THEME, type Graph, LIGHT_THEME_COLORS, type LayoutAlgorithm, type Link, type LinkPathAlgorithm, type LinkType, type MsgLoadGraph, type MsgType, type MsgUpdateLayoutAlgorithm, type MsgUpdateLinkPathAlgorithm, type MsgUpdateVisibleNodes, type Node, type NodeAttribute, type NodeAttributeScope, type NodeAttributeType, type NodePosition, type NodeStyle, type NodeTitle, type NodeType, type Theme, type TreeNode, ZConfig, ZConfigLinks, ZConfigLinksFilter, ZConfigLinksOptions, ZConfigNodes, ZConfigNodesFilter, ZConfigNodesOptions, ZGraph, ZLayoutAlgorithm, ZLink, ZLinkPathAlgorithm, ZLinkType, ZMsgLoadGraph, ZMsgType, ZMsgUpdateLayoutAlgorithm, ZMsgUpdateLinkPathAlgorithm, ZMsgUpdateVisibleNodes, ZNode, ZNodeAttribute, ZNodeAttributeScope, ZNodeAttributeType, ZNodeStyle, ZNodeTitle, ZNodeType, ZTheme, createConfig, createConfigLinks, createConfigLinksFilter, createConfigLinksOptions, createConfigNodes, createConfigNodesFilter, createConfigNodesOptions, createGraph, createLink, createMsgLoadGraph, createMsgUpdateLayoutAlgorithm, createMsgUpdateLinkPathAlgorithm, createMsgUpdateVisibleNodes, createNode, createNodeAttribute, createNodePosition, createNodeStyle, createNodeTitle, is, update, updateDeep, validate };
