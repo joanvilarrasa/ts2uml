@@ -2,6 +2,10 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.6] - Support for classes, types and unions
+
+- Added support for classes, types and unions (unions include enums or types like `string | number`).
+
 ### [v0.0.5] - Hello world
 
 This is the first release of the extension.

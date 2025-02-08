@@ -43,7 +43,9 @@ If you find any issues, please let me know at [@joan_vilarrasa](https://x.com/jo
 
 ## Release Notes
 
-Here are the release notes for the extension. Please remember that this is an alpha version and nothing is stable yet.
+### [v0.0.6] - Support for classes, types and unions
+
+- Added support for classes, types and unions (unions include enums or types like `string | number`).
 
 ### [0.0.5] - Hello world
 
