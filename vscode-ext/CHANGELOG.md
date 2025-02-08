@@ -2,6 +2,14 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.7] - Export your Diagram
+
+- Added a new button to export the diagram to the clipboard or download it as a File.
+- When exporting you can choose between 3 options (more to come in the following days):
+  - `json`: Export the diagram as a JSON object.
+  - `png`: Export the diagram as a PNG image.
+  - `png-transparent`: Export the diagram as a PNG image with a transparent background.
+
 ### [v0.0.6] - Support for classes, types and unions
 
 - Added support for classes, types and unions (unions include enums or types like `string | number`).
