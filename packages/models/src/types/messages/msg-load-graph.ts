@@ -7,6 +7,11 @@ import { ZMsgType } from './msg-type.ts';
  */
 export interface MsgLoadGraph {
   /**
+   * Whether to apply a layout on load
+   */
+  applyLayoutOnLoad: boolean;
+
+  /**
    * A list of node ids to add to the diagram
    * @see {@link Graph}
    */
@@ -20,12 +25,14 @@ export interface MsgLoadGraph {
 }
 
 export const ZMsgLoadGraph = z.object({
+  applyLayoutOnLoad: z.boolean().optional(),
   graph: ZGraph,
   type: ZMsgType,
 }) as z.ZodType<MsgLoadGraph>;
 
 export function createMsgLoadGraph(data?: Partial<MsgLoadGraph>): MsgLoadGraph {
   return ZMsgLoadGraph.parse({
+    applyLayoutOnLoad: data?.applyLayoutOnLoad ?? true,
     graph: data?.graph ?? createGraph(),
     type: 'load-graph',
   });

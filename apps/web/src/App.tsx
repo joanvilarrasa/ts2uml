@@ -72,16 +72,18 @@ export default function App() {
     }
   }
 
-  function handleLoadGraph({ graph }: MsgLoadGraph) {
+  function handleLoadGraph({ graph, applyLayoutOnLoad }: MsgLoadGraph) {
     gm.setGraph(graph);
-    const nodes = graph.nodes.map((node) => nodeToRFNode(node, false));
-    const edges = graph.links.map((link) => linkToRFEdge(link, graph.config.links.linkPathAlgorithm));
+    const nodes = graph.nodes.map((node) => nodeToRFNode(node, graph.config));
+    const edges = graph.links.map((link) => linkToRFEdge(link, graph.config));
     setNodes(nodes);
     setEdges(edges);
-    setLayoutOptions({
-      ...layoutOptions,
-      'elk.algorithm': `org.eclipse.elk.${graph.config.layoutAlgorithm}`,
-    });
+    if (applyLayoutOnLoad) {
+      setLayoutOptions({
+        ...layoutOptions,
+        'elk.algorithm': `org.eclipse.elk.${graph.config.layoutAlgorithm}`,
+      });
+    }
   }
 
   function handleUpdateLayoutAlgorithm({ layoutAlgorithm }: MsgUpdateLayoutAlgorithm) {
@@ -128,6 +130,7 @@ export default function App() {
         position: { x: n.x, y: n.y },
       }));
 
+      gm.updateNodePotisions(newNodes);
       reactFlow.setNodes(newNodes);
     });
   }

@@ -24,6 +24,7 @@ export function ExportTool() {
   const exportFormatImageOptions = ZExportFormat.extract(['png', 'png-transparent']);
 
   async function handleExport(target: 'download' | 'clipboard') {
+    gm.updateNodePotisions(getNodes());
     if (exportFormat === 'json') {
       const content = ts2umlToJson(gm.getGraph());
       if (target === 'download') {

@@ -6,6 +6,7 @@ import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
 import { ExportTool } from './export-tool/export-tool';
 import { FilterTool } from './filter-tool/filter-tool';
+import { ImportTool } from './import-tool/import-tool';
 import { LayoutTool } from './layout-tool/layout-tool';
 import ThemeToggle from './theme-toggle';
 
@@ -24,8 +25,9 @@ export function Toolbox() {
         </Button> */}
         <Separator orientation="vertical" className="h-4 bg-border/20" />
         <ExportTool />
+        <ImportTool />
         <Separator orientation="vertical" className="h-4 bg-border/20" />
-        <Button variant="outline" size="icon" disabled onClick={loadGraph}>
+        <Button variant="outline" size="icon" disabled={true} onClick={loadGraph}>
           <Settings />
         </Button>
         <ThemeToggle />
