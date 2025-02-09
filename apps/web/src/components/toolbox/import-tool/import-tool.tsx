@@ -17,7 +17,6 @@ export function ImportTool() {
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      // Ensure the file is a JSON file by checking the MIME type or file extension.
       if (file.type === 'application/json' || file.name.endsWith('.json')) {
         setSelectedFile(file);
       } else {

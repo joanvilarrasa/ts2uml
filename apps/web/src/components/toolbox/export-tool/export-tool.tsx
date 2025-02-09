@@ -1,3 +1,4 @@
+import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
 import { EXPORT_IMAGE_HEIGHT } from '@/lib/constants';
@@ -20,39 +21,41 @@ export function ExportTool() {
   const { getNodes } = useReactFlow();
   const [isOpen, setIsOpen] = useState(false);
   const [exportFormat, setExportFormat] = useState<ExportFormat>('png');
+  const [exportName, setExportName] = useState('');
   const exportFormatFileOptions = ZExportFormat.extract(['json']);
   const exportFormatImageOptions = ZExportFormat.extract(['png', 'png-transparent']);
 
   async function handleExport(target: 'download' | 'clipboard') {
+    const actualExportName = exportName === '' ? 'ts2uml' : exportName;
     gm.updateNodePotisions(getNodes());
     if (exportFormat === 'json') {
       const content = ts2umlToJson(gm.getGraph());
       if (target === 'download') {
-        exportJson(content);
+        exportJson(content, actualExportName);
       } else {
         clipboardJson(content);
       }
     } else if (exportFormat === 'png') {
       const content = await toPngImage(true);
       if (target === 'download') {
-        exportPng(content);
+        exportPng(content, actualExportName);
       } else {
         clipboardPng(content);
       }
     } else if (exportFormat === 'png-transparent') {
       const content = await toPngImage();
       if (target === 'download') {
-        exportPng(content);
+        exportPng(content, actualExportName);
       } else {
         clipboardPng(content);
       }
     }
   }
 
-  function exportJson(content: string) {
+  function exportJson(content: string, name: string) {
     const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(content)}`;
     const a = document.createElement('a');
-    a.setAttribute('download', 'ts2uml.json');
+    a.setAttribute('download', `${name}.json`);
     a.setAttribute('href', dataUri);
     a.click();
   }
@@ -60,9 +63,9 @@ export function ExportTool() {
     navigator.clipboard.writeText(content);
   }
 
-  function exportPng(dataUrl: string) {
+  function exportPng(dataUrl: string, name: string) {
     const a = document.createElement('a');
-    a.setAttribute('download', 'ts2uml.png');
+    a.setAttribute('download', `${name}.png`);
     a.setAttribute('href', dataUrl);
     a.click();
   }
@@ -113,6 +116,19 @@ export function ExportTool() {
             <Button variant="outline" size="icon" onClick={() => handleExport('clipboard')}>
               <Clipboard className="h-3 w-3" />
             </Button>
+          </div>
+          <span className="pt-2 text-xs">{'Choose a name: '}</span>
+          <Separator className="mt-1 mb-2" orientation="horizontal" />
+          <div className="relative">
+            <Input
+              type="text"
+              placeholder="ts2uml"
+              value={exportName}
+              onChange={(e) => setExportName(e.target.value)}
+            />
+            <span className="pointer-events-none absolute inset-y-0 end-0 flex items-center justify-center pe-3 text-muted-foreground text-sm peer-disabled:opacity-50">
+              .{exportFormat.includes('png') ? 'png' : 'json'}
+            </span>
           </div>
 
           <span className="pt-2 text-xs">{'Choose a format: '}</span>

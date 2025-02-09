@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { type Config, ZConfig, createConfig } from '../config/config.ts';
-import type { LinkType } from './link-type.ts';
 import { type Link, ZLink, createLink } from './link.ts';
 import { type Node, ZNode, createNode } from './node.ts';
 
@@ -40,39 +39,3 @@ export function createGraph(data?: Partial<Graph>): Graph {
     links: data?.links ? data.links.map((l) => createLink(l)) : [],
   });
 }
-
-// [TEMP] This is temporary until I build an example with all the cases
-export class GraphManager {
-  private static instance: GraphManager;
-  private graph: Graph;
-
-  private constructor() {
-    this.graph = createGraph();
-  }
-
-  static getInstance(): GraphManager {
-    if (!GraphManager.instance) {
-      GraphManager.instance = new GraphManager();
-    }
-    return GraphManager.instance;
-  }
-
-  getGraph(): Graph {
-    return this.graph;
-  }
-
-  setGraph(graph: Graph): void {
-    this.graph = graph;
-  }
-}
-
-export type SomeTestType = {
-  testAttribute: string;
-  somethingElse: number;
-};
-
-export type SomeTestType2 = {
-  name: SomeTestType | string | LinkType;
-  age: number;
-};
-// [TEMP] This is temporary until I build an example with all the cases

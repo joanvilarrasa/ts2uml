@@ -2,6 +2,10 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.13] - Name your export files
+
+- Added a new input to name your export files.
+
 ### [v0.0.12] - Import graphs
 
 - Added a new button to import graphs (the file must be the same JSON format as the exported ones).
