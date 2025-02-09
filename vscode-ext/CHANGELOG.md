@@ -2,6 +2,11 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.12] - Import graphs
+
+- Added a new button to import graphs (the file must be the same JSON format as the exported ones).
+- Added a new checkbox to the import tool to apply the layout of the imported graph.
+
 ### [v0.0.11] - Small bug fix
 
 - Small bug fix

@@ -33,6 +33,10 @@ When you right-click on a folder and select **Generate UML diagram**, ts2uml:
   - **PNG:** Export the diagram to a PNG (optionally with transparent background).
   - **JSON:** Export the diagram to a JSON file.
 
+- **Import:**
+  Import a diagram from a JSON file (the file must be the same JSON format as the exported ones).
+  - **Apply Layout (optional):** Apply the layout of the imported graph.
+
 - **Theme:**
   Choose between light and dark theme.
 

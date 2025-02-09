@@ -4364,11 +4364,13 @@ var ZMsgType = z.enum([
 
 // src/types/messages/msg-load-graph.ts
 var ZMsgLoadGraph = z.object({
+  applyLayoutOnLoad: z.boolean().optional(),
   graph: ZGraph,
   type: ZMsgType
 });
 function createMsgLoadGraph(data) {
   return ZMsgLoadGraph.parse({
+    applyLayoutOnLoad: data?.applyLayoutOnLoad ?? true,
     graph: data?.graph ?? createGraph(),
     type: "load-graph"
   });

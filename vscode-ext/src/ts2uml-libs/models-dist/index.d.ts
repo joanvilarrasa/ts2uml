@@ -490,6 +490,10 @@ declare function createGraph(data?: Partial<Graph>): Graph;
  */
 interface MsgLoadGraph {
     /**
+     * Whether to apply a layout on load
+     */
+    applyLayoutOnLoad: boolean;
+    /**
      * A list of node ids to add to the diagram
      * @see {@link Graph}
      */
