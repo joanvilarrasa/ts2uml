@@ -56,6 +56,7 @@ body {
 
     --xy-background-color: transparent;
     --xy-background-color-default: transparent;
+    --xy-edge-stroke: hsl(var(--foreground));
   }
   .dark {
     --interfaceRgb: #316d72;

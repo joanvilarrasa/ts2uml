@@ -35,15 +35,8 @@ export function ExportTool() {
       } else {
         clipboardJson(content);
       }
-    } else if (exportFormat === 'png') {
-      const content = await toPngImage(true);
-      if (target === 'download') {
-        exportPng(content, actualExportName);
-      } else {
-        clipboardPng(content);
-      }
-    } else if (exportFormat === 'png-transparent') {
-      const content = await toPngImage();
+    } else if (exportFormat === 'png' || exportFormat === 'png-transparent') {
+      const content = await toPngImage(exportFormat === 'png');
       if (target === 'download') {
         exportPng(content, actualExportName);
       } else {
