@@ -1,16 +1,28 @@
+import { isTypeScriptFile } from '@/file-utils/is-typescript-file.ts';
 import { type Config, createConfig } from '@ts2uml/models';
 import { Project } from 'ts-morph';
-import { findTypeScriptFiles } from '../file-utils/find-typescript-files.ts';
 import { getGraphFromProject } from '../ts-morph-to-graph/get-graph-from-project.ts';
 
-export async function generateGraph(dir: string, config?: Partial<Config>) {
+export function generateGraph({
+  files,
+  config,
+  baseDir,
+}: {
+  files: string[];
+  config?: Partial<Config>;
+  baseDir: string;
+}) {
   const graphConfig = createConfig(config);
-  const tsFiles = await findTypeScriptFiles(dir);
   const project = new Project();
-  for (const file of tsFiles) {
-    project.addSourceFileAtPath(file);
+
+  for (const file of files) {
+    if (isTypeScriptFile(file)) {
+      project.addSourceFileAtPath(file);
+    }
   }
-  const graph = getGraphFromProject(project, dir, graphConfig);
+
+  console.log('Generating graph... with inputs ', baseDir);
+  const graph = getGraphFromProject(project, baseDir, graphConfig);
 
   return graph;
 }

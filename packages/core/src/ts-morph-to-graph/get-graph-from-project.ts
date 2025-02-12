@@ -1,5 +1,5 @@
 import type { Config, Graph, Link, Node } from '@ts2uml/models';
-import type { EnumDeclaration, InterfaceDeclaration, Project, TypeAliasDeclaration } from 'ts-morph';
+import type { ClassDeclaration, EnumDeclaration, InterfaceDeclaration, Project, TypeAliasDeclaration } from 'ts-morph';
 import { addEnumNode } from './add-enum-node.ts';
 import { addUnionTypeNode } from './add-union-type-node.ts';
 
@@ -23,9 +23,10 @@ export function getGraphFromProject(project: Project, filePath: string, config: 
     }
 
     // Classes
-    sourceFile.getClasses().map((cls) => {
-      addClassNode(cls, filePath, links, nodes);
-    });
+    const tsMorphClasses: ClassDeclaration[] = sourceFile.getClasses();
+    for (const tsMorphClass of tsMorphClasses) {
+      addClassNode(tsMorphClass, filePath, links, nodes);
+    }
 
     // Enums
     const tsMorphEnums: EnumDeclaration[] = sourceFile.getEnums();
@@ -47,9 +48,11 @@ export function getGraphFromProject(project: Project, filePath: string, config: 
   // [START] TEMP for development
   links = links.filter((link) => {
     if (!nodes.some((node) => node.id === link.sourceId)) {
+      console.log('REMOVED LINK (1)', link);
       return false;
     }
     if (!nodes.some((node) => node.id === link.targetId)) {
+      console.log('REMOVED LINK (2)', link);
       return false;
     }
     return true;

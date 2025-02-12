@@ -2,6 +2,10 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.15] - Bugfix maybe
+
+- Fixed a bug where the graph was not generated correctly in some machines.
+
 ### [v0.0.14] - Small visual improvement
 
 - Maed the color of the links foreground so that they are more visible in dark and light mode

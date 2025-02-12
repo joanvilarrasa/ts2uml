@@ -2,15 +2,24 @@ import type { Node as TS_Node } from 'ts-morph';
 import { getNormalizedFilePath } from '../file-utils/get-normalized-file-path.ts';
 import { getImportedName, getImportedPath, isImported } from './regex.ts';
 
-export function getTargetIds(descendants: TS_Node[], filePath: string): string[] {
+export function getTargetIds(descendants: TS_Node[], filePath: string, debug?: boolean): string[] {
   const targetIds: string[] = [];
 
   for (const descendant of descendants) {
     if (isEnumFather(descendant)) {
+      if (debug) {
+        console.log(`Enum father ${descendant.getText()} :>> `, targetIds);
+      }
       addEnumFatherTargetIds(descendant, targetIds, filePath);
     } else if (isEnumChild(descendant)) {
+      if (debug) {
+        console.log(`Enum child ${descendant.getText()} :>> `, targetIds);
+      }
       addEnumChildTargetId(descendant, targetIds, filePath);
     } else {
+      if (debug) {
+        console.log(`Default descendant ${descendant.getText()} :>> `, targetIds);
+      }
       addDefaultDescendantTargetId(descendant, targetIds, filePath);
     }
   }

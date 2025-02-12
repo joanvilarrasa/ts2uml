@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { generateGraph } from './ts2uml-libs/core-dist';
 import { createMsgLoadGraph } from './ts2uml-libs/models-dist';
+import { join } from 'node:path';
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
@@ -8,10 +9,31 @@ export function activate(context: vscode.ExtensionContext) {
       UMLPanel.createOrShow(context.extensionUri);
 
       const dir = uri.fsPath;
-      const initialD3Graph = await generateGraph(dir);
+      const files = await getFiles(dir);
+      const initialD3Graph = generateGraph({
+        files,
+        baseDir: dir,
+      });
       UMLPanel.currentPanel?.postMessage(createMsgLoadGraph({ graph: initialD3Graph }));
     })
   );
+}
+
+async function getFiles(dir: string): Promise<string[]> {
+  const files = await vscode.workspace.fs.readDirectory(vscode.Uri.file(dir));
+  const allFiles: string[] = [];
+
+  for (const [name, type] of files) {
+    const fullPath = join(dir, name);
+    if (type === vscode.FileType.Directory) {
+      const subFiles = await getFiles(fullPath);
+      allFiles.push(...subFiles);
+    } else {
+      allFiles.push(fullPath);
+    }
+  }
+
+  return allFiles;
 }
 
 class UMLPanel {
