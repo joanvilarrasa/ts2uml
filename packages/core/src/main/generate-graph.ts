@@ -21,7 +21,6 @@ export function generateGraph({
     }
   }
 
-  console.log('Generating graph... with inputs ', baseDir);
   const graph = getGraphFromProject(project, baseDir, graphConfig);
 
   return graph;

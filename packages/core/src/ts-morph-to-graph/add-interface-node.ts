@@ -23,7 +23,6 @@ export function addInterfaceNode(
   const ifaceName = tsMorphInterface.getName();
   const ifaceId = `${sourceFileRelativePath}-${ifaceName}`;
   const ifaceType: NodeType = 'interface';
-  console.log(`Inteface ${ifaceId}`);
 
   const titleNode = createTitleNode(ifaceId, ifaceType, ifaceName);
   const attributeNodes = createAttributeNodes(tsMorphInterface, ifaceId, filePath, links);
@@ -61,8 +60,7 @@ function createAttributeNodes(
 ): NodeAttribute[] {
   return tsMorphInterface.getProperties().map((prop) => {
     const attributeId = `${ifaceId}-${prop.getName()}`;
-    const targetIds = getTargetIds(prop.getTypeNode()?.getDescendants() ?? [], filePath, true);
-    console.log(`   Inteface ${attributeId} targetIds :>> `, targetIds);
+    const targetIds = getTargetIds(prop.getTypeNode()?.getDescendants() ?? [], filePath);
     // Push the links
     targetIds.map((targetId) => {
       if (!links.find((link) => link.sourceId === ifaceId && link.targetId === targetId)) {

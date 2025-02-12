@@ -48,11 +48,9 @@ export function getGraphFromProject(project: Project, filePath: string, config: 
   // [START] TEMP for development
   links = links.filter((link) => {
     if (!nodes.some((node) => node.id === link.sourceId)) {
-      console.log('REMOVED LINK (1)', link);
       return false;
     }
     if (!nodes.some((node) => node.id === link.targetId)) {
-      console.log('REMOVED LINK (2)', link);
       return false;
     }
     return true;

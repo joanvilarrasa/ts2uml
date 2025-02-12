@@ -2,6 +2,10 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.15] - Fix bug with path sanitization
+
+- Fixed a bug where the path was not sanitized correctly.
+
 ### [v0.0.15] - Bugfix maybe
 
 - Fixed a bug where the graph was not generated correctly in some machines.
