@@ -3,87 +3,788 @@
     {
       "attributes": [
         {
-          "docs": "",
-          "id": "/types/test-typesía/test-types-1-Interface1-id",
+          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-checked",
           "style": {},
-          "text": "id: string;",
-          "type": "attribute"
+          "text": "checked",
+          "type": "unionOption"
         },
         {
-          "docs": "",
-          "id": "/types/test-typesía/test-types-1-Interface1-name",
+          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-unchecked",
           "style": {},
-          "text": "name: string;",
-          "type": "attribute"
+          "text": "unchecked",
+          "type": "unionOption"
         },
         {
-          "docs": "",
-          "id": "/types/test-typesía/test-types-1-Interface1-description",
+          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-partial",
           "style": {},
-          "text": "description: string;",
-          "type": "attribute"
+          "text": "partial",
+          "type": "unionOption"
         }
       ],
-      "docs": "",
-      "id": "/types/test-typesía/test-types-1-Interface1",
+      "docs": "/**\n * Represents the different types of messages that are sent between components of the web\n */",
+      "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
       "position": {
         "locked": false,
         "x": 0,
         "y": 0
       },
       "title": {
-        "id": "/types/test-typesía/test-types-1-Interface1-TITLE",
+        "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-TITLE",
+        "nodeType": "union",
+        "style": {},
+        "text": "CheckboxPartialCheckedStatus"
+      },
+      "type": "union"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-id",
+          "style": {},
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isFolder",
+          "style": {},
+          "text": "isFolder: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isFile",
+          "style": {},
+          "text": "isFile: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isElement",
+          "style": {},
+          "text": "isElement: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-checked",
+          "style": {},
+          "text": "checked: CheckboxPartialCheckedStatus;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-children",
+          "style": {},
+          "text": "children?: { [key: string]: TreeNode };",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-name",
+          "style": {},
+          "text": "name: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/types/utils/tree-node-TreeNode",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/utils/tree-node-TreeNode-TITLE",
         "nodeType": "interface",
         "style": {},
-        "text": "Interface1"
+        "text": "TreeNode"
       },
       "type": "interface"
     },
     {
       "attributes": [
         {
-          "docs": "",
-          "id": "/types/test-typesía/test-types-2-Interface2-id",
+          "docs": "/**\n   * Array of link types to filter links by their type (e.g., inheritance, implementation, etc.).\n   * If a link type is provided, all links of that type will be excluded from the diagram.\n   * Empty array means no type filtering.\n   * @see {@link LinkType}\n   */",
+          "id": "/types/config/config-links-filter-ConfigLinksFilter-filter_type",
           "style": {},
-          "text": "id: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/test-typesía/test-types-2-Interface2-name",
-          "style": {},
-          "text": "name: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/test-typesía/test-types-2-Interface2-description",
-          "style": {},
-          "text": "description: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/test-typesía/test-types-2-Interface2-tt1",
-          "style": {},
-          "text": "tt1: Interface1;",
+          "text": "filter_type: LinkType[];",
           "type": "attribute"
         }
       ],
-      "docs": "",
-      "id": "/types/test-typesía/test-types-2-Interface2",
+      "docs": "/**\n * Interface defining the configuration for filtering links (relationships) in the diagram.\n */",
+      "id": "/types/config/config-links-filter-ConfigLinksFilter",
       "position": {
         "locked": false,
         "x": 0,
         "y": 0
       },
       "title": {
-        "id": "/types/test-typesía/test-types-2-Interface2-TITLE",
+        "id": "/types/config/config-links-filter-ConfigLinksFilter-TITLE",
         "nodeType": "interface",
         "style": {},
-        "text": "Interface2"
+        "text": "ConfigLinksFilter"
       },
       "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * Whether to hide all links in the diagram.\n   * If true, no links will be displayed.\n   */",
+          "id": "/types/config/config-links-options-ConfigLinksOptions-hide",
+          "style": {},
+          "text": "hide?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide the arrows indicating link direction.\n   * If true, link lines will be shown without directional arrows.\n   */",
+          "id": "/types/config/config-links-options-ConfigLinksOptions-hide_arrows",
+          "style": {},
+          "text": "hide_arrows?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide the text labels on links.\n   * If true, relationship type labels will not be displayed.\n   */",
+          "id": "/types/config/config-links-options-ConfigLinksOptions-hide_labels",
+          "style": {},
+          "text": "hide_labels?: boolean;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Interface defining the display options for links (relationships) in the diagram.\n */",
+      "id": "/types/config/config-links-options-ConfigLinksOptions",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/config/config-links-options-ConfigLinksOptions-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "ConfigLinksOptions"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * Configuration for filtering which links should be displayed in the diagram.\n   * @see {@link ConfigLinksFilter}\n   */",
+          "id": "/types/config/config-links-ConfigLinks-filter",
+          "style": {},
+          "text": "filter: ConfigLinksFilter;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Display options that control how links are rendered.\n   * @see {@link ConfigLinksOptions}\n   */",
+          "id": "/types/config/config-links-ConfigLinks-options",
+          "style": {},
+          "text": "options: ConfigLinksOptions;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The algorithm to use for pathing the links.\n   * @see {@link LinkPathAlgorithm}\n   */",
+          "id": "/types/config/config-links-ConfigLinks-linkPathAlgorithm",
+          "style": {},
+          "text": "linkPathAlgorithm: LinkPathAlgorithm;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Interface defining the configuration for displaying links (relationships) in the diagram.\n */",
+      "id": "/types/config/config-links-ConfigLinks",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/config/config-links-ConfigLinks-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "ConfigLinks"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * Array of strings to filter nodes by their file path or name.\n   * This array can contain directories, files and concrete node ids.\n   * If a directory is provided, all nodes within that directory will be excluded from the diagram.\n   * If a file is provided, all nodes within that file will be excluded from the diagram.\n   * If a concrete node id is provided, the node with that id will be excluded from the diagram.\n   * Empty array means no path filtering.\n   */",
+          "id": "/types/config/config-nodes-filter-ConfigNodesFilter-filter_node",
+          "style": {},
+          "text": "filter_node: string[];",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Array of node types to filter nodes by their type (e.g., class, interface, enum, etc.).\n   * If a node type is provided, all nodes of that type will be excluded from the diagram.\n   * Empty array means no type filtering.\n   * @see {@link NodeType}\n   */",
+          "id": "/types/config/config-nodes-filter-ConfigNodesFilter-filter_type",
+          "style": {},
+          "text": "filter_type: NodeType[];",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n/**\n * Interface defining filters for nodes to be displayed in the diagram.\n */",
+      "id": "/types/config/config-nodes-filter-ConfigNodesFilter",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/config/config-nodes-filter-ConfigNodesFilter-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "ConfigNodesFilter"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * Whether to hide all private members (attributes and methods)\n   */",
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_all_private",
+          "style": {},
+          "text": "hide_all_private?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide all protected members (attributes and methods)\n   */",
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_all_protected",
+          "style": {},
+          "text": "hide_all_protected?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide all public members (attributes and methods)\n   */",
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_all_public",
+          "style": {},
+          "text": "hide_all_public?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide all static members (attributes and methods)\n   */",
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_all_static",
+          "style": {},
+          "text": "hide_all_static?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide all attributes regardless of visibility\n   */",
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_attributes",
+          "style": {},
+          "text": "hide_attributes?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide private attributes\n   */",
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_attributes_private",
+          "style": {},
+          "text": "hide_attributes_private?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide protected attributes\n   */",
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_attributes_protected",
+          "style": {},
+          "text": "hide_attributes_protected?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide public attributes\n   */",
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_attributes_public",
+          "style": {},
+          "text": "hide_attributes_public?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide the description for nodes\n   */",
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_description",
+          "style": {},
+          "text": "hide_description?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide all methods regardless of visibility\n   */",
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_methods",
+          "style": {},
+          "text": "hide_methods?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide private methods\n   */",
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_methods_private",
+          "style": {},
+          "text": "hide_methods_private?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide protected methods\n   */",
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_methods_protected",
+          "style": {},
+          "text": "hide_methods_protected?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide public methods\n   */",
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_methods_public",
+          "style": {},
+          "text": "hide_methods_public?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether to hide the type for nodes (e.g., class, interface, etc.)\n   */",
+          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_type",
+          "style": {},
+          "text": "hide_type?: boolean;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Type defining display options that control what information is shown inside the nodes.\n */",
+      "id": "/types/config/config-nodes-options-ConfigNodesOptions",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/config/config-nodes-options-ConfigNodesOptions-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "ConfigNodesOptions"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * Configuration for filtering which nodes should be displayed in the diagram.\n   * @see {@link ConfigNodesFilter}\n   */",
+          "id": "/types/config/config-nodes-ConfigNodes-filter",
+          "style": {},
+          "text": "filter: ConfigNodesFilter;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Display options that control what information is shown inside the nodes.\n   * @see {@link ConfigNodesOptions}\n   */",
+          "id": "/types/config/config-nodes-ConfigNodes-options",
+          "style": {},
+          "text": "options: ConfigNodesOptions;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Style configurations for each type of node (class, interface, etc).\n   * @see {@link NodeStyle}\n   */",
+          "id": "/types/config/config-nodes-ConfigNodes-styles",
+          "style": {},
+          "text": "styles: { [k in NodeType]?: NodeStyle };",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Interface defining the configuration for displaying nodes in the diagram.\n */",
+      "id": "/types/config/config-nodes-ConfigNodes",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/config/config-nodes-ConfigNodes-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "ConfigNodes"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * Additional options for customizing the diagram.\n   */",
+          "id": "/types/config/config-Config-layoutAlgorithm",
+          "style": {},
+          "text": "layoutAlgorithm: LayoutAlgorithm;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Configuration for displaying relationships between nodes.\n   * @see {@link ConfigLinks}\n   */",
+          "id": "/types/config/config-Config-links",
+          "style": {},
+          "text": "links: ConfigLinks;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Metadata about the configuration itself.\n   */",
+          "id": "/types/config/config-Config-metadata",
+          "style": {},
+          "text": "metadata: {\n    version: string;\n  };",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Configuration for displaying nodes in the diagram.\n   * @see {@link ConfigNodes}\n   */",
+          "id": "/types/config/config-Config-nodes",
+          "style": {},
+          "text": "nodes: ConfigNodes;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The theme of the diagram.\n   */",
+          "id": "/types/config/config-Config-theme",
+          "style": {},
+          "text": "theme: Theme;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Main configuration object that controls the overall diagram appearance and behavior.\n * Contains settings for theme, display options, and filtering of nodes and relationships.\n */",
+      "id": "/types/config/config-Config",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/config/config-Config-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Config"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/config/layout-algorithm-LayoutAlgorithm-layered",
+          "style": {},
+          "text": "layered",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/config/layout-algorithm-LayoutAlgorithm-mrtree",
+          "style": {},
+          "text": "mrtree",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/config/layout-algorithm-LayoutAlgorithm-force",
+          "style": {},
+          "text": "force",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/config/layout-algorithm-LayoutAlgorithm-radial",
+          "style": {},
+          "text": "radial",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/config/layout-algorithm-LayoutAlgorithm-box",
+          "style": {},
+          "text": "box",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/config/layout-algorithm-LayoutAlgorithm-random",
+          "style": {},
+          "text": "random",
+          "type": "unionOption"
+        }
+      ],
+      "docs": "/**\n * Represents the different types of layout algorithms for the diagram.\n */",
+      "id": "/types/config/layout-algorithm-LayoutAlgorithm",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/config/layout-algorithm-LayoutAlgorithm-TITLE",
+        "nodeType": "union",
+        "style": {},
+        "text": "LayoutAlgorithm"
+      },
+      "type": "union"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/config/link-path-algorithm-LinkPathAlgorithm-straight",
+          "style": {},
+          "text": "straight",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/config/link-path-algorithm-LinkPathAlgorithm-bezier",
+          "style": {},
+          "text": "bezier",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/config/link-path-algorithm-LinkPathAlgorithm-step",
+          "style": {},
+          "text": "step",
+          "type": "unionOption"
+        }
+      ],
+      "docs": "/**\n * Represents the different types of relationships between nodes in the diagram.\n * - \"association\": Indicates a basic association between nodes\n * - \"inheritance\": Indicates an inheritance/extends relationship\n */",
+      "id": "/types/config/link-path-algorithm-LinkPathAlgorithm",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/config/link-path-algorithm-LinkPathAlgorithm-TITLE",
+        "nodeType": "union",
+        "style": {},
+        "text": "LinkPathAlgorithm"
+      },
+      "type": "union"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/config/theme-Theme-light",
+          "style": {},
+          "text": "light",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/config/theme-Theme-dark",
+          "style": {},
+          "text": "dark",
+          "type": "unionOption"
+        }
+      ],
+      "docs": "/**\n * Represents the theme of the diagram.\n * Can be \"light\" or \"dark\"\n */",
+      "id": "/types/config/theme-Theme",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/config/theme-Theme-TITLE",
+        "nodeType": "union",
+        "style": {},
+        "text": "Theme"
+      },
+      "type": "union"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * Whether to apply a layout on load\n   */",
+          "id": "/types/messages/msg-load-graph-MsgLoadGraph-applyLayoutOnLoad",
+          "style": {},
+          "text": "applyLayoutOnLoad: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * A list of node ids to add to the diagram\n   * @see {@link Graph}\n   */",
+          "id": "/types/messages/msg-load-graph-MsgLoadGraph-graph",
+          "style": {},
+          "text": "graph: Graph;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
+          "id": "/types/messages/msg-load-graph-MsgLoadGraph-type",
+          "style": {},
+          "text": "type: 'load-graph';",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/messages/msg-load-graph-MsgLoadGraph",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-load-graph-MsgLoadGraph-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "MsgLoadGraph"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/messages/msg-type-MsgType-load-graph",
+          "style": {},
+          "text": "load-graph",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/messages/msg-type-MsgType-update-layout-algorithm",
+          "style": {},
+          "text": "update-layout-algorithm",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/messages/msg-type-MsgType-update-link-path-algorithm",
+          "style": {},
+          "text": "update-link-path-algorithm",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/messages/msg-type-MsgType-update-visible-nodes",
+          "style": {},
+          "text": "update-visible-nodes",
+          "type": "unionOption"
+        }
+      ],
+      "docs": "/**\n * Represents the different types of messages that are sent between components of the web\n */",
+      "id": "/types/messages/msg-type-MsgType",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-type-MsgType-TITLE",
+        "nodeType": "union",
+        "style": {},
+        "text": "MsgType"
+      },
+      "type": "union"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * The layout algorithm to use\n   * @see {@link LayoutAlgorithm}\n   */",
+          "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-layoutAlgorithm",
+          "style": {},
+          "text": "layoutAlgorithm: LayoutAlgorithm;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
+          "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-type",
+          "style": {},
+          "text": "type: 'update-layout-algorithm';",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "MsgUpdateLayoutAlgorithm"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * The link path algorithm to use\n   * @see {@link LinkPathAlgorithm}\n   */",
+          "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm-linkPathAlgorithm",
+          "style": {},
+          "text": "linkPathAlgorithm: LinkPathAlgorithm;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
+          "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm-type",
+          "style": {},
+          "text": "type: 'update-link-path-algorithm';",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "MsgUpdateLinkPathAlgorithm"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * A list of node ids to add to the diagram\n   * @see {@link Node}\n   */",
+          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-nodeIdsToAdd",
+          "style": {},
+          "text": "nodeIdsToAdd: string[];",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * A list of node ids to remove from the diagram\n   * @see {@link Node}\n   */",
+          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-nodeIdsToRemove",
+          "style": {},
+          "text": "nodeIdsToRemove: string[];",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
+          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-type",
+          "style": {},
+          "text": "type: 'update-visible-nodes';",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "MsgUpdateVisibleNodes"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/export/export-format-ExportFormat-json",
+          "style": {},
+          "text": "json",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/export/export-format-ExportFormat-png",
+          "style": {},
+          "text": "png",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/export/export-format-ExportFormat-png-transparent",
+          "style": {},
+          "text": "png-transparent",
+          "type": "unionOption"
+        }
+      ],
+      "docs": "/**\n * Represents the different formats that can be used to export the graph\n */",
+      "id": "/types/export/export-format-ExportFormat",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/export/export-format-ExportFormat-TITLE",
+        "nodeType": "union",
+        "style": {},
+        "text": "ExportFormat"
+      },
+      "type": "union"
     },
     {
       "attributes": [
@@ -618,798 +1319,97 @@
         "text": "Node"
       },
       "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * Array of link types to filter links by their type (e.g., inheritance, implementation, etc.).\n   * If a link type is provided, all links of that type will be excluded from the diagram.\n   * Empty array means no type filtering.\n   * @see {@link LinkType}\n   */",
-          "id": "/types/config/config-links-filter-ConfigLinksFilter-filter_type",
-          "style": {},
-          "text": "filter_type: LinkType[];",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Interface defining the configuration for filtering links (relationships) in the diagram.\n */",
-      "id": "/types/config/config-links-filter-ConfigLinksFilter",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/config/config-links-filter-ConfigLinksFilter-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "ConfigLinksFilter"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * Whether to hide all links in the diagram.\n   * If true, no links will be displayed.\n   */",
-          "id": "/types/config/config-links-options-ConfigLinksOptions-hide",
-          "style": {},
-          "text": "hide?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide the arrows indicating link direction.\n   * If true, link lines will be shown without directional arrows.\n   */",
-          "id": "/types/config/config-links-options-ConfigLinksOptions-hide_arrows",
-          "style": {},
-          "text": "hide_arrows?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide the text labels on links.\n   * If true, relationship type labels will not be displayed.\n   */",
-          "id": "/types/config/config-links-options-ConfigLinksOptions-hide_labels",
-          "style": {},
-          "text": "hide_labels?: boolean;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Interface defining the display options for links (relationships) in the diagram.\n */",
-      "id": "/types/config/config-links-options-ConfigLinksOptions",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/config/config-links-options-ConfigLinksOptions-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "ConfigLinksOptions"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * Configuration for filtering which links should be displayed in the diagram.\n   * @see {@link ConfigLinksFilter}\n   */",
-          "id": "/types/config/config-links-ConfigLinks-filter",
-          "style": {},
-          "text": "filter: ConfigLinksFilter;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Display options that control how links are rendered.\n   * @see {@link ConfigLinksOptions}\n   */",
-          "id": "/types/config/config-links-ConfigLinks-options",
-          "style": {},
-          "text": "options: ConfigLinksOptions;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The algorithm to use for pathing the links.\n   * @see {@link LinkPathAlgorithm}\n   */",
-          "id": "/types/config/config-links-ConfigLinks-linkPathAlgorithm",
-          "style": {},
-          "text": "linkPathAlgorithm: LinkPathAlgorithm;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Interface defining the configuration for displaying links (relationships) in the diagram.\n */",
-      "id": "/types/config/config-links-ConfigLinks",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/config/config-links-ConfigLinks-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "ConfigLinks"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * Array of strings to filter nodes by their file path or name.\n   * This array can contain directories, files and concrete node ids.\n   * If a directory is provided, all nodes within that directory will be excluded from the diagram.\n   * If a file is provided, all nodes within that file will be excluded from the diagram.\n   * If a concrete node id is provided, the node with that id will be excluded from the diagram.\n   * Empty array means no path filtering.\n   */",
-          "id": "/types/config/config-nodes-filter-ConfigNodesFilter-filter_node",
-          "style": {},
-          "text": "filter_node: string[];",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Array of node types to filter nodes by their type (e.g., class, interface, enum, etc.).\n   * If a node type is provided, all nodes of that type will be excluded from the diagram.\n   * Empty array means no type filtering.\n   * @see {@link NodeType}\n   */",
-          "id": "/types/config/config-nodes-filter-ConfigNodesFilter-filter_type",
-          "style": {},
-          "text": "filter_type: NodeType[];",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n/**\n * Interface defining filters for nodes to be displayed in the diagram.\n */",
-      "id": "/types/config/config-nodes-filter-ConfigNodesFilter",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/config/config-nodes-filter-ConfigNodesFilter-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "ConfigNodesFilter"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * Whether to hide all private members (attributes and methods)\n   */",
-          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_all_private",
-          "style": {},
-          "text": "hide_all_private?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide all protected members (attributes and methods)\n   */",
-          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_all_protected",
-          "style": {},
-          "text": "hide_all_protected?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide all public members (attributes and methods)\n   */",
-          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_all_public",
-          "style": {},
-          "text": "hide_all_public?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide all static members (attributes and methods)\n   */",
-          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_all_static",
-          "style": {},
-          "text": "hide_all_static?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide all attributes regardless of visibility\n   */",
-          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_attributes",
-          "style": {},
-          "text": "hide_attributes?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide private attributes\n   */",
-          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_attributes_private",
-          "style": {},
-          "text": "hide_attributes_private?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide protected attributes\n   */",
-          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_attributes_protected",
-          "style": {},
-          "text": "hide_attributes_protected?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide public attributes\n   */",
-          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_attributes_public",
-          "style": {},
-          "text": "hide_attributes_public?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide the description for nodes\n   */",
-          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_description",
-          "style": {},
-          "text": "hide_description?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide all methods regardless of visibility\n   */",
-          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_methods",
-          "style": {},
-          "text": "hide_methods?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide private methods\n   */",
-          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_methods_private",
-          "style": {},
-          "text": "hide_methods_private?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide protected methods\n   */",
-          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_methods_protected",
-          "style": {},
-          "text": "hide_methods_protected?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide public methods\n   */",
-          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_methods_public",
-          "style": {},
-          "text": "hide_methods_public?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether to hide the type for nodes (e.g., class, interface, etc.)\n   */",
-          "id": "/types/config/config-nodes-options-ConfigNodesOptions-hide_type",
-          "style": {},
-          "text": "hide_type?: boolean;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Type defining display options that control what information is shown inside the nodes.\n */",
-      "id": "/types/config/config-nodes-options-ConfigNodesOptions",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/config/config-nodes-options-ConfigNodesOptions-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "ConfigNodesOptions"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * Configuration for filtering which nodes should be displayed in the diagram.\n   * @see {@link ConfigNodesFilter}\n   */",
-          "id": "/types/config/config-nodes-ConfigNodes-filter",
-          "style": {},
-          "text": "filter: ConfigNodesFilter;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Display options that control what information is shown inside the nodes.\n   * @see {@link ConfigNodesOptions}\n   */",
-          "id": "/types/config/config-nodes-ConfigNodes-options",
-          "style": {},
-          "text": "options: ConfigNodesOptions;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Style configurations for each type of node (class, interface, etc).\n   * @see {@link NodeStyle}\n   */",
-          "id": "/types/config/config-nodes-ConfigNodes-styles",
-          "style": {},
-          "text": "styles: { [k in NodeType]?: NodeStyle };",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Interface defining the configuration for displaying nodes in the diagram.\n */",
-      "id": "/types/config/config-nodes-ConfigNodes",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/config/config-nodes-ConfigNodes-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "ConfigNodes"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * Additional options for customizing the diagram.\n   */",
-          "id": "/types/config/config-Config-layoutAlgorithm",
-          "style": {},
-          "text": "layoutAlgorithm: LayoutAlgorithm;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Configuration for displaying relationships between nodes.\n   * @see {@link ConfigLinks}\n   */",
-          "id": "/types/config/config-Config-links",
-          "style": {},
-          "text": "links: ConfigLinks;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Metadata about the configuration itself.\n   */",
-          "id": "/types/config/config-Config-metadata",
-          "style": {},
-          "text": "metadata: {\n    version: string;\n  };",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Configuration for displaying nodes in the diagram.\n   * @see {@link ConfigNodes}\n   */",
-          "id": "/types/config/config-Config-nodes",
-          "style": {},
-          "text": "nodes: ConfigNodes;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The theme of the diagram.\n   */",
-          "id": "/types/config/config-Config-theme",
-          "style": {},
-          "text": "theme: Theme;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Main configuration object that controls the overall diagram appearance and behavior.\n * Contains settings for theme, display options, and filtering of nodes and relationships.\n */",
-      "id": "/types/config/config-Config",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/config/config-Config-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "Config"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/config/layout-algorithm-LayoutAlgorithm-layered",
-          "style": {},
-          "text": "layered",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/config/layout-algorithm-LayoutAlgorithm-mrtree",
-          "style": {},
-          "text": "mrtree",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/config/layout-algorithm-LayoutAlgorithm-force",
-          "style": {},
-          "text": "force",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/config/layout-algorithm-LayoutAlgorithm-radial",
-          "style": {},
-          "text": "radial",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/config/layout-algorithm-LayoutAlgorithm-box",
-          "style": {},
-          "text": "box",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/config/layout-algorithm-LayoutAlgorithm-random",
-          "style": {},
-          "text": "random",
-          "type": "unionOption"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of layout algorithms for the diagram.\n */",
-      "id": "/types/config/layout-algorithm-LayoutAlgorithm",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/config/layout-algorithm-LayoutAlgorithm-TITLE",
-        "nodeType": "union",
-        "style": {},
-        "text": "LayoutAlgorithm"
-      },
-      "type": "union"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/config/link-path-algorithm-LinkPathAlgorithm-straight",
-          "style": {},
-          "text": "straight",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/config/link-path-algorithm-LinkPathAlgorithm-bezier",
-          "style": {},
-          "text": "bezier",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/config/link-path-algorithm-LinkPathAlgorithm-step",
-          "style": {},
-          "text": "step",
-          "type": "unionOption"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of relationships between nodes in the diagram.\n * - \"association\": Indicates a basic association between nodes\n * - \"inheritance\": Indicates an inheritance/extends relationship\n */",
-      "id": "/types/config/link-path-algorithm-LinkPathAlgorithm",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/config/link-path-algorithm-LinkPathAlgorithm-TITLE",
-        "nodeType": "union",
-        "style": {},
-        "text": "LinkPathAlgorithm"
-      },
-      "type": "union"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/config/theme-Theme-light",
-          "style": {},
-          "text": "light",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/config/theme-Theme-dark",
-          "style": {},
-          "text": "dark",
-          "type": "unionOption"
-        }
-      ],
-      "docs": "/**\n * Represents the theme of the diagram.\n * Can be \"light\" or \"dark\"\n */",
-      "id": "/types/config/theme-Theme",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/config/theme-Theme-TITLE",
-        "nodeType": "union",
-        "style": {},
-        "text": "Theme"
-      },
-      "type": "union"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/export/export-format-ExportFormat-json",
-          "style": {},
-          "text": "json",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/export/export-format-ExportFormat-png",
-          "style": {},
-          "text": "png",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/export/export-format-ExportFormat-png-transparent",
-          "style": {},
-          "text": "png-transparent",
-          "type": "unionOption"
-        }
-      ],
-      "docs": "/**\n * Represents the different formats that can be used to export the graph\n */",
-      "id": "/types/export/export-format-ExportFormat",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/export/export-format-ExportFormat-TITLE",
-        "nodeType": "union",
-        "style": {},
-        "text": "ExportFormat"
-      },
-      "type": "union"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-checked",
-          "style": {},
-          "text": "checked",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-unchecked",
-          "style": {},
-          "text": "unchecked",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-partial",
-          "style": {},
-          "text": "partial",
-          "type": "unionOption"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of messages that are sent between components of the web\n */",
-      "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-TITLE",
-        "nodeType": "union",
-        "style": {},
-        "text": "CheckboxPartialCheckedStatus"
-      },
-      "type": "union"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-id",
-          "style": {},
-          "text": "id: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-isFolder",
-          "style": {},
-          "text": "isFolder: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-isFile",
-          "style": {},
-          "text": "isFile: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-isElement",
-          "style": {},
-          "text": "isElement: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-checked",
-          "style": {},
-          "text": "checked: CheckboxPartialCheckedStatus;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-children",
-          "style": {},
-          "text": "children?: { [key: string]: TreeNode };",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-name",
-          "style": {},
-          "text": "name: string;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "",
-      "id": "/types/utils/tree-node-TreeNode",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/utils/tree-node-TreeNode-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "TreeNode"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * Whether to apply a layout on load\n   */",
-          "id": "/types/messages/msg-load-graph-MsgLoadGraph-applyLayoutOnLoad",
-          "style": {},
-          "text": "applyLayoutOnLoad: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * A list of node ids to add to the diagram\n   * @see {@link Graph}\n   */",
-          "id": "/types/messages/msg-load-graph-MsgLoadGraph-graph",
-          "style": {},
-          "text": "graph: Graph;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
-          "id": "/types/messages/msg-load-graph-MsgLoadGraph-type",
-          "style": {},
-          "text": "type: 'load-graph';",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
-      "id": "/types/messages/msg-load-graph-MsgLoadGraph",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/messages/msg-load-graph-MsgLoadGraph-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "MsgLoadGraph"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/messages/msg-type-MsgType-load-graph",
-          "style": {},
-          "text": "load-graph",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/messages/msg-type-MsgType-update-layout-algorithm",
-          "style": {},
-          "text": "update-layout-algorithm",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/messages/msg-type-MsgType-update-link-path-algorithm",
-          "style": {},
-          "text": "update-link-path-algorithm",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/messages/msg-type-MsgType-update-visible-nodes",
-          "style": {},
-          "text": "update-visible-nodes",
-          "type": "unionOption"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of messages that are sent between components of the web\n */",
-      "id": "/types/messages/msg-type-MsgType",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/messages/msg-type-MsgType-TITLE",
-        "nodeType": "union",
-        "style": {},
-        "text": "MsgType"
-      },
-      "type": "union"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * The layout algorithm to use\n   * @see {@link LayoutAlgorithm}\n   */",
-          "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-layoutAlgorithm",
-          "style": {},
-          "text": "layoutAlgorithm: LayoutAlgorithm;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
-          "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-type",
-          "style": {},
-          "text": "type: 'update-layout-algorithm';",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
-      "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "MsgUpdateLayoutAlgorithm"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * The link path algorithm to use\n   * @see {@link LinkPathAlgorithm}\n   */",
-          "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm-linkPathAlgorithm",
-          "style": {},
-          "text": "linkPathAlgorithm: LinkPathAlgorithm;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
-          "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm-type",
-          "style": {},
-          "text": "type: 'update-link-path-algorithm';",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
-      "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "MsgUpdateLinkPathAlgorithm"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * A list of node ids to add to the diagram\n   * @see {@link Node}\n   */",
-          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-nodeIdsToAdd",
-          "style": {},
-          "text": "nodeIdsToAdd: string[];",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * A list of node ids to remove from the diagram\n   * @see {@link Node}\n   */",
-          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-nodeIdsToRemove",
-          "style": {},
-          "text": "nodeIdsToRemove: string[];",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
-          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-type",
-          "style": {},
-          "text": "type: 'update-visible-nodes';",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
-      "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "MsgUpdateVisibleNodes"
-      },
-      "type": "interface"
     }
   ],
   "links": [
     {
-      "sourceId": "/types/test-typesía/test-types-2-Interface2",
-      "targetId": "/types/test-typesía/test-types-1-Interface1",
+      "sourceId": "/types/utils/tree-node-TreeNode",
+      "targetId": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/utils/tree-node-TreeNode",
+      "targetId": "/types/utils/tree-node-TreeNode",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-links-filter-ConfigLinksFilter",
+      "targetId": "/types/graph/link-type-LinkType",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-links-ConfigLinks",
+      "targetId": "/types/config/config-links-filter-ConfigLinksFilter",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-links-ConfigLinks",
+      "targetId": "/types/config/config-links-options-ConfigLinksOptions",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-links-ConfigLinks",
+      "targetId": "/types/config/link-path-algorithm-LinkPathAlgorithm",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-nodes-filter-ConfigNodesFilter",
+      "targetId": "/types/graph/node-type-NodeType",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-nodes-ConfigNodes",
+      "targetId": "/types/config/config-nodes-filter-ConfigNodesFilter",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-nodes-ConfigNodes",
+      "targetId": "/types/config/config-nodes-options-ConfigNodesOptions",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-nodes-ConfigNodes",
+      "targetId": "/types/graph/node-type-NodeType",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-nodes-ConfigNodes",
+      "targetId": "/types/graph/node-style-NodeStyle",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-Config",
+      "targetId": "/types/config/layout-algorithm-LayoutAlgorithm",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-Config",
+      "targetId": "/types/config/config-links-ConfigLinks",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-Config",
+      "targetId": "/types/config/config-nodes-ConfigNodes",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-Config",
+      "targetId": "/types/config/theme-Theme",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/messages/msg-load-graph-MsgLoadGraph",
+      "targetId": "/types/graph/graph-Graph",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm",
+      "targetId": "/types/config/layout-algorithm-LayoutAlgorithm",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm",
+      "targetId": "/types/config/link-path-algorithm-LinkPathAlgorithm",
       "type": "association"
     },
     {
@@ -1480,96 +1480,6 @@
     {
       "sourceId": "/types/graph/node-Node",
       "targetId": "/types/graph/node-type-NodeType",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-links-filter-ConfigLinksFilter",
-      "targetId": "/types/graph/link-type-LinkType",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-links-ConfigLinks",
-      "targetId": "/types/config/config-links-filter-ConfigLinksFilter",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-links-ConfigLinks",
-      "targetId": "/types/config/config-links-options-ConfigLinksOptions",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-links-ConfigLinks",
-      "targetId": "/types/config/link-path-algorithm-LinkPathAlgorithm",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-nodes-filter-ConfigNodesFilter",
-      "targetId": "/types/graph/node-type-NodeType",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "targetId": "/types/config/config-nodes-filter-ConfigNodesFilter",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "targetId": "/types/config/config-nodes-options-ConfigNodesOptions",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "targetId": "/types/graph/node-type-NodeType",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "targetId": "/types/graph/node-style-NodeStyle",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-Config",
-      "targetId": "/types/config/layout-algorithm-LayoutAlgorithm",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-Config",
-      "targetId": "/types/config/config-links-ConfigLinks",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-Config",
-      "targetId": "/types/config/config-nodes-ConfigNodes",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-Config",
-      "targetId": "/types/config/theme-Theme",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/utils/tree-node-TreeNode",
-      "targetId": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/utils/tree-node-TreeNode",
-      "targetId": "/types/utils/tree-node-TreeNode",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/messages/msg-load-graph-MsgLoadGraph",
-      "targetId": "/types/graph/graph-Graph",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm",
-      "targetId": "/types/config/layout-algorithm-LayoutAlgorithm",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm",
-      "targetId": "/types/config/link-path-algorithm-LinkPathAlgorithm",
       "type": "association"
     }
   ],
