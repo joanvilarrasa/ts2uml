@@ -42,8 +42,5 @@
     "vite": "^6.0.7",
     "zod": "^3.24.1",
     "zod-validation-error": "^3.4.0"
-  },
-  "dependencies": {
-    "is-what": "^5.0.2"
   }
 }
