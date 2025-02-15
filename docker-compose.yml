@@ -1,0 +1,16 @@
+services:
+  ts2uml-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    restart: unless-stopped 
+
+  ts2uml-microbin:
+    image: danielszabo99/microbin:latest
+    restart: always
+    ports:
+     - "3001:8080"
+    volumes:
+     - ./microbin-data:/app/microbin_data

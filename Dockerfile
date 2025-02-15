@@ -1,0 +1,36 @@
+# Use the official Bun image as the base image
+FROM oven/bun:slim AS build
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the root package.json and bun.lockb files
+COPY package.json bun.lockb ./
+
+# Copy the packages and apps directories
+COPY packages ./packages
+COPY apps ./apps
+
+# Install dependencies (including workspace dependencies)
+RUN bun clean:all
+
+# Install dependencies (including workspace dependencies)
+RUN bun install
+
+# Build the web application
+RUN bun run build:models
+RUN bun run build:core
+RUN bun run build:web
+
+# Production stage
+FROM nginx:alpine
+
+
+# Copy the built assets from build stage
+COPY --from=build /app/apps/web/dist /usr/share/nginx/html
+
+# Expose port 3000
+EXPOSE 80
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"] 

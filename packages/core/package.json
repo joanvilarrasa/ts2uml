@@ -10,5 +10,9 @@
     "build": "biome check --fix . && biome format --write . && tsup --clean",
     "test": "bun test",
     "generate-demo-graph": "bun run src/main/generate-demo-graph-json.ts  "
+  },
+  "dependencies": {
+    "@ts2uml/models": "workspace:*",
+    "ts-morph": "^25.0.1"
   }
 }
