@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile.web
     ports:
-      - "3100:80"
+      - "80:80"
     networks:
       - vps-network
 
@@ -16,7 +16,7 @@ services:
     container_name: ts2uml-pastebin
     restart: always
     ports:
-     - "3101:8080"
+     - "8080:8080"
     volumes:
      - ./microbin-data:/app/microbin_data
     networks:
