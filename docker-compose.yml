@@ -22,6 +22,8 @@ services:
      - "3101:8080"
     volumes:
      - ./microbin-data:/app/microbin_data
+    environment:
+      MICROBIN_PUBLIC_PATH: https://ts2uml.com/pastebin
     networks:
       - vps-network
 

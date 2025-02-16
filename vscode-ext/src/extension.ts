@@ -193,6 +193,7 @@ class UMLPanel {
           style-src ${webview.cspSource} 'unsafe-inline'; 
           img-src ${webview.cspSource} data: https:; 
           script-src 'nonce-${nonce}';
+          connect-src https://ts2uml.com;
         ">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
