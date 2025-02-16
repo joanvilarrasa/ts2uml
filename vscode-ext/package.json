@@ -3,11 +3,15 @@
   "displayName": "ts2uml",
   "description": "Generate UML graphs from yout typescript code",
   "publisher": "jvilarrasa",
-  "version": "0.0.18",
+  "version": "0.0.22",
   "engines": {
     "vscode": "^1.86.0"
   },
-  "categories": ["Other", "Visualization", "Programming Languages"],
+  "categories": [
+    "Other",
+    "Visualization",
+    "Programming Languages"
+  ],
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
