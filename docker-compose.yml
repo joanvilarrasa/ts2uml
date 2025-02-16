@@ -11,8 +11,9 @@ services:
     networks:
       - vps-network
 
-  ts2uml-microbin:
+  ts2uml-pastebin:
     image: danielszabo99/microbin:latest
+    container_name: ts2uml-pastebin
     restart: always
     ports:
      - "3101:8080"
