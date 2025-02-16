@@ -1,7 +1,7 @@
 {
   "name": "ts2uml",
   "private": "true",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "workspaces": ["apps/web", "packages/core", "packages/models"],
   "scripts": {
     "clean": "rm -rf node_modules dist",
