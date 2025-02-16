@@ -1,16 +1,18 @@
 services:
   ts2uml-web:
+    image: joanvilarrasa/ts2uml-web:latest
+    container_name: ts2uml-web
+    restart: unless-stopped 
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.web
     ports:
-      - "3000:80"
-    restart: unless-stopped 
+      - "3100:80"
 
   ts2uml-microbin:
     image: danielszabo99/microbin:latest
     restart: always
     ports:
-     - "3001:8080"
+     - "3101:8080"
     volumes:
      - ./microbin-data:/app/microbin_data

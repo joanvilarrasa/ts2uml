@@ -25,11 +25,10 @@ RUN bun run build:web
 # Production stage
 FROM nginx:alpine
 
-
 # Copy the built assets from build stage
 COPY --from=build /app/apps/web/dist /usr/share/nginx/html
 
-# Expose port 3000
+# Expose port 80
 EXPOSE 80
 
 # Start nginx
