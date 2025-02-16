@@ -57,8 +57,6 @@ jobs:
           cd ~/ts2uml
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
           docker compose down
-          docker stop ts2uml-web ts2uml-pastebin || true
-          docker rm ts2uml-web ts2uml-pastebin || true
           docker image rm joanvilarrasa/ts2uml-web:latest || true
           docker compose pull
           docker compose up -d
