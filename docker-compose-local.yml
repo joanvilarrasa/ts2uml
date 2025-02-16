@@ -6,13 +6,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.web
-    environment:
-      - VITE_PASTEBIN_URL=https://ts2uml.com/pastebin
-      - VITE_WEB_URL=https://ts2uml.com
     ports:
       - "3100:80"
-    networks:
-      - vps-network
+    environment:
+      - VITE_PASTEBIN_URL=http://localhost:3101
+      - VITE_WEB_URL=http://localhost:5173
 
   ts2uml-pastebin:
     image: danielszabo99/microbin:latest
@@ -22,9 +20,3 @@ services:
      - "3101:8080"
     volumes:
      - ./microbin-data:/app/microbin_data
-    networks:
-      - vps-network
-
-networks:
-  vps-network:
-    external: true  # Important: This tells Docker it's an existing network

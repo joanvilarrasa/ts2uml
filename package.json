@@ -1,10 +1,14 @@
 {
   "name": "ts2uml",
   "private": "true",
-  "version": "0.0.20 ",
-  "workspaces": ["apps/web", "packages/core", "packages/models"],
+  "version": "0.0.23",
+  "workspaces": [
+    "apps/web",
+    "packages/core",
+    "packages/models"
+  ],
   "scripts": {
-    "clean": "rm -rf node_modules dist",
+    "clean": "",
     "clean:all": "bun run clean:models && bun run clean:core && bun run clean:web",
     "clean:models": "cd packages/models && bun run clean",
     "clean:core": "cd packages/core && bun run clean",
@@ -31,7 +35,10 @@
     "dev:core": "cd packages/core && bun run dev",
     "dev:web": "cd apps/web && bun run dev",
     "preview:web": "cd apps/web && bun run preview",
-    "demo": "cd packages/core && bun run generate-demo-graph"
+    "demo": "cd packages/core && bun run generate-demo-graph",
+    "bump:patch": "bun run scripts/bump-version.ts patch",
+    "bump:minor": "bun run scripts/bump-version.ts minor",
+    "bump:major": "bun run scripts/bump-version.ts major"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
@@ -42,5 +49,8 @@
     "vite": "^6.0.7",
     "zod": "^3.24.1",
     "zod-validation-error": "^3.4.0"
-  }
+  },
+  "trustedDependencies": [
+    "@biomejs/biome"
+  ]
 }

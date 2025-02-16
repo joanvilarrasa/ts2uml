@@ -1,11 +1,13 @@
-import { type Graph, ZGraph, createGraph, updateDeep } from '@ts2uml/models';
+import { type Graph, ZGraph, createGraph, createMsgLoadGraph, is, updateDeep } from '@ts2uml/models';
 import type { Node as RF_Node } from '@xyflow/react';
+import { LinkManager } from './link-manager';
 export class GraphManager {
   private static instance: GraphManager;
   private graph: Graph;
 
   private constructor() {
     this.graph = createGraph();
+    this.initGraphFromUrlIfExists();
   }
 
   static getInstance(): GraphManager {
@@ -13,6 +15,22 @@ export class GraphManager {
       GraphManager.instance = new GraphManager();
     }
     return GraphManager.instance;
+  }
+
+  async initGraphFromUrlIfExists() {
+    const url = new URL(window.location.href);
+    const id = url.searchParams.get('id');
+    if (id) {
+      const linkManager: LinkManager = LinkManager.getInstance();
+      const sharedGraph = await linkManager.getLinkData(id);
+      if (sharedGraph) {
+        const graph = JSON.parse(sharedGraph);
+        if (is<Graph>(graph, ZGraph)) {
+          this.graph = graph;
+          window.postMessage(createMsgLoadGraph({ graph, applyLayoutOnLoad: true }));
+        }
+      }
+    }
   }
 
   getGraph(): Graph {

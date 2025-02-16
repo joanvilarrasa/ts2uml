@@ -1,14 +1,15 @@
 {
   "name": "@ts2uml/web",
   "private": true,
-  "version": "0.0.18",
+  "version": "0.0.23",
   "type": "module",
   "scripts": {
     "clean": "rm -rf node_modules dist",
     "lint": "biome check --fix .",
     "format": "biome format --write .",
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --mode production",
+    "build:local": "vite build --mode local",
     "preview": "vite preview"
   },
   "dependencies": {

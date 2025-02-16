@@ -28,6 +28,9 @@ When you right-click on a folder and select **Generate UML diagram**, ts2uml:
   Adjust how links between nodes are drawn:
   - `straight`, `bezier`, `step`
 
+- **Share:**
+  Share the diagram with a link. The link will open the [ts2uml.com](https://ts2uml.com) website that is the same as the extension and will load the diagram.
+
 - **Export:**
   Export the diagram to a file or copy it to the clipboard.
   - **PNG:** Export the diagram to a PNG (optionally with transparent background).

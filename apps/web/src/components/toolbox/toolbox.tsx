@@ -8,6 +8,7 @@ import { ExportTool } from './export-tool/export-tool';
 import { FilterTool } from './filter-tool/filter-tool';
 import { ImportTool } from './import-tool/import-tool';
 import { LayoutTool } from './layout-tool/layout-tool';
+import { ShareTool } from './share-tool/share-tool';
 import ThemeToggle from './theme-toggle';
 
 export function Toolbox() {
@@ -24,8 +25,9 @@ export function Toolbox() {
           <LockKeyholeOpen />
         </Button> */}
         <Separator orientation="vertical" className="h-4 bg-border/20" />
-        <ExportTool />
         <ImportTool />
+        <ExportTool />
+        <ShareTool />
         <Separator orientation="vertical" className="h-4 bg-border/20" />
         <Button variant="outline" size="icon" disabled={true} onClick={loadGraph}>
           <Settings />
