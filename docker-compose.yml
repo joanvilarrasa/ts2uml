@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile.web
     ports:
       - "3100:80"
+    networks:
+      - vps-network
 
   ts2uml-microbin:
     image: danielszabo99/microbin:latest
