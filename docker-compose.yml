@@ -16,3 +16,9 @@ services:
      - "3101:8080"
     volumes:
      - ./microbin-data:/app/microbin_data
+    networks:
+      - vps-network
+
+networks:
+  vps-network:
+    external: true  # Important: This tells Docker it's an existing network
