@@ -33,8 +33,6 @@ jobs:
         docker buildx build -t joanvilarrasa/ts2uml-web:latest --push . -f ./Dockerfile.web
 
     - name: Copy docker-compose file to VPS
-      env:
-        VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
       run: |
         echo "${{ secrets.VPS_SSH_KEY }}" > private_key.pem
         chmod 600 private_key.pem
