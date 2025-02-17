@@ -2,6 +2,10 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.25] - Improved link generation
+
+- Improved ui of the share tool.
+
 ### [v0.0.22] - Fix bug with path sanitization
 
 - Added possibility to share the diagram with a link. The link will open the website that is the same as the extension and will load the diagram.

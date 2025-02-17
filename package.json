@@ -1,19 +1,13 @@
 {
   "name": "ts2uml",
   "private": "true",
-  "version": "0.0.24",
-  "workspaces": [
-    "apps/web",
-    "packages/core",
-    "packages/models"
-  ],
+  "version": "0.0.25",
+  "workspaces": ["apps/web", "packages/core", "packages/models"],
   "scripts": {
-    "clean": "",
     "clean:all": "bun run clean:models && bun run clean:core && bun run clean:web",
     "clean:models": "cd packages/models && bun run clean",
     "clean:core": "cd packages/core && bun run clean",
     "clean:web": "cd apps/web && bun run clean",
-    "lint": "biome check .",
     "lint:all": "bun run lint:models && bun run lint:core && bun run lint:web",
     "lint:models": "cd packages/models && bun run lint",
     "lint:core": "cd packages/core && bun run lint",
@@ -29,13 +23,11 @@
     "build:core": "cd packages/core && bun run build",
     "build:web": "cd apps/web && bun run build",
     "build:vscode": "bun run scripts/copy-vscode-ext-deps.sh",
-    "dev": "bun run dev:all",
     "dev:all": "bun run dev:models && bun run dev:core && bun run dev:web",
-    "dev:models": "cd packages/models && bun run dev",
-    "dev:core": "cd packages/core && bun run dev",
     "dev:web": "cd apps/web && bun run dev",
     "preview:web": "cd apps/web && bun run preview",
     "demo": "cd packages/core && bun run generate-demo-graph",
+    "publish:vscode": "cd vscode-ext && vsce publish",
     "bump:patch": "bun run scripts/bump-version.ts patch",
     "bump:minor": "bun run scripts/bump-version.ts minor",
     "bump:major": "bun run scripts/bump-version.ts major"
@@ -50,7 +42,5 @@
     "zod": "^3.24.1",
     "zod-validation-error": "^3.4.0"
   },
-  "trustedDependencies": [
-    "@biomejs/biome"
-  ]
+  "trustedDependencies": ["@biomejs/biome"]
 }

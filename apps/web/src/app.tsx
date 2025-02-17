@@ -28,7 +28,6 @@ import { Toolbox } from './components/toolbox/toolbox';
 import { computeNodeHeight, computeNodeWidth } from './lib/compute-node-size';
 import { ELK_DEFAULT_LAYOUT_OPTIONS, RF_EDGE_TYPES, RF_NODE_TYPES } from './lib/constants';
 import { GraphManager } from './lib/graph-manager';
-import { LinkManager } from './lib/link-manager';
 import { linkToRFEdge } from './lib/link-to-rf-edge';
 import { nodeToRFNode } from './lib/node-to-rf-node';
 import { useTheme } from './theme-provider';
@@ -37,7 +36,6 @@ const elk = new ELK();
 
 export default function App() {
   const gm: GraphManager = GraphManager.getInstance();
-  const linkManager: LinkManager = LinkManager.getInstance();
   const { theme } = useTheme();
   const reactFlow = useReactFlow();
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -145,9 +143,6 @@ export default function App() {
     window.addEventListener('message', messageHandler);
     return () => {
       window.removeEventListener('message', messageHandler);
-      if (!linkManager.getLinkIsCopied()) {
-        linkManager.deleteLink();
-      }
     };
   }, []);
 

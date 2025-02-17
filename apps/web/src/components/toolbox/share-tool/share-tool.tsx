@@ -1,65 +1,85 @@
-import { Separator } from '@/components/ui/separator';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { GraphManager } from '@/lib/graph-manager';
 import { LinkManager } from '@/lib/link-manager';
 import { cn } from '@/lib/utils';
 import { ts2umlToJson } from '@ts2uml/core/src/export/ts2uml-to-json';
-import { Clipboard, RefreshCcw, Share2 } from 'lucide-react';
+import { Clipboard, Share2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '../../ui/button';
-import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover';
 
 export function ShareTool() {
   const gm: GraphManager = GraphManager.getInstance();
   const linkManager: LinkManager = LinkManager.getInstance();
   const [isOpen, setIsOpen] = useState(false);
+  const [isLinkCopied, setIsLinkCopied] = useState(false);
   const [link, setLink] = useState('');
 
-  async function handleRefresh() {
-    await linkManager.refreshLink();
-    setLink(linkManager.getLink());
+  async function handleShareClick() {
+    setIsOpen(true);
+    const loaderToastId = toast.loading('Creating new link...');
+    setIsLinkCopied(false);
+    const linkContent = ts2umlToJson(gm.getGraph());
+    const newLink = await linkManager.createNewLink(linkContent);
+    toast.dismiss(loaderToastId);
+    if (newLink) {
+      setLink(newLink);
+      setIsOpen(true);
+    } else {
+      toast.error('Failed to create the link', { style: { border: '1px solid hsl(var(--destructive))' } });
+    }
   }
 
   async function updatePastebinData() {
-    const newContent = ts2umlToJson(gm.getGraph());
-    await linkManager.updateLinkData(newContent);
-    linkManager.copyLink(link);
+    const loaderToastId = toast.loading('Copying link to clipboard...');
+    const linkCopiedSuccessfully = await linkManager.copyLinkToClipboard(link);
+    toast.dismiss(loaderToastId);
+    if (linkCopiedSuccessfully) {
+      toast.success('Link copied to clipboard!', { style: { border: '1px solid hsl(var(--primary))' } });
+      setIsLinkCopied(true);
+    } else {
+      toast.error('Failed to copy the link to clipboard', { style: { border: '1px solid hsl(var(--destructive))' } });
+    }
   }
 
   useEffect(() => {
-    if (isOpen) {
-      setLink(linkManager.getLink());
+    if (!isOpen && !isLinkCopied) {
+      linkManager.deleteLink();
     }
-  }, [isOpen]);
+  }, [isOpen, isLinkCopied]);
 
   return (
-    <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger asChild>
-        <Button variant="outline" className={cn(isOpen && 'bg-accent')}>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger asChild>
+        <Button
+          variant="outline"
+          className={cn(isOpen && 'bg-accent')}
+          onClick={(e) => {
+            e.preventDefault();
+            handleShareClick();
+          }}
+        >
           <Share2 />
           <span>Share</span>
         </Button>
-      </PopoverTrigger>
-      <PopoverContent className="flex min-w-64 flex-col border border-primary" sideOffset={10}>
+      </DialogTrigger>
+      <DialogContent className="flex min-w-64 flex-col border border-primary">
+        <DialogTitle className="flex items-end gap-2 border-foreground/50 border-b pb-1 text-sm">
+          <span className="text-sm">{'Share the link!'}</span>
+          <span className="text-foreground/50 text-xs">{'(Expires in 24h)'}</span>
+        </DialogTitle>
         <div className="flex flex-col">
-          <span className="pt-2 text-xs">{'This link will expire in 24 hours: '}</span>
-          <Separator className="mt-1 mb-2" orientation="horizontal" />
           <div className="flex gap-2">
-            <div className="flex flex-grow items-center justify-center border border-border px-2">
-              <span className="text-xs">{`ts2uml.com?id=${link}`}</span>
-            </div>
-
+            <span className="flex flex-grow items-center justify-start border border-foreground/50 p-2 text-foreground/70 text-xs">{`ts2uml.com?id=${link}`}</span>
             <div className="flex gap-2">
               <Button variant="default" className="flex-grow" onClick={() => updatePastebinData()}>
                 <span className="font-medium">Copy</span>
                 <Clipboard className="h-3 w-3" />
               </Button>
-              <Button variant="outline" size="icon" className="w-9" onClick={() => handleRefresh()}>
-                <RefreshCcw />
-              </Button>
             </div>
           </div>
         </div>
-      </PopoverContent>
-    </Popover>
+      </DialogContent>
+    </Dialog>
   );
 }
