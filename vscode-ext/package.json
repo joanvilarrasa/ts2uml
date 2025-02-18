@@ -4,7 +4,11 @@
   "description": "Generate UML graphs from yout typescript code",
   "publisher": "jvilarrasa",
   "version": "0.0.29",
-  "icon": "images/iconHQ-Color.png",
+  "icon": "images/logo.png",
+  "galleryBanner": {
+    "color": "#252523",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.86.0"
   },
