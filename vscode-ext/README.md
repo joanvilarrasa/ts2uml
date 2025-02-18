@@ -14,27 +14,25 @@ When you right-click on a folder and select **Generate UML diagram**, ts2uml:
 - **Automatic Diagram Generation:**  
   Quickly generate UML diagrams from your TypeScript code with a single click.
 
-- **Filtering Options:**  
+- **Filtering:**  
   Easily filter and focus on what matters most:
   - **By Node Type:** (class, interface, enum, type)
   - **By Folder:** Narrow down nodes from specific directories.
   - **By File:** Isolate nodes defined in particular files.
 
-- **Customizable Layouts:**  
+- **Customize the layout:**  
   Choose from multiple layout algorithms to best arrange your diagram:
   - `layered`, `mrtree`, `force`, `radial`, `box`, `random`
-
-- **Custom Link Paths:**  
   Adjust how links between nodes are drawn:
   - `straight`, `bezier`, `step`
 
 - **Share:**
   Share the diagram with a link. The link will open the [ts2uml.com](https://ts2uml.com) website that is the same as the extension and will load the diagram.
 
-- **Export:**
-  Export the diagram to a file or copy it to the clipboard.
-  - **PNG:** Export the diagram to a PNG (optionally with transparent background).
-  - **JSON:** Export the diagram to a JSON file.
+- **Save:**
+  Save the diagram to a file or copy it to the clipboard.
+  - **PNG:** Save the diagram to a PNG (optionally with transparent background).
+  - **JSON:** Save the diagram to a JSON file.
 
 - **Import:**
   Import a diagram from a JSON file (the file must be the same JSON format as the exported ones).

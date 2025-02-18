@@ -2,6 +2,10 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.26] - Minor visual improvements
+
+- Added a few visual improvements to the import and save tools such as a couple of sonners and a smoall redesign of the save tool.
+
 ### [v0.0.25] - Improved link generation
 
 - Improved ui of the share tool.
