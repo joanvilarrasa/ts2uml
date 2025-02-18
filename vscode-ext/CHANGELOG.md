@@ -2,6 +2,10 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.29] - Logo
+
+- Added a new logo to the extension.
+
 ### [v0.0.27] - Minor visual improvements
 
 - Added tooltip to buttons that only had an icon.
