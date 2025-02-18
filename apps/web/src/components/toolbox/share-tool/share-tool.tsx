@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { GraphManager } from '@/lib/graph-manager';
 import { LinkManager } from '@/lib/link-manager';
 import { cn } from '@/lib/utils';
@@ -70,7 +70,7 @@ export function ShareTool() {
         </DialogTitle>
         <div className="flex flex-col">
           <div className="flex gap-2">
-            <span className="flex flex-grow items-center justify-start border border-foreground/50 p-2 text-foreground/70 text-xs">{`ts2uml.com?id=${link}`}</span>
+            <DialogDescription className="flex flex-grow items-center justify-start border border-foreground/50 p-2 text-foreground/70 text-xs">{`ts2uml.com?id=${link}`}</DialogDescription>
             <div className="flex gap-2">
               <Button variant="default" className="flex-grow" onClick={() => updatePastebinData()}>
                 <span className="font-medium">Copy</span>

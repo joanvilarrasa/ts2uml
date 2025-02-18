@@ -24,6 +24,7 @@ import {
   ZMsgUpdateLayoutAlgorithm,
 } from '@ts2uml/models/src/types/messages/msg-update-layout-algorithm';
 import ELK, { type LayoutOptions, type ElkNode } from 'elkjs/lib/elk.bundled.js';
+import { toast } from 'sonner';
 import { Toolbox } from './components/toolbox/toolbox';
 import { computeNodeHeight, computeNodeWidth } from './lib/compute-node-size';
 import { ELK_DEFAULT_LAYOUT_OPTIONS, RF_EDGE_TYPES, RF_NODE_TYPES } from './lib/constants';
@@ -73,6 +74,7 @@ export default function App() {
   }
 
   function handleLoadGraph({ graph, applyLayoutOnLoad }: MsgLoadGraph) {
+    const loaderToastId = toast.loading('Loading diagram...');
     gm.setGraph(graph);
     const nodes = graph.nodes.map((node) => nodeToRFNode(node, graph.config));
     const edges = graph.links.map((link) => linkToRFEdge(link, graph.config));
@@ -84,6 +86,10 @@ export default function App() {
         'elk.algorithm': `org.eclipse.elk.${graph.config.layoutAlgorithm}`,
       });
     }
+    setTimeout(() => {
+      toast.dismiss(loaderToastId);
+      toast.success('Diagram loaded!', { style: { border: '1px solid hsl(var(--primary))' } });
+    }, 1);
   }
 
   function handleUpdateLayoutAlgorithm({ layoutAlgorithm }: MsgUpdateLayoutAlgorithm) {

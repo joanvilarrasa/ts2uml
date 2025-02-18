@@ -10,13 +10,14 @@ import { getViewportForBounds } from '@xyflow/react';
 import { getNodesBounds } from '@xyflow/react';
 import { useReactFlow } from '@xyflow/react';
 import { toPng } from 'html-to-image';
-import { Clipboard, SquareArrowOutUpRight } from 'lucide-react';
+import { Clipboard, Save, } from 'lucide-react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { GraphManager } from '../../../lib/graph-manager';
 import { Button } from '../../ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover';
 
-export function ExportTool() {
+export function SaveTool() {
   const gm: GraphManager = GraphManager.getInstance();
   const { getNodes } = useReactFlow();
   const [isOpen, setIsOpen] = useState(false);
@@ -33,14 +34,20 @@ export function ExportTool() {
       if (target === 'download') {
         exportJson(content, actualExportName);
       } else {
-        clipboardJson(content);
+        const loaderToastId = toast.loading('Copying JSON to clipboard...');
+        await clipboardJson(content);
+        toast.dismiss(loaderToastId);
+        toast.success('JSON copied to clipboard!', { style: { border: '1px solid hsl(var(--primary))' } });
       }
     } else if (exportFormat === 'png' || exportFormat === 'png-transparent') {
+      const loaderToastId = toast.loading('Generating PNG...');
       const content = await toPngImage(exportFormat === 'png');
+      toast.dismiss(loaderToastId);
       if (target === 'download') {
         exportPng(content, actualExportName);
       } else {
-        clipboardPng(content);
+        await clipboardPng(content);
+        toast.success('PNG copied to clipboard!', { style: { border: '1px solid hsl(var(--primary))' } });
       }
     }
   }
@@ -52,8 +59,8 @@ export function ExportTool() {
     a.setAttribute('href', dataUri);
     a.click();
   }
-  function clipboardJson(content: string) {
-    navigator.clipboard.writeText(content);
+  async function clipboardJson(content: string) {
+    await navigator.clipboard.writeText(content);
   }
 
   function exportPng(dataUrl: string, name: string) {
@@ -95,56 +102,63 @@ export function ExportTool() {
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button variant="outline" className={cn(isOpen && 'bg-accent')}>
-          <SquareArrowOutUpRight />
-          <span>Export</span>
+          <Save />
+          <span>Save</span>
         </Button>
       </PopoverTrigger>
       <PopoverContent className="flex min-w-64 flex-col border border-primary" sideOffset={10}>
         <div className="flex flex-col">
-          <div className="flex w-full gap-2">
+          <div className='flex gap-2'>
+            <div className="relative">
+              <Input
+                className="h-9"
+                type="text"
+                placeholder="ts2uml"
+                value={exportName}
+                onChange={(e) => setExportName(e.target.value)}
+              />
+              <span className="pointer-events-none absolute inset-y-0 end-0 flex items-center justify-center pe-3 text-muted-foreground text-sm peer-disabled:opacity-50">
+                .{exportFormat.includes('png') ? 'png' : 'json'}
+              </span>
+            </div>
             <Button variant="default" className="flex-grow" onClick={() => handleExport('download')}>
-              <span className="font-medium">Export diagram</span>
-              <SquareArrowOutUpRight className="h-3 w-3" />
+              <span className="font-medium">Save</span>
+              <Save className="h-3 w-3" />
             </Button>
             <Button variant="outline" size="icon" onClick={() => handleExport('clipboard')}>
               <Clipboard className="h-3 w-3" />
             </Button>
           </div>
-          <span className="pt-2 text-xs">{'Choose a name: '}</span>
-          <Separator className="mt-1 mb-2" orientation="horizontal" />
-          <div className="relative">
-            <Input
-              type="text"
-              placeholder="ts2uml"
-              value={exportName}
-              onChange={(e) => setExportName(e.target.value)}
-            />
-            <span className="pointer-events-none absolute inset-y-0 end-0 flex items-center justify-center pe-3 text-muted-foreground text-sm peer-disabled:opacity-50">
-              .{exportFormat.includes('png') ? 'png' : 'json'}
-            </span>
-          </div>
 
-          <span className="pt-2 text-xs">{'Choose a format: '}</span>
+          <span className="pt-4 text-xs">{'Choose a format: '}</span>
           <Separator className="mt-1 mb-2" orientation="horizontal" />
 
           <RadioGroup value={exportFormat} onValueChange={(value) => setExportFormat(value as ExportFormat)}>
-            <span className="text-xs">{'Image'}</span>
-            <div className="flex flex-col gap-2">
-              {exportFormatImageOptions.options.map((t) => (
-                <div className="flex items-center justify-start gap-2" key={t}>
-                  <RadioGroupItem value={t} id={t} />
-                  <span className="text-sm">{t}</span>
+            <div className='flex gap-4'>
+              <div className='flex flex-col gap-2'>
+                <span className="text-xs">{'Image'}</span>
+                <div className="flex flex-col gap-2">
+                  {exportFormatImageOptions.options.map((t) => (
+                    <div className="flex items-center justify-start gap-2" key={t}>
+                      <RadioGroupItem value={t} id={t} />
+                      <span className="text-sm">{t}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-            <span className="text-xs">{'File'}</span>
-            <div className="flex flex-col gap-2">
-              {exportFormatFileOptions.options.map((t) => (
-                <div className="flex items-center justify-start gap-2" key={t}>
-                  <RadioGroupItem value={t} id={t} />
-                  <span className="text-sm">{t}</span>
+              </div>
+              <Separator className='h-11/12' orientation="vertical" />
+              <div className='flex flex-col gap-2'>
+                <span className="text-xs">{'File'}</span>
+                <div className="flex flex-col gap-2">
+                  {exportFormatFileOptions.options.map((t) => (
+                    <div className="flex items-center justify-start gap-2" key={t}>
+                      <RadioGroupItem value={t} id={t} />
+                      <span className="text-sm">{t}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
             </div>
           </RadioGroup>
         </div>

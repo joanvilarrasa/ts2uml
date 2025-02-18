@@ -1,17 +1,16 @@
-import { NODE_TITLE_HEIGHT } from '@/lib/constants';
-import { NODE_ATTRIBUTE_HEIGHT } from '@/lib/constants';
+import { CHAR_WIDTH, NODE_ATTRIBUTE_HEIGHT, NODE_TITLE_HEIGHT } from '@/lib/constants';
 import type { Node } from '@ts2uml/models';
 
 export function computeNodeWidth(node: Node) {
   let maxWidth = 0;
 
   // Calculate title width
-  const titleWidth = node.title.text.length * 10;
+  const titleWidth = node.title.text.length * CHAR_WIDTH;
   maxWidth = Math.max(maxWidth, titleWidth);
 
   // Calculate attributes width
   for (const attribute of node.attributes) {
-    const attributeWidth = attribute.text.length * 10;
+    const attributeWidth = attribute.text.length * CHAR_WIDTH;
     maxWidth = Math.max(maxWidth, attributeWidth);
   }
 
