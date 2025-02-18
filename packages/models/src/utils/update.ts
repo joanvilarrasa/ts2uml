@@ -1,5 +1,16 @@
 import type { z } from 'zod';
 
+/**
+ * Update an object with a schema.
+ * This function will always update the original data.
+ * If you provide a schema, a new object will be returned.
+ * If you do not provide a schema, the original data will be returned.
+ *
+ * @param data - The original data to update.
+ * @param updates - The updates to apply to the data.
+ * @param schema - The schema to validate the updated data against.
+ * @returns The updated data.
+ */
 export function update<T>(data: T, updates: Partial<T>, zSchema: z.ZodType<T>): T {
   return zSchema.parse({
     ...data,

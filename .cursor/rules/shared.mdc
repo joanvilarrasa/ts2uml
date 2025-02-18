@@ -1,0 +1,77 @@
+---
+description: Shared rules across all packages
+globs: **/*
+---
+Below is a consolidated set of rules that **must be strictly followed**. These guidelines enforce clean TypeScript practices, strict typing, and robust Zod integration. It is very important that you adhere to these rules exactly.
+
+---
+
+## General TypeScript Guidelines
+
+- Always use strict types and ensure that `tsconfig.json` has strict checking enabled.
+- Always declare the type of each variable, function parameter, and return value.
+- Avoid using `any`. Use explicit types or generics as needed.
+- Prefer **interfaces** over types when modeling structures.
+- Avoid enums; use union types or objects for a set of predefined values.
+- Use English for all code and documentation.
+- Use a consistent naming convention: PascalCase for classes, camelCase for functions and variables, and kebab-case for file and folder names.
+
+---
+
+## Model Definitions & Zod Integration
+
+- Define all models with an interface.
+- Create a corresponding Zod schema for each model (use the `Z` prefix).
+- Provide a `create` function that accepts a partial model and returns a validated, complete instance.
+- Ensure the interface, Zod schema, and create function remain in sync.
+- Leverage Zod’s features for runtime validation, parsing, and error reporting.
+
+*Example:*
+
+```ts
+/**
+ * Represents a graph/diagram containing nodes and their links.
+ */
+export interface Graph {
+  // Configuration for the graph (see {@link Config})
+  config: Config;
+  // Array of nodes in the graph (see {@link Node})
+  nodes: Node[];
+  // Array of links/relationships between nodes (see {@link Link})
+  links: Link[];
+}
+
+export const ZGraph = z.object({
+  config: ZConfig,
+  nodes: ZNode.array().default([]),
+  links: ZLink.array().default([]),
+}) as z.ZodType<Graph>;
+
+export function createGraph(data?: Partial<Graph>): Graph {
+  return ZGraph.parse({
+    config: createConfig(data?.config),
+    nodes: data?.nodes ? data.nodes.map((n) => createNode(n)) : [],
+    links: data?.links ? data.links.map((l) => createLink(l)) : [],
+  });
+}
+```
+
+---
+
+## Validation and Update Utilities
+
+- Use `is<T>(data, zSchema)` to check if data matches a given Zod schema. It should act as a type guard by returning a boolean.
+- Use `validate<T>(data, zSchema)` to validate data against a Zod schema; it should throw a detailed `ValidationError` if validation fails.
+- Use `update<T>(data, updates, zSchema)` to merge updates into an object and re-validate it.
+- Use `updateDeep<T>(data, updates, schema?)` to update nested objects and optionally re-validate the final result.
+
+---
+
+## Code Assistance and Productivity Guidelines
+
+- Always use the provided helper functions (`is`, `validate`, `update`, `updateDeep`) when creating, checking, or updating models.
+- Generate code that strictly follows the interface/Zod pattern.
+- Provide clear and concise examples that demonstrate model creation, validation, and update.
+- Maintain consistency and reliability across your TypeScript project by following these guidelines exactly.
+
+Make sure every piece of code, refactoring, or suggestion complies with these rules to ensure maintainability and robustness in our development environment.

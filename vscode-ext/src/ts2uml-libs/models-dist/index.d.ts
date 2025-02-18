@@ -598,10 +598,64 @@ declare const DEFAULT_LIGHT_INTERFACE_STYLE: NodeStyle;
 declare const DEFAULT_LIGHT_TYPE_STYLE: NodeStyle;
 declare const DEFAULT_LIGHT_VARIABLE_STYLE: NodeStyle;
 
+/**
+ * Type guard that validates data against a Zod schema and throws a ValidationError if invalid
+ *
+ * @param data - The data to validate
+ * @param zSchema - The Zod schema to validate against
+ * @returns True if data matches the schema
+ * @throws {ValidationError} Throws a ValidationError if data does not match the schema
+ *
+ * @example
+ * ```ts
+ * interface User {name: string; age: number;}
+ * const userSchema = z.object({name: z.string(); age: z.number();}) as z.ZodType<User>;
+ *
+ * const data = { name: "John", age: 30 };
+ * try {
+ *   validate<User>(data, userSchema)) {
+ *   // data is typed as User
+ * } catch (e) {
+ *   // Handle validation error
+ * }
+ * ```
+ */
 declare function validate<T>(data: unknown, zSchema: z.ZodType<T>): data is T;
 
+/**
+ * Type guard that checks if data matches a Zod schema
+ *
+ * @param data - The data to validate
+ * @param zSchema - The Zod schema to validate against
+ * @returns True if data matches the schema, false otherwise
+ *
+ * @example
+ * ```ts
+ * interface User {name: string; age: number;}
+ * const userSchema = z.object({name: z.string(); age: z.number();}) as z.ZodType<User>;
+ *
+ * const data = { name: "John", age: 30 };
+ * if (is<User>(data, userSchema)) {
+ *   // data is typed as User
+ * }
+ * else {
+ *   // data is not typed as User
+ * }
+ * ```
+ */
 declare function is<T>(data: unknown, zSchema: z.ZodType<T>): data is T;
 
+/**
+ * Update an object with a schema.
+ * This function will always update the original data.
+ * If you provide a schema, a new object will be returned.
+ * If you do not provide a schema, the original data will be returned.
+ *
+ * @param data - The original data to update.
+ * @param updates - The updates to apply to the data.
+ * @param schema - The schema to validate the updated data against.
+ * @returns The updated data.
+ */
 declare function update<T>(data: T, updates: Partial<T>, zSchema: z.ZodType<T>): T;
 /**
  * Update a nested object with a schema.
