@@ -1,8 +1,12 @@
 {
   "name": "ts2uml",
   "private": "true",
-  "version": "0.0.26",
-  "workspaces": ["apps/web", "packages/core", "packages/models"],
+  "version": "0.0.27",
+  "workspaces": [
+    "apps/web",
+    "packages/core",
+    "packages/models"
+  ],
   "scripts": {
     "build:all": "bun run build:models && bun run build:core && bun run build:web && bun run build:vscode",
     "build:core": "cd packages/core && bun run build",
@@ -40,5 +44,7 @@
     "zod": "^3.24.1",
     "zod-validation-error": "^3.4.0"
   },
-  "trustedDependencies": ["@biomejs/biome"]
+  "trustedDependencies": [
+    "@biomejs/biome"
+  ]
 }

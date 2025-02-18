@@ -26,11 +26,11 @@ import {
 import ELK, { type LayoutOptions, type ElkNode } from 'elkjs/lib/elk.bundled.js';
 import { toast } from 'sonner';
 import { Toolbox } from './components/toolbox/toolbox';
-import { computeNodeHeight, computeNodeWidth } from './lib/compute-node-size';
 import { ELK_DEFAULT_LAYOUT_OPTIONS, RF_EDGE_TYPES, RF_NODE_TYPES } from './lib/constants';
 import { GraphManager } from './lib/graph-manager';
-import { linkToRFEdge } from './lib/link-to-rf-edge';
-import { nodeToRFNode } from './lib/node-to-rf-node';
+import { computeNodeHeight, computeNodeWidth } from './lib/react-flow/compute-node-size';
+import { linkToRFEdge } from './lib/react-flow/link-to-rf-edge';
+import { nodeToRFNode } from './lib/react-flow/node-to-rf-node';
 import { useTheme } from './theme-provider';
 
 const elk = new ELK();

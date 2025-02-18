@@ -1,7 +1,7 @@
 {
   "name": "@ts2uml/web",
   "private": true,
-  "version": "0.0.26",
+  "version": "0.0.27",
   "type": "module",
   "scripts": {
     "clean": "rm -rf node_modules dist",
@@ -26,7 +26,7 @@
     "@radix-ui/react-separator": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-switch": "^1.1.2",
-    "@radix-ui/react-tooltip": "^1.1.7",
+    "@radix-ui/react-tooltip": "^1.1.8",
     "@ts2uml/core": "workspace:*",
     "@ts2uml/models": "workspace:*",
     "@xyflow/react": "^12.4.2",

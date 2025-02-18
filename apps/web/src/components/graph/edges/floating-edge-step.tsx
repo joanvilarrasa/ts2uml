@@ -1,4 +1,4 @@
-import { getEdgeParams } from '@/lib/get-edge-params';
+import { getEdgeParams } from '@/lib/react-flow/get-edge-params';
 import { type InternalNode, getSmoothStepPath, useInternalNode } from '@xyflow/react';
 
 export interface FloatingEdgeStepProps {

@@ -1,4 +1,7 @@
 import { Separator } from '@/components/ui/separator';
+import { TooltipContent } from '@/components/ui/tooltip';
+import { Tooltip, TooltipTrigger } from '@/components/ui/tooltip';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 import { Workflow } from 'lucide-react';
 import { useState } from 'react';
@@ -12,11 +15,20 @@ export function LayoutTool() {
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger asChild>
-        <Button variant="outline" size="icon" className={cn(isOpen && 'bg-accent')}>
-          <Workflow />
-        </Button>
-      </PopoverTrigger>
+      <TooltipProvider delayDuration={400}>
+        <Tooltip>
+          <TooltipTrigger>
+            <PopoverTrigger asChild>
+              <Button variant="outline" size="icon" className={cn(isOpen && 'bg-accent')}>
+                <Workflow />
+              </Button>
+            </PopoverTrigger>
+          </TooltipTrigger>
+          <TooltipContent>
+            <span>Layout</span>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
       <PopoverContent className="flex min-w-64 flex-col border border-primary" sideOffset={10}>
         <div className="flex flex-col">
           <div className="flex items-center justify-between">
