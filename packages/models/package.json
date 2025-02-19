@@ -1,6 +1,6 @@
 {
   "name": "@ts2uml/models",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "module": "index.ts",
   "type": "module",
   "scripts": {
