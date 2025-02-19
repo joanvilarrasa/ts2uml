@@ -60,4 +60,7 @@ jobs:
           docker image rm joanvilarrasa/ts2uml-web:latest || true
           docker compose pull
           docker compose up -d
+          cd ../reverse-proxy
+          docker compose down
+          docker compose up -d
         EOF

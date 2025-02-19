@@ -20,16 +20,18 @@ export class GraphManager {
   async initGraphFromUrlIfExists() {
     const url = new URL(window.location.href);
     const id = url.searchParams.get('id');
-    if (id) {
-      const linkManager: LinkManager = LinkManager.getInstance();
-      const sharedGraph = await linkManager.getLinkData(id);
-      if (sharedGraph) {
-        const graph = JSON.parse(sharedGraph);
-        if (is<Graph>(graph, ZGraph)) {
-          this.graph = graph;
-          window.postMessage(createMsgLoadGraph({ graph, applyLayoutOnLoad: true }));
-        }
-      }
+    if (id === null) {
+      return;
+    }
+    const linkManager: LinkManager = LinkManager.getInstance();
+    const sharedGraph = await linkManager.getLinkData(id);
+    if (sharedGraph === null) {
+      return;
+    }
+    const graph = JSON.parse(sharedGraph);
+    if (is<Graph>(graph, ZGraph)) {
+      this.graph = graph;
+      window.postMessage(createMsgLoadGraph({ graph, applyLayoutOnLoad: false }));
     }
   }
 
