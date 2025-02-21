@@ -1,45 +1,56 @@
 # ts2uml
 
-**ts2uml** is a Visual Studio Code extension that generates UML diagrams from your TypeScript projects. With a simple right-click on any folder in the VS Code Explorer, you can instantly visualize your TypeScript models as an interactive React Flow diagram.
+Hey! 👋 This is ts2uml - a cool tool I made that turns your TypeScript code into pretty UML diagrams. 
 
-## Overview
+## 🤔 Why did I build this?
 
-When you right-click on a folder and select **Generate UML diagram**, ts2uml:
-- Parses your TypeScript code.
-- Constructs a UML diagram representing your classes, interfaces, enums, and types.
-- Presents the diagram in a dynamic web panel powered by React Flow.
+I was working on this complex codebase at my job. I like having things types but there comes a point where you have diminishing returns. This project was way past that point.
 
-## Features
+I looked around for tools to help me turn the code into a UML diagram so that I maybe could understand something, but everything I found was either too clunky or missing features I really wanted (like being able to filter out the noise). 
 
-- **Automatic Diagram Generation:**  
-  Quickly generate UML diagrams from your TypeScript code with a single click.
+So I decided to build my own and that's how **ts2uml** was born! 
 
-- **Filtering:**  
-  Easily filter and focus on what matters most:
-  - **By Node Type:** (class, interface, enum, type)
-  - **By Folder:** Narrow down nodes from specific directories.
-  - **By File:** Isolate nodes defined in particular files.
+## ✨ Features
 
-- **Customize the layout:**  
-  Choose from multiple layout algorithms to best arrange your diagram:
-  - `layered`, `mrtree`, `force`, `radial`, `box`, `random`
-  Adjust how links between nodes are drawn:
-  - `straight`, `bezier`, `step`
+### 🎯 Generate UML Diagrams Like Magic
+Just right-click a folder in VS Code, hit "Generate UML diagram" and boom! You get this interactive diagram built with React Flow. You can drag stuff around and make it look exactly how you want.
 
-- **Share:**
-  Share the diagram with a link. The link will open the [ts2uml.com](https://ts2uml.com) website that is the same as the extension and will load the diagram.
+Thanks to [React Flow](https://reactflow.dev/) you can:
+  - Drag and drop things around
+  - Zoom in and out
 
-- **Save:**
-  Save the diagram to a file or copy it to the clipboard.
-  - **PNG:** Save the diagram to a PNG (optionally with transparent background).
-  - **JSON:** Save the diagram to a JSON file.
+### 🔍 Filter Out the Noise
+Got too many types cluttering your view? No worries! You can:
+- Hide nodes from specific folders or files
+- Hide nodes by name
+- Hide nodes by type
 
-- **Import:**
-  Import a diagram from a JSON file (the file must be the same JSON format as the exported ones).
-  - **Apply Layout (optional):** Apply the layout of the imported graph.
+### 🎨 Configure the auto-layout
+Change the auto-layout or the type of links.
+- Layouts (from elk.js):
+  - 'layered'
+  - 'mrtree'
+  - 'force'
+  - 'radial'
+  - 'box'
+  - 'random'
 
-- **Theme:**
-  Choose between light and dark theme.
+- Links:
+  - 'straight'
+  - 'bezier'
+  - 'step'
+
+### 🌐 Share with Your Team
+This is very useful for onboarding new people or when you want to share the diagram with someone who doesn't have VS Code.
+- Generate a link that works for 24 hours
+- The link will open the [ts2uml.com](https://ts2uml.com) website and will show the diagram as you had it when you generated the link
+
+### 💾 Save Your Work
+Don't lose your masterpiece:
+- Save as PNG (with or without background)
+- Save as JSON, you'll be able to import it again (also you'll see the structure of the diagram)
+- Copy to clipboard for quick sharing
+- Import saved diagrams when you need them
 
 
 ## Requirements
@@ -52,7 +63,6 @@ This extension has no settings.
 
 ## Known Issues
 
-- The exported pngs have a bug where the font is not loaded correctly.
 If you find any issues, please let me know at [@joan_vilarrasa](https://x.com/joan_vilarrasa)
 
 ## Release Notes
