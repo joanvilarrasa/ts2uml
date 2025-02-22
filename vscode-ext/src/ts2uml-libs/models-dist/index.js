@@ -4247,6 +4247,7 @@ function createConfig(data) {
 // src/types/graph/link.ts
 var ZLink = z.object({
   sourceId: z.string({ invalid_type_error: "sourceId must be a string" }),
+  sourceAttributeIds: z.string().array(),
   targetId: z.string({ invalid_type_error: "targetId must be a string" }),
   text: z.string().optional(),
   type: ZLinkType
@@ -4254,6 +4255,7 @@ var ZLink = z.object({
 function createLink(data) {
   return ZLink.parse({
     sourceId: data?.sourceId ?? "sourceId",
+    sourceAttributeIds: data?.sourceAttributeIds ?? [],
     targetId: data?.targetId ?? "targetId",
     text: data?.text,
     type: data?.type ?? "association"
@@ -4264,13 +4266,14 @@ function createLink(data) {
 var ZNodeAttributeScope = z.enum(["private", "protected", "public"]);
 
 // src/types/graph/node-attribute-type.ts
-var ZNodeAttributeType = z.enum(["attribute", "unionOption", "method", "separator"]);
+var ZNodeAttributeType = z.enum(["attribute", "unionOption", "method"]);
 
 // src/types/graph/node-attribute.ts
 var ZNodeAttribute = z.object({
   docs: z.string().optional(),
   id: z.string({ invalid_type_error: "id must be a string" }),
   isStatic: z.boolean().optional(),
+  extendedFrom: z.string().optional(),
   scope: ZNodeAttributeScope.optional(),
   style: ZNodeStyle.optional(),
   text: z.string({ invalid_type_error: "text must be a string" }),
@@ -4281,6 +4284,7 @@ function createNodeAttribute(data) {
     docs: data?.docs,
     id: data?.id ?? "id",
     isStatic: data?.isStatic,
+    extendedFrom: data?.extendedFrom,
     scope: data?.scope,
     style: createNodeStyle(data?.style),
     text: data?.text ?? "text",
@@ -4322,6 +4326,7 @@ function createNodeTitle(data) {
 var ZNode = z.object({
   attributes: ZNodeAttribute.array(),
   docs: z.string().optional(),
+  extends: z.string().array().optional(),
   id: z.string({ invalid_type_error: "id must be a string" }),
   position: ZNodePosition,
   style: ZNodeStyle.optional(),
@@ -4332,6 +4337,7 @@ function createNode(data) {
   return ZNode.parse({
     attributes: data?.attributes ? data.attributes.map((a) => createNodeAttribute(a)) : [],
     docs: data?.docs,
+    extends: data?.extends,
     id: data?.id ?? "id",
     position: createNodePosition(data?.position),
     style: data?.style,

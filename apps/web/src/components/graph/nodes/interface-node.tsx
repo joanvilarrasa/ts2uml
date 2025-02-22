@@ -14,8 +14,8 @@ export function InterfaceNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node 
   const attributes = props.data.data.attributes;
 
   return (
-    <Card>
-      <CardHeader className="bg-interface">
+    <Card className="border-2 border-interface/40">
+      <CardHeader className="bg-interface/40">
         <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
         <CardTitle>{title.text}</CardTitle>
       </CardHeader>
@@ -23,10 +23,15 @@ export function InterfaceNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node 
         {attributes.map((attribute, index) => (
           <div
             key={`${node.id}-${index}`}
-            className="flex items-center justify-start border-border/10 border-b px-4"
+            className="flex items-center justify-between border-border/10 border-b px-4"
             style={{ height: NODE_ATTRIBUTE_HEIGHT }}
           >
             <p>{attribute.text}</p>
+            {attribute.extendedFrom && (
+              <span className="ml-2 text-muted-foreground text-xs">
+                {`(${attribute.extendedFrom.split('-').at(-1)})`}
+              </span>
+            )}
           </div>
         ))}
       </CardContent>

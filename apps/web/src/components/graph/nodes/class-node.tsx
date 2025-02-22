@@ -18,8 +18,8 @@ export function ClassNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>)
   const hasMethods = methods.length > 0;
 
   return (
-    <Card>
-      <CardHeader className="bg-class">
+    <Card className="border-2 border-class/40">
+      <CardHeader className="bg-class/40">
         <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
         <CardTitle>{title.text}</CardTitle>
       </CardHeader>

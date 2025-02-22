@@ -33,7 +33,7 @@ function decodeEscapedUnicode(input: string): string {
   return input.replace(/\\u([\dA-Fa-f]{4})/g, (_, grp) => String.fromCharCode(Number.parseInt(grp, 16)));
 }
 
-function normalizeAndDecodePath(inputPath: string): string {
+export function normalizeAndDecodePath(inputPath: string): string {
   const decodedPath = decodeEscapedUnicode(inputPath);
   const normalizedSlashes = decodedPath.replace(/\\/g, '/');
   const normalizedPath = path.posix.normalize(normalizedSlashes);

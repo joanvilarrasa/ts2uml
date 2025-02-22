@@ -14,8 +14,8 @@ export function UnionNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>)
   const attributes = props.data.data.attributes;
 
   return (
-    <Card>
-      <CardHeader className="bg-union">
+    <Card className="border-2 border-union/40">
+      <CardHeader className="bg-union/40">
         <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
         <CardTitle>{title.text}</CardTitle>
       </CardHeader>

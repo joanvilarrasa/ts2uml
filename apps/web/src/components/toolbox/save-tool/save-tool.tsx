@@ -10,7 +10,7 @@ import { getViewportForBounds } from '@xyflow/react';
 import { getNodesBounds } from '@xyflow/react';
 import { useReactFlow } from '@xyflow/react';
 import { toPng } from 'html-to-image';
-import { Clipboard, Save, } from 'lucide-react';
+import { Clipboard, Save } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { GraphManager } from '../../../lib/graph-manager';
@@ -108,7 +108,7 @@ export function SaveTool() {
       </PopoverTrigger>
       <PopoverContent className="flex min-w-64 flex-col border border-primary" sideOffset={10}>
         <div className="flex flex-col">
-          <div className='flex gap-2'>
+          <div className="flex gap-2">
             <div className="relative">
               <Input
                 className="h-9"
@@ -134,8 +134,8 @@ export function SaveTool() {
           <Separator className="mt-1 mb-2" orientation="horizontal" />
 
           <RadioGroup value={exportFormat} onValueChange={(value) => setExportFormat(value as ExportFormat)}>
-            <div className='flex gap-4'>
-              <div className='flex flex-col gap-2'>
+            <div className="flex gap-4">
+              <div className="flex flex-col gap-2">
                 <span className="text-xs">{'Image'}</span>
                 <div className="flex flex-col gap-2">
                   {exportFormatImageOptions.options.map((t) => (
@@ -146,8 +146,8 @@ export function SaveTool() {
                   ))}
                 </div>
               </div>
-              <Separator className='h-11/12' orientation="vertical" />
-              <div className='flex flex-col gap-2'>
+              <Separator className="h-11/12" orientation="vertical" />
+              <div className="flex flex-col gap-2">
                 <span className="text-xs">{'File'}</span>
                 <div className="flex flex-col gap-2">
                   {exportFormatFileOptions.options.map((t) => (
@@ -158,7 +158,6 @@ export function SaveTool() {
                   ))}
                 </div>
               </div>
-
             </div>
           </RadioGroup>
         </div>

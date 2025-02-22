@@ -1,7 +1,7 @@
 {
   "name": "ts2uml",
   "private": "true",
-  "version": "0.0.31",
+  "version": "0.0.33",
   "workspaces": [
     "apps/web",
     "packages/core",
@@ -28,9 +28,9 @@
     "docker:pastebin:down": "docker compose -f docker-compose-local.yml down ts2uml-pastebin",
     "docker:pastebin:up": "docker compose -f docker-compose-local.yml up -d ts2uml-pastebin",
     "lint:all": "bun run lint:models && bun run lint:core && bun run lint:web",
-    "lint:core": "cd packages/core && bun run format && bun run lint",
-    "lint:models": "cd packages/models && bun run format && bun run lint",
-    "lint:web": "cd apps/web && bun run format && bun run lint",
+    "lint:core": "cd packages/core && bun run lint",
+    "lint:models": "cd packages/models && bun run lint",
+    "lint:web": "cd apps/web && bun run lint",
     "publish:all": "git add . && git commit -m \"v$(node -p 'require(\"./package.json\").version')\" && git push && cd vscode-ext && vsce publish",
     "publish:vscode": "cd vscode-ext && vsce publish"
   },

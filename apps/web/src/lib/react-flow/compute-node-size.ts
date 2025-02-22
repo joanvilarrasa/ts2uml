@@ -10,7 +10,13 @@ export function computeNodeWidth(node: Node) {
 
   // Calculate attributes width
   for (const attribute of node.attributes) {
-    const attributeWidth = attribute.text.length * CHAR_WIDTH;
+    let length = attribute.text.length;
+    if (attribute.extendedFrom) {
+      length += attribute.extendedFrom.split('-').at(-1)?.length ?? 0;
+      length += 2;
+    }
+    const attributeWidth = length * CHAR_WIDTH;
+
     maxWidth = Math.max(maxWidth, attributeWidth);
   }
 

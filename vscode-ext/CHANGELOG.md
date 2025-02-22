@@ -2,6 +2,11 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+
+### [v0.0.32] - Logo
+
+- Now if a type extends another within the folder being analyzed, the attributes will be shown in all the types with the extended type in parenthesis.
+
 ### [v0.0.29] - Logo
 
 - Added a new logo to the extension.

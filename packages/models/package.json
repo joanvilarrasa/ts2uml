@@ -1,6 +1,6 @@
 {
   "name": "@ts2uml/models",
-  "version": "0.0.31",
+  "version": "0.0.33",
   "module": "index.ts",
   "type": "module",
   "scripts": {
@@ -9,5 +9,8 @@
     "format": "biome format --write .",
     "build": "biome check --fix . && biome format --write . && tsup --clean",
     "testing": "bun index.ts"
+  },
+  "dependencies": {
+    "ag-grid-community": "^31.0.0"
   }
 }

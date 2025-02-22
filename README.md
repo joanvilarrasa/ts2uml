@@ -1,6 +1,6 @@
 # ts2uml 🎨
 
-Hey! 👋 This is ts2uml - a cool tool I made that turns your TypeScript code into pretty UML diagrams. 
+Hey! 👋 This is **ts2uml** - a cool tool I made that turns your TypeScript code into pretty UML diagrams. 
 
 ## 🤔 Why did I build this?
 
@@ -8,7 +8,7 @@ I was working on this complex codebase at my job. I like having things types but
 
 I looked around for tools to help me turn the code into a UML diagram so that I maybe could understand something, but everything I found was either too clunky or missing features I really wanted (like being able to filter out the noise). 
 
-So I decided to build my own and that's how ts2uml was born! 
+So I decided to build my own and that's how **ts2uml** was born! 
 
 ## ✨ Features
 
@@ -43,7 +43,7 @@ Change the auto-layout or the type of links.
 ### 🌐 Share with Your Team
 This is very useful for onboarding new people or when you want to share the diagram with someone who doesn't have VS Code.
 - Generate a link that works for 24 hours
-- The link will open the ts2uml.com website and will show the diagram as you had it when you generated the link
+- The link will open the [ts2uml.com](https://ts2uml.com) website and will show the diagram as you had it when you generated the link
 
 ### 💾 Save Your Work
 Don't lose your masterpiece:
@@ -55,7 +55,7 @@ Don't lose your masterpiece:
 ## 🚀 Getting Started
 
 It's super simple:
-1. Install the VS Code extension https://marketplace.visualstudio.com/items?itemName=jvilarrasa.ts2uml
+1. Install the VS Code extension [ts2uml](https://marketplace.visualstudio.com/items?itemName=jvilarrasa.ts2uml)
 2. Right-click any folder with TypeScript files and hit "Generate UML diagram"
 3. Customize the diagram as you want
 4. Share or save your work!

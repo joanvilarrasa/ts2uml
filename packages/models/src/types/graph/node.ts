@@ -20,6 +20,11 @@ export interface Node {
    */
   docs?: string;
 
+  /**
+   * The names of the Nodes that this node extends from
+   */
+  extends?: string[];
+
   /** Unique identifier for the node */
   id: string;
 
@@ -51,6 +56,7 @@ export interface Node {
 export const ZNode = z.object({
   attributes: ZNodeAttribute.array(),
   docs: z.string().optional(),
+  extends: z.string().array().optional(),
   id: z.string({ invalid_type_error: 'id must be a string' }),
   position: ZNodePosition,
   style: ZNodeStyle.optional(),
@@ -62,6 +68,7 @@ export function createNode(data?: Partial<Node>): Node {
   return ZNode.parse({
     attributes: data?.attributes ? data.attributes.map((a) => createNodeAttribute(a)) : [],
     docs: data?.docs,
+    extends: data?.extends,
     id: data?.id ?? 'id',
     position: createNodePosition(data?.position),
     style: data?.style,

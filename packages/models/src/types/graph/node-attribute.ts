@@ -23,6 +23,11 @@ export interface NodeAttribute {
   isStatic?: boolean;
 
   /**
+   * The name of the Node that this attribute extends from
+   */
+  extendedFrom?: string;
+
+  /**
    * The visibility/access level of the attribute (public, protected, private)
    * @see {@link NodeAttributeScope}
    */
@@ -50,6 +55,7 @@ export const ZNodeAttribute = z.object({
   docs: z.string().optional(),
   id: z.string({ invalid_type_error: 'id must be a string' }),
   isStatic: z.boolean().optional(),
+  extendedFrom: z.string().optional(),
   scope: ZNodeAttributeScope.optional(),
   style: ZNodeStyle.optional(),
   text: z.string({ invalid_type_error: 'text must be a string' }),
@@ -61,6 +67,7 @@ export function createNodeAttribute(data?: Partial<NodeAttribute>): NodeAttribut
     docs: data?.docs,
     id: data?.id ?? 'id',
     isStatic: data?.isStatic,
+    extendedFrom: data?.extendedFrom,
     scope: data?.scope,
     style: createNodeStyle(data?.style),
     text: data?.text ?? 'text',

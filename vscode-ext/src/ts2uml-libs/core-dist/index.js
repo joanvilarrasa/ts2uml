@@ -8,6 +8,9 @@ function isTypeScriptFile(filename) {
 import { createConfig } from "@ts2uml/models";
 import { Project } from "ts-morph";
 
+// src/ts-morph-to-graph/get-graph-from-project.ts
+import { createLink as createLink5 } from "@ts2uml/models";
+
 // src/ts-morph-to-graph/add-enum-node.ts
 import {
   createNode,
@@ -269,10 +272,14 @@ function addInterfaceNode(tsMorphInterface, filePath, links, nodes) {
   const ifaceName = tsMorphInterface.getName();
   const ifaceId = `${sourceFileRelativePath}-${ifaceName}`;
   const ifaceType = "interface";
+  const extendedTypeIds = getExtendedTypes(tsMorphInterface, filePath).map(
+    (type) => getImportedName(type.getType().getText())?.split(",")[0] ?? ""
+  );
   const titleNode = createTitleNode3(ifaceId, ifaceType, ifaceName);
   const attributeNodes = createAttributeNodes3(tsMorphInterface, ifaceId, filePath, links);
   const node = createNode3({
     docs: tsMorphInterface.getJsDocs().map((doc) => doc.getText()).join("\n"),
+    extends: extendedTypeIds.length > 0 ? extendedTypeIds : void 0,
     id: ifaceId,
     type: ifaceType,
     title: titleNode,
@@ -290,16 +297,24 @@ function createTitleNode3(ifaceId, ifaceType, ifaceName) {
   return titleNode;
 }
 function createAttributeNodes3(tsMorphInterface, ifaceId, filePath, links) {
-  return tsMorphInterface.getProperties().map((prop) => {
+  const properties = tsMorphInterface.getProperties();
+  const extendedProperties = getExtendedProperties(tsMorphInterface, filePath);
+  const propertiesAttributes = properties.map((prop) => {
     const attributeId = `${ifaceId}-${prop.getName()}`;
     const targetIds = getTargetIds(prop.getTypeNode()?.getDescendants() ?? [], filePath);
     targetIds.map((targetId) => {
-      if (!links.find((link) => link.sourceId === ifaceId && link.targetId === targetId)) {
+      const existingLink = links.find((link) => link.sourceId === ifaceId && link.targetId === targetId);
+      if (existingLink) {
+        if (!existingLink.sourceAttributeIds.includes(attributeId)) {
+          existingLink.sourceAttributeIds.push(attributeId);
+        }
+      } else {
         links.push(
           createLink2({
             sourceId: ifaceId,
             targetId,
-            type: "association"
+            type: "association",
+            sourceAttributeIds: [attributeId]
           })
         );
       }
@@ -312,6 +327,48 @@ function createAttributeNodes3(tsMorphInterface, ifaceId, filePath, links) {
       style: createNodeStyle3()
     });
   });
+  const extendedPropertiesAttributes = [];
+  for (const extendedProperty of extendedProperties) {
+    for (const attribute of extendedProperty.attributes) {
+      extendedPropertiesAttributes.push(
+        createNodeAttribute3({
+          id: `${ifaceId}-${attribute.name}`,
+          extendedFrom: extendedProperty.extendedTypeId,
+          type: "attribute",
+          text: `${attribute.text}`,
+          style: createNodeStyle3()
+        })
+      );
+    }
+  }
+  return propertiesAttributes.concat(extendedPropertiesAttributes);
+}
+function getExtendedTypes(tsMorphInterface, filePath) {
+  const normalizedFilePath = normalizeAndDecodePath(filePath);
+  const extendedTypes = tsMorphInterface.getExtends().filter((prop) => {
+    const importedPath = getImportedPath(prop.getType().getText());
+    const isExternal = !importedPath?.startsWith(normalizedFilePath);
+    return !isExternal;
+  });
+  return extendedTypes;
+}
+function getExtendedProperties(tsMorphInterface, filePath) {
+  const extendedTypes = getExtendedTypes(tsMorphInterface, filePath);
+  const extendedProperties = [];
+  for (const extendedType of extendedTypes) {
+    const extendedTypeName = getImportedName(extendedType.getType().getText())?.split(",")[0] ?? "";
+    const extendedTypePath = getImportedPath(extendedType.getType().getText()) ?? "";
+    const normalizedFilePath = getNormalizedFilePath(filePath, extendedTypePath);
+    const extendedTypeProperties = extendedType.getType().getProperties();
+    extendedProperties.push({
+      extendedTypeId: `${normalizedFilePath}-${extendedTypeName}`,
+      attributes: extendedTypeProperties.map((prop) => ({
+        name: prop.getName(),
+        text: prop.getDeclarations()[0].getText()
+      }))
+    });
+  }
+  return extendedProperties;
 }
 
 // src/ts-morph-to-graph/add-class-node.ts
@@ -489,7 +546,33 @@ function getGraphFromProject(project, filePath, config) {
       }
     }
   }
-  links = links.filter((link) => {
+  addExtendedLinks(links, nodes);
+  links = filterErroneousLinks(links, nodes);
+  return { nodes, links, config };
+}
+function addExtendedLinks(links, nodes) {
+  for (const node of nodes) {
+    for (const attribute of node.attributes) {
+      if (attribute.extendedFrom) {
+        const originalLink = links.find(
+          (link) => link.sourceId === attribute.extendedFrom && link.sourceAttributeIds.some((id) => id.endsWith(attribute.id.split("-").at(-1) ?? ""))
+        );
+        if (originalLink) {
+          links.push(
+            createLink5({
+              sourceId: node.id,
+              targetId: originalLink.targetId,
+              type: "association",
+              sourceAttributeIds: [attribute.id]
+            })
+          );
+        }
+      }
+    }
+  }
+}
+function filterErroneousLinks(links, nodes) {
+  return links.filter((link) => {
     if (!nodes.some((node) => node.id === link.sourceId)) {
       return false;
     }
@@ -498,7 +581,6 @@ function getGraphFromProject(project, filePath, config) {
     }
     return true;
   });
-  return { nodes, links, config };
 }
 
 // src/main/generate-graph.ts

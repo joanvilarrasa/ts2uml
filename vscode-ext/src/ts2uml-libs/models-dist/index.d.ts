@@ -301,6 +301,11 @@ interface Link {
      */
     sourceId: string;
     /**
+     * The unique identifier of the source attribute
+     * @see {@link NodeAttribute}
+     */
+    sourceAttributeIds: string[];
+    /**
      * The unique identifier of the target node
      * @see {@link Node}
      */
@@ -327,7 +332,7 @@ declare const ZNodeAttributeScope: z.ZodEnum<["private", "protected", "public"]>
  */
 type NodeAttributeScope = z.infer<typeof ZNodeAttributeScope>;
 
-declare const ZNodeAttributeType: z.ZodEnum<["attribute", "unionOption", "method", "separator"]>;
+declare const ZNodeAttributeType: z.ZodEnum<["attribute", "unionOption", "method"]>;
 /**
  * Represents the different types of attributes that can be displayed in a node.
  * - "attribute": Represents a class/interface property or field
@@ -355,6 +360,10 @@ interface NodeAttribute {
      * Whether the attribute is static
      */
     isStatic?: boolean;
+    /**
+     * The name of the Node that this attribute extends from
+     */
+    extendedFrom?: string;
     /**
      * The visibility/access level of the attribute (public, protected, private)
      * @see {@link NodeAttributeScope}
@@ -436,6 +445,10 @@ interface Node {
      * jsdocs documentation for the node
      */
     docs?: string;
+    /**
+     * The names of the Nodes that this node extends from
+     */
+    extends?: string[];
     /** Unique identifier for the node */
     id: string;
     /**

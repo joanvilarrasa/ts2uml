@@ -12,6 +12,12 @@ export interface Link {
   sourceId: string;
 
   /**
+   * The unique identifier of the source attribute
+   * @see {@link NodeAttribute}
+   */
+  sourceAttributeIds: string[];
+
+  /**
    * The unique identifier of the target node
    * @see {@link Node}
    */
@@ -31,6 +37,7 @@ export interface Link {
 
 export const ZLink = z.object({
   sourceId: z.string({ invalid_type_error: 'sourceId must be a string' }),
+  sourceAttributeIds: z.string().array(),
   targetId: z.string({ invalid_type_error: 'targetId must be a string' }),
   text: z.string().optional(),
   type: ZLinkType,
@@ -39,6 +46,7 @@ export const ZLink = z.object({
 export function createLink(data?: Partial<Link>): Link {
   return ZLink.parse({
     sourceId: data?.sourceId ?? 'sourceId',
+    sourceAttributeIds: data?.sourceAttributeIds ?? [],
     targetId: data?.targetId ?? 'targetId',
     text: data?.text,
     type: data?.type ?? 'association',

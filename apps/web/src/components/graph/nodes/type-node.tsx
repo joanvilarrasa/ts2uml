@@ -14,8 +14,8 @@ export function TypeNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>) 
   const attributes = props.data.data.attributes;
 
   return (
-    <Card>
-      <CardHeader className="bg-type">
+    <Card className="border-2 border-type/40">
+      <CardHeader className="bg-type/40">
         <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
         <CardTitle>{title.text}</CardTitle>
       </CardHeader>

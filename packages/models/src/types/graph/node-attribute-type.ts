@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const ZNodeAttributeType = z.enum(['attribute', 'unionOption', 'method', 'separator']);
+export const ZNodeAttributeType = z.enum(['attribute', 'unionOption', 'method']);
 
 /**
  * Represents the different types of attributes that can be displayed in a node.

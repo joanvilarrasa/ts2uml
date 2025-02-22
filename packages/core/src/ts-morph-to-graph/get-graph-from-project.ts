@@ -1,4 +1,5 @@
 import type { Config, Graph, Link, Node } from '@ts2uml/models';
+import { createLink } from '@ts2uml/models';
 import type { ClassDeclaration, EnumDeclaration, InterfaceDeclaration, Project, TypeAliasDeclaration } from 'ts-morph';
 import { addEnumNode } from './add-enum-node.ts';
 import { addUnionTypeNode } from './add-union-type-node.ts';
@@ -45,8 +46,41 @@ export function getGraphFromProject(project: Project, filePath: string, config: 
     }
   }
 
-  // [START] TEMP for development
-  links = links.filter((link) => {
+  addExtendedLinks(links, nodes);
+
+  links = filterErroneousLinks(links, nodes);
+
+  return { nodes, links, config };
+}
+
+// Find all the attributes that are extended from other attributes and create links from the extended attributes to the extended type
+// TODO I HAVE TO RETHINK ALL OF THIS TO MAKE IT MORE EFFICIENT!!! THIS IS OME VERYSHITTY CODE (STORE MORE INFO ON THE NODES I GUESS)
+function addExtendedLinks(links: Link[], nodes: Node[]): void {
+  for (const node of nodes) {
+    for (const attribute of node.attributes) {
+      if (attribute.extendedFrom) {
+        const originalLink = links.find(
+          (link) =>
+            link.sourceId === attribute.extendedFrom &&
+            link.sourceAttributeIds.some((id) => id.endsWith(attribute.id.split('-').at(-1) ?? ''))
+        );
+        if (originalLink) {
+          links.push(
+            createLink({
+              sourceId: node.id,
+              targetId: originalLink.targetId,
+              type: 'association',
+              sourceAttributeIds: [attribute.id],
+            })
+          );
+        }
+      }
+    }
+  }
+}
+
+function filterErroneousLinks(links: Link[], nodes: Node[]): Link[] {
+  return links.filter((link) => {
     if (!nodes.some((node) => node.id === link.sourceId)) {
       return false;
     }
@@ -55,7 +89,4 @@ export function getGraphFromProject(project: Project, filePath: string, config: 
     }
     return true;
   });
-  // [END] TEMP for development
-
-  return { nodes, links, config };
 }
