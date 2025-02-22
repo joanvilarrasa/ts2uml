@@ -1,6 +1,6 @@
 # ts2uml
 
-Hey! 👋 This is ts2uml - a cool tool I made that turns your TypeScript code into pretty UML diagrams. 
+Hey! 👋 This is ts2uml - a tool I made that turns your TypeScript code into pretty UML diagrams. 
 
 ## 🤔 Why did I build this?
 
@@ -12,7 +12,7 @@ So I decided to build my own and that's how **ts2uml** was born!
 
 ## ✨ Features
 
-### 🎯 Generate UML Diagrams Like Magic
+### 🎯 Generate UML Diagrams
 Just right-click a folder in VS Code, hit "Generate UML diagram" and boom! You get this interactive diagram built with React Flow. You can drag stuff around and make it look exactly how you want.
 
 Thanks to [React Flow](https://reactflow.dev/) you can:
