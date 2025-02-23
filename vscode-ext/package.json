@@ -5,6 +5,10 @@
   "publisher": "jvilarrasa",
   "version": "0.0.38",
   "icon": "images/logo.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joanvilarrasa/ts2uml"
+  },
   "galleryBanner": {
     "color": "#252523",
     "theme": "dark"
