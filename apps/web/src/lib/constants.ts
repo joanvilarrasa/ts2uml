@@ -12,7 +12,7 @@ import type { LayoutOptions } from 'elkjs';
  */
 export const NODE_TITLE_HEIGHT = 70;
 export const NODE_ATTRIBUTE_HEIGHT = 30;
-export const CHAR_WIDTH = 8;
+export const CHAR_WIDTH = 8.5;
 
 /**
  * Node type components for React Flow
