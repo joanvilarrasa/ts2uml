@@ -2,6 +2,9 @@
 
 Hey! 👋 This is **ts2uml** - a tool that turns your TypeScript code into pretty UML diagrams. 
 
+⚠️ Please keep in mind that this is a passion project and is still in early development. Expect bugs and unintended behaviors.
+
+
 ### 🤔 Why did I build this?
 
 I was working on this codebase at my job. It was not overly complex but it had a lot of types. I like having things typed but there comes a point where you have diminishing returns. This project was way past that point.
@@ -85,4 +88,3 @@ For now if you got any suggestions or bugs, you can:
 ## 📝 License
 
 [MIT](LICENSE)
-
