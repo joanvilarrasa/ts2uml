@@ -5,7 +5,7 @@ FROM oven/bun:slim AS build
 WORKDIR /app
 
 # Copy the root package.json and bun.lockb files
-COPY package.json bun.lockb ./
+COPY package.json bun.lock ./
 
 # Copy the packages and apps directories
 COPY packages ./packages
