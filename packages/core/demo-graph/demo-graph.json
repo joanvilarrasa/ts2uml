@@ -3621,9 +3621,7 @@
         }
       ],
       "docs": "",
-      "extends": [
-        "IDNoteDTO"
-      ],
+      "extends": ["IDNoteDTO"],
       "id": "/models/interfaces/IDNoteDTO-IDNotePostDTO",
       "position": {
         "locked": false,
@@ -8823,49 +8821,37 @@
   "links": [
     {
       "sourceId": "/models/DNote-DNote",
-      "sourceAttributeIds": [
-        "/models/DNote-DNote-concepto"
-      ],
+      "sourceAttributeIds": ["/models/DNote-DNote-concepto"],
       "targetId": "/models/types/DNoteConcept-DNoteConcept",
       "type": "association"
     },
     {
       "sourceId": "/models/DNote-DNote",
-      "sourceAttributeIds": [
-        "/models/DNote-DNote-estadoFacturacion"
-      ],
+      "sourceAttributeIds": ["/models/DNote-DNote-estadoFacturacion"],
       "targetId": "/models/types/DNoteStatus-DNoteStatus",
       "type": "association"
     },
     {
       "sourceId": "/models/DNote-DNote",
-      "sourceAttributeIds": [
-        "/models/DNote-DNote-origen"
-      ],
+      "sourceAttributeIds": ["/models/DNote-DNote-origen"],
       "targetId": "/models/types/DNoteOrigin-DNoteOrigin",
       "type": "association"
     },
     {
       "sourceId": "/models/DNote-DNote",
-      "sourceAttributeIds": [
-        "/models/DNote-DNote-disponibilidad"
-      ],
+      "sourceAttributeIds": ["/models/DNote-DNote-disponibilidad"],
       "targetId": "/models/types/DNoteAvailability-DNoteAvailability",
       "type": "association"
     },
     {
       "sourceId": "/models/DNoteUpdate-DNoteUpdateI",
-      "sourceAttributeIds": [
-        "/models/DNoteUpdate-DNoteUpdateI-dnote"
-      ],
+      "sourceAttributeIds": ["/models/DNoteUpdate-DNoteUpdateI-dnote"],
       "targetId": "/models/DNote-DNote",
       "type": "association"
     },
     {
       "sourceId": "/models/DNoteUpdate-DNoteUpdateI",
-      "sourceAttributeIds": [
-        "/models/DNoteUpdate-DNoteUpdateI-changes"
-      ],
+      "sourceAttributeIds": ["/models/DNoteUpdate-DNoteUpdateI-changes"],
       "targetId": "/models/DNoteUpdate-UpdateChange",
       "type": "association"
     },
@@ -8895,17 +8881,13 @@
     },
     {
       "sourceId": "/models/GroupedDNote-GroupedDNote",
-      "sourceAttributeIds": [
-        "/models/GroupedDNote-GroupedDNote-estadoFacturacion"
-      ],
+      "sourceAttributeIds": ["/models/GroupedDNote-GroupedDNote-estadoFacturacion"],
       "targetId": "/models/types/DNoteStatus-DNoteStatus",
       "type": "association"
     },
     {
       "sourceId": "/models/GroupedDNote-GroupedDNote",
-      "sourceAttributeIds": [
-        "/models/GroupedDNote-GroupedDNote-origen"
-      ],
+      "sourceAttributeIds": ["/models/GroupedDNote-GroupedDNote-origen"],
       "targetId": "/models/types/DNoteOrigin-DNoteOrigin",
       "type": "association"
     },
@@ -8931,9 +8913,7 @@
     },
     {
       "sourceId": "/models/interfaces/IInvoiceLineDTO-IInvoiceLineDTO",
-      "sourceAttributeIds": [
-        "/models/interfaces/IInvoiceLineDTO-IInvoiceLineDTO-albaran"
-      ],
+      "sourceAttributeIds": ["/models/interfaces/IInvoiceLineDTO-IInvoiceLineDTO-albaran"],
       "targetId": "/models/interfaces/IDNoteDTO-IDNoteDTO",
       "type": "association"
     },
@@ -8948,9 +8928,7 @@
     },
     {
       "sourceId": "/models/interfaces/IInvoiceLineDTO-IInvoiceLineDTO",
-      "sourceAttributeIds": [
-        "/models/interfaces/IInvoiceLineDTO-IInvoiceLineDTO-versions"
-      ],
+      "sourceAttributeIds": ["/models/interfaces/IInvoiceLineDTO-IInvoiceLineDTO-versions"],
       "targetId": "/models/interfaces/IDNoteVersionDTO-IDNoteVersionDTO",
       "type": "association"
     },
@@ -8991,9 +8969,7 @@
     },
     {
       "sourceId": "/models/interfaces/haibu-automation/IContextObjectDTO-IContextObjectDTO",
-      "sourceAttributeIds": [
-        "/models/interfaces/haibu-automation/IContextObjectDTO-IContextObjectDTO-albaran"
-      ],
+      "sourceAttributeIds": ["/models/interfaces/haibu-automation/IContextObjectDTO-IContextObjectDTO-albaran"],
       "targetId": "/models/interfaces/IDNoteDTO-IDNoteDTO",
       "type": "association"
     },
@@ -9008,9 +8984,7 @@
     },
     {
       "sourceId": "/models/interfaces/haibu-automation/IContextObjectDTO-IContextObjectDTO",
-      "sourceAttributeIds": [
-        "/models/interfaces/haibu-automation/IContextObjectDTO-IContextObjectDTO-versions"
-      ],
+      "sourceAttributeIds": ["/models/interfaces/haibu-automation/IContextObjectDTO-IContextObjectDTO-versions"],
       "targetId": "/models/interfaces/IDNoteVersionDTO-IDNoteVersionDTO",
       "type": "association"
     },
@@ -9032,9 +9006,7 @@
     },
     {
       "sourceId": "/models/interfaces/haibu-automation/IContextObjectDTO-IContextObjectPutDTO",
-      "sourceAttributeIds": [
-        "/models/interfaces/haibu-automation/IContextObjectDTO-IContextObjectPutDTO-payload"
-      ],
+      "sourceAttributeIds": ["/models/interfaces/haibu-automation/IContextObjectDTO-IContextObjectPutDTO-payload"],
       "targetId": "/models/interfaces/haibu-automation/IContextObjectDTO-IContextObjectPayloadDTO",
       "type": "association"
     }

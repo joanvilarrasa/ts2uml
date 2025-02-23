@@ -346,7 +346,7 @@ function createAttributeNodes3(tsMorphInterface, ifaceId, filePath, links) {
 function getExtendedTypes(tsMorphInterface, filePath) {
   const normalizedFilePath = normalizeAndDecodePath(filePath);
   const extendedTypes = tsMorphInterface.getExtends().filter((prop) => {
-    const importedPath = getImportedPath(prop.getType().getText());
+    const importedPath = normalizeAndDecodePath(getImportedPath(prop.getType().getText()) ?? "");
     const isExternal = !importedPath?.startsWith(normalizedFilePath);
     return !isExternal;
   });
