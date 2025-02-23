@@ -47,11 +47,6 @@ export function createTreeNodeFromGraph(graph: Graph): { [key: string]: TreeNode
     }
   }
 
-  // go down the tree and set the checked status of the children
-  for (const node of Object.values(innerTree)) {
-    computeTreeCheckedStatus(node);
-  }
-
   // Create the root level tree with a single "root" node containing all other nodes
   const rootTree: { [key: string]: TreeNode } = {
     root: {
@@ -65,10 +60,13 @@ export function createTreeNodeFromGraph(graph: Graph): { [key: string]: TreeNode
     },
   };
 
-  // Compute the checked status for the root node
-  computeTreeCheckedStatus(rootTree.root);
+  const finalTree = Object.keys(innerTree).length > 1 ? rootTree : innerTree;
 
-  return rootTree;
+  for (const node of Object.values(finalTree)) {
+    computeTreeCheckedStatus(node);
+  }
+
+  return finalTree;
 }
 
 function createTreeNodeFolderIfNotExists(

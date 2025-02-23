@@ -25,5 +25,5 @@ export function computeNodeWidth(node: Node) {
 }
 
 export function computeNodeHeight(node: Node) {
-  return NODE_TITLE_HEIGHT + node.attributes.length * NODE_ATTRIBUTE_HEIGHT + 2; // Add 6px for border
+  return NODE_TITLE_HEIGHT + node.attributes.length * NODE_ATTRIBUTE_HEIGHT + 8; // Add 6px for border
 }
