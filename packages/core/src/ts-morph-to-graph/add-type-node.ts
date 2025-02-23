@@ -60,7 +60,7 @@ function createAttributeNodes(
       const propName = prop.getName();
       const attributeId = `${typeId}-${propName}`;
       const targetIds = getTargetIds(prop.getDeclarations(), filePath);
-      const declarationText = prop.getDeclarations()[0].getText() ?? propName;
+      const declarationText = prop.getDeclarations()[0]?.getText() ?? propName;
 
       for (const targetId of targetIds) {
         if (targetId !== null && !links.find((link) => link.sourceId === typeId && link.targetId === targetId)) {

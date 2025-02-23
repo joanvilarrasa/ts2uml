@@ -7,14 +7,24 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand('ts2uml.generateUml', async (uri: vscode.Uri) => {
       UMLPanel.createOrShow(context.extensionUri);
+      vscode.window.withProgress(
+        {
+          location: vscode.ProgressLocation.Notification,
+          title: "Generating UML...",
+          cancellable: false
+        },
+        async (progress, token) => {
+          const dir = uri.fsPath;
+          const files = await getFiles(dir);
+          const initialD3Graph = generateGraph({
+            files,
+            baseDir: dir,
+          });
+          UMLPanel.currentPanel?.postMessage(createMsgLoadGraph({ graph: initialD3Graph }));
+          vscode.window.showInformationMessage("UML generated!");
+        }
+      );
 
-      const dir = uri.fsPath;
-      const files = await getFiles(dir);
-      const initialD3Graph = generateGraph({
-        files,
-        baseDir: dir,
-      });
-      UMLPanel.currentPanel?.postMessage(createMsgLoadGraph({ graph: initialD3Graph }));
     })
   );
 }
