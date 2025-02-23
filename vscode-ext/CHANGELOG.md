@@ -2,6 +2,10 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.36] - Updated docs 
+
+- Updated README.md to reflect the current state of the project.
+
 ### [v0.0.35] - Logo
 
 - Redesigned the toolbox.

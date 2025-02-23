@@ -178,3 +178,5 @@ dist
 # Microbin data for the pastebin service
 microbin-data
 microbin-data/*
+
+docker-compose-local.yml

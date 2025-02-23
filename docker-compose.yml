@@ -24,9 +24,9 @@ services:
      - ./microbin-data:/app/microbin_data
     environment:
       MICROBIN_PUBLIC_PATH: https://ts2uml.com/pastebin
-    networks:
+    networks:     
       - vps-network
 
 networks:
   vps-network:
-    external: true  # Important: This tells Docker it's an existing network
+    external: true
