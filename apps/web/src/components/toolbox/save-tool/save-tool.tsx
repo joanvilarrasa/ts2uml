@@ -1,6 +1,10 @@
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
+import { TooltipProvider } from '@/components/ui/tooltip';
+import { Tooltip } from '@/components/ui/tooltip';
+import { TooltipContent } from '@/components/ui/tooltip';
+import { TooltipTrigger } from '@/components/ui/tooltip';
 import { EXPORT_IMAGE_HEIGHT } from '@/lib/constants';
 import { EXPORT_IMAGE_WIDTH } from '@/lib/constants';
 import { cn, dataURLToBlob } from '@/lib/utils';
@@ -100,12 +104,20 @@ export function SaveTool() {
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger asChild>
-        <Button variant="outline" className={cn(isOpen && 'bg-accent')}>
-          <Save />
-          <span>Save</span>
-        </Button>
-      </PopoverTrigger>
+      <TooltipProvider delayDuration={0}>
+        <Tooltip>
+          <TooltipTrigger>
+            <PopoverTrigger asChild>
+              <Button variant="ghost" size="icon" className={cn(isOpen && 'bg-accent')}>
+                <Save />
+              </Button>
+            </PopoverTrigger>
+          </TooltipTrigger>
+          <TooltipContent>
+            <span>Save</span>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
       <PopoverContent className="flex min-w-64 flex-col border border-primary" sideOffset={10}>
         <div className="flex flex-col">
           <div className="flex gap-2">

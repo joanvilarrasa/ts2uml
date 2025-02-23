@@ -18,21 +18,39 @@ export function Toolbox() {
 
   return (
     <Card>
-      <CardContent className="flex items-center justify-center gap-2 p-2">
-        <FilterTool />
-        <LayoutTool />
-        {/* <Button variant="outline" size="icon">
-          <LockKeyholeOpen />
-        </Button> */}
-        <Separator orientation="vertical" className="h-4 bg-border/20" />
-        <ImportTool />
-        <SaveTool />
-        <ShareTool />
-        <Separator orientation="vertical" className="h-4 bg-border/20" />
-        <Button variant="outline" size="icon" disabled={true} onClick={loadGraph}>
-          <Settings />
-        </Button>
-        <ThemeToggle />
+      <CardContent className="flex items-center justify-center gap-2 px-2 py-1">
+        <div className="flex flex-col items-center">
+          <div className="flex items-center">
+            <FilterTool />
+            <LayoutTool />
+            <Button variant="ghost" size="icon" disabled={true} onClick={loadGraph}>
+              <Settings />
+            </Button>
+          </div>
+          <div className="flex justify-center">
+            <span className="text-[0.7rem] text-foreground/60">Edit graph</span>
+          </div>
+        </div>
+        <Separator orientation="vertical" className="h-14 bg-foreground/10" />
+        <div className="flex flex-col items-center">
+          <div className="flex items-center ">
+            <ImportTool />
+            <SaveTool />
+            <ShareTool />
+          </div>
+          <div className="flex justify-center">
+            <span className="text-[0.7rem] text-foreground/60">Manage file</span>
+          </div>
+        </div>
+        <Separator orientation="vertical" className="h-14 bg-foreground/10" />
+        <div className="flex flex-col items-center">
+          <div className="flex items-center ">
+            <ThemeToggle />
+          </div>
+          <div className="flex justify-center">
+            <span className="text-[0.7rem] text-foreground/60">Theme</span>
+          </div>
+        </div>
       </CardContent>
     </Card>
   );

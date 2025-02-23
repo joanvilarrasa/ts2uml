@@ -2,6 +2,10 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.35] - Logo
+
+- Redesigned the toolbox.
+- Changed some of the colors, small design modifications on the cards.
 
 ### [v0.0.32] - Logo
 

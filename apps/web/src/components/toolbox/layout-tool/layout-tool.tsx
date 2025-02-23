@@ -15,11 +15,11 @@ export function LayoutTool() {
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <TooltipProvider delayDuration={400}>
+      <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger>
             <PopoverTrigger asChild>
-              <Button variant="outline" size="icon" className={cn(isOpen && 'bg-accent')}>
+              <Button variant="ghost" size="icon" className={cn(isOpen && 'bg-accent')}>
                 <Workflow />
               </Button>
             </PopoverTrigger>

@@ -11,7 +11,7 @@ const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDiv
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn('flex flex-col items-center justify-center space-y-1.5 border-b border-b-border/50', className)}
+      className={cn('flex flex-col items-center justify-center space-y-1.5', className)}
       style={{ height: NODE_TITLE_HEIGHT }}
       {...props}
     />

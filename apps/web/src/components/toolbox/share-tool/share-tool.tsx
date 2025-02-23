@@ -1,4 +1,8 @@
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { TooltipContent } from '@/components/ui/tooltip';
+import { Tooltip } from '@/components/ui/tooltip';
+import { TooltipTrigger } from '@/components/ui/tooltip';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import { GraphManager } from '@/lib/graph-manager';
 import { LinkManager } from '@/lib/link-manager';
 import { cn } from '@/lib/utils';
@@ -50,19 +54,29 @@ export function ShareTool() {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          className={cn(isOpen && 'bg-accent')}
-          onClick={(e) => {
-            e.preventDefault();
-            handleShareClick();
-          }}
-        >
-          <Share2 />
-          <span>Share</span>
-        </Button>
-      </DialogTrigger>
+      <TooltipProvider delayDuration={0}>
+        <Tooltip>
+          <TooltipTrigger>
+            <DialogTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className={cn(isOpen && 'bg-accent')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleShareClick();
+                }}
+              >
+                <Share2 />
+              </Button>
+            </DialogTrigger>
+          </TooltipTrigger>
+          <TooltipContent>
+            <span>Share</span>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+
       <DialogContent className="flex min-w-64 flex-col border border-primary">
         <DialogTitle className="flex items-end gap-2 border-foreground/50 border-b pb-1 text-sm">
           <span className="text-sm">{'Share the link!'}</span>

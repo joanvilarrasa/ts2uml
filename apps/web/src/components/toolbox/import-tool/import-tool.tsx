@@ -1,9 +1,14 @@
 import { CheckboxPartial } from '@/components/checkbox-partial';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
+import { TooltipTrigger } from '@/components/ui/tooltip';
+import { TooltipContent } from '@/components/ui/tooltip';
+import { Tooltip } from '@/components/ui/tooltip';
+import { TooltipProvider } from '@/components/ui/tooltip';
+import { cn } from '@/lib/utils';
 import { ZGraph, createGraph, createMsgLoadGraph, is } from '@ts2uml/models';
 import type { Graph } from '@ts2uml/models';
-import { Upload } from 'lucide-react';
+import { Download, Upload } from 'lucide-react';
 import { type ChangeEvent, useState } from 'react';
 import { toast } from 'sonner';
 import { Button } from '../../ui/button';
@@ -54,12 +59,20 @@ export function ImportTool() {
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger asChild>
-        <Button variant="outline" className={isOpen ? 'bg-accent' : ''}>
-          <Upload />
-          <span>Import</span>
-        </Button>
-      </PopoverTrigger>
+      <TooltipProvider delayDuration={0}>
+        <Tooltip>
+          <TooltipTrigger>
+            <PopoverTrigger asChild>
+              <Button variant="ghost" size="icon" className={cn(isOpen && 'bg-accent')}>
+                <Download />
+              </Button>
+            </PopoverTrigger>
+          </TooltipTrigger>
+          <TooltipContent>
+            <span>Import</span>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
       <PopoverContent className="flex min-w-64 flex-col border border-primary p-4" sideOffset={10}>
         <span className="text-xs">{'Select a JSON file: '}</span>
         <Separator className="mt-1 mb-2" orientation="horizontal" />

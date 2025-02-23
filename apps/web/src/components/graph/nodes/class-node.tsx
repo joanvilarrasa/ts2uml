@@ -18,52 +18,54 @@ export function ClassNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>)
   const hasMethods = methods.length > 0;
 
   return (
-    <Card className="border-2 border-class/40">
-      <CardHeader className="bg-class/40">
-        <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
-        <CardTitle>{title.text}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {hasAttributes && (
-          <div
-            key={`${node.id}-ATTRIBUTES-TITLE`}
-            className={cn('flex items-center justify-start border-border/10 border-b px-4')}
-            style={{ height: NODE_ATTRIBUTE_HEIGHT }}
-          >
-            <span className="font-bold text-sm">Attributes</span>
-          </div>
-        )}
-        {attributes.map((attribute, index) => (
-          <div
-            key={`${node.id}-${index}`}
-            className={cn(
-              'flex items-center justify-start border-border/10 border-b px-4',
-              index === attributes.length - 1 && 'border-border'
-            )}
-            style={{ height: NODE_ATTRIBUTE_HEIGHT }}
-          >
-            <p>{attribute.text}</p>
-          </div>
-        ))}
-        {hasMethods && (
-          <div
-            key={`${node.id}-METHODS-TITLE`}
-            className={cn('flex items-center justify-start border-border/10 border-b px-4')}
-            style={{ height: NODE_ATTRIBUTE_HEIGHT }}
-          >
-            <span className="font-bold text-sm">Methods</span>
-          </div>
-        )}
-        {methods.map((method, index) => (
-          <div
-            key={`${node.id}-${attributes.length + index}`}
-            className={cn('flex items-center justify-start border-border/10 border-b px-4')}
-            style={{ height: NODE_ATTRIBUTE_HEIGHT }}
-          >
-            <p>{method.text}</p>
-          </div>
-        ))}
-      </CardContent>
+    <Card>
+      <div className="flex flex-col bg-class/40 p-1">
+        <CardHeader>
+          <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
+          <CardTitle>{title.text}</CardTitle>
+        </CardHeader>
+        <CardContent className="bg-card">
+          {hasAttributes && (
+            <div
+              key={`${node.id}-ATTRIBUTES-TITLE`}
+              className={cn('flex items-center justify-start border-border/10 border-b px-4')}
+              style={{ height: NODE_ATTRIBUTE_HEIGHT }}
+            >
+              <span className="font-bold text-sm">Attributes</span>
+            </div>
+          )}
+          {attributes.map((attribute, index) => (
+            <div
+              key={`${node.id}-${index}`}
+              className={cn(
+                'flex items-center justify-start border-border/10 border-b px-4',
+                index === attributes.length - 1 && 'border-border'
+              )}
+              style={{ height: NODE_ATTRIBUTE_HEIGHT }}
+            >
+              <p>{attribute.text}</p>
+            </div>
+          ))}
+          {hasMethods && (
+            <div
+              key={`${node.id}-METHODS-TITLE`}
+              className={cn('flex items-center justify-start border-border/10 border-b px-4')}
+              style={{ height: NODE_ATTRIBUTE_HEIGHT }}
+            >
+              <span className="font-bold text-sm">Methods</span>
+            </div>
+          )}
+          {methods.map((method, index) => (
+            <div
+              key={`${node.id}-${attributes.length + index}`}
+              className={cn('flex items-center justify-start border-border/10 border-b px-4')}
+              style={{ height: NODE_ATTRIBUTE_HEIGHT }}
+            >
+              <p>{method.text}</p>
+            </div>
+          ))}
+        </CardContent>
+      </div>
       <RF_Handle type="source" position={RF_Position.Top} id={`${node.id}`} style={{ opacity: 0 }} />
       <RF_Handle type="target" position={RF_Position.Top} id={`${node.id}`} style={{ opacity: 0 }} />
     </Card>

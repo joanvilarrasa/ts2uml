@@ -14,27 +14,29 @@ export function InterfaceNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node 
   const attributes = props.data.data.attributes;
 
   return (
-    <Card className="border-2 border-interface/40">
-      <CardHeader className="bg-interface/40">
-        <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
-        <CardTitle>{title.text}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {attributes.map((attribute, index) => (
-          <div
-            key={`${node.id}-${index}`}
-            className="flex items-center justify-between border-border/10 border-b px-4"
-            style={{ height: NODE_ATTRIBUTE_HEIGHT }}
-          >
-            <p>{attribute.text}</p>
-            {attribute.extendedFrom && (
-              <span className="ml-2 text-muted-foreground text-xs">
-                {`(${attribute.extendedFrom.split('-').at(-1)})`}
-              </span>
-            )}
-          </div>
-        ))}
-      </CardContent>
+    <Card>
+      <div className="flex flex-col bg-interface/40 p-1">
+        <CardHeader>
+          <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
+          <CardTitle>{title.text}</CardTitle>
+        </CardHeader>
+        <CardContent className="bg-card">
+          {attributes.map((attribute, index) => (
+            <div
+              key={`${node.id}-${index}`}
+              className="flex items-center justify-between px-4"
+              style={{ height: NODE_ATTRIBUTE_HEIGHT }}
+            >
+              <p>{attribute.text}</p>
+              {attribute.extendedFrom && (
+                <span className="ml-2 text-muted-foreground text-xs">
+                  {`(${attribute.extendedFrom.split('-').at(-1)})`}
+                </span>
+              )}
+            </div>
+          ))}
+        </CardContent>
+      </div>
       <RF_Handle type="source" position={RF_Position.Top} id={`${node.id}`} style={{ opacity: 0 }} />
       <RF_Handle type="target" position={RF_Position.Top} id={`${node.id}`} style={{ opacity: 0 }} />
     </Card>
