@@ -3,7 +3,7 @@ name: Deploy ts2uml to VPS (PRO)
 on:
   push:
     branches:
-      - main # Or your main branch for ts2uml
+      - main
 
 jobs:
   build-and-deploy:

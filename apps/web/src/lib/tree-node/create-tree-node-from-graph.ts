@@ -1,7 +1,7 @@
 import type { Graph, Node, TreeNode } from '@ts2uml/models';
 
 export function createTreeNodeFromGraph(graph: Graph): { [key: string]: TreeNode } {
-  const tree: { [key: string]: TreeNode } = {};
+  const innerTree: { [key: string]: TreeNode } = {};
 
   const nodes = graph.nodes.filter((node) => !graph.config.nodes.filter.filter_type.includes(node.type));
   const pathFilterList = graph.config.nodes.filter.filter_node;
@@ -24,7 +24,7 @@ export function createTreeNodeFromGraph(graph: Graph): { [key: string]: TreeNode
     const pathParts = filePath.split('/');
 
     // This variable will be used to traverse the tree.
-    let currentLevel = tree;
+    let currentLevel = innerTree;
     let pathPartId = '';
 
     for (let index = 0; index < pathParts.length; index++) {
@@ -46,12 +46,29 @@ export function createTreeNodeFromGraph(graph: Graph): { [key: string]: TreeNode
       }
     }
   }
+
   // go down the tree and set the checked status of the children
-  for (const node of Object.values(tree)) {
+  for (const node of Object.values(innerTree)) {
     computeTreeCheckedStatus(node);
   }
 
-  return tree;
+  // Create the root level tree with a single "root" node containing all other nodes
+  const rootTree: { [key: string]: TreeNode } = {
+    root: {
+      id: '/root',
+      checked: 'checked',
+      children: innerTree,
+      name: './',
+      isFolder: true,
+      isFile: false,
+      isElement: false,
+    },
+  };
+
+  // Compute the checked status for the root node
+  computeTreeCheckedStatus(rootTree.root);
+
+  return rootTree;
 }
 
 function createTreeNodeFolderIfNotExists(
