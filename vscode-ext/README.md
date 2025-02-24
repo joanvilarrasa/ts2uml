@@ -1,6 +1,7 @@
 # ts2uml 🎨
 
 Hey! 👋 This is **ts2uml** - a tool that turns your TypeScript code into pretty UML diagrams. 
+See it in the marketplace [here](https://marketplace.visualstudio.com/items?itemName=jvilarrasa.ts2uml)
 
 ⚠️ Please keep in mind that this is a passion project and is still in early development. Expect bugs and unintended behaviors.
 
@@ -54,8 +55,6 @@ Got too many types cluttering your view? No worries! You can:
 - ⬜ Hide nodes by regex (coming soon)
 
 ### 🎨 Configure the graph
-
-
 Thanks to [elk.js](https://github.com/kieler/elkjs) and [React Flow](https://reactflow.dev/) you can configure how the graph looks!
 - ✅ Change the layout algorithm (from elk.js): 'layered', 'mrtree', 'force', 'radial', 'box', 'random'
 - ✅ Change the type of links (from React Flow): 'straight', 'bezier', 'step'
@@ -71,10 +70,11 @@ Don't lose your masterpiece:
 - ✅ Copy to clipboard for quick sharing
 - ✅ Import saved diagrams when you need them
 
+### 🔍 Explore the code (extension only)
+- ✅ Click on the top right corner of a node to open the code of the node in the editor
+
 ## 👀 What's Coming Next?
 I've got some cool ideas in the works:
-- ✅ More export options
-- ✅ Themes to make things prettier
 - ✅ Integration with documentation tools
 - ✅ And whatever else you folks suggest!
 
@@ -82,7 +82,7 @@ I've got some cool ideas in the works:
 
 I am working on the best way for you to share your ideas with me.
 For now if you got any suggestions or bugs, you can:
-- Open an issue on [GitHub](https://github.com/jvilarrasa/ts2uml/issues)
+- Open an issue on [GitHub](https://github.com/joanvilarrasa/ts2uml/issues)
 - Send me a DM on [X](https://x.com/joan_vilarrasa)
 
 ## 📝 License

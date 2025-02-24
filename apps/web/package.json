@@ -1,14 +1,16 @@
 {
   "name": "@ts2uml/web",
   "private": true,
-  "version": "0.0.45",
+  "version": "0.0.46",
   "type": "module",
   "scripts": {
     "clean": "rm -rf node_modules dist",
     "lint": "biome format --write . && biome check --fix .",
     "dev": "vite",
+    "dev:extension": "vite --mode extension",
     "build": "vite build --mode production",
     "build:local": "vite build --mode local",
+    "build:extension": "vite build --mode extension",
     "preview": "vite preview"
   },
   "dependencies": {

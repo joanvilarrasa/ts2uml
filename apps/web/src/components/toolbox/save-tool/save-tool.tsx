@@ -106,7 +106,7 @@ export function SaveTool() {
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <TooltipProvider delayDuration={0}>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <PopoverTrigger asChild>
               <Button variant="ghost" size="icon" className={cn(isOpen && 'bg-accent')}>
                 <Save />

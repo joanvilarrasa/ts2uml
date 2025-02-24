@@ -4381,7 +4381,8 @@ var ZMsgType = z.enum([
   "load-graph",
   "update-layout-algorithm",
   "update-link-path-algorithm",
-  "update-visible-nodes"
+  "update-visible-nodes",
+  "open-node-code"
 ]);
 
 // src/types/messages/msg-load-graph.ts
@@ -4395,6 +4396,18 @@ function createMsgLoadGraph(data) {
     applyLayoutOnLoad: data?.applyLayoutOnLoad ?? true,
     graph: data?.graph ?? createGraph(),
     type: "load-graph"
+  });
+}
+
+// src/types/messages/msg-open-node-code.ts
+var ZMsgOpenNodeCode = z.object({
+  node: ZNode,
+  type: ZMsgType.extract(["open-node-code"])
+});
+function createMsgOpenNodeCode(data) {
+  return ZMsgOpenNodeCode.parse({
+    node: data?.node ?? createNode(),
+    type: "open-node-code"
   });
 }
 
@@ -4754,6 +4767,7 @@ export {
   ZLinkPathAlgorithm,
   ZLinkType,
   ZMsgLoadGraph,
+  ZMsgOpenNodeCode,
   ZMsgType,
   ZMsgUpdateLayoutAlgorithm,
   ZMsgUpdateLinkPathAlgorithm,
@@ -4776,6 +4790,7 @@ export {
   createGraph,
   createLink,
   createMsgLoadGraph,
+  createMsgOpenNodeCode,
   createMsgUpdateLayoutAlgorithm,
   createMsgUpdateLinkPathAlgorithm,
   createMsgUpdateVisibleNodes,

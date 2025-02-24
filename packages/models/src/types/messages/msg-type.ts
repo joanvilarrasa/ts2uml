@@ -5,6 +5,7 @@ export const ZMsgType = z.enum([
   'update-layout-algorithm',
   'update-link-path-algorithm',
   'update-visible-nodes',
+  'open-node-code',
 ]);
 
 /**

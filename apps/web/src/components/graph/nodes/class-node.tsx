@@ -8,6 +8,7 @@ import {
   Position as RF_Position,
 } from '@xyflow/react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../ui/card';
+import { OpenNodeCodeButton } from './open-node-code';
 
 export function ClassNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>) {
   const node = props.data.data;
@@ -16,13 +17,18 @@ export function ClassNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>)
   const methods = props.data.data.attributes.filter((attribute) => attribute.type === 'method');
   const hasAttributes = attributes.length > 0;
   const hasMethods = methods.length > 0;
-
+  const isExtension = import.meta.env.VITE_ENV === 'extension';
   return (
     <Card>
-      <div className="flex flex-col bg-class/40 p-1">
+      <div className="group flex flex-col bg-class/40 p-1">
         <CardHeader>
           <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
           <CardTitle>{title.text}</CardTitle>
+          {isExtension && (
+            <div className='absolute top-0 right-0 opacity-0 transition-opacity group-hover:opacity-100'>
+              <OpenNodeCodeButton node={node} />
+            </div>
+          )}
         </CardHeader>
         <CardContent className="bg-card">
           {hasAttributes && (

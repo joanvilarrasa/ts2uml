@@ -2,6 +2,10 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.46] - Updated docs 
+
+- Added a new button at the top right corner of the nodes to open the code file in a new tab. This is only available in the extension.
+
 ### [v0.0.36] - Updated docs 
 
 - Updated README.md to reflect the current state of the project.

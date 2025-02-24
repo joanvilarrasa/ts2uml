@@ -1,12 +1,12 @@
 import * as vscode from 'vscode';
 import { generateGraph } from './ts2uml-libs/core-dist';
-import { createMsgLoadGraph } from './ts2uml-libs/models-dist';
+import { createMsgLoadGraph, Graph, is, MsgOpenNodeCode, ZMsgOpenNodeCode } from './ts2uml-libs/models-dist';
 import { join } from 'node:path';
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand('ts2uml.generateUml', async (uri: vscode.Uri) => {
-      UMLPanel.createOrShow(context.extensionUri);
+      UMLPanel.createOrShow(context.extensionUri, uri.fsPath);
       vscode.window.withProgress(
         {
           location: vscode.ProgressLocation.Notification,
@@ -51,6 +51,7 @@ class UMLPanel {
    * Track the currently panel. Only allow a single panel to exist at a time.
    */
   public static currentPanel: UMLPanel | undefined;
+  public static currentPath: string| null
 
   public static readonly viewType = 'ts2uml.umlView';
 
@@ -58,7 +59,8 @@ class UMLPanel {
   private readonly _extensionUri: vscode.Uri;
   private _disposables: vscode.Disposable[] = [];
 
-  public static createOrShow(extensionUri: vscode.Uri) {
+  public static createOrShow(extensionUri: vscode.Uri, path: string) {
+    UMLPanel.currentPath = path;
     const column = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
 
     // If we already have a panel, show it.
@@ -72,7 +74,7 @@ class UMLPanel {
       UMLPanel.viewType,
       'ts2uml',
       column || vscode.ViewColumn.One,
-      getWebviewOptions(extensionUri)
+      getWebviewOptions(extensionUri),
     );
 
     UMLPanel.currentPanel = new UMLPanel(panel, extensionUri);
@@ -93,22 +95,34 @@ class UMLPanel {
     // This happens when the user closes the panel or when the panel is closed programmatically
     this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
 
-    // Update the content based on view changes
-    // Maybe not necessary
-    this._panel.onDidChangeViewState(
-      () => {
-        if (this._panel.visible) {
-          this._update();
-        }
-      },
-      null,
-      this._disposables
-    );
-
     // Handle messages from the webview
     this._panel.webview.onDidReceiveMessage(
       (message) => {
-        console.log(message);
+        if(is<MsgOpenNodeCode>(message, ZMsgOpenNodeCode) && UMLPanel.currentPath !== null) {
+          const node = message.node;
+          const relativeFilePath = node.id.split('-').slice(0, -1).join('-');
+          const relativePathParts = relativeFilePath.split('/');
+          const finalPath = join(UMLPanel.currentPath, ...relativePathParts);
+          
+          // Try to open the file with .ts and .tsx extensions
+          const tryOpenFile = (path: string, extensions: string[], index: number = 0) => {
+            if (index >= extensions.length) {
+              vscode.window.showErrorMessage(`File not found: ${finalPath}.ts or ${finalPath}.tsx`);
+              return;
+            }
+            
+            const fileUri = vscode.Uri.file(`${path}${extensions[index]}`);
+            vscode.workspace.fs.stat(fileUri).then(() => {
+                vscode.window.showTextDocument(fileUri, { preview: false, viewColumn: vscode.ViewColumn.Beside });
+              },
+              (error) => {
+                tryOpenFile(path, extensions, index + 1);
+              }
+            );
+          };
+          
+          tryOpenFile(finalPath, ['.ts', '.tsx']);
+        }
       },
       null,
       this._disposables
@@ -223,10 +237,9 @@ class UMLPanel {
       <body>
         <div id="root"></div>
         <script nonce="${nonce}">
-          document.addEventListener('DOMContentLoaded', function() {
-            document.fonts.ready.then(function() {
-              console.log('Fonts are loaded.');
-            });
+          const vscode = acquireVsCodeApi();
+          window.addEventListener('message', event => {
+            vscode.postMessage(event.data);
           });
         </script>
         <script nonce="${nonce}" src="${scriptUri}"></script>
@@ -236,10 +249,11 @@ class UMLPanel {
 
 }
 
-function getWebviewOptions(extensionUri: vscode.Uri): vscode.WebviewOptions {
+function getWebviewOptions(extensionUri: vscode.Uri): vscode.WebviewPanelOptions & vscode.WebviewOptions {
   return {
     enableScripts: true,
     localResourceRoots: [vscode.Uri.joinPath(extensionUri, 'media')],
+    retainContextWhenHidden: true
   };
 }
 

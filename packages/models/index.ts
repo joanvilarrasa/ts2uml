@@ -26,6 +26,7 @@ export type { NodeTitle } from './src/types/graph/node-title.ts';
 
 export type { MsgLoadGraph } from './src/types/messages/msg-load-graph.ts';
 export type { MsgType } from './src/types/messages/msg-type.ts';
+export type { MsgOpenNodeCode } from './src/types/messages/msg-open-node-code.ts';
 export type { MsgUpdateLayoutAlgorithm } from './src/types/messages/msg-update-layout-algorithm.ts';
 export type { MsgUpdateLinkPathAlgorithm } from './src/types/messages/msg-update-link-path-algorithm.ts';
 export type { MsgUpdateVisibleNodes } from './src/types/messages/msg-update-visible-nodes.ts';
@@ -48,6 +49,7 @@ export { createNodeStyle } from './src/types/graph/node-style.ts';
 export { createNodeTitle } from './src/types/graph/node-title.ts';
 
 export { createMsgLoadGraph } from './src/types/messages/msg-load-graph.ts';
+export { createMsgOpenNodeCode } from './src/types/messages/msg-open-node-code.ts';
 export { createMsgUpdateLayoutAlgorithm } from './src/types/messages/msg-update-layout-algorithm.ts';
 export { createMsgUpdateLinkPathAlgorithm } from './src/types/messages/msg-update-link-path-algorithm.ts';
 export { createMsgUpdateVisibleNodes } from './src/types/messages/msg-update-visible-nodes.ts';
@@ -79,6 +81,7 @@ export { ZNodeTitle } from './src/types/graph/node-title.ts';
 
 export { ZMsgLoadGraph } from './src/types/messages/msg-load-graph.ts';
 export { ZMsgType } from './src/types/messages/msg-type.ts';
+export { ZMsgOpenNodeCode } from './src/types/messages/msg-open-node-code.ts';
 export { ZMsgUpdateLayoutAlgorithm } from './src/types/messages/msg-update-layout-algorithm.ts';
 export { ZMsgUpdateLinkPathAlgorithm } from './src/types/messages/msg-update-link-path-algorithm.ts';
 export { ZMsgUpdateVisibleNodes } from './src/types/messages/msg-update-visible-nodes.ts';

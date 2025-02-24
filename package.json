@@ -1,18 +1,19 @@
 {
   "name": "ts2uml",
   "private": "true",
-  "version": "0.0.45",
+  "version": "0.0.46",
   "workspaces": [
     "apps/web",
     "packages/core",
     "packages/models"
   ],
   "scripts": {
-    "build:all": "bun run build:models && bun run build:core && bun run build:web && bun run build:vscode",
+    "build:all": "bun run build:models && bun run build:core && bun run build:vscode && bun run build:web",
     "build:core": "cd packages/core && bun run build",
     "build:models": "cd packages/models && bun run build",
-    "build:vscode": "bun run scripts/copy-vscode-ext-deps.sh",
+    "build:vscode": "bun run build:web:extension && bun run scripts/copy-vscode-ext-deps.sh",
     "build:web": "cd apps/web && bun run build",
+    "build:web:extension": "cd apps/web && bun run build:extension",
     "bump:major": "bun run scripts/bump-version.ts major",
     "bump:minor": "bun run scripts/bump-version.ts minor",
     "bump:patch": "bun run scripts/bump-version.ts patch",
@@ -25,6 +26,7 @@
     "deploy:minor": "bun run bump:minor && bun build:all && bun run publish:all",
     "deploy:patch": "bun run bump:patch && bun build:all && bun run publish:all",
     "dev:web": "cd apps/web && bun run dev",
+    "dev:web:extension": "cd apps/web && bun run dev:extension",
     "docker:pastebin:down": "docker compose -f docker-compose-local.yml down ts2uml-pastebin",
     "docker:pastebin:up": "docker compose -f docker-compose-local.yml up -d ts2uml-pastebin",
     "lint:all": "bun run lint:models && bun run lint:core && bun run lint:web",

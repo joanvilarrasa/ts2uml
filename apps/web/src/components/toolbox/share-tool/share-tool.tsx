@@ -56,7 +56,7 @@ export function ShareTool() {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <TooltipProvider delayDuration={0}>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <DialogTrigger asChild>
               <Button
                 variant="ghost"
