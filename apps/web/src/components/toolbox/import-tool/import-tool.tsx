@@ -75,7 +75,7 @@ export function ImportTool() {
       </TooltipProvider>
       <PopoverContent className="flex min-w-64 flex-col border border-primary p-4" sideOffset={10}>
         <span className="text-xs">{'Select a JSON file: '}</span>
-        <Separator className="mt-1 mb-2" orientation="horizontal" />
+        <Separator className="mt-1 mb-2 bg-foreground/10" orientation="horizontal" />
 
         <div className="flex flex-col gap-4">
           <div className="grid w-full max-w-sm items-center gap-1.5">

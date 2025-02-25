@@ -35,7 +35,7 @@ export function FilterTool() {
             <span className="font-medium">Filter nodes</span>
             <Filter className="h-3 w-3" />
           </div>
-          <Separator className="mt-1 mb-2" orientation="horizontal" />
+          <Separator className="mt-1 mb-2 bg-foreground/10" orientation="horizontal" />
 
           <FilterToolByType />
           <Separator className="mt-1 mb-2 bg-border/20" orientation="horizontal" />
