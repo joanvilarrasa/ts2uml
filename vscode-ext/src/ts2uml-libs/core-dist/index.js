@@ -9,7 +9,7 @@ import { createConfig } from "@ts2uml/models";
 import { Project } from "ts-morph";
 
 // src/ts-morph-to-graph/get-graph-from-project.ts
-import { createLink as createLink5 } from "@ts2uml/models";
+import { createLink } from "@ts2uml/models";
 
 // src/ts-morph-to-graph/add-enum-node.ts
 import {
@@ -35,6 +35,9 @@ function getNormalizedFilePath(basePath, sourceFilePath) {
   normalizedSourceFilePath = normalizeAndDecodePath(sourceFilePath);
   let relativePath = normalizedSourceFilePath.startsWith(normalizedBasePath) ? normalizedSourceFilePath.replace(normalizedBasePath, "") : normalizedSourceFilePath;
   relativePath = relativePath.replace(RELATIVE_PATH_REGEX, "");
+  if (!normalizedSourceFilePath.startsWith(normalizedBasePath)) {
+    return null;
+  }
   return relativePath;
 }
 function decodeEscapedUnicode(input) {
@@ -79,6 +82,7 @@ function createAttributeNodes(tsMorphEnum, enumId) {
     return createNodeAttribute({
       docs: prop.getJsDocs().map((doc) => doc.getText()).join("\n"),
       id: attributeId,
+      name: prop.getName(),
       type: "unionOption",
       text: prop.getText(),
       style: createNodeStyle()
@@ -88,7 +92,6 @@ function createAttributeNodes(tsMorphEnum, enumId) {
 
 // src/ts-morph-to-graph/add-union-type-node.ts
 import {
-  createLink,
   createNode as createNode2,
   createNodeAttribute as createNodeAttribute2,
   createNodeStyle as createNodeStyle2,
@@ -109,13 +112,13 @@ function getImportedName(text) {
 }
 
 // src/ts-morph-to-graph/add-union-type-node.ts
-function addUnionTypeNode(tsMorphType, filePath, links, nodes) {
+function addUnionTypeNode(tsMorphType, filePath, nodes) {
   const sourceFileRelativePath = getNormalizedFilePath(filePath, tsMorphType.getSourceFile().getFilePath());
   const typeName = tsMorphType.getName();
   const typeId = `${sourceFileRelativePath}-${typeName}`;
   const typeType = "union";
   const titleNode = createTitleNode2(typeId, typeType, typeName);
-  const attributeNodes = createAttributeNodes2(tsMorphType, typeId, filePath, links);
+  const attributeNodes = createAttributeNodes2(tsMorphType, typeId, filePath);
   const node = createNode2({
     docs: tsMorphType.getJsDocs().map((doc) => doc.getText()).join("\n"),
     id: typeId,
@@ -134,26 +137,15 @@ function createTitleNode2(ifaceId, ifaceType, ifaceName) {
   });
   return titleNode;
 }
-function createAttributeNodes2(tsMorphType, typeId, filePath, links) {
+function createAttributeNodes2(tsMorphType, typeId, filePath) {
   return tsMorphType.getType().getUnionTypes().map((prop) => {
-    let propText = prop.getText().replace(/^['"]|['"]$/g, "");
-    let attributeId = `${typeId}-${propText}`;
+    const propText = prop.getText().replace(/^['"]|['"]$/g, "");
+    const attributeId = `${typeId}-${propText}`;
     const targetId = getDescendantTargetId(prop, filePath);
-    if (targetId !== null) {
-      propText = getImportedName(prop.getText()) ?? "error";
-      attributeId = `${typeId}-${propText}`;
-      if (!links.find((link) => link.sourceId === typeId && link.targetId === targetId)) {
-        links.push(
-          createLink({
-            sourceId: typeId,
-            targetId,
-            type: "association"
-          })
-        );
-      }
-    }
     return createNodeAttribute2({
       id: attributeId,
+      name: propText,
+      targets: targetId ? [targetId] : void 0,
       type: "unionOption",
       text: propText,
       style: createNodeStyle2()
@@ -178,12 +170,12 @@ function getDescendantTargetId(descendant, filePath) {
 
 // src/ts-morph-to-graph/add-interface-node.ts
 import {
-  createLink as createLink2,
   createNode as createNode3,
   createNodeAttribute as createNodeAttribute3,
   createNodeStyle as createNodeStyle3,
   createNodeTitle as createNodeTitle3
 } from "@ts2uml/models";
+import { createNodeAttributeExtended } from "@ts2uml/models/src/types/graph/node-attribute-extended.ts";
 
 // src/ts-morph-to-graph/get-target-ids.ts
 function getTargetIds(descendants, filePath) {
@@ -267,7 +259,7 @@ function getDefaultDescendantTargetId(descendant, filePath) {
 }
 
 // src/ts-morph-to-graph/add-interface-node.ts
-function addInterfaceNode(tsMorphInterface, filePath, links, nodes) {
+function addInterfaceNode(tsMorphInterface, filePath, nodes) {
   const sourceFileRelativePath = getNormalizedFilePath(filePath, tsMorphInterface.getSourceFile().getFilePath());
   const ifaceName = tsMorphInterface.getName();
   const ifaceId = `${sourceFileRelativePath}-${ifaceName}`;
@@ -276,7 +268,7 @@ function addInterfaceNode(tsMorphInterface, filePath, links, nodes) {
     (type) => getImportedName(type.getType().getText())?.split(",")[0] ?? ""
   );
   const titleNode = createTitleNode3(ifaceId, ifaceType, ifaceName);
-  const attributeNodes = createAttributeNodes3(tsMorphInterface, ifaceId, filePath, links);
+  const attributeNodes = createAttributeNodes3(tsMorphInterface, ifaceId, filePath);
   const node = createNode3({
     docs: tsMorphInterface.getJsDocs().map((doc) => doc.getText()).join("\n"),
     extends: extendedTypeIds.length > 0 ? extendedTypeIds : void 0,
@@ -296,32 +288,17 @@ function createTitleNode3(ifaceId, ifaceType, ifaceName) {
   });
   return titleNode;
 }
-function createAttributeNodes3(tsMorphInterface, ifaceId, filePath, links) {
+function createAttributeNodes3(tsMorphInterface, ifaceId, filePath) {
   const properties = tsMorphInterface.getProperties();
   const extendedProperties = getExtendedProperties(tsMorphInterface, filePath);
   const propertiesAttributes = properties.map((prop) => {
     const attributeId = `${ifaceId}-${prop.getName()}`;
     const targetIds = getTargetIds(prop.getTypeNode()?.getDescendants() ?? [], filePath);
-    targetIds.map((targetId) => {
-      const existingLink = links.find((link) => link.sourceId === ifaceId && link.targetId === targetId);
-      if (existingLink) {
-        if (!existingLink.sourceAttributeIds.includes(attributeId)) {
-          existingLink.sourceAttributeIds.push(attributeId);
-        }
-      } else {
-        links.push(
-          createLink2({
-            sourceId: ifaceId,
-            targetId,
-            type: "association",
-            sourceAttributeIds: [attributeId]
-          })
-        );
-      }
-    });
     return createNodeAttribute3({
       docs: prop.getJsDocs().map((doc) => doc.getText()).join("\n"),
       id: attributeId,
+      name: prop.getName(),
+      targets: targetIds,
       type: "attribute",
       text: prop.getText(),
       style: createNodeStyle3()
@@ -333,7 +310,11 @@ function createAttributeNodes3(tsMorphInterface, ifaceId, filePath, links) {
       extendedPropertiesAttributes.push(
         createNodeAttribute3({
           id: `${ifaceId}-${attribute.name}`,
-          extendedFrom: extendedProperty.extendedTypeId,
+          extended: createNodeAttributeExtended({
+            fatherNodeName: extendedProperty.extendedTypeName,
+            fatherNodeId: extendedProperty.extendedTypeId
+          }),
+          name: attribute.name,
           type: "attribute",
           text: `${attribute.text}`,
           style: createNodeStyle3()
@@ -362,6 +343,7 @@ function getExtendedProperties(tsMorphInterface, filePath) {
     const extendedTypeProperties = extendedType.getType().getProperties();
     extendedProperties.push({
       extendedTypeId: `${normalizedFilePath}-${extendedTypeName}`,
+      extendedTypeName,
       attributes: extendedTypeProperties.map((prop) => ({
         name: prop.getName(),
         text: prop.getDeclarations()[0].getText()
@@ -373,20 +355,19 @@ function getExtendedProperties(tsMorphInterface, filePath) {
 
 // src/ts-morph-to-graph/add-class-node.ts
 import {
-  createLink as createLink3,
   createNode as createNode4,
   createNodeAttribute as createNodeAttribute4,
   createNodeStyle as createNodeStyle4,
   createNodeTitle as createNodeTitle4
 } from "@ts2uml/models";
-function addClassNode(tsMorphClass, filePath, links, nodes) {
+function addClassNode(tsMorphClass, filePath, nodes) {
   const sourceFileRelativePath = getNormalizedFilePath(filePath, tsMorphClass.getSourceFile().getFilePath());
   const className = tsMorphClass.getName();
   const classId = `${sourceFileRelativePath}-${className}`;
   const classType = "class";
   const titleNode = createTitleNode4(classId, classType, className ?? "");
-  const attributes = createAttributeNodes4(tsMorphClass, classId, filePath, links);
-  const methods = createMethodNodes(tsMorphClass, classId, filePath, links);
+  const attributes = createAttributeNodes4(tsMorphClass, classId, filePath);
+  const methods = createMethodNodes(tsMorphClass, classId, filePath);
   const attributeNodes = attributes.concat(methods);
   const node = createNode4({
     docs: tsMorphClass.getJsDocs().map((doc) => doc.getText()).join("\n"),
@@ -406,25 +387,16 @@ function createTitleNode4(classId, classType, className) {
   });
   return titleNode;
 }
-function createAttributeNodes4(tsMorphClass, classId, filePath, links) {
+function createAttributeNodes4(tsMorphClass, classId, filePath) {
   return tsMorphClass.getProperties().map((prop) => {
     const attributeId = `${classId}-${prop.getName()}`;
     const targetIds = getTargetIds(prop.getTypeNode()?.getDescendants() ?? [], filePath);
     const tsMorphScope = prop.getScope();
-    targetIds.map((targetId) => {
-      if (targetId !== classId && !links.find((link) => link.sourceId === classId && link.targetId === targetId)) {
-        links.push(
-          createLink3({
-            sourceId: classId,
-            targetId,
-            type: "association"
-          })
-        );
-      }
-    });
     return createNodeAttribute4({
       docs: prop.getJsDocs().map((doc) => doc.getText()).join("\n"),
       id: attributeId,
+      name: prop.getName(),
+      targets: targetIds,
       type: "attribute",
       text: prop.getText(),
       scope: tsMorphScope,
@@ -432,26 +404,17 @@ function createAttributeNodes4(tsMorphClass, classId, filePath, links) {
     });
   });
 }
-function createMethodNodes(tsMorphClass, classId, filePath, links) {
+function createMethodNodes(tsMorphClass, classId, filePath) {
   return tsMorphClass.getMethods().map((method) => {
     const methodId = `${classId}-${method.getName()}`;
     const targetIds = getTargetIds(method.getParameters() ?? [], filePath);
     const tsMorphScope = method.getScope();
-    targetIds.map((targetId) => {
-      if (!links.find((link) => link.sourceId === classId && link.targetId === targetId)) {
-        links.push(
-          createLink3({
-            sourceId: classId,
-            targetId,
-            type: "association"
-          })
-        );
-      }
-    });
     return createNodeAttribute4({
       docs: method.getJsDocs().map((doc) => doc.getText()).join("\n"),
       id: methodId,
       isStatic: method.isStatic() ? true : void 0,
+      name: method.getName(),
+      targets: targetIds,
       type: "method",
       text: method.removeBody().getText(),
       scope: tsMorphScope,
@@ -462,19 +425,18 @@ function createMethodNodes(tsMorphClass, classId, filePath, links) {
 
 // src/ts-morph-to-graph/add-type-node.ts
 import {
-  createLink as createLink4,
   createNode as createNode5,
   createNodeAttribute as createNodeAttribute5,
   createNodeStyle as createNodeStyle5,
   createNodeTitle as createNodeTitle5
 } from "@ts2uml/models";
-function addTypeNode(tsMorphType, filePath, links, nodes) {
+function addTypeNode(tsMorphType, filePath, nodes) {
   const sourceFileRelativePath = getNormalizedFilePath(filePath, tsMorphType.getSourceFile().getFilePath());
   const typeName = tsMorphType.getName();
   const typeId = `${sourceFileRelativePath}-${typeName}`;
   const typeType = "type";
   const titleNode = createTitleNode5(typeId, typeType, typeName);
-  const attributeNodes = createAttributeNodes5(tsMorphType, typeId, filePath, links);
+  const attributeNodes = createAttributeNodes5(tsMorphType, typeId, filePath);
   const node = createNode5({
     docs: tsMorphType.getJsDocs().map((doc) => doc.getText()).join("\n"),
     id: typeId,
@@ -493,25 +455,16 @@ function createTitleNode5(ifaceId, ifaceType, ifaceName) {
   });
   return titleNode;
 }
-function createAttributeNodes5(tsMorphType, typeId, filePath, links) {
+function createAttributeNodes5(tsMorphType, typeId, filePath) {
   return tsMorphType.getType().getProperties().map((prop) => {
     const propName = prop.getName();
     const attributeId = `${typeId}-${propName}`;
     const targetIds = getTargetIds(prop.getDeclarations(), filePath);
     const declarationText = prop.getDeclarations()[0]?.getText() ?? propName;
-    for (const targetId of targetIds) {
-      if (targetId !== null && !links.find((link) => link.sourceId === typeId && link.targetId === targetId)) {
-        links.push(
-          createLink4({
-            sourceId: typeId,
-            targetId,
-            type: "association"
-          })
-        );
-      }
-    }
     return createNodeAttribute5({
       id: attributeId,
+      name: propName,
+      targets: targetIds,
       type: "attribute",
       text: declarationText,
       style: createNodeStyle5()
@@ -522,16 +475,16 @@ function createAttributeNodes5(tsMorphType, typeId, filePath, links) {
 // src/ts-morph-to-graph/get-graph-from-project.ts
 function getGraphFromProject(project, filePath, config) {
   const nodes = [];
-  let links = [];
+  const links = [];
   const sourceFiles = project.getSourceFiles();
   for (const sourceFile of sourceFiles) {
     const tsMorphInterfaces = sourceFile.getInterfaces();
     for (const tsMorphInterface of tsMorphInterfaces) {
-      addInterfaceNode(tsMorphInterface, filePath, links, nodes);
+      addInterfaceNode(tsMorphInterface, filePath, nodes);
     }
     const tsMorphClasses = sourceFile.getClasses();
     for (const tsMorphClass of tsMorphClasses) {
-      addClassNode(tsMorphClass, filePath, links, nodes);
+      addClassNode(tsMorphClass, filePath, nodes);
     }
     const tsMorphEnums = sourceFile.getEnums();
     for (const tsMorphEnum of tsMorphEnums) {
@@ -540,47 +493,76 @@ function getGraphFromProject(project, filePath, config) {
     const tsMorphTypes = sourceFile.getTypeAliases();
     for (const tsMorphType of tsMorphTypes) {
       if (tsMorphType.getType().isUnion()) {
-        addUnionTypeNode(tsMorphType, filePath, links, nodes);
+        addUnionTypeNode(tsMorphType, filePath, nodes);
       } else {
-        addTypeNode(tsMorphType, filePath, links, nodes);
+        addTypeNode(tsMorphType, filePath, nodes);
       }
     }
   }
-  addExtendedLinks(links, nodes);
-  links = filterErroneousLinks(links, nodes);
+  computeExtendedAttributes(nodes);
+  computeLinks(nodes, links);
   return { nodes, links, config };
 }
-function addExtendedLinks(links, nodes) {
+function computeExtendedAttributes(nodes) {
   for (const node of nodes) {
+    const fatherNodeCache = {};
     for (const attribute of node.attributes) {
-      if (attribute.extendedFrom) {
-        const originalLink = links.find(
-          (link) => link.sourceId === attribute.extendedFrom && link.sourceAttributeIds.some((id) => id.endsWith(attribute.id.split("-").at(-1) ?? ""))
-        );
-        if (originalLink) {
-          links.push(
-            createLink5({
-              sourceId: node.id,
-              targetId: originalLink.targetId,
-              type: "association",
-              sourceAttributeIds: [attribute.id]
-            })
-          );
-        }
+      if (attribute.extended) {
+        const { ancestorName, ancestorId, targets } = getAttributeAncestorAndTargets(fatherNodeCache, attribute, nodes);
+        attribute.extended.ancestorNodeId = ancestorId;
+        attribute.extended.ancestorNodeName = ancestorName;
+        attribute.targets = targets;
       }
     }
   }
 }
-function filterErroneousLinks(links, nodes) {
-  return links.filter((link) => {
-    if (!nodes.some((node) => node.id === link.sourceId)) {
-      return false;
+function getAttributeAncestorAndTargets(fatherNodeCache, attribute, nodes) {
+  if (!attribute.extended) {
+    const ancestorIdList = attribute.id.split("-");
+    ancestorIdList.pop();
+    const ancestorId = ancestorIdList.join("-");
+    return { ancestorName: ancestorIdList.at(-1) ?? "", ancestorId, targets: attribute.targets };
+  }
+  let fatherNode = fatherNodeCache[attribute.extended?.fatherNodeId ?? "WRONG_ID"];
+  if (!fatherNode) {
+    fatherNode = nodes.find((node) => node.id === attribute.extended?.fatherNodeId);
+    if (fatherNode) {
+      fatherNodeCache[fatherNode.id] = fatherNode;
     }
-    if (!nodes.some((node) => node.id === link.targetId)) {
-      return false;
+  }
+  if (fatherNode) {
+    const fatherAttribute = fatherNode.attributes.find((attr) => attr.name === attribute?.name);
+    if (fatherAttribute) {
+      return getAttributeAncestorAndTargets(fatherNodeCache, fatherAttribute, nodes);
     }
-    return true;
-  });
+  }
+  return { ancestorName: "", ancestorId: "", targets: void 0 };
+}
+function computeLinks(nodes, links) {
+  for (const node of nodes) {
+    for (const attribute of node.attributes) {
+      computeAttributeLinks(attribute, links, node.id);
+    }
+  }
+}
+function computeAttributeLinks(attribute, links, nodeId) {
+  if (attribute.targets === void 0 || attribute.targets.length === 0) {
+    return;
+  }
+  for (const target of attribute.targets) {
+    const link = links.find((link2) => link2.sourceId === nodeId && link2.targetId === target);
+    if (link) {
+      link.sourceAttributeIds.push(attribute.id);
+    } else {
+      const newLink = createLink({
+        sourceId: nodeId,
+        targetId: target,
+        sourceAttributeIds: [attribute.id],
+        type: "association"
+      });
+      links.push(newLink);
+    }
+  }
 }
 
 // src/main/generate-graph.ts

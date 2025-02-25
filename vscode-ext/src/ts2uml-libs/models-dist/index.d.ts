@@ -323,6 +323,28 @@ interface Link {
 declare const ZLink: z.ZodType<Link>;
 declare function createLink(data?: Partial<Link>): Link;
 
+/**
+ * Represents an attribute or method within a node in the diagram.
+ */
+interface NodeAttributeExtended {
+    /**
+     * The id of the Node that this attribute extends from
+     */
+    ancestorNodeId?: string;
+    /**
+     * The name of the Node that this attribute extends from
+     */
+    ancestorNodeName?: string;
+    /**
+     * The id of the node that this attribute extends from
+     */
+    fatherNodeId?: string;
+    /**
+     * The name of the Node that this attribute extends from
+     */
+    fatherNodeName?: string;
+}
+
 declare const ZNodeAttributeScope: z.ZodEnum<["private", "protected", "public"]>;
 /**
  * Represents the visibility/access level of a node attribute.
@@ -361,9 +383,13 @@ interface NodeAttribute {
      */
     isStatic?: boolean;
     /**
-     * The name of the Node that this attribute extends from
+     * If the attribute is extended, this will contain the extended information
      */
-    extendedFrom?: string;
+    extended?: NodeAttributeExtended;
+    /**
+     * The name of the attribute
+     */
+    name: string;
     /**
      * The visibility/access level of the attribute (public, protected, private)
      * @see {@link NodeAttributeScope}
@@ -374,6 +400,10 @@ interface NodeAttribute {
      * @see {@link NodeStyle}
      */
     style?: NodeStyle;
+    /**
+     * The target nodeIds that this attribute points to.
+     */
+    targets?: string[];
     /**
      * The text content/label of the attribute
      */

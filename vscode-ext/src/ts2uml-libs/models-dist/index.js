@@ -4278,6 +4278,14 @@ function createLink(data) {
   });
 }
 
+// src/types/graph/node-attribute-extended.ts
+var ZNodeAttributeExtended = z.object({
+  ancestorNodeId: z.string().optional(),
+  ancestorNodeName: z.string().optional(),
+  fatherNodeId: z.string().optional(),
+  fatherNodeName: z.string().optional()
+});
+
 // src/types/graph/node-attribute-scope.ts
 var ZNodeAttributeScope = z.enum(["private", "protected", "public"]);
 
@@ -4289,9 +4297,11 @@ var ZNodeAttribute = z.object({
   docs: z.string().optional(),
   id: z.string({ invalid_type_error: "id must be a string" }),
   isStatic: z.boolean().optional(),
-  extendedFrom: z.string().optional(),
+  extended: ZNodeAttributeExtended.optional(),
+  name: z.string({ invalid_type_error: "name must be a string" }),
   scope: ZNodeAttributeScope.optional(),
   style: ZNodeStyle.optional(),
+  targets: z.array(z.string()).optional(),
   text: z.string({ invalid_type_error: "text must be a string" }),
   type: ZNodeAttributeType
 });
@@ -4300,9 +4310,11 @@ function createNodeAttribute(data) {
     docs: data?.docs,
     id: data?.id ?? "id",
     isStatic: data?.isStatic,
-    extendedFrom: data?.extendedFrom,
+    extended: data?.extended,
+    name: data?.name ?? "name",
     scope: data?.scope,
     style: createNodeStyle(data?.style),
+    targets: data?.targets,
     text: data?.text ?? "text",
     type: data?.type ?? "attribute"
   });
