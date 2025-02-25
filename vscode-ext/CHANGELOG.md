@@ -2,6 +2,11 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.47] - Extenedd properties 
+
+- Improved extended propertis so that they show the original place where they extend from if it is inside the scope.
+- Mostly this has been a refactor and a quality of life update.
+
 ### [v0.0.46] - Updated docs 
 
 - Added a new button at the top right corner of the nodes to open the code file in a new tab. This is only available in the extension.

@@ -1,26 +1,20 @@
 import {
-  type Link,
   type Node,
   type NodeAttribute,
   type NodeType,
-  createLink,
   createNode,
   createNodeAttribute,
   createNodeStyle,
   createNodeTitle,
 } from '@ts2uml/models';
+import { createNodeAttributeExtended } from '@ts2uml/models/src/types/graph/node-attribute-extended.ts';
 import type { InterfaceDeclaration } from 'ts-morph';
 import { getNormalizedFilePath, normalizeAndDecodePath } from '../file-utils/get-normalized-file-path.ts';
 import { getTargetIds } from './get-target-ids.ts';
 import { getImportedName } from './regex.ts';
 import { getImportedPath } from './regex.ts';
 
-export function addInterfaceNode(
-  tsMorphInterface: InterfaceDeclaration,
-  filePath: string,
-  links: Link[],
-  nodes: Node[]
-) {
+export function addInterfaceNode(tsMorphInterface: InterfaceDeclaration, filePath: string, nodes: Node[]) {
   const sourceFileRelativePath = getNormalizedFilePath(filePath, tsMorphInterface.getSourceFile().getFilePath());
   const ifaceName = tsMorphInterface.getName();
   const ifaceId = `${sourceFileRelativePath}-${ifaceName}`;
@@ -30,7 +24,7 @@ export function addInterfaceNode(
     (type) => getImportedName(type.getType().getText())?.split(',')[0] ?? ''
   );
   const titleNode = createTitleNode(ifaceId, ifaceType, ifaceName);
-  const attributeNodes = createAttributeNodes(tsMorphInterface, ifaceId, filePath, links);
+  const attributeNodes = createAttributeNodes(tsMorphInterface, ifaceId, filePath);
 
   const node: Node = createNode({
     docs: tsMorphInterface
@@ -61,8 +55,7 @@ function createTitleNode(ifaceId: string, ifaceType: NodeType, ifaceName: string
 function createAttributeNodes(
   tsMorphInterface: InterfaceDeclaration,
   ifaceId: string,
-  filePath: string,
-  links: Link[]
+  filePath: string
 ): NodeAttribute[] {
   const properties = tsMorphInterface.getProperties();
   const extendedProperties = getExtendedProperties(tsMorphInterface, filePath);
@@ -70,24 +63,6 @@ function createAttributeNodes(
   const propertiesAttributes = properties.map((prop) => {
     const attributeId = `${ifaceId}-${prop.getName()}`;
     const targetIds = getTargetIds(prop.getTypeNode()?.getDescendants() ?? [], filePath);
-    // Push the links
-    targetIds.map((targetId) => {
-      const existingLink = links.find((link) => link.sourceId === ifaceId && link.targetId === targetId);
-      if (existingLink) {
-        if (!existingLink.sourceAttributeIds.includes(attributeId)) {
-          existingLink.sourceAttributeIds.push(attributeId);
-        }
-      } else {
-        links.push(
-          createLink({
-            sourceId: ifaceId,
-            targetId: targetId,
-            type: 'association',
-            sourceAttributeIds: [attributeId],
-          })
-        );
-      }
-    });
 
     return createNodeAttribute({
       docs: prop
@@ -95,13 +70,13 @@ function createAttributeNodes(
         .map((doc) => doc.getText())
         .join('\n'),
       id: attributeId,
+      name: prop.getName(),
+      targets: targetIds,
       type: 'attribute',
       text: prop.getText(),
       style: createNodeStyle(),
     });
   });
-
-  // return propertiesAttributes;
 
   const extendedPropertiesAttributes: NodeAttribute[] = [];
   for (const extendedProperty of extendedProperties) {
@@ -109,7 +84,11 @@ function createAttributeNodes(
       extendedPropertiesAttributes.push(
         createNodeAttribute({
           id: `${ifaceId}-${attribute.name}`,
-          extendedFrom: extendedProperty.extendedTypeId,
+          extended: createNodeAttributeExtended({
+            fatherNodeName: extendedProperty.extendedTypeName,
+            fatherNodeId: extendedProperty.extendedTypeId,
+          }),
+          name: attribute.name,
           type: 'attribute',
           text: `${attribute.text}`,
           style: createNodeStyle(),
@@ -137,6 +116,7 @@ function getExtendedProperties(tsMorphInterface: InterfaceDeclaration, filePath:
 
   const extendedProperties: {
     extendedTypeId: string;
+    extendedTypeName: string;
     attributes: { name: string; text: string }[];
   }[] = [];
   for (const extendedType of extendedTypes) {
@@ -146,6 +126,7 @@ function getExtendedProperties(tsMorphInterface: InterfaceDeclaration, filePath:
     const extendedTypeProperties = extendedType.getType().getProperties();
     extendedProperties.push({
       extendedTypeId: `${normalizedFilePath}-${extendedTypeName}`,
+      extendedTypeName: extendedTypeName,
       attributes: extendedTypeProperties.map((prop) => ({
         name: prop.getName(),
         text: prop.getDeclarations()[0].getText(),

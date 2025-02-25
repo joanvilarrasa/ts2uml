@@ -1,5 +1,4 @@
-import type { Config, Graph, Link, Node } from '@ts2uml/models';
-import { createLink } from '@ts2uml/models';
+import { type Config, type Graph, type Link, type Node, type NodeAttribute, createLink } from '@ts2uml/models';
 import type { ClassDeclaration, EnumDeclaration, InterfaceDeclaration, Project, TypeAliasDeclaration } from 'ts-morph';
 import { addEnumNode } from './add-enum-node.ts';
 import { addUnionTypeNode } from './add-union-type-node.ts';
@@ -10,23 +9,21 @@ import { addTypeNode } from './add-type-node.ts';
 
 export function getGraphFromProject(project: Project, filePath: string, config: Config): Graph {
   const nodes: Node[] = [];
-  let links: Link[] = [];
+  const links: Link[] = [];
 
   // Iterate over all source files in the project
   const sourceFiles = project.getSourceFiles();
   for (const sourceFile of sourceFiles) {
-    // console.log('sourceFile', sourceFile.getFilePath());
-
     // Interfaces
     const tsMorphInterfaces: InterfaceDeclaration[] = sourceFile.getInterfaces();
     for (const tsMorphInterface of tsMorphInterfaces) {
-      addInterfaceNode(tsMorphInterface, filePath, links, nodes);
+      addInterfaceNode(tsMorphInterface, filePath, nodes);
     }
 
     // Classes
     const tsMorphClasses: ClassDeclaration[] = sourceFile.getClasses();
     for (const tsMorphClass of tsMorphClasses) {
-      addClassNode(tsMorphClass, filePath, links, nodes);
+      addClassNode(tsMorphClass, filePath, nodes);
     }
 
     // Enums
@@ -39,54 +36,87 @@ export function getGraphFromProject(project: Project, filePath: string, config: 
     const tsMorphTypes: TypeAliasDeclaration[] = sourceFile.getTypeAliases();
     for (const tsMorphType of tsMorphTypes) {
       if (tsMorphType.getType().isUnion()) {
-        addUnionTypeNode(tsMorphType, filePath, links, nodes);
+        addUnionTypeNode(tsMorphType, filePath, nodes);
       } else {
-        addTypeNode(tsMorphType, filePath, links, nodes);
+        addTypeNode(tsMorphType, filePath, nodes);
       }
     }
   }
 
-  addExtendedLinks(links, nodes);
-
-  links = filterErroneousLinks(links, nodes);
+  computeExtendedAttributes(nodes);
+  computeLinks(nodes, links);
 
   return { nodes, links, config };
 }
 
-// Find all the attributes that are extended from other attributes and create links from the extended attributes to the extended type
-// TODO I HAVE TO RETHINK ALL OF THIS TO MAKE IT MORE EFFICIENT!!! THIS IS OME VERYSHITTY CODE (STORE MORE INFO ON THE NODES I GUESS)
-function addExtendedLinks(links: Link[], nodes: Node[]): void {
+function computeExtendedAttributes(nodes: Node[]): void {
   for (const node of nodes) {
+    // Maybe test moving this a level up for performance later
+    const fatherNodeCache: { [key: string]: Node } = {};
     for (const attribute of node.attributes) {
-      if (attribute.extendedFrom) {
-        const originalLink = links.find(
-          (link) =>
-            link.sourceId === attribute.extendedFrom &&
-            link.sourceAttributeIds.some((id) => id.endsWith(attribute.id.split('-').at(-1) ?? ''))
-        );
-        if (originalLink) {
-          links.push(
-            createLink({
-              sourceId: node.id,
-              targetId: originalLink.targetId,
-              type: 'association',
-              sourceAttributeIds: [attribute.id],
-            })
-          );
-        }
+      // Build the target Ids for the links if it is extended
+      if (attribute.extended) {
+        const { ancestorName, ancestorId, targets } = getAttributeAncestorAndTargets(fatherNodeCache, attribute, nodes);
+        attribute.extended.ancestorNodeId = ancestorId;
+        attribute.extended.ancestorNodeName = ancestorName;
+        attribute.targets = targets;
       }
     }
   }
 }
 
-function filterErroneousLinks(links: Link[], nodes: Node[]): Link[] {
-  return links.filter((link) => {
-    if (!nodes.some((node) => node.id === link.sourceId)) {
-      return false;
+function getAttributeAncestorAndTargets(
+  fatherNodeCache: { [key: string]: Node },
+  attribute: NodeAttribute,
+  nodes: Node[]
+): { ancestorName: string; ancestorId: string; targets: string[] | undefined } {
+  if (!attribute.extended) {
+    const ancestorIdList = attribute.id.split('-');
+    ancestorIdList.pop(); // Remove the last part (the NodeAttribute name)
+    const ancestorId = ancestorIdList.join('-');
+    return { ancestorName: ancestorIdList.at(-1) ?? '', ancestorId, targets: attribute.targets };
+  }
+
+  let fatherNode: Node | undefined = fatherNodeCache[attribute.extended?.fatherNodeId ?? 'WRONG_ID'];
+  if (!fatherNode) {
+    fatherNode = nodes.find((node) => node.id === attribute.extended?.fatherNodeId);
+    if (fatherNode) {
+      fatherNodeCache[fatherNode.id] = fatherNode;
     }
-    if (!nodes.some((node) => node.id === link.targetId)) {
-      return false;
+  }
+  if (fatherNode) {
+    const fatherAttribute = fatherNode.attributes.find((attr) => attr.name === attribute?.name);
+    if (fatherAttribute) {
+      return getAttributeAncestorAndTargets(fatherNodeCache, fatherAttribute, nodes);
     }
-    return true;
-  });
+  }
+  return { ancestorName: '', ancestorId: '', targets: undefined };
+}
+
+function computeLinks(nodes: Node[], links: Link[]): void {
+  for (const node of nodes) {
+    for (const attribute of node.attributes) {
+      computeAttributeLinks(attribute, links, node.id);
+    }
+  }
+}
+
+function computeAttributeLinks(attribute: NodeAttribute, links: Link[], nodeId: string): void {
+  if (attribute.targets === undefined || attribute.targets.length === 0) {
+    return;
+  }
+  for (const target of attribute.targets) {
+    const link = links.find((link) => link.sourceId === nodeId && link.targetId === target);
+    if (link) {
+      link.sourceAttributeIds.push(attribute.id);
+    } else {
+      const newLink = createLink({
+        sourceId: nodeId,
+        targetId: target,
+        sourceAttributeIds: [attribute.id],
+        type: 'association',
+      });
+      links.push(newLink);
+    }
+  }
 }

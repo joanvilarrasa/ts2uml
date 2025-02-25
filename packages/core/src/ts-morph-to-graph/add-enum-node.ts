@@ -53,6 +53,7 @@ function createAttributeNodes(tsMorphEnum: EnumDeclaration, enumId: string): Nod
         .map((doc) => doc.getText())
         .join('\n'),
       id: attributeId,
+      name: prop.getName(),
       type: 'unionOption',
       text: prop.getText(),
       style: createNodeStyle(),

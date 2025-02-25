@@ -11,6 +11,6 @@
     "testing": "bun index.ts"
   },
   "dependencies": {
-    "ag-grid-community": "^31.0.0"
+    "ag-grid-community": "^33.1.1"
   }
 }

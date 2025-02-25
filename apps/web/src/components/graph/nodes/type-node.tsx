@@ -22,7 +22,7 @@ export function TypeNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>) 
           <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
           <CardTitle>{title.text}</CardTitle>
           {isExtension && (
-            <div className='absolute top-0 right-0 opacity-0 transition-opacity group-hover:opacity-100'>
+            <div className="absolute top-0 right-0 opacity-0 transition-opacity group-hover:opacity-100">
               <OpenNodeCodeButton node={node} />
             </div>
           )}

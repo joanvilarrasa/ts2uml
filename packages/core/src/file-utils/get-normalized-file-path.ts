@@ -26,6 +26,11 @@ export function getNormalizedFilePath(basePath: string, sourceFilePath: string |
   // Remove the file extension
   relativePath = relativePath.replace(RELATIVE_PATH_REGEX, ''); // Regex to match and remove the extension
 
+  // If the source file path does not start with the base path, it is an external file
+  if (!normalizedSourceFilePath.startsWith(normalizedBasePath)) {
+    return null;
+  }
+
   return relativePath;
 }
 

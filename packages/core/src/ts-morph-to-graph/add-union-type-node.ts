@@ -1,9 +1,7 @@
 import {
-  type Link,
   type Node,
   type NodeAttribute,
   type NodeType,
-  createLink,
   createNode,
   createNodeAttribute,
   createNodeStyle,
@@ -14,14 +12,14 @@ import { getNormalizedFilePath } from '../file-utils/get-normalized-file-path.ts
 import { getImportedName, getImportedPath } from './regex.ts';
 import { isImported } from './regex.ts';
 
-export function addUnionTypeNode(tsMorphType: TypeAliasDeclaration, filePath: string, links: Link[], nodes: Node[]) {
+export function addUnionTypeNode(tsMorphType: TypeAliasDeclaration, filePath: string, nodes: Node[]) {
   const sourceFileRelativePath = getNormalizedFilePath(filePath, tsMorphType.getSourceFile().getFilePath());
   const typeName = tsMorphType.getName();
   const typeId = `${sourceFileRelativePath}-${typeName}`;
   const typeType: NodeType = 'union';
 
   const titleNode = createTitleNode(typeId, typeType, typeName);
-  const attributeNodes = createAttributeNodes(tsMorphType, typeId, filePath, links);
+  const attributeNodes = createAttributeNodes(tsMorphType, typeId, filePath);
 
   const node: Node = createNode({
     docs: tsMorphType
@@ -48,36 +46,20 @@ function createTitleNode(ifaceId: string, ifaceType: NodeType, ifaceName: string
   return titleNode;
 }
 
-function createAttributeNodes(
-  tsMorphType: TypeAliasDeclaration,
-  typeId: string,
-  filePath: string,
-  links: Link[]
-): NodeAttribute[] {
+function createAttributeNodes(tsMorphType: TypeAliasDeclaration, typeId: string, filePath: string): NodeAttribute[] {
   return tsMorphType
     .getType()
     .getUnionTypes()
     .map((prop) => {
-      let propText = prop.getText().replace(/^['"]|['"]$/g, '');
-      let attributeId = `${typeId}-${propText}`;
+      const propText = prop.getText().replace(/^['"]|['"]$/g, '');
+      const attributeId = `${typeId}-${propText}`;
 
       const targetId = getDescendantTargetId(prop, filePath);
-      if (targetId !== null) {
-        propText = getImportedName(prop.getText()) ?? 'error';
-        attributeId = `${typeId}-${propText}`;
-        if (!links.find((link) => link.sourceId === typeId && link.targetId === targetId)) {
-          links.push(
-            createLink({
-              sourceId: typeId,
-              targetId: targetId,
-              type: 'association',
-            })
-          );
-        }
-      }
 
       return createNodeAttribute({
         id: attributeId,
+        name: propText,
+        targets: targetId ? [targetId] : undefined,
         type: 'unionOption',
         text: propText,
         style: createNodeStyle(),

@@ -1,9 +1,7 @@
 import {
-  type Link,
   type Node,
   type NodeAttribute,
   type NodeType,
-  createLink,
   createNode,
   createNodeAttribute,
   createNodeStyle,
@@ -13,14 +11,14 @@ import type { TypeAliasDeclaration } from 'ts-morph';
 import { getNormalizedFilePath } from '../file-utils/get-normalized-file-path.ts';
 import { getTargetIds } from './get-target-ids.ts';
 
-export function addTypeNode(tsMorphType: TypeAliasDeclaration, filePath: string, links: Link[], nodes: Node[]) {
+export function addTypeNode(tsMorphType: TypeAliasDeclaration, filePath: string, nodes: Node[]) {
   const sourceFileRelativePath = getNormalizedFilePath(filePath, tsMorphType.getSourceFile().getFilePath());
   const typeName = tsMorphType.getName();
   const typeId = `${sourceFileRelativePath}-${typeName}`;
   const typeType: NodeType = 'type';
 
   const titleNode = createTitleNode(typeId, typeType, typeName);
-  const attributeNodes = createAttributeNodes(tsMorphType, typeId, filePath, links);
+  const attributeNodes = createAttributeNodes(tsMorphType, typeId, filePath);
 
   const node: Node = createNode({
     docs: tsMorphType
@@ -47,12 +45,7 @@ function createTitleNode(ifaceId: string, ifaceType: NodeType, ifaceName: string
   return titleNode;
 }
 
-function createAttributeNodes(
-  tsMorphType: TypeAliasDeclaration,
-  typeId: string,
-  filePath: string,
-  links: Link[]
-): NodeAttribute[] {
+function createAttributeNodes(tsMorphType: TypeAliasDeclaration, typeId: string, filePath: string): NodeAttribute[] {
   return tsMorphType
     .getType()
     .getProperties()
@@ -62,21 +55,10 @@ function createAttributeNodes(
       const targetIds = getTargetIds(prop.getDeclarations(), filePath);
       const declarationText = prop.getDeclarations()[0]?.getText() ?? propName;
 
-      for (const targetId of targetIds) {
-        if (targetId !== null && !links.find((link) => link.sourceId === typeId && link.targetId === targetId)) {
-          links.push(
-            createLink({
-              sourceId: typeId,
-              targetId: targetId,
-              type: 'association',
-            })
-          );
-        }
-      }
-
-      // console.log(propText);
       return createNodeAttribute({
         id: attributeId,
+        name: propName,
+        targets: targetIds,
         type: 'attribute',
         text: declarationText,
         style: createNodeStyle(),

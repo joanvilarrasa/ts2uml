@@ -21,12 +21,12 @@ export function InterfaceNodeComponent(props: InterfaceNodeProps) {
 
   return (
     <Card>
-      <div className='group flex flex-col bg-interface/40 p-1'>
+      <div className="group flex flex-col bg-interface/40 p-1">
         <CardHeader className="relative">
           <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
           <CardTitle>{title.text}</CardTitle>
           {isExtension && (
-            <div className='absolute top-0 right-0 opacity-0 transition-opacity group-hover:opacity-100'>
+            <div className="absolute top-0 right-0 opacity-0 transition-opacity group-hover:opacity-100">
               <OpenNodeCodeButton node={node} />
             </div>
           )}
@@ -39,10 +39,8 @@ export function InterfaceNodeComponent(props: InterfaceNodeProps) {
               style={{ height: NODE_ATTRIBUTE_HEIGHT }}
             >
               <p>{attribute.text}</p>
-              {attribute.extendedFrom && (
-                <span className="ml-2 text-muted-foreground text-xs">
-                  {`(${attribute.extendedFrom.split('-').at(-1)})`}
-                </span>
+              {attribute.extended && (
+                <span className="ml-2 text-muted-foreground text-xs">{`(${attribute.extended.ancestorNodeName})`}</span>
               )}
             </div>
           ))}

@@ -11,8 +11,8 @@ export function computeNodeWidth(node: Node) {
   // Calculate attributes width
   for (const attribute of node.attributes) {
     let length = attribute.text.length;
-    if (attribute.extendedFrom) {
-      length += attribute.extendedFrom.split('-').at(-1)?.length ?? 0;
+    if (attribute.extended) {
+      length += attribute.extended.ancestorNodeName.length;
       length += 2;
     }
     const attributeWidth = length * CHAR_WIDTH;

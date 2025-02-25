@@ -1,5 +1,6 @@
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import {} from '@ts2uml/models';
 import { findTypeScriptFiles } from '../file-utils/find-typescript-files.ts';
 import { generateGraph } from './generate-graph.ts';
 
