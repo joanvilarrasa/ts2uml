@@ -9,7 +9,7 @@ import { addTypeNode } from './add-type-node.ts';
 
 export function getGraphFromProject(project: Project, filePath: string, config: Config): Graph {
   const nodes: Node[] = [];
-  const links: Link[] = [];
+  let links: Link[] = [];
 
   // Iterate over all source files in the project
   const sourceFiles = project.getSourceFiles();
@@ -45,6 +45,8 @@ export function getGraphFromProject(project: Project, filePath: string, config: 
 
   computeExtendedAttributes(nodes);
   computeLinks(nodes, links);
+
+  links = filterErroneousLinks(links, nodes);
 
   return { nodes, links, config };
 }
@@ -119,4 +121,16 @@ function computeAttributeLinks(attribute: NodeAttribute, links: Link[], nodeId: 
       links.push(newLink);
     }
   }
+}
+
+function filterErroneousLinks(links: Link[], nodes: Node[]): Link[] {
+  return links.filter((link) => {
+    if (!nodes.some((node) => node.id === link.sourceId)) {
+      return false;
+    }
+    if (!nodes.some((node) => node.id === link.targetId)) {
+      return false;
+    }
+    return true;
+  });
 }

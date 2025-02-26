@@ -475,7 +475,7 @@ function createAttributeNodes5(tsMorphType, typeId, filePath) {
 // src/ts-morph-to-graph/get-graph-from-project.ts
 function getGraphFromProject(project, filePath, config) {
   const nodes = [];
-  const links = [];
+  let links = [];
   const sourceFiles = project.getSourceFiles();
   for (const sourceFile of sourceFiles) {
     const tsMorphInterfaces = sourceFile.getInterfaces();
@@ -501,6 +501,7 @@ function getGraphFromProject(project, filePath, config) {
   }
   computeExtendedAttributes(nodes);
   computeLinks(nodes, links);
+  links = filterErroneousLinks(links, nodes);
   return { nodes, links, config };
 }
 function computeExtendedAttributes(nodes) {
@@ -563,6 +564,17 @@ function computeAttributeLinks(attribute, links, nodeId) {
       links.push(newLink);
     }
   }
+}
+function filterErroneousLinks(links, nodes) {
+  return links.filter((link) => {
+    if (!nodes.some((node) => node.id === link.sourceId)) {
+      return false;
+    }
+    if (!nodes.some((node) => node.id === link.targetId)) {
+      return false;
+    }
+    return true;
+  });
 }
 
 // src/main/generate-graph.ts

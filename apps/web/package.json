@@ -1,7 +1,7 @@
 {
   "name": "@ts2uml/web",
   "private": true,
-  "version": "0.0.47",
+  "version": "0.0.49",
   "type": "module",
   "scripts": {
     "clean": "rm -rf node_modules dist",
