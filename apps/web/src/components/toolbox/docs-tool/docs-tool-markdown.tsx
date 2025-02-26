@@ -11,7 +11,7 @@ interface DocsToolMarkdownProps {
 export function DocsToolMarkdown({ content, className }: DocsToolMarkdownProps) {
     return (
         <ScrollArea className={cn('h-full w-full', className)}>
-            <div className="prose prose-sm dark:prose-invert max-w-none p-4">
+            <div className='prose prose-sm dark:prose-invert max-w-none p-4'>
                 <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{

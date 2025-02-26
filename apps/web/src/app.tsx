@@ -136,7 +136,7 @@ export default function App() {
         position: { x: n.x, y: n.y },
       }));
 
-      gm.updateNodePotisions(newNodes);
+      gm.updateNodePositions(newNodes);
       reactFlow.setNodes(newNodes);
     });
   }

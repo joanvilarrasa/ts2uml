@@ -47,7 +47,7 @@ export class GraphManager {
     this.graph = updateDeep<Graph>(this.graph, updates, ZGraph);
   }
 
-  updateNodePotisions(rfNodes: RF_Node[]): void {
+  updateNodePositions(rfNodes: RF_Node[]): void {
     for (const rfNode of rfNodes) {
       const node = this.graph.nodes.find((node) => node.id === rfNode.id);
       if (node) {

@@ -18,7 +18,6 @@ export function DocsTool() {
     const [includeAttributes, setIncludeAttributes] = useState(true);
     const [includeImage, setIncludeImage] = useState(true);
     const [docsContent, setDocsContent] = useState<string>('');
-    const [title, setTitle] = useState<string>('API Documentation');
 
     function handleGenerateDocs() {
         try {
@@ -26,7 +25,7 @@ export function DocsTool() {
             const docs = generateDocs({
                 graph: currentGraph,
                 includeAttributes,
-                title
+                title: 'Docs'
             });
             setDocsContent(docs);
             toast.success('Documentation generated successfully');

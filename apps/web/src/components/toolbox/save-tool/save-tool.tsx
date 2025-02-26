@@ -32,7 +32,7 @@ export function SaveTool() {
 
   async function handleExport(target: 'download' | 'clipboard') {
     const actualExportName = exportName === '' ? 'ts2uml' : exportName;
-    gm.updateNodePotisions(getNodes());
+    gm.updateNodePositions(getNodes());
     if (exportFormat === 'json') {
       const content = ts2umlToJson(gm.getGraph());
       if (target === 'download') {

@@ -64,13 +64,32 @@ function processCurrentNodeTOC(treeNode: TreeNode, entries: string[], nodes: Nod
   }
 
   if (treeNode.isFolder) {
-    entries.push(`|- [📁/${treeNode.name}](#-${treeNode.id})\n`);
+    if (hasChildrenToProcess(treeNode, nodes)) {
+      entries.push(`|- [📁/${treeNode.name}](#-${treeNode.id})\n`);
+    }
   } else if (treeNode.isElement && !treeNode.isFile) {
     const node = nodes.find((n) => n.id === treeNode.id && treeNode.checked === 'checked');
     if (node?.docs) {
       entries.push(`|- [ ${node.title.text}](#-${treeNode.id})    <${node.title.nodeType}>\n`);
     }
   }
+}
+
+function hasChildrenToProcess(treeNode: TreeNode, nodes: Node[]): boolean {
+  if (!treeNode.children) {
+    return false;
+  }
+  if (
+    Object.values(treeNode.children).some((child) => {
+      if (!child.isElement) {
+        return hasChildrenToProcess(child, nodes);
+      }
+      return nodes.some((n) => n.id === child.id && child.checked === 'checked');
+    })
+  ) {
+    return true;
+  }
+  return false;
 }
 
 /**
