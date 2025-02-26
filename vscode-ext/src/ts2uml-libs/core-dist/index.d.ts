@@ -1,5 +1,5 @@
 import * as _ts2uml_models from '@ts2uml/models';
-import { Config, Graph } from '@ts2uml/models';
+import { Config, Graph, TreeNode } from '@ts2uml/models';
 
 declare function generateGraph({ files, config, baseDir, }: {
     files: string[];
@@ -9,4 +9,14 @@ declare function generateGraph({ files, config, baseDir, }: {
 
 declare function ts2umlToJson(graph: Graph): string;
 
-export { generateGraph, ts2umlToJson };
+declare function generateDocs({ graph, title, includeAttributes, }: {
+    graph: Graph;
+    title?: string;
+    includeAttributes?: boolean;
+}): string;
+
+declare function createTreeNodeFromGraph(graph: Graph): {
+    [key: string]: TreeNode;
+};
+
+export { createTreeNodeFromGraph, generateDocs, generateGraph, ts2umlToJson };

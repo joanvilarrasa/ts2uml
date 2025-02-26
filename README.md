@@ -1,9 +1,10 @@
 # ts2uml 🎨
 
 Hey! 👋 This is **ts2uml** - a tool that turns your TypeScript code into pretty UML diagrams. 
+See it in the marketplace [here](https://marketplace.visualstudio.com/items?itemName=jvilarrasa.ts2uml)
 
 ⚠️ Please keep in mind that this is a passion project and is still in early development. Expect bugs and unintended behaviors.
-See it in the marketplace [here](https://marketplace.visualstudio.com/items?itemName=jvilarrasa.ts2uml)
+
 
 ### 🤔 Why did I build this?
 
@@ -69,13 +70,19 @@ Don't lose your masterpiece:
 - ✅ Copy to clipboard for quick sharing
 - ✅ Import saved diagrams when you need them
 
+###  Generate docs
+Don't lose your masterpiece:
+- ✅ Generate a markdown documentation of your types based on the jsdocs insied the code
+- ✅ Optionally show a table with the attributes for each interface and class (methods coming soon)
+- ⬜ Add an image of the graph (coming soon)
+
 ### 🔍 Explore the code (extension only)
 - ✅ Click on the top right corner of a node to open the code of the node in the editor
 
 ## 👀 What's Coming Next?
 I've got some cool ideas in the works:
-- ✅ Integration with documentation tools
-- ✅ And whatever else you folks suggest!
+- ⬜ Integration with documentation tools
+- ⬜ And whatever else you folks suggest!
 
 ## 🤝 Want to Help?
 

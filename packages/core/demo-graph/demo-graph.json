@@ -16,9 +16,7 @@
           "id": "/types/messages/msg-load-graph-MsgLoadGraph-graph",
           "name": "graph",
           "style": {},
-          "targets": [
-            "/types/graph/graph-Graph"
-          ],
+          "targets": ["/types/graph/graph-Graph"],
           "text": "graph: Graph;",
           "type": "attribute"
         },
@@ -54,9 +52,7 @@
           "id": "/types/messages/msg-open-node-code-MsgOpenNodeCode-node",
           "name": "node",
           "style": {},
-          "targets": [
-            "/types/graph/node-Node"
-          ],
+          "targets": ["/types/graph/node-Node"],
           "text": "node: Node;",
           "type": "attribute"
         },
@@ -145,9 +141,7 @@
           "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-layoutAlgorithm",
           "name": "layoutAlgorithm",
           "style": {},
-          "targets": [
-            "/types/config/layout-algorithm-LayoutAlgorithm"
-          ],
+          "targets": ["/types/config/layout-algorithm-LayoutAlgorithm"],
           "text": "layoutAlgorithm: LayoutAlgorithm;",
           "type": "attribute"
         },
@@ -183,9 +177,7 @@
           "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm-linkPathAlgorithm",
           "name": "linkPathAlgorithm",
           "style": {},
-          "targets": [
-            "/types/config/link-path-algorithm-LinkPathAlgorithm"
-          ],
+          "targets": ["/types/config/link-path-algorithm-LinkPathAlgorithm"],
           "text": "linkPathAlgorithm: LinkPathAlgorithm;",
           "type": "attribute"
         },
@@ -266,9 +258,7 @@
           "id": "/types/graph/graph-Graph-config",
           "name": "config",
           "style": {},
-          "targets": [
-            "/types/config/config-Config"
-          ],
+          "targets": ["/types/config/config-Config"],
           "text": "config: Config;",
           "type": "attribute"
         },
@@ -277,9 +267,7 @@
           "id": "/types/graph/graph-Graph-nodes",
           "name": "nodes",
           "style": {},
-          "targets": [
-            "/types/graph/node-Node"
-          ],
+          "targets": ["/types/graph/node-Node"],
           "text": "nodes: Node[];",
           "type": "attribute"
         },
@@ -288,9 +276,7 @@
           "id": "/types/graph/graph-Graph-links",
           "name": "links",
           "style": {},
-          "targets": [
-            "/types/graph/link-Link"
-          ],
+          "targets": ["/types/graph/link-Link"],
           "text": "links: Link[];",
           "type": "attribute"
         }
@@ -385,9 +371,7 @@
           "id": "/types/graph/link-Link-type",
           "name": "type",
           "style": {},
-          "targets": [
-            "/types/graph/link-type-LinkType"
-          ],
+          "targets": ["/types/graph/link-type-LinkType"],
           "text": "type: LinkType;",
           "type": "attribute"
         }
@@ -573,9 +557,7 @@
           "id": "/types/graph/node-attribute-NodeAttribute-extended",
           "name": "extended",
           "style": {},
-          "targets": [
-            "/types/graph/node-attribute-extended-NodeAttributeExtended"
-          ],
+          "targets": ["/types/graph/node-attribute-extended-NodeAttributeExtended"],
           "text": "extended?: NodeAttributeExtended;",
           "type": "attribute"
         },
@@ -593,9 +575,7 @@
           "id": "/types/graph/node-attribute-NodeAttribute-scope",
           "name": "scope",
           "style": {},
-          "targets": [
-            "/types/graph/node-attribute-scope-NodeAttributeScope"
-          ],
+          "targets": ["/types/graph/node-attribute-scope-NodeAttributeScope"],
           "text": "scope?: NodeAttributeScope;",
           "type": "attribute"
         },
@@ -604,9 +584,7 @@
           "id": "/types/graph/node-attribute-NodeAttribute-style",
           "name": "style",
           "style": {},
-          "targets": [
-            "/types/graph/node-style-NodeStyle"
-          ],
+          "targets": ["/types/graph/node-style-NodeStyle"],
           "text": "style?: NodeStyle;",
           "type": "attribute"
         },
@@ -633,9 +611,7 @@
           "id": "/types/graph/node-attribute-NodeAttribute-type",
           "name": "type",
           "style": {},
-          "targets": [
-            "/types/graph/node-attribute-type-NodeAttributeType"
-          ],
+          "targets": ["/types/graph/node-attribute-type-NodeAttributeType"],
           "text": "type: NodeAttributeType;",
           "type": "attribute"
         }
@@ -806,9 +782,7 @@
           "id": "/types/graph/node-title-NodeTitle-nodeType",
           "name": "nodeType",
           "style": {},
-          "targets": [
-            "/types/graph/node-type-NodeType"
-          ],
+          "targets": ["/types/graph/node-type-NodeType"],
           "text": "nodeType: NodeType;",
           "type": "attribute"
         },
@@ -817,9 +791,7 @@
           "id": "/types/graph/node-title-NodeTitle-style",
           "name": "style",
           "style": {},
-          "targets": [
-            "/types/graph/node-style-NodeStyle"
-          ],
+          "targets": ["/types/graph/node-style-NodeStyle"],
           "text": "style?: NodeStyle;",
           "type": "attribute"
         },
@@ -908,9 +880,7 @@
           "id": "/types/graph/node-Node-attributes",
           "name": "attributes",
           "style": {},
-          "targets": [
-            "/types/graph/node-attribute-NodeAttribute"
-          ],
+          "targets": ["/types/graph/node-attribute-NodeAttribute"],
           "text": "attributes: NodeAttribute[];",
           "type": "attribute"
         },
@@ -946,9 +916,7 @@
           "id": "/types/graph/node-Node-position",
           "name": "position",
           "style": {},
-          "targets": [
-            "/types/graph/node-position-NodePosition"
-          ],
+          "targets": ["/types/graph/node-position-NodePosition"],
           "text": "position: NodePosition;",
           "type": "attribute"
         },
@@ -957,9 +925,7 @@
           "id": "/types/graph/node-Node-style",
           "name": "style",
           "style": {},
-          "targets": [
-            "/types/graph/node-style-NodeStyle"
-          ],
+          "targets": ["/types/graph/node-style-NodeStyle"],
           "text": "style?: NodeStyle;",
           "type": "attribute"
         },
@@ -968,9 +934,7 @@
           "id": "/types/graph/node-Node-title",
           "name": "title",
           "style": {},
-          "targets": [
-            "/types/graph/node-title-NodeTitle"
-          ],
+          "targets": ["/types/graph/node-title-NodeTitle"],
           "text": "title: NodeTitle;",
           "type": "attribute"
         },
@@ -979,9 +943,7 @@
           "id": "/types/graph/node-Node-type",
           "name": "type",
           "style": {},
-          "targets": [
-            "/types/graph/node-type-NodeType"
-          ],
+          "targets": ["/types/graph/node-type-NodeType"],
           "text": "type: NodeType;",
           "type": "attribute"
         }
@@ -1083,9 +1045,7 @@
           "id": "/types/utils/tree-node-TreeNode-checked",
           "name": "checked",
           "style": {},
-          "targets": [
-            "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus"
-          ],
+          "targets": ["/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus"],
           "text": "checked: CheckboxPartialCheckedStatus;",
           "type": "attribute"
         },
@@ -1094,9 +1054,7 @@
           "id": "/types/utils/tree-node-TreeNode-children",
           "name": "children",
           "style": {},
-          "targets": [
-            "/types/utils/tree-node-TreeNode"
-          ],
+          "targets": ["/types/utils/tree-node-TreeNode"],
           "text": "children?: { [key: string]: TreeNode };",
           "type": "attribute"
         },
@@ -1132,9 +1090,7 @@
           "id": "/types/config/config-links-filter-ConfigLinksFilter-filter_type",
           "name": "filter_type",
           "style": {},
-          "targets": [
-            "/types/graph/link-type-LinkType"
-          ],
+          "targets": ["/types/graph/link-type-LinkType"],
           "text": "filter_type: LinkType[];",
           "type": "attribute"
         }
@@ -1206,9 +1162,7 @@
           "id": "/types/config/config-links-ConfigLinks-filter",
           "name": "filter",
           "style": {},
-          "targets": [
-            "/types/config/config-links-filter-ConfigLinksFilter"
-          ],
+          "targets": ["/types/config/config-links-filter-ConfigLinksFilter"],
           "text": "filter: ConfigLinksFilter;",
           "type": "attribute"
         },
@@ -1217,9 +1171,7 @@
           "id": "/types/config/config-links-ConfigLinks-options",
           "name": "options",
           "style": {},
-          "targets": [
-            "/types/config/config-links-options-ConfigLinksOptions"
-          ],
+          "targets": ["/types/config/config-links-options-ConfigLinksOptions"],
           "text": "options: ConfigLinksOptions;",
           "type": "attribute"
         },
@@ -1228,9 +1180,7 @@
           "id": "/types/config/config-links-ConfigLinks-linkPathAlgorithm",
           "name": "linkPathAlgorithm",
           "style": {},
-          "targets": [
-            "/types/config/link-path-algorithm-LinkPathAlgorithm"
-          ],
+          "targets": ["/types/config/link-path-algorithm-LinkPathAlgorithm"],
           "text": "linkPathAlgorithm: LinkPathAlgorithm;",
           "type": "attribute"
         }
@@ -1266,9 +1216,7 @@
           "id": "/types/config/config-nodes-filter-ConfigNodesFilter-filter_type",
           "name": "filter_type",
           "style": {},
-          "targets": [
-            "/types/graph/node-type-NodeType"
-          ],
+          "targets": ["/types/graph/node-type-NodeType"],
           "text": "filter_type: NodeType[];",
           "type": "attribute"
         }
@@ -1439,9 +1387,7 @@
           "id": "/types/config/config-nodes-ConfigNodes-filter",
           "name": "filter",
           "style": {},
-          "targets": [
-            "/types/config/config-nodes-filter-ConfigNodesFilter"
-          ],
+          "targets": ["/types/config/config-nodes-filter-ConfigNodesFilter"],
           "text": "filter: ConfigNodesFilter;",
           "type": "attribute"
         },
@@ -1450,9 +1396,7 @@
           "id": "/types/config/config-nodes-ConfigNodes-options",
           "name": "options",
           "style": {},
-          "targets": [
-            "/types/config/config-nodes-options-ConfigNodesOptions"
-          ],
+          "targets": ["/types/config/config-nodes-options-ConfigNodesOptions"],
           "text": "options: ConfigNodesOptions;",
           "type": "attribute"
         },
@@ -1461,10 +1405,7 @@
           "id": "/types/config/config-nodes-ConfigNodes-styles",
           "name": "styles",
           "style": {},
-          "targets": [
-            "/types/graph/node-type-NodeType",
-            "/types/graph/node-style-NodeStyle"
-          ],
+          "targets": ["/types/graph/node-type-NodeType", "/types/graph/node-style-NodeStyle"],
           "text": "styles: { [k in NodeType]?: NodeStyle };",
           "type": "attribute"
         }
@@ -1491,9 +1432,7 @@
           "id": "/types/config/config-Config-layoutAlgorithm",
           "name": "layoutAlgorithm",
           "style": {},
-          "targets": [
-            "/types/config/layout-algorithm-LayoutAlgorithm"
-          ],
+          "targets": ["/types/config/layout-algorithm-LayoutAlgorithm"],
           "text": "layoutAlgorithm: LayoutAlgorithm;",
           "type": "attribute"
         },
@@ -1502,9 +1441,7 @@
           "id": "/types/config/config-Config-links",
           "name": "links",
           "style": {},
-          "targets": [
-            "/types/config/config-links-ConfigLinks"
-          ],
+          "targets": ["/types/config/config-links-ConfigLinks"],
           "text": "links: ConfigLinks;",
           "type": "attribute"
         },
@@ -1522,9 +1459,7 @@
           "id": "/types/config/config-Config-nodes",
           "name": "nodes",
           "style": {},
-          "targets": [
-            "/types/config/config-nodes-ConfigNodes"
-          ],
+          "targets": ["/types/config/config-nodes-ConfigNodes"],
           "text": "nodes: ConfigNodes;",
           "type": "attribute"
         },
@@ -1533,9 +1468,7 @@
           "id": "/types/config/config-Config-theme",
           "name": "theme",
           "style": {},
-          "targets": [
-            "/types/config/theme-Theme"
-          ],
+          "targets": ["/types/config/theme-Theme"],
           "text": "theme: Theme;",
           "type": "attribute"
         }
@@ -1729,25 +1662,19 @@
   "links": [
     {
       "sourceId": "/types/messages/msg-load-graph-MsgLoadGraph",
-      "sourceAttributeIds": [
-        "/types/messages/msg-load-graph-MsgLoadGraph-graph"
-      ],
+      "sourceAttributeIds": ["/types/messages/msg-load-graph-MsgLoadGraph-graph"],
       "targetId": "/types/graph/graph-Graph",
       "type": "association"
     },
     {
       "sourceId": "/types/messages/msg-open-node-code-MsgOpenNodeCode",
-      "sourceAttributeIds": [
-        "/types/messages/msg-open-node-code-MsgOpenNodeCode-node"
-      ],
+      "sourceAttributeIds": ["/types/messages/msg-open-node-code-MsgOpenNodeCode-node"],
       "targetId": "/types/graph/node-Node",
       "type": "association"
     },
     {
       "sourceId": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm",
-      "sourceAttributeIds": [
-        "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-layoutAlgorithm"
-      ],
+      "sourceAttributeIds": ["/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-layoutAlgorithm"],
       "targetId": "/types/config/layout-algorithm-LayoutAlgorithm",
       "type": "association"
     },
@@ -1761,241 +1688,181 @@
     },
     {
       "sourceId": "/types/graph/graph-Graph",
-      "sourceAttributeIds": [
-        "/types/graph/graph-Graph-config"
-      ],
+      "sourceAttributeIds": ["/types/graph/graph-Graph-config"],
       "targetId": "/types/config/config-Config",
       "type": "association"
     },
     {
       "sourceId": "/types/graph/graph-Graph",
-      "sourceAttributeIds": [
-        "/types/graph/graph-Graph-nodes"
-      ],
+      "sourceAttributeIds": ["/types/graph/graph-Graph-nodes"],
       "targetId": "/types/graph/node-Node",
       "type": "association"
     },
     {
       "sourceId": "/types/graph/graph-Graph",
-      "sourceAttributeIds": [
-        "/types/graph/graph-Graph-links"
-      ],
+      "sourceAttributeIds": ["/types/graph/graph-Graph-links"],
       "targetId": "/types/graph/link-Link",
       "type": "association"
     },
     {
       "sourceId": "/types/graph/link-Link",
-      "sourceAttributeIds": [
-        "/types/graph/link-Link-type"
-      ],
+      "sourceAttributeIds": ["/types/graph/link-Link-type"],
       "targetId": "/types/graph/link-type-LinkType",
       "type": "association"
     },
     {
       "sourceId": "/types/graph/node-attribute-NodeAttribute",
-      "sourceAttributeIds": [
-        "/types/graph/node-attribute-NodeAttribute-extended"
-      ],
+      "sourceAttributeIds": ["/types/graph/node-attribute-NodeAttribute-extended"],
       "targetId": "/types/graph/node-attribute-extended-NodeAttributeExtended",
       "type": "association"
     },
     {
       "sourceId": "/types/graph/node-attribute-NodeAttribute",
-      "sourceAttributeIds": [
-        "/types/graph/node-attribute-NodeAttribute-scope"
-      ],
+      "sourceAttributeIds": ["/types/graph/node-attribute-NodeAttribute-scope"],
       "targetId": "/types/graph/node-attribute-scope-NodeAttributeScope",
       "type": "association"
     },
     {
       "sourceId": "/types/graph/node-attribute-NodeAttribute",
-      "sourceAttributeIds": [
-        "/types/graph/node-attribute-NodeAttribute-style"
-      ],
+      "sourceAttributeIds": ["/types/graph/node-attribute-NodeAttribute-style"],
       "targetId": "/types/graph/node-style-NodeStyle",
       "type": "association"
     },
     {
       "sourceId": "/types/graph/node-attribute-NodeAttribute",
-      "sourceAttributeIds": [
-        "/types/graph/node-attribute-NodeAttribute-type"
-      ],
+      "sourceAttributeIds": ["/types/graph/node-attribute-NodeAttribute-type"],
       "targetId": "/types/graph/node-attribute-type-NodeAttributeType",
       "type": "association"
     },
     {
       "sourceId": "/types/graph/node-title-NodeTitle",
-      "sourceAttributeIds": [
-        "/types/graph/node-title-NodeTitle-nodeType"
-      ],
+      "sourceAttributeIds": ["/types/graph/node-title-NodeTitle-nodeType"],
       "targetId": "/types/graph/node-type-NodeType",
       "type": "association"
     },
     {
       "sourceId": "/types/graph/node-title-NodeTitle",
-      "sourceAttributeIds": [
-        "/types/graph/node-title-NodeTitle-style"
-      ],
+      "sourceAttributeIds": ["/types/graph/node-title-NodeTitle-style"],
       "targetId": "/types/graph/node-style-NodeStyle",
       "type": "association"
     },
     {
       "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": [
-        "/types/graph/node-Node-attributes"
-      ],
+      "sourceAttributeIds": ["/types/graph/node-Node-attributes"],
       "targetId": "/types/graph/node-attribute-NodeAttribute",
       "type": "association"
     },
     {
       "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": [
-        "/types/graph/node-Node-position"
-      ],
+      "sourceAttributeIds": ["/types/graph/node-Node-position"],
       "targetId": "/types/graph/node-position-NodePosition",
       "type": "association"
     },
     {
       "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": [
-        "/types/graph/node-Node-style"
-      ],
+      "sourceAttributeIds": ["/types/graph/node-Node-style"],
       "targetId": "/types/graph/node-style-NodeStyle",
       "type": "association"
     },
     {
       "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": [
-        "/types/graph/node-Node-title"
-      ],
+      "sourceAttributeIds": ["/types/graph/node-Node-title"],
       "targetId": "/types/graph/node-title-NodeTitle",
       "type": "association"
     },
     {
       "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": [
-        "/types/graph/node-Node-type"
-      ],
+      "sourceAttributeIds": ["/types/graph/node-Node-type"],
       "targetId": "/types/graph/node-type-NodeType",
       "type": "association"
     },
     {
       "sourceId": "/types/utils/tree-node-TreeNode",
-      "sourceAttributeIds": [
-        "/types/utils/tree-node-TreeNode-checked"
-      ],
+      "sourceAttributeIds": ["/types/utils/tree-node-TreeNode-checked"],
       "targetId": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
       "type": "association"
     },
     {
       "sourceId": "/types/utils/tree-node-TreeNode",
-      "sourceAttributeIds": [
-        "/types/utils/tree-node-TreeNode-children"
-      ],
+      "sourceAttributeIds": ["/types/utils/tree-node-TreeNode-children"],
       "targetId": "/types/utils/tree-node-TreeNode",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-links-filter-ConfigLinksFilter",
-      "sourceAttributeIds": [
-        "/types/config/config-links-filter-ConfigLinksFilter-filter_type"
-      ],
+      "sourceAttributeIds": ["/types/config/config-links-filter-ConfigLinksFilter-filter_type"],
       "targetId": "/types/graph/link-type-LinkType",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-links-ConfigLinks",
-      "sourceAttributeIds": [
-        "/types/config/config-links-ConfigLinks-filter"
-      ],
+      "sourceAttributeIds": ["/types/config/config-links-ConfigLinks-filter"],
       "targetId": "/types/config/config-links-filter-ConfigLinksFilter",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-links-ConfigLinks",
-      "sourceAttributeIds": [
-        "/types/config/config-links-ConfigLinks-options"
-      ],
+      "sourceAttributeIds": ["/types/config/config-links-ConfigLinks-options"],
       "targetId": "/types/config/config-links-options-ConfigLinksOptions",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-links-ConfigLinks",
-      "sourceAttributeIds": [
-        "/types/config/config-links-ConfigLinks-linkPathAlgorithm"
-      ],
+      "sourceAttributeIds": ["/types/config/config-links-ConfigLinks-linkPathAlgorithm"],
       "targetId": "/types/config/link-path-algorithm-LinkPathAlgorithm",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-nodes-filter-ConfigNodesFilter",
-      "sourceAttributeIds": [
-        "/types/config/config-nodes-filter-ConfigNodesFilter-filter_type"
-      ],
+      "sourceAttributeIds": ["/types/config/config-nodes-filter-ConfigNodesFilter-filter_type"],
       "targetId": "/types/graph/node-type-NodeType",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourceAttributeIds": [
-        "/types/config/config-nodes-ConfigNodes-filter"
-      ],
+      "sourceAttributeIds": ["/types/config/config-nodes-ConfigNodes-filter"],
       "targetId": "/types/config/config-nodes-filter-ConfigNodesFilter",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourceAttributeIds": [
-        "/types/config/config-nodes-ConfigNodes-options"
-      ],
+      "sourceAttributeIds": ["/types/config/config-nodes-ConfigNodes-options"],
       "targetId": "/types/config/config-nodes-options-ConfigNodesOptions",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourceAttributeIds": [
-        "/types/config/config-nodes-ConfigNodes-styles"
-      ],
+      "sourceAttributeIds": ["/types/config/config-nodes-ConfigNodes-styles"],
       "targetId": "/types/graph/node-type-NodeType",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourceAttributeIds": [
-        "/types/config/config-nodes-ConfigNodes-styles"
-      ],
+      "sourceAttributeIds": ["/types/config/config-nodes-ConfigNodes-styles"],
       "targetId": "/types/graph/node-style-NodeStyle",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-Config",
-      "sourceAttributeIds": [
-        "/types/config/config-Config-layoutAlgorithm"
-      ],
+      "sourceAttributeIds": ["/types/config/config-Config-layoutAlgorithm"],
       "targetId": "/types/config/layout-algorithm-LayoutAlgorithm",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-Config",
-      "sourceAttributeIds": [
-        "/types/config/config-Config-links"
-      ],
+      "sourceAttributeIds": ["/types/config/config-Config-links"],
       "targetId": "/types/config/config-links-ConfigLinks",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-Config",
-      "sourceAttributeIds": [
-        "/types/config/config-Config-nodes"
-      ],
+      "sourceAttributeIds": ["/types/config/config-Config-nodes"],
       "targetId": "/types/config/config-nodes-ConfigNodes",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-Config",
-      "sourceAttributeIds": [
-        "/types/config/config-Config-theme"
-      ],
+      "sourceAttributeIds": ["/types/config/config-Config-theme"],
       "targetId": "/types/config/theme-Theme",
       "type": "association"
     }

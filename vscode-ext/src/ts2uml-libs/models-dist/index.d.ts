@@ -3,8 +3,8 @@ import { z } from 'zod';
 declare const ZLinkType: z.ZodEnum<["association", "inheritance"]>;
 /**
  * Represents the different types of relationships between nodes in the diagram.
- * - "association": Indicates a basic association between nodes
- * - "inheritance": Indicates an inheritance/extends relationship
+ * - `association`: Indicates a basic association between nodes
+ * - `inheritance`: Indicates an inheritance/extends relationship
  */
 type LinkType = z.infer<typeof ZLinkType>;
 
@@ -48,9 +48,10 @@ declare function createConfigLinksOptions(data?: Partial<ConfigLinksOptions>): C
 
 declare const ZLinkPathAlgorithm: z.ZodEnum<["straight", "bezier", "step"]>;
 /**
- * Represents the different types of relationships between nodes in the diagram.
- * - "association": Indicates a basic association between nodes
- * - "inheritance": Indicates an inheritance/extends relationship
+ * What type of links should be used to connect the nodes.
+ * - `straight`: Straight lines
+ * - `bezier`: Bezier curves
+ * - `step`: Step lines
  */
 type LinkPathAlgorithm = z.infer<typeof ZLinkPathAlgorithm>;
 
@@ -117,15 +118,14 @@ declare function createNodeStyle(data?: Partial<NodeStyle>): NodeStyle;
 declare const ZNodeType: z.ZodEnum<["class", "union", "interface", "type", "variable"]>;
 /**
  * Represents the different types of nodes that can be displayed in the diagram.
- * - "class": Represents a class definition
- * - "union": Represents a union type, it can be an enum or a type that unions multiple types
- * - "interface": Represents an interface definition
- * - "type": Represents a type definition
- * - "variable": Represents a variable declaration
+ * - `class`: Represents a class definition
+ * - `union`: Represents a union type, it can be an enum or a type that unions multiple types
+ * - `interface`: Represents an interface definition
+ * - `type`: Represents a type definition
+ * - `variable`: Represents a variable declaration
  */
 type NodeType = z.infer<typeof ZNodeType>;
 
-/**
 /**
  * Interface defining filters for nodes to be displayed in the diagram.
  */
@@ -242,13 +242,20 @@ declare function createConfigNodes(data?: Partial<ConfigNodes>): ConfigNodes;
 declare const ZLayoutAlgorithm: z.ZodEnum<["layered", "mrtree", "force", "radial", "box", "random"]>;
 /**
  * Represents the different types of layout algorithms for the diagram.
+ * - `layered`: Layered layout
+ * - `mrtree`: Multi-root tree layout
+ * - `force`: Force-directed layout
+ * - `radial`: Radial layout
+ * - `box`: Box layout
+ * - `random`: Random layout
  */
 type LayoutAlgorithm = z.infer<typeof ZLayoutAlgorithm>;
 
 declare const ZTheme: z.ZodDefault<z.ZodEnum<["light", "dark"]>>;
 /**
  * Represents the theme of the diagram.
- * Can be "light" or "dark"
+ * - `light`: Light theme
+ * - `dark`: Dark theme
  */
 type Theme = z.infer<typeof ZTheme>;
 
@@ -288,6 +295,9 @@ declare function createConfig(data?: Partial<Config>): Config;
 declare const ZExportFormat: z.ZodEnum<["json", "png", "png-transparent"]>;
 /**
  * Represents the different formats that can be used to export the graph
+ * - `json`: JSON format
+ * - `png`: PNG format
+ * - `png-transparent`: PNG format with transparent background
  */
 type ExportFormat = z.infer<typeof ZExportFormat>;
 
@@ -348,21 +358,18 @@ interface NodeAttributeExtended {
 declare const ZNodeAttributeScope: z.ZodEnum<["private", "protected", "public"]>;
 /**
  * Represents the visibility/access level of a node attribute.
- * - "private": Attribute is only accessible within the class
- * - "protected": Attribute is only accessible to the class and its subclasses
- * - "public": Attribute is publicly accessible
+ * - `private`: Attribute is only accessible within the class
+ * - `protected`: Attribute is only accessible to the class and its subclasses
+ * - `public`: Attribute is publicly accessible
  */
 type NodeAttributeScope = z.infer<typeof ZNodeAttributeScope>;
 
 declare const ZNodeAttributeType: z.ZodEnum<["attribute", "unionOption", "method"]>;
 /**
  * Represents the different types of attributes that can be displayed in a node.
- * - "attribute": Represents a class/interface property or field
- * - "staticAttribute": Represents a class/interface static property or field
- * - "unionOption": Represents an enum value or type union option
- * - "method": Represents a class/interface method or function
- * - "staticMethod": Represents a class/interface static method or function
- * - "separator": Represents a visual separator line
+ * - `attribute`: Represents a class/interface property or field
+ * - `unionOption`: Represents an enum value or type union option
+ * - `method`: Represents a class/interface method or function
  */
 type NodeAttributeType = z.infer<typeof ZNodeAttributeType>;
 
@@ -552,7 +559,12 @@ declare function createMsgLoadGraph(data?: Partial<MsgLoadGraph>): MsgLoadGraph;
 
 declare const ZMsgType: z.ZodEnum<["load-graph", "update-layout-algorithm", "update-link-path-algorithm", "update-visible-nodes", "open-node-code"]>;
 /**
- * Represents the different types of messages that are sent between components of the web
+ * Represents the different types of messages that are sent between components of the web app
+ * - `load-graph`: Load a graph
+ * - `update-layout-algorithm`: Update the layout algorithm
+ * - `update-link-path-algorithm`: Update the link path algorithm
+ * - `update-visible-nodes`: Update the visible nodes
+ * - `open-node-code`: Open the code of a node (only available in the extension)
  */
 type MsgType = z.infer<typeof ZMsgType>;
 
@@ -716,7 +728,7 @@ declare function is<T>(data: unknown, zSchema: z.ZodType<T>): data is T;
  * @param schema - The schema to validate the updated data against.
  * @returns The updated data.
  */
-declare function update<T>(data: T, updates: Partial<T>, zSchema: z.ZodType<T>): T;
+declare function update<T>(data: T, updates: Partial<T>, schema?: z.ZodType<T>): T;
 /**
  * Update a nested object with a schema.
  * This function will always update the original data.
@@ -735,6 +747,9 @@ declare function updateDeep<T extends object>(data: T, updates: {
 declare const ZCheckboxPartialCheckedStatus: z.ZodEnum<["checked", "unchecked", "partial"]>;
 /**
  * Represents the different types of messages that are sent between components of the web
+ * - `checked`: The checkbox is checked
+ * - `unchecked`: The checkbox is unchecked
+ * - `partial`: The checkbox is partially checked
  */
 type CheckboxPartialCheckedStatus = z.infer<typeof ZCheckboxPartialCheckedStatus>;
 

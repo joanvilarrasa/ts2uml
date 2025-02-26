@@ -598,7 +598,302 @@ function generateGraph({
 function ts2umlToJson(graph) {
   return JSON.stringify(graph);
 }
+
+// src/tree-node/create-tree-node-from-graph.ts
+function createTreeNodeFromGraph(graph) {
+  const innerTree = {};
+  const nodes = graph.nodes.filter((node) => !graph.config.nodes.filter.filter_type.includes(node.type));
+  const pathFilterList = graph.config.nodes.filter.filter_node;
+  for (const node of nodes) {
+    const idClean = node.id.startsWith("/") ? node.id.slice(1) : node.id;
+    const lastDashIndex = idClean.lastIndexOf("-");
+    if (lastDashIndex === -1) {
+      continue;
+    }
+    const filePath = idClean.substring(0, lastDashIndex);
+    const elementName = idClean.substring(lastDashIndex + 1);
+    const pathParts = filePath.split("/");
+    let currentLevel = innerTree;
+    let pathPartId = "";
+    for (let index = 0; index < pathParts.length; index++) {
+      const pathPart = pathParts[index];
+      if (pathPartIsFolder(index, pathParts)) {
+        pathPartId = `${pathPartId}/${pathPart}`;
+        createTreeNodeFolderIfNotExists(currentLevel, pathPart, pathPartId);
+        currentLevel = currentLevel[pathPart].children || {};
+      } else {
+        pathPartId = `${pathPartId}/${pathPart}`;
+        createTreeNodeFileIfNotExists(currentLevel, pathPart, pathPartId);
+        createTreeNodeElementInFileTreeNode(currentLevel[pathPart], node, pathFilterList, elementName);
+      }
+    }
+  }
+  const rootTree = {
+    root: {
+      id: "/root",
+      checked: "checked",
+      children: innerTree,
+      name: "./",
+      isFolder: true,
+      isFile: false,
+      isElement: false
+    }
+  };
+  const finalTree = Object.keys(innerTree).length > 1 ? rootTree : innerTree;
+  for (const node of Object.values(finalTree)) {
+    computeTreeCheckedStatus(node);
+  }
+  return finalTree;
+}
+function createTreeNodeFolderIfNotExists(currentLevel, pathPart, pathPartId) {
+  if (!currentLevel[pathPart]) {
+    currentLevel[pathPart] = {
+      id: pathPartId,
+      checked: "checked",
+      children: {},
+      name: pathPart,
+      isFolder: true,
+      isFile: false,
+      isElement: false
+    };
+  }
+}
+function createTreeNodeFileIfNotExists(currentLevel, pathPart, pathPartId) {
+  if (!currentLevel[pathPart]) {
+    currentLevel[pathPart] = {
+      id: pathPartId,
+      checked: "checked",
+      children: {},
+      name: pathPart,
+      isFolder: false,
+      isFile: true,
+      isElement: false
+    };
+  }
+}
+function createTreeNodeElementInFileTreeNode(fileTreeNode, node, pathFilterList, elementName) {
+  if (fileTreeNode.children === void 0) {
+    fileTreeNode.children = {};
+  }
+  fileTreeNode.children[elementName] = {
+    id: node.id,
+    checked: pathFilterList.includes(node.id) ? "unchecked" : "checked",
+    name: elementName,
+    isFolder: false,
+    isFile: false,
+    isElement: true
+  };
+}
+function pathPartIsFolder(index, pathParts) {
+  return index < pathParts.length - 1;
+}
+function computeTreeCheckedStatus(tree) {
+  if (tree.isElement || !tree.children) {
+    return;
+  }
+  let numChecked = 0;
+  let numUnchecked = 0;
+  let numPartial = 0;
+  for (const child of Object.values(tree.children)) {
+    computeTreeCheckedStatus(child);
+    if (child.checked === "checked") {
+      numChecked++;
+    } else if (child.checked === "unchecked") {
+      numUnchecked++;
+    } else {
+      numPartial++;
+    }
+  }
+  if (numPartial > 0) {
+    tree.checked = "partial";
+  } else if (numChecked > 0 && numUnchecked > 0) {
+    tree.checked = "partial";
+  } else if (numUnchecked > 0) {
+    tree.checked = "unchecked";
+  } else {
+    tree.checked = "checked";
+  }
+}
+
+// src/docs/generate-docs.ts
+var CLEAN_JSDOC_LINE_REGEX = /\/\*\*|\*\/|\//;
+function generateDocs({
+  graph,
+  title = "Docs",
+  includeAttributes = true
+}) {
+  const treeNodes = createTreeNodeFromGraph(graph);
+  let markdown = `# ${title}
+
+`;
+  markdown += "## Models\n\n";
+  const tocEntries = [];
+  for (const rootNodeKey of Object.keys(treeNodes)) {
+    generateTOCEntries(treeNodes[rootNodeKey], tocEntries, graph.nodes);
+  }
+  markdown += tocEntries.join("\n");
+  for (const rootNodeKey of Object.keys(treeNodes)) {
+    markdown += processTreeNode(treeNodes[rootNodeKey], graph.nodes, [], includeAttributes);
+  }
+  return markdown;
+}
+function generateTOCEntries(treeNode, entries, nodes) {
+  processCurrentNodeTOC(treeNode, entries, nodes);
+  if (treeNode.children) {
+    processChildrenTOC(treeNode, entries, nodes);
+  }
+}
+function processCurrentNodeTOC(treeNode, entries, nodes) {
+  if (treeNode.id === "/root") {
+    return;
+  }
+  if (treeNode.isFolder) {
+    if (hasChildrenToProcess(treeNode, nodes)) {
+      entries.push(`|- [\u{1F4C1}/${treeNode.name}](#-${treeNode.id})
+`);
+    }
+  } else if (treeNode.isElement && !treeNode.isFile) {
+    const node = nodes.find((n) => n.id === treeNode.id && treeNode.checked === "checked");
+    if (node?.docs) {
+      entries.push(`|- [ ${node.title.text}](#-${treeNode.id})    <${node.title.nodeType}>
+`);
+    }
+  }
+}
+function hasChildrenToProcess(treeNode, nodes) {
+  if (!treeNode.children) {
+    return false;
+  }
+  if (Object.values(treeNode.children).some((child) => {
+    if (!child.isElement) {
+      return hasChildrenToProcess(child, nodes);
+    }
+    return nodes.some((n) => n.id === child.id && child.checked === "checked");
+  })) {
+    return true;
+  }
+  return false;
+}
+function processChildrenTOC(treeNode, entries, nodes) {
+  if (!treeNode.children) {
+    return;
+  }
+  for (const childNode of Object.values(treeNode.children)) {
+    if (childNode.isFile && childNode.children) {
+      processFileChildrenTOC(childNode, entries, nodes);
+    } else if (childNode.isFolder || childNode.isElement) {
+      processRegularChildTOC(childNode, entries, nodes);
+    }
+  }
+}
+function processFileChildrenTOC(fileNode, entries, nodes) {
+  if (!fileNode.children) {
+    return;
+  }
+  for (const fileChildNode of Object.values(fileNode.children)) {
+    if (fileChildNode?.isElement) {
+      const currentEntryCount = entries.length;
+      generateTOCEntries(fileChildNode, entries, nodes);
+      indentEntries(entries, currentEntryCount);
+    }
+  }
+}
+function processRegularChildTOC(childNode, entries, nodes) {
+  const currentEntryCount = entries.length;
+  generateTOCEntries(childNode, entries, nodes);
+  indentEntries(entries, currentEntryCount);
+}
+function indentEntries(entries, startIndex) {
+  for (let i = startIndex; i < entries.length; i++) {
+    entries[i] = `|    ${entries[i]}`;
+  }
+}
+function processTreeNode(treeNode, nodes, ancestorNodes, includeAttributes) {
+  let markdown = "";
+  const childrenMarkdown = processChildren(treeNode, nodes, ancestorNodes, includeAttributes);
+  if (treeNode.isElement && !treeNode.isFile) {
+    markdown += processElementNode(treeNode, nodes, includeAttributes);
+  }
+  if (treeNode.id !== "/root" && treeNode.isFolder && childrenMarkdown !== "") {
+    markdown += processFolderNode(treeNode, ancestorNodes, childrenMarkdown);
+  }
+  return markdown;
+}
+function processChildren(treeNode, nodes, ancestorNodes, includeAttributes) {
+  if (!treeNode.children) {
+    return "";
+  }
+  let childrenMarkdown = "";
+  const updatedAncestors = ancestorNodes.concat(treeNode.name);
+  for (const childNode of Object.values(treeNode.children)) {
+    if (childNode.isFile && childNode.children) {
+      childrenMarkdown += processFileChildren(childNode, nodes, updatedAncestors, includeAttributes);
+    } else if (childNode.isFolder || childNode.isElement) {
+      childrenMarkdown += processTreeNode(childNode, nodes, updatedAncestors, includeAttributes);
+    }
+  }
+  return childrenMarkdown;
+}
+function processFileChildren(fileNode, nodes, ancestorNodes, includeAttributes) {
+  let markdown = "";
+  if (fileNode.children) {
+    for (const fileChildNode of Object.values(fileNode.children)) {
+      markdown += processTreeNode(fileChildNode, nodes, ancestorNodes, includeAttributes);
+    }
+  }
+  return markdown;
+}
+function processElementNode(treeNode, nodes, includeAttributes) {
+  const node = nodes.find((n) => n.id === treeNode.id && treeNode.checked === "checked");
+  if (node?.docs) {
+    return processNodeDocs(node, includeAttributes);
+  }
+  return "";
+}
+function processFolderNode(treeNode, ancestorNodes, childrenMarkdown) {
+  let markdown = "## \u{1F4C1}    ";
+  for (const ancestorNode of ancestorNodes) {
+    markdown += `/    ${ancestorNode}    `;
+  }
+  markdown += `/    ${treeNode.name}
+`;
+  markdown += childrenMarkdown;
+  return markdown;
+}
+function processNodeDocs(node, includeAttributes) {
+  let markdown = "\n\n---\n\n";
+  markdown += `> ### **${node.title.text}** \`${node.title.nodeType}\`
+
+`;
+  if (node.docs) {
+    const cleanDocs = cleanJSDoc(node.docs, " \n ");
+    markdown += `${cleanDocs}
+`;
+  }
+  if (includeAttributes && node.attributes && node.attributes.length > 0 && node.attributes.some((attr) => attr.docs)) {
+    markdown += "| Name | Description |\n";
+    markdown += "|------|-------------|\n";
+    for (const attr of node.attributes) {
+      if (attr.docs) {
+        const cleanedDocs = cleanJSDoc(attr.docs, " | ");
+        markdown += `| ${attr.name} | ${cleanedDocs} |
+`;
+      }
+    }
+    markdown += "\n";
+  }
+  return markdown;
+}
+function cleanJSDoc(jsDoc, lineJoin) {
+  if (!jsDoc) {
+    return "";
+  }
+  const cleaned = jsDoc.split("\n").map((line) => line.replace(CLEAN_JSDOC_LINE_REGEX, "").replace(/\*/g, "").trim()).filter((line) => line.trim() !== "").join(lineJoin);
+  return cleaned;
+}
 export {
+  createTreeNodeFromGraph,
+  generateDocs,
   generateGraph,
   ts2umlToJson
 };

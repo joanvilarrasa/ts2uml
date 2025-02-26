@@ -2,6 +2,11 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.50] - Extenedd properties 
+
+- Added docs generation. You cna now generate a markdown document of the types of the graph wiht the jsdocs descriptions.
+- Optionally have a table per interfaec or class wiht their attributes.
+
 ### [v0.0.47] - Extenedd properties 
 
 - Improved extended propertis so that they show the original place where they extend from if it is inside the scope.

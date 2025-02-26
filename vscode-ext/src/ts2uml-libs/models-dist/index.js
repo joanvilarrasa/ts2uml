@@ -4726,28 +4726,36 @@ function is(data, zSchema) {
 }
 
 // src/utils/update.ts
-function update(data, updates, zSchema) {
-  return zSchema.parse({
-    ...data,
-    ...updates
-  });
+function update(data, updates, schema) {
+  for (const key of Object.keys(updates)) {
+    const updateValue = updates[key];
+    if (updateValue !== void 0) {
+      data[key] = updateValue;
+    }
+  }
+  if (schema) {
+    return schema.parse({ ...data });
+  }
+  return data;
 }
 function updateDeep(data, updates, schema) {
   for (const key of Object.keys(updates)) {
     const value = updates[key];
-    if (value && typeof value === "object" && !Array.isArray(value)) {
-      const currentValue = data[key];
-      if (currentValue && typeof currentValue === "object") {
-        data[key] = updateDeep(currentValue, value);
+    if (value !== void 0) {
+      if (value && typeof value === "object" && !Array.isArray(value)) {
+        const currentValue = data[key];
+        if (currentValue && typeof currentValue === "object") {
+          data[key] = updateDeep(currentValue, value);
+        } else {
+          data[key] = value;
+        }
       } else {
         data[key] = value;
       }
-    } else {
-      data[key] = value;
     }
   }
   if (schema) {
-    return schema.parse(data);
+    return schema.parse({ ...data });
   }
   return data;
 }
