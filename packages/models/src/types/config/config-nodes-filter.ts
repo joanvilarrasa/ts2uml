@@ -2,7 +2,6 @@ import { z } from 'zod';
 import { type NodeType, ZNodeType } from '../graph/node-type.ts';
 
 /**
-/**
  * Interface defining filters for nodes to be displayed in the diagram.
  */
 export interface ConfigNodesFilter {

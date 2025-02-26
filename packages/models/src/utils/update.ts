@@ -11,11 +11,17 @@ import type { z } from 'zod';
  * @param schema - The schema to validate the updated data against.
  * @returns The updated data.
  */
-export function update<T>(data: T, updates: Partial<T>, zSchema: z.ZodType<T>): T {
-  return zSchema.parse({
-    ...data,
-    ...updates,
-  });
+export function update<T>(data: T, updates: Partial<T>, schema?: z.ZodType<T>): T {
+  for (const key of Object.keys(updates) as Array<keyof T>) {
+    const updateValue = updates[key];
+    if (updateValue !== undefined) {
+      data[key] = updateValue as T[keyof T];
+    }
+  }
+  if (schema) {
+    return schema.parse({ ...data });
+  }
+  return data;
 }
 
 /**
@@ -36,20 +42,22 @@ export function updateDeep<T extends object>(
 ): T {
   for (const key of Object.keys(updates) as Array<keyof T>) {
     const value = updates[key];
-    if (value && typeof value === 'object' && !Array.isArray(value)) {
-      const currentValue = data[key];
-      if (currentValue && typeof currentValue === 'object') {
-        data[key] = updateDeep(currentValue as object, value as object) as T[keyof T];
+    if (value !== undefined) {
+      if (value && typeof value === 'object' && !Array.isArray(value)) {
+        const currentValue = data[key];
+        if (currentValue && typeof currentValue === 'object') {
+          data[key] = updateDeep(currentValue as object, value as object) as T[keyof T];
+        } else {
+          data[key] = value as T[keyof T];
+        }
       } else {
         data[key] = value as T[keyof T];
       }
-    } else {
-      data[key] = value as T[keyof T];
     }
   }
 
   if (schema) {
-    return schema.parse(data);
+    return schema.parse({ ...data });
   }
 
   return data;
