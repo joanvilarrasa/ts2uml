@@ -35,11 +35,11 @@ export function LayoutTool() {
             <span className="font-medium">Layout configuration</span>
             <Workflow className="h-3 w-3" />
           </div>
-          <Separator className="mt-1 mb-2" orientation="horizontal" />
+          <Separator className="mt-1 mb-2 bg-foreground/10" orientation="horizontal" />
 
           {/* <div>Button to refresh the layout</div> */}
           <LayoutToolLayoutAlgorithm />
-          <Separator className="mt-1 mb-2 bg-border/20" orientation="horizontal" />
+          <Separator className="mt-1 mb-2 bg-foreground/10" orientation="horizontal" />
           <LayoutToolLinkPathAlgorithm />
         </div>
       </PopoverContent>

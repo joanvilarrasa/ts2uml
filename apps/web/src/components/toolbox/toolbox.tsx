@@ -4,6 +4,7 @@ import demoGraph from '../../assets/demo-graph.json';
 import { Button } from '../ui/button';
 import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
+import { DocsTool } from './docs-tool/docs-tool';
 import { FilterTool } from './filter-tool/filter-tool';
 import { ImportTool } from './import-tool/import-tool';
 import { LayoutTool } from './layout-tool/layout-tool';
@@ -37,6 +38,7 @@ export function Toolbox() {
             <ImportTool />
             <SaveTool />
             <ShareTool />
+            <DocsTool />
           </div>
           <div className="flex justify-center">
             <span className="text-[0.7rem] text-foreground/60">Manage file</span>

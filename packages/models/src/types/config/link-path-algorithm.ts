@@ -3,8 +3,9 @@ import { z } from 'zod';
 export const ZLinkPathAlgorithm = z.enum(['straight', 'bezier', 'step']);
 
 /**
- * Represents the different types of relationships between nodes in the diagram.
- * - "association": Indicates a basic association between nodes
- * - "inheritance": Indicates an inheritance/extends relationship
+ * What type of links should be used to connect the nodes.
+ * - `straight`: Straight lines
+ * - `bezier`: Bezier curves
+ * - `step`: Step lines
  */
 export type LinkPathAlgorithm = z.infer<typeof ZLinkPathAlgorithm>;

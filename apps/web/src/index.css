@@ -117,3 +117,14 @@ body {
   transform: rotate(0deg);
   transition: transform 0.2s ease;
 }
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

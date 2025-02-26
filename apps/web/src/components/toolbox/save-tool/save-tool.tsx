@@ -32,7 +32,7 @@ export function SaveTool() {
 
   async function handleExport(target: 'download' | 'clipboard') {
     const actualExportName = exportName === '' ? 'ts2uml' : exportName;
-    gm.updateNodePotisions(getNodes());
+    gm.updateNodePositions(getNodes());
     if (exportFormat === 'json') {
       const content = ts2umlToJson(gm.getGraph());
       if (target === 'download') {
@@ -143,7 +143,7 @@ export function SaveTool() {
           </div>
 
           <span className="pt-4 text-xs">{'Choose a format: '}</span>
-          <Separator className="mt-1 mb-2" orientation="horizontal" />
+          <Separator className="mt-1 mb-2 bg-foreground/10" orientation="horizontal" />
 
           <RadioGroup value={exportFormat} onValueChange={(value) => setExportFormat(value as ExportFormat)}>
             <div className="flex gap-4">
@@ -158,7 +158,7 @@ export function SaveTool() {
                   ))}
                 </div>
               </div>
-              <Separator className="h-11/12" orientation="vertical" />
+              <Separator className="h-11/12 bg-foreground/10" orientation="vertical" />
               <div className="flex flex-col gap-2">
                 <span className="text-xs">{'File'}</span>
                 <div className="flex flex-col gap-2">

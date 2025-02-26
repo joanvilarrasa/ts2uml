@@ -3,11 +3,272 @@
     {
       "attributes": [
         {
+          "docs": "/**\n   * Whether to apply a layout on load\n   */",
+          "id": "/types/messages/msg-load-graph-MsgLoadGraph-applyLayoutOnLoad",
+          "name": "applyLayoutOnLoad",
+          "style": {},
+          "targets": [],
+          "text": "applyLayoutOnLoad: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * A list of node ids to add to the diagram\n   * @see {@link Graph}\n   */",
+          "id": "/types/messages/msg-load-graph-MsgLoadGraph-graph",
+          "name": "graph",
+          "style": {},
+          "targets": [
+            "/types/graph/graph-Graph"
+          ],
+          "text": "graph: Graph;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
+          "id": "/types/messages/msg-load-graph-MsgLoadGraph-type",
+          "name": "type",
+          "style": {},
+          "targets": [],
+          "text": "type: 'load-graph';",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/messages/msg-load-graph-MsgLoadGraph",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-load-graph-MsgLoadGraph-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "MsgLoadGraph"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * The node id to open the code for\n   */",
+          "id": "/types/messages/msg-open-node-code-MsgOpenNodeCode-node",
+          "name": "node",
+          "style": {},
+          "targets": [
+            "/types/graph/node-Node"
+          ],
+          "text": "node: Node;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
+          "id": "/types/messages/msg-open-node-code-MsgOpenNodeCode-type",
+          "name": "type",
+          "style": {},
+          "targets": [],
+          "text": "type: 'open-node-code';",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/messages/msg-open-node-code-MsgOpenNodeCode",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-open-node-code-MsgOpenNodeCode-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "MsgOpenNodeCode"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/messages/msg-type-MsgType-load-graph",
+          "name": "load-graph",
+          "style": {},
+          "text": "load-graph",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/messages/msg-type-MsgType-update-layout-algorithm",
+          "name": "update-layout-algorithm",
+          "style": {},
+          "text": "update-layout-algorithm",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/messages/msg-type-MsgType-update-link-path-algorithm",
+          "name": "update-link-path-algorithm",
+          "style": {},
+          "text": "update-link-path-algorithm",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/messages/msg-type-MsgType-update-visible-nodes",
+          "name": "update-visible-nodes",
+          "style": {},
+          "text": "update-visible-nodes",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/messages/msg-type-MsgType-open-node-code",
+          "name": "open-node-code",
+          "style": {},
+          "text": "open-node-code",
+          "type": "unionOption"
+        }
+      ],
+      "docs": "/**\n * Represents the different types of messages that are sent between components of the web app\n * - `load-graph`: Load a graph\n * - `update-layout-algorithm`: Update the layout algorithm\n * - `update-link-path-algorithm`: Update the link path algorithm\n * - `update-visible-nodes`: Update the visible nodes\n * - `open-node-code`: Open the code of a node (only available in the extension)\n */",
+      "id": "/types/messages/msg-type-MsgType",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-type-MsgType-TITLE",
+        "nodeType": "union",
+        "style": {},
+        "text": "MsgType"
+      },
+      "type": "union"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * The layout algorithm to use\n   * @see {@link LayoutAlgorithm}\n   */",
+          "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-layoutAlgorithm",
+          "name": "layoutAlgorithm",
+          "style": {},
+          "targets": [
+            "/types/config/layout-algorithm-LayoutAlgorithm"
+          ],
+          "text": "layoutAlgorithm: LayoutAlgorithm;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
+          "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-type",
+          "name": "type",
+          "style": {},
+          "targets": [],
+          "text": "type: 'update-layout-algorithm';",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "MsgUpdateLayoutAlgorithm"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * The link path algorithm to use\n   * @see {@link LinkPathAlgorithm}\n   */",
+          "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm-linkPathAlgorithm",
+          "name": "linkPathAlgorithm",
+          "style": {},
+          "targets": [
+            "/types/config/link-path-algorithm-LinkPathAlgorithm"
+          ],
+          "text": "linkPathAlgorithm: LinkPathAlgorithm;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
+          "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm-type",
+          "name": "type",
+          "style": {},
+          "targets": [],
+          "text": "type: 'update-link-path-algorithm';",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "MsgUpdateLinkPathAlgorithm"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * A list of node ids to add to the diagram\n   * @see {@link Node}\n   */",
+          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-nodeIdsToAdd",
+          "name": "nodeIdsToAdd",
+          "style": {},
+          "targets": [],
+          "text": "nodeIdsToAdd: string[];",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * A list of node ids to remove from the diagram\n   * @see {@link Node}\n   */",
+          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-nodeIdsToRemove",
+          "name": "nodeIdsToRemove",
+          "style": {},
+          "targets": [],
+          "text": "nodeIdsToRemove: string[];",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
+          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-type",
+          "name": "type",
+          "style": {},
+          "targets": [],
+          "text": "type: 'update-visible-nodes';",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "MsgUpdateVisibleNodes"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
           "docs": "/**\n   * Configuration for the graph\n   * @see {@link Config}\n   */",
           "id": "/types/graph/graph-Graph-config",
           "name": "config",
           "style": {},
-          "targets": ["/types/config/config-Config"],
+          "targets": [
+            "/types/config/config-Config"
+          ],
           "text": "config: Config;",
           "type": "attribute"
         },
@@ -16,7 +277,9 @@
           "id": "/types/graph/graph-Graph-nodes",
           "name": "nodes",
           "style": {},
-          "targets": ["/types/graph/node-Node"],
+          "targets": [
+            "/types/graph/node-Node"
+          ],
           "text": "nodes: Node[];",
           "type": "attribute"
         },
@@ -25,7 +288,9 @@
           "id": "/types/graph/graph-Graph-links",
           "name": "links",
           "style": {},
-          "targets": ["/types/graph/link-Link"],
+          "targets": [
+            "/types/graph/link-Link"
+          ],
           "text": "links: Link[];",
           "type": "attribute"
         }
@@ -62,7 +327,7 @@
           "type": "unionOption"
         }
       ],
-      "docs": "/**\n * Represents the different types of relationships between nodes in the diagram.\n * - \"association\": Indicates a basic association between nodes\n * - \"inheritance\": Indicates an inheritance/extends relationship\n */",
+      "docs": "/**\n * Represents the different types of relationships between nodes in the diagram.\n * - `association`: Indicates a basic association between nodes\n * - `inheritance`: Indicates an inheritance/extends relationship\n */",
       "id": "/types/graph/link-type-LinkType",
       "position": {
         "locked": false,
@@ -120,7 +385,9 @@
           "id": "/types/graph/link-Link-type",
           "name": "type",
           "style": {},
-          "targets": ["/types/graph/link-type-LinkType"],
+          "targets": [
+            "/types/graph/link-type-LinkType"
+          ],
           "text": "type: LinkType;",
           "type": "attribute"
         }
@@ -143,7 +410,7 @@
     {
       "attributes": [
         {
-          "docs": "/**\r\n   * The id of the Node that this attribute extends from\r\n   */",
+          "docs": "/**\n   * The id of the Node that this attribute extends from\n   */",
           "id": "/types/graph/node-attribute-extended-NodeAttributeExtended-ancestorNodeId",
           "name": "ancestorNodeId",
           "style": {},
@@ -152,7 +419,7 @@
           "type": "attribute"
         },
         {
-          "docs": "/**\r\n   * The name of the Node that this attribute extends from\r\n   */",
+          "docs": "/**\n   * The name of the Node that this attribute extends from\n   */",
           "id": "/types/graph/node-attribute-extended-NodeAttributeExtended-ancestorNodeName",
           "name": "ancestorNodeName",
           "style": {},
@@ -161,7 +428,7 @@
           "type": "attribute"
         },
         {
-          "docs": "/**\r\n   * The id of the node that this attribute extends from\r\n   */",
+          "docs": "/**\n   * The id of the node that this attribute extends from\n   */",
           "id": "/types/graph/node-attribute-extended-NodeAttributeExtended-fatherNodeId",
           "name": "fatherNodeId",
           "style": {},
@@ -170,7 +437,7 @@
           "type": "attribute"
         },
         {
-          "docs": "/**\r\n   * The name of the Node that this attribute extends from\r\n   */",
+          "docs": "/**\n   * The name of the Node that this attribute extends from\n   */",
           "id": "/types/graph/node-attribute-extended-NodeAttributeExtended-fatherNodeName",
           "name": "fatherNodeName",
           "style": {},
@@ -179,7 +446,7 @@
           "type": "attribute"
         }
       ],
-      "docs": "/**\r\n * Represents an attribute or method within a node in the diagram.\r\n */",
+      "docs": "/**\n * Represents an attribute or method within a node in the diagram.\n */",
       "id": "/types/graph/node-attribute-extended-NodeAttributeExtended",
       "position": {
         "locked": false,
@@ -218,7 +485,7 @@
           "type": "unionOption"
         }
       ],
-      "docs": "/**\n * Represents the visibility/access level of a node attribute.\n * - \"private\": Attribute is only accessible within the class\n * - \"protected\": Attribute is only accessible to the class and its subclasses\n * - \"public\": Attribute is publicly accessible\n */",
+      "docs": "/**\n * Represents the visibility/access level of a node attribute.\n * - `private`: Attribute is only accessible within the class\n * - `protected`: Attribute is only accessible to the class and its subclasses\n * - `public`: Attribute is publicly accessible\n */",
       "id": "/types/graph/node-attribute-scope-NodeAttributeScope",
       "position": {
         "locked": false,
@@ -257,7 +524,7 @@
           "type": "unionOption"
         }
       ],
-      "docs": "/**\n * Represents the different types of attributes that can be displayed in a node.\n * - \"attribute\": Represents a class/interface property or field\n * - \"staticAttribute\": Represents a class/interface static property or field\n * - \"unionOption\": Represents an enum value or type union option\n * - \"method\": Represents a class/interface method or function\n * - \"staticMethod\": Represents a class/interface static method or function\n * - \"separator\": Represents a visual separator line\n */",
+      "docs": "/**\n * Represents the different types of attributes that can be displayed in a node.\n * - `attribute`: Represents a class/interface property or field\n * - `unionOption`: Represents an enum value or type union option\n * - `method`: Represents a class/interface method or function\n */",
       "id": "/types/graph/node-attribute-type-NodeAttributeType",
       "position": {
         "locked": false,
@@ -306,7 +573,9 @@
           "id": "/types/graph/node-attribute-NodeAttribute-extended",
           "name": "extended",
           "style": {},
-          "targets": ["/types/graph/node-attribute-extended-NodeAttributeExtended"],
+          "targets": [
+            "/types/graph/node-attribute-extended-NodeAttributeExtended"
+          ],
           "text": "extended?: NodeAttributeExtended;",
           "type": "attribute"
         },
@@ -324,7 +593,9 @@
           "id": "/types/graph/node-attribute-NodeAttribute-scope",
           "name": "scope",
           "style": {},
-          "targets": ["/types/graph/node-attribute-scope-NodeAttributeScope"],
+          "targets": [
+            "/types/graph/node-attribute-scope-NodeAttributeScope"
+          ],
           "text": "scope?: NodeAttributeScope;",
           "type": "attribute"
         },
@@ -333,7 +604,9 @@
           "id": "/types/graph/node-attribute-NodeAttribute-style",
           "name": "style",
           "style": {},
-          "targets": ["/types/graph/node-style-NodeStyle"],
+          "targets": [
+            "/types/graph/node-style-NodeStyle"
+          ],
           "text": "style?: NodeStyle;",
           "type": "attribute"
         },
@@ -360,7 +633,9 @@
           "id": "/types/graph/node-attribute-NodeAttribute-type",
           "name": "type",
           "style": {},
-          "targets": ["/types/graph/node-attribute-type-NodeAttributeType"],
+          "targets": [
+            "/types/graph/node-attribute-type-NodeAttributeType"
+          ],
           "text": "type: NodeAttributeType;",
           "type": "attribute"
         }
@@ -531,7 +806,9 @@
           "id": "/types/graph/node-title-NodeTitle-nodeType",
           "name": "nodeType",
           "style": {},
-          "targets": ["/types/graph/node-type-NodeType"],
+          "targets": [
+            "/types/graph/node-type-NodeType"
+          ],
           "text": "nodeType: NodeType;",
           "type": "attribute"
         },
@@ -540,7 +817,9 @@
           "id": "/types/graph/node-title-NodeTitle-style",
           "name": "style",
           "style": {},
-          "targets": ["/types/graph/node-style-NodeStyle"],
+          "targets": [
+            "/types/graph/node-style-NodeStyle"
+          ],
           "text": "style?: NodeStyle;",
           "type": "attribute"
         },
@@ -607,7 +886,7 @@
           "type": "unionOption"
         }
       ],
-      "docs": "/**\n * Represents the different types of nodes that can be displayed in the diagram.\n * - \"class\": Represents a class definition\n * - \"union\": Represents a union type, it can be an enum or a type that unions multiple types\n * - \"interface\": Represents an interface definition\n * - \"type\": Represents a type definition\n * - \"variable\": Represents a variable declaration\n */",
+      "docs": "/**\n * Represents the different types of nodes that can be displayed in the diagram.\n * - `class`: Represents a class definition\n * - `union`: Represents a union type, it can be an enum or a type that unions multiple types\n * - `interface`: Represents an interface definition\n * - `type`: Represents a type definition\n * - `variable`: Represents a variable declaration\n */",
       "id": "/types/graph/node-type-NodeType",
       "position": {
         "locked": false,
@@ -629,7 +908,9 @@
           "id": "/types/graph/node-Node-attributes",
           "name": "attributes",
           "style": {},
-          "targets": ["/types/graph/node-attribute-NodeAttribute"],
+          "targets": [
+            "/types/graph/node-attribute-NodeAttribute"
+          ],
           "text": "attributes: NodeAttribute[];",
           "type": "attribute"
         },
@@ -665,7 +946,9 @@
           "id": "/types/graph/node-Node-position",
           "name": "position",
           "style": {},
-          "targets": ["/types/graph/node-position-NodePosition"],
+          "targets": [
+            "/types/graph/node-position-NodePosition"
+          ],
           "text": "position: NodePosition;",
           "type": "attribute"
         },
@@ -674,7 +957,9 @@
           "id": "/types/graph/node-Node-style",
           "name": "style",
           "style": {},
-          "targets": ["/types/graph/node-style-NodeStyle"],
+          "targets": [
+            "/types/graph/node-style-NodeStyle"
+          ],
           "text": "style?: NodeStyle;",
           "type": "attribute"
         },
@@ -683,7 +968,9 @@
           "id": "/types/graph/node-Node-title",
           "name": "title",
           "style": {},
-          "targets": ["/types/graph/node-title-NodeTitle"],
+          "targets": [
+            "/types/graph/node-title-NodeTitle"
+          ],
           "text": "title: NodeTitle;",
           "type": "attribute"
         },
@@ -692,7 +979,9 @@
           "id": "/types/graph/node-Node-type",
           "name": "type",
           "style": {},
-          "targets": ["/types/graph/node-type-NodeType"],
+          "targets": [
+            "/types/graph/node-type-NodeType"
+          ],
           "text": "type: NodeType;",
           "type": "attribute"
         }
@@ -715,251 +1004,124 @@
     {
       "attributes": [
         {
-          "docs": "/**\n   * Whether to apply a layout on load\n   */",
-          "id": "/types/messages/msg-load-graph-MsgLoadGraph-applyLayoutOnLoad",
-          "name": "applyLayoutOnLoad",
+          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-checked",
+          "name": "checked",
           "style": {},
-          "targets": [],
-          "text": "applyLayoutOnLoad: boolean;",
-          "type": "attribute"
+          "text": "checked",
+          "type": "unionOption"
         },
         {
-          "docs": "/**\n   * A list of node ids to add to the diagram\n   * @see {@link Graph}\n   */",
-          "id": "/types/messages/msg-load-graph-MsgLoadGraph-graph",
-          "name": "graph",
+          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-unchecked",
+          "name": "unchecked",
           "style": {},
-          "targets": ["/types/graph/graph-Graph"],
-          "text": "graph: Graph;",
-          "type": "attribute"
+          "text": "unchecked",
+          "type": "unionOption"
         },
         {
-          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
-          "id": "/types/messages/msg-load-graph-MsgLoadGraph-type",
-          "name": "type",
+          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-partial",
+          "name": "partial",
           "style": {},
-          "targets": [],
-          "text": "type: 'load-graph';",
-          "type": "attribute"
+          "text": "partial",
+          "type": "unionOption"
         }
       ],
-      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
-      "id": "/types/messages/msg-load-graph-MsgLoadGraph",
+      "docs": "/**\n * Represents the different types of messages that are sent between components of the web\n * - `checked`: The checkbox is checked\n * - `unchecked`: The checkbox is unchecked\n * - `partial`: The checkbox is partially checked\n */",
+      "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
       "position": {
         "locked": false,
         "x": 0,
         "y": 0
       },
       "title": {
-        "id": "/types/messages/msg-load-graph-MsgLoadGraph-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "MsgLoadGraph"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * The node id to open the code for\n   */",
-          "id": "/types/messages/msg-open-node-code-MsgOpenNodeCode-node",
-          "name": "node",
-          "style": {},
-          "targets": ["/types/graph/node-Node"],
-          "text": "node: Node;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
-          "id": "/types/messages/msg-open-node-code-MsgOpenNodeCode-type",
-          "name": "type",
-          "style": {},
-          "targets": [],
-          "text": "type: 'open-node-code';",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
-      "id": "/types/messages/msg-open-node-code-MsgOpenNodeCode",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/messages/msg-open-node-code-MsgOpenNodeCode-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "MsgOpenNodeCode"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/messages/msg-type-MsgType-load-graph",
-          "name": "load-graph",
-          "style": {},
-          "text": "load-graph",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/messages/msg-type-MsgType-update-layout-algorithm",
-          "name": "update-layout-algorithm",
-          "style": {},
-          "text": "update-layout-algorithm",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/messages/msg-type-MsgType-update-link-path-algorithm",
-          "name": "update-link-path-algorithm",
-          "style": {},
-          "text": "update-link-path-algorithm",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/messages/msg-type-MsgType-update-visible-nodes",
-          "name": "update-visible-nodes",
-          "style": {},
-          "text": "update-visible-nodes",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/messages/msg-type-MsgType-open-node-code",
-          "name": "open-node-code",
-          "style": {},
-          "text": "open-node-code",
-          "type": "unionOption"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of messages that are sent between components of the web\n */",
-      "id": "/types/messages/msg-type-MsgType",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/messages/msg-type-MsgType-TITLE",
+        "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-TITLE",
         "nodeType": "union",
         "style": {},
-        "text": "MsgType"
+        "text": "CheckboxPartialCheckedStatus"
       },
       "type": "union"
     },
     {
       "attributes": [
         {
-          "docs": "/**\n   * The layout algorithm to use\n   * @see {@link LayoutAlgorithm}\n   */",
-          "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-layoutAlgorithm",
-          "name": "layoutAlgorithm",
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-id",
+          "name": "id",
           "style": {},
-          "targets": ["/types/config/layout-algorithm-LayoutAlgorithm"],
-          "text": "layoutAlgorithm: LayoutAlgorithm;",
+          "targets": [],
+          "text": "id: string;",
           "type": "attribute"
         },
         {
-          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
-          "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-type",
-          "name": "type",
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isFolder",
+          "name": "isFolder",
           "style": {},
           "targets": [],
-          "text": "type: 'update-layout-algorithm';",
+          "text": "isFolder: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isFile",
+          "name": "isFile",
+          "style": {},
+          "targets": [],
+          "text": "isFile: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isElement",
+          "name": "isElement",
+          "style": {},
+          "targets": [],
+          "text": "isElement: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-checked",
+          "name": "checked",
+          "style": {},
+          "targets": [
+            "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus"
+          ],
+          "text": "checked: CheckboxPartialCheckedStatus;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-children",
+          "name": "children",
+          "style": {},
+          "targets": [
+            "/types/utils/tree-node-TreeNode"
+          ],
+          "text": "children?: { [key: string]: TreeNode };",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
           "type": "attribute"
         }
       ],
-      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
-      "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm",
+      "docs": "",
+      "id": "/types/utils/tree-node-TreeNode",
       "position": {
         "locked": false,
         "x": 0,
         "y": 0
       },
       "title": {
-        "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-TITLE",
+        "id": "/types/utils/tree-node-TreeNode-TITLE",
         "nodeType": "interface",
         "style": {},
-        "text": "MsgUpdateLayoutAlgorithm"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * The link path algorithm to use\n   * @see {@link LinkPathAlgorithm}\n   */",
-          "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm-linkPathAlgorithm",
-          "name": "linkPathAlgorithm",
-          "style": {},
-          "targets": ["/types/config/link-path-algorithm-LinkPathAlgorithm"],
-          "text": "linkPathAlgorithm: LinkPathAlgorithm;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
-          "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm-type",
-          "name": "type",
-          "style": {},
-          "targets": [],
-          "text": "type: 'update-link-path-algorithm';",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
-      "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "MsgUpdateLinkPathAlgorithm"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * A list of node ids to add to the diagram\n   * @see {@link Node}\n   */",
-          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-nodeIdsToAdd",
-          "name": "nodeIdsToAdd",
-          "style": {},
-          "targets": [],
-          "text": "nodeIdsToAdd: string[];",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * A list of node ids to remove from the diagram\n   * @see {@link Node}\n   */",
-          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-nodeIdsToRemove",
-          "name": "nodeIdsToRemove",
-          "style": {},
-          "targets": [],
-          "text": "nodeIdsToRemove: string[];",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
-          "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-type",
-          "name": "type",
-          "style": {},
-          "targets": [],
-          "text": "type: 'update-visible-nodes';",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
-      "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "MsgUpdateVisibleNodes"
+        "text": "TreeNode"
       },
       "type": "interface"
     },
@@ -970,7 +1132,9 @@
           "id": "/types/config/config-links-filter-ConfigLinksFilter-filter_type",
           "name": "filter_type",
           "style": {},
-          "targets": ["/types/graph/link-type-LinkType"],
+          "targets": [
+            "/types/graph/link-type-LinkType"
+          ],
           "text": "filter_type: LinkType[];",
           "type": "attribute"
         }
@@ -1042,7 +1206,9 @@
           "id": "/types/config/config-links-ConfigLinks-filter",
           "name": "filter",
           "style": {},
-          "targets": ["/types/config/config-links-filter-ConfigLinksFilter"],
+          "targets": [
+            "/types/config/config-links-filter-ConfigLinksFilter"
+          ],
           "text": "filter: ConfigLinksFilter;",
           "type": "attribute"
         },
@@ -1051,7 +1217,9 @@
           "id": "/types/config/config-links-ConfigLinks-options",
           "name": "options",
           "style": {},
-          "targets": ["/types/config/config-links-options-ConfigLinksOptions"],
+          "targets": [
+            "/types/config/config-links-options-ConfigLinksOptions"
+          ],
           "text": "options: ConfigLinksOptions;",
           "type": "attribute"
         },
@@ -1060,7 +1228,9 @@
           "id": "/types/config/config-links-ConfigLinks-linkPathAlgorithm",
           "name": "linkPathAlgorithm",
           "style": {},
-          "targets": ["/types/config/link-path-algorithm-LinkPathAlgorithm"],
+          "targets": [
+            "/types/config/link-path-algorithm-LinkPathAlgorithm"
+          ],
           "text": "linkPathAlgorithm: LinkPathAlgorithm;",
           "type": "attribute"
         }
@@ -1096,12 +1266,14 @@
           "id": "/types/config/config-nodes-filter-ConfigNodesFilter-filter_type",
           "name": "filter_type",
           "style": {},
-          "targets": ["/types/graph/node-type-NodeType"],
+          "targets": [
+            "/types/graph/node-type-NodeType"
+          ],
           "text": "filter_type: NodeType[];",
           "type": "attribute"
         }
       ],
-      "docs": "/**\n/**\n * Interface defining filters for nodes to be displayed in the diagram.\n */",
+      "docs": "/**\n * Interface defining filters for nodes to be displayed in the diagram.\n */",
       "id": "/types/config/config-nodes-filter-ConfigNodesFilter",
       "position": {
         "locked": false,
@@ -1267,7 +1439,9 @@
           "id": "/types/config/config-nodes-ConfigNodes-filter",
           "name": "filter",
           "style": {},
-          "targets": ["/types/config/config-nodes-filter-ConfigNodesFilter"],
+          "targets": [
+            "/types/config/config-nodes-filter-ConfigNodesFilter"
+          ],
           "text": "filter: ConfigNodesFilter;",
           "type": "attribute"
         },
@@ -1276,7 +1450,9 @@
           "id": "/types/config/config-nodes-ConfigNodes-options",
           "name": "options",
           "style": {},
-          "targets": ["/types/config/config-nodes-options-ConfigNodesOptions"],
+          "targets": [
+            "/types/config/config-nodes-options-ConfigNodesOptions"
+          ],
           "text": "options: ConfigNodesOptions;",
           "type": "attribute"
         },
@@ -1285,7 +1461,10 @@
           "id": "/types/config/config-nodes-ConfigNodes-styles",
           "name": "styles",
           "style": {},
-          "targets": ["/types/graph/node-type-NodeType", "/types/graph/node-style-NodeStyle"],
+          "targets": [
+            "/types/graph/node-type-NodeType",
+            "/types/graph/node-style-NodeStyle"
+          ],
           "text": "styles: { [k in NodeType]?: NodeStyle };",
           "type": "attribute"
         }
@@ -1312,7 +1491,9 @@
           "id": "/types/config/config-Config-layoutAlgorithm",
           "name": "layoutAlgorithm",
           "style": {},
-          "targets": ["/types/config/layout-algorithm-LayoutAlgorithm"],
+          "targets": [
+            "/types/config/layout-algorithm-LayoutAlgorithm"
+          ],
           "text": "layoutAlgorithm: LayoutAlgorithm;",
           "type": "attribute"
         },
@@ -1321,7 +1502,9 @@
           "id": "/types/config/config-Config-links",
           "name": "links",
           "style": {},
-          "targets": ["/types/config/config-links-ConfigLinks"],
+          "targets": [
+            "/types/config/config-links-ConfigLinks"
+          ],
           "text": "links: ConfigLinks;",
           "type": "attribute"
         },
@@ -1339,7 +1522,9 @@
           "id": "/types/config/config-Config-nodes",
           "name": "nodes",
           "style": {},
-          "targets": ["/types/config/config-nodes-ConfigNodes"],
+          "targets": [
+            "/types/config/config-nodes-ConfigNodes"
+          ],
           "text": "nodes: ConfigNodes;",
           "type": "attribute"
         },
@@ -1348,7 +1533,9 @@
           "id": "/types/config/config-Config-theme",
           "name": "theme",
           "style": {},
-          "targets": ["/types/config/theme-Theme"],
+          "targets": [
+            "/types/config/theme-Theme"
+          ],
           "text": "theme: Theme;",
           "type": "attribute"
         }
@@ -1413,7 +1600,7 @@
           "type": "unionOption"
         }
       ],
-      "docs": "/**\n * Represents the different types of layout algorithms for the diagram.\n */",
+      "docs": "/**\n * Represents the different types of layout algorithms for the diagram.\n * - `layered`: Layered layout\n * - `mrtree`: Multi-root tree layout\n * - `force`: Force-directed layout\n * - `radial`: Radial layout\n * - `box`: Box layout\n * - `random`: Random layout\n */",
       "id": "/types/config/layout-algorithm-LayoutAlgorithm",
       "position": {
         "locked": false,
@@ -1452,7 +1639,7 @@
           "type": "unionOption"
         }
       ],
-      "docs": "/**\n * Represents the different types of relationships between nodes in the diagram.\n * - \"association\": Indicates a basic association between nodes\n * - \"inheritance\": Indicates an inheritance/extends relationship\n */",
+      "docs": "/**\n * What type of links should be used to connect the nodes.\n * - `straight`: Straight lines\n * - `bezier`: Bezier curves\n * - `step`: Step lines\n */",
       "id": "/types/config/link-path-algorithm-LinkPathAlgorithm",
       "position": {
         "locked": false,
@@ -1484,7 +1671,7 @@
           "type": "unionOption"
         }
       ],
-      "docs": "/**\n * Represents the theme of the diagram.\n * Can be \"light\" or \"dark\"\n */",
+      "docs": "/**\n * Represents the theme of the diagram.\n * - `light`: Light theme\n * - `dark`: Dark theme\n */",
       "id": "/types/config/theme-Theme",
       "position": {
         "locked": false,
@@ -1498,250 +1685,6 @@
         "text": "Theme"
       },
       "type": "union"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "",
-          "id": "/types/test/external-External-description",
-          "name": "description",
-          "style": {},
-          "targets": [],
-          "text": "description: string;",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/test/external-External-id",
-          "extended": {
-            "ancestorNodeId": "/types/test/test-Test",
-            "ancestorNodeName": "Test",
-            "fatherNodeId": "/types/test/test-Test",
-            "fatherNodeName": "Test"
-          },
-          "name": "id",
-          "style": {},
-          "targets": [],
-          "text": "id: number;",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/test/external-External-name",
-          "extended": {
-            "ancestorNodeId": "/types/test/test-Test2",
-            "ancestorNodeName": "Test2",
-            "fatherNodeId": "/types/test/test-Test",
-            "fatherNodeName": "Test"
-          },
-          "name": "name",
-          "style": {},
-          "targets": [],
-          "text": "name: string;",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/test/external-External-description",
-          "extended": {
-            "ancestorNodeId": "/types/test/test-Test2",
-            "ancestorNodeName": "Test2",
-            "fatherNodeId": "/types/test/test-Test",
-            "fatherNodeName": "Test"
-          },
-          "name": "description",
-          "style": {},
-          "targets": [],
-          "text": "description: string;",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/test/external-External-columns",
-          "extended": {
-            "ancestorNodeId": "/types/test/test-Test2",
-            "ancestorNodeName": "Test2",
-            "fatherNodeId": "/types/test/test-Test",
-            "fatherNodeName": "Test"
-          },
-          "name": "columns",
-          "style": {},
-          "targets": [],
-          "text": "columns: ColDef[];",
-          "type": "attribute"
-        }
-      ],
-      "docs": "",
-      "extends": ["Test"],
-      "id": "/types/test/external-External",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/test/external-External-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "External"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "",
-          "id": "/types/test/test-Test-id",
-          "name": "id",
-          "style": {},
-          "targets": [],
-          "text": "id: number;",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/test/test-Test-name",
-          "extended": {
-            "ancestorNodeId": "/types/test/test-Test2",
-            "ancestorNodeName": "Test2",
-            "fatherNodeId": "/types/test/test-Test2",
-            "fatherNodeName": "Test2"
-          },
-          "name": "name",
-          "style": {},
-          "targets": [],
-          "text": "name: string;",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/test/test-Test-description",
-          "extended": {
-            "ancestorNodeId": "/types/test/test-Test2",
-            "ancestorNodeName": "Test2",
-            "fatherNodeId": "/types/test/test-Test2",
-            "fatherNodeName": "Test2"
-          },
-          "name": "description",
-          "style": {},
-          "targets": [],
-          "text": "description: string;",
-          "type": "attribute"
-        },
-        {
-          "id": "/types/test/test-Test-columns",
-          "extended": {
-            "ancestorNodeId": "/types/test/test-Test2",
-            "ancestorNodeName": "Test2",
-            "fatherNodeId": "/types/test/test-Test2",
-            "fatherNodeName": "Test2"
-          },
-          "name": "columns",
-          "style": {},
-          "targets": [],
-          "text": "columns: ColDef[];",
-          "type": "attribute"
-        }
-      ],
-      "docs": "",
-      "extends": ["Test2"],
-      "id": "/types/test/test-Test",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/test/test-Test-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "Test"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "",
-          "id": "/types/test/test-Test2-id",
-          "name": "id",
-          "style": {},
-          "targets": [],
-          "text": "id: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/test/test-Test2-name",
-          "name": "name",
-          "style": {},
-          "targets": [],
-          "text": "name: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/test/test-Test2-description",
-          "name": "description",
-          "style": {},
-          "targets": [],
-          "text": "description: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/test/test-Test2-columns",
-          "name": "columns",
-          "style": {},
-          "targets": [],
-          "text": "columns: ColDef[];",
-          "type": "attribute"
-        }
-      ],
-      "docs": "",
-      "id": "/types/test/test-Test2",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/test/test-Test2-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "Test2"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "",
-          "id": "/types/test/test-CustomColumn-cellRendererExtraParams",
-          "name": "cellRendererExtraParams",
-          "style": {},
-          "targets": [],
-          "text": "cellRendererExtraParams?: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/test/test-CustomColumn-colId",
-          "name": "colId",
-          "style": {},
-          "targets": [],
-          "text": "colId?: 'custom';",
-          "type": "attribute"
-        }
-      ],
-      "docs": "",
-      "id": "/types/test/test-CustomColumn",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/test/test-CustomColumn-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "CustomColumn"
-      },
-      "type": "interface"
     },
     {
       "attributes": [
@@ -1767,7 +1710,7 @@
           "type": "unionOption"
         }
       ],
-      "docs": "/**\n * Represents the different formats that can be used to export the graph\n */",
+      "docs": "/**\n * Represents the different formats that can be used to export the graph\n * - `json`: JSON format\n * - `png`: PNG format\n * - `png-transparent`: PNG format with transparent background\n */",
       "id": "/types/export/export-format-ExportFormat",
       "position": {
         "locked": false,
@@ -1781,234 +1724,30 @@
         "text": "ExportFormat"
       },
       "type": "union"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-checked",
-          "name": "checked",
-          "style": {},
-          "text": "checked",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-unchecked",
-          "name": "unchecked",
-          "style": {},
-          "text": "unchecked",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-partial",
-          "name": "partial",
-          "style": {},
-          "text": "partial",
-          "type": "unionOption"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of messages that are sent between components of the web\n */",
-      "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-TITLE",
-        "nodeType": "union",
-        "style": {},
-        "text": "CheckboxPartialCheckedStatus"
-      },
-      "type": "union"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-id",
-          "name": "id",
-          "style": {},
-          "targets": [],
-          "text": "id: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-isFolder",
-          "name": "isFolder",
-          "style": {},
-          "targets": [],
-          "text": "isFolder: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-isFile",
-          "name": "isFile",
-          "style": {},
-          "targets": [],
-          "text": "isFile: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-isElement",
-          "name": "isElement",
-          "style": {},
-          "targets": [],
-          "text": "isElement: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-checked",
-          "name": "checked",
-          "style": {},
-          "targets": ["/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus"],
-          "text": "checked: CheckboxPartialCheckedStatus;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-children",
-          "name": "children",
-          "style": {},
-          "targets": ["/types/utils/tree-node-TreeNode"],
-          "text": "children?: { [key: string]: TreeNode };",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-name",
-          "name": "name",
-          "style": {},
-          "targets": [],
-          "text": "name: string;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "",
-      "id": "/types/utils/tree-node-TreeNode",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/utils/tree-node-TreeNode-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "TreeNode"
-      },
-      "type": "interface"
     }
   ],
   "links": [
     {
-      "sourceId": "/types/graph/graph-Graph",
-      "sourceAttributeIds": ["/types/graph/graph-Graph-config"],
-      "targetId": "/types/config/config-Config",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/graph-Graph",
-      "sourceAttributeIds": ["/types/graph/graph-Graph-nodes"],
-      "targetId": "/types/graph/node-Node",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/graph-Graph",
-      "sourceAttributeIds": ["/types/graph/graph-Graph-links"],
-      "targetId": "/types/graph/link-Link",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/link-Link",
-      "sourceAttributeIds": ["/types/graph/link-Link-type"],
-      "targetId": "/types/graph/link-type-LinkType",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-attribute-NodeAttribute",
-      "sourceAttributeIds": ["/types/graph/node-attribute-NodeAttribute-extended"],
-      "targetId": "/types/graph/node-attribute-extended-NodeAttributeExtended",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-attribute-NodeAttribute",
-      "sourceAttributeIds": ["/types/graph/node-attribute-NodeAttribute-scope"],
-      "targetId": "/types/graph/node-attribute-scope-NodeAttributeScope",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-attribute-NodeAttribute",
-      "sourceAttributeIds": ["/types/graph/node-attribute-NodeAttribute-style"],
-      "targetId": "/types/graph/node-style-NodeStyle",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-attribute-NodeAttribute",
-      "sourceAttributeIds": ["/types/graph/node-attribute-NodeAttribute-type"],
-      "targetId": "/types/graph/node-attribute-type-NodeAttributeType",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-title-NodeTitle",
-      "sourceAttributeIds": ["/types/graph/node-title-NodeTitle-nodeType"],
-      "targetId": "/types/graph/node-type-NodeType",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-title-NodeTitle",
-      "sourceAttributeIds": ["/types/graph/node-title-NodeTitle-style"],
-      "targetId": "/types/graph/node-style-NodeStyle",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": ["/types/graph/node-Node-attributes"],
-      "targetId": "/types/graph/node-attribute-NodeAttribute",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": ["/types/graph/node-Node-position"],
-      "targetId": "/types/graph/node-position-NodePosition",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": ["/types/graph/node-Node-style"],
-      "targetId": "/types/graph/node-style-NodeStyle",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": ["/types/graph/node-Node-title"],
-      "targetId": "/types/graph/node-title-NodeTitle",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": ["/types/graph/node-Node-type"],
-      "targetId": "/types/graph/node-type-NodeType",
-      "type": "association"
-    },
-    {
       "sourceId": "/types/messages/msg-load-graph-MsgLoadGraph",
-      "sourceAttributeIds": ["/types/messages/msg-load-graph-MsgLoadGraph-graph"],
+      "sourceAttributeIds": [
+        "/types/messages/msg-load-graph-MsgLoadGraph-graph"
+      ],
       "targetId": "/types/graph/graph-Graph",
       "type": "association"
     },
     {
       "sourceId": "/types/messages/msg-open-node-code-MsgOpenNodeCode",
-      "sourceAttributeIds": ["/types/messages/msg-open-node-code-MsgOpenNodeCode-node"],
+      "sourceAttributeIds": [
+        "/types/messages/msg-open-node-code-MsgOpenNodeCode-node"
+      ],
       "targetId": "/types/graph/node-Node",
       "type": "association"
     },
     {
       "sourceId": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm",
-      "sourceAttributeIds": ["/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-layoutAlgorithm"],
+      "sourceAttributeIds": [
+        "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-layoutAlgorithm"
+      ],
       "targetId": "/types/config/layout-algorithm-LayoutAlgorithm",
       "type": "association"
     },
@@ -2021,93 +1760,243 @@
       "type": "association"
     },
     {
-      "sourceId": "/types/config/config-links-filter-ConfigLinksFilter",
-      "sourceAttributeIds": ["/types/config/config-links-filter-ConfigLinksFilter-filter_type"],
+      "sourceId": "/types/graph/graph-Graph",
+      "sourceAttributeIds": [
+        "/types/graph/graph-Graph-config"
+      ],
+      "targetId": "/types/config/config-Config",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/graph-Graph",
+      "sourceAttributeIds": [
+        "/types/graph/graph-Graph-nodes"
+      ],
+      "targetId": "/types/graph/node-Node",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/graph-Graph",
+      "sourceAttributeIds": [
+        "/types/graph/graph-Graph-links"
+      ],
+      "targetId": "/types/graph/link-Link",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/link-Link",
+      "sourceAttributeIds": [
+        "/types/graph/link-Link-type"
+      ],
       "targetId": "/types/graph/link-type-LinkType",
       "type": "association"
     },
     {
-      "sourceId": "/types/config/config-links-ConfigLinks",
-      "sourceAttributeIds": ["/types/config/config-links-ConfigLinks-filter"],
-      "targetId": "/types/config/config-links-filter-ConfigLinksFilter",
+      "sourceId": "/types/graph/node-attribute-NodeAttribute",
+      "sourceAttributeIds": [
+        "/types/graph/node-attribute-NodeAttribute-extended"
+      ],
+      "targetId": "/types/graph/node-attribute-extended-NodeAttributeExtended",
       "type": "association"
     },
     {
-      "sourceId": "/types/config/config-links-ConfigLinks",
-      "sourceAttributeIds": ["/types/config/config-links-ConfigLinks-options"],
-      "targetId": "/types/config/config-links-options-ConfigLinksOptions",
+      "sourceId": "/types/graph/node-attribute-NodeAttribute",
+      "sourceAttributeIds": [
+        "/types/graph/node-attribute-NodeAttribute-scope"
+      ],
+      "targetId": "/types/graph/node-attribute-scope-NodeAttributeScope",
       "type": "association"
     },
     {
-      "sourceId": "/types/config/config-links-ConfigLinks",
-      "sourceAttributeIds": ["/types/config/config-links-ConfigLinks-linkPathAlgorithm"],
-      "targetId": "/types/config/link-path-algorithm-LinkPathAlgorithm",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-nodes-filter-ConfigNodesFilter",
-      "sourceAttributeIds": ["/types/config/config-nodes-filter-ConfigNodesFilter-filter_type"],
-      "targetId": "/types/graph/node-type-NodeType",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourceAttributeIds": ["/types/config/config-nodes-ConfigNodes-filter"],
-      "targetId": "/types/config/config-nodes-filter-ConfigNodesFilter",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourceAttributeIds": ["/types/config/config-nodes-ConfigNodes-options"],
-      "targetId": "/types/config/config-nodes-options-ConfigNodesOptions",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourceAttributeIds": ["/types/config/config-nodes-ConfigNodes-styles"],
-      "targetId": "/types/graph/node-type-NodeType",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourceAttributeIds": ["/types/config/config-nodes-ConfigNodes-styles"],
+      "sourceId": "/types/graph/node-attribute-NodeAttribute",
+      "sourceAttributeIds": [
+        "/types/graph/node-attribute-NodeAttribute-style"
+      ],
       "targetId": "/types/graph/node-style-NodeStyle",
       "type": "association"
     },
     {
-      "sourceId": "/types/config/config-Config",
-      "sourceAttributeIds": ["/types/config/config-Config-layoutAlgorithm"],
-      "targetId": "/types/config/layout-algorithm-LayoutAlgorithm",
+      "sourceId": "/types/graph/node-attribute-NodeAttribute",
+      "sourceAttributeIds": [
+        "/types/graph/node-attribute-NodeAttribute-type"
+      ],
+      "targetId": "/types/graph/node-attribute-type-NodeAttributeType",
       "type": "association"
     },
     {
-      "sourceId": "/types/config/config-Config",
-      "sourceAttributeIds": ["/types/config/config-Config-links"],
-      "targetId": "/types/config/config-links-ConfigLinks",
+      "sourceId": "/types/graph/node-title-NodeTitle",
+      "sourceAttributeIds": [
+        "/types/graph/node-title-NodeTitle-nodeType"
+      ],
+      "targetId": "/types/graph/node-type-NodeType",
       "type": "association"
     },
     {
-      "sourceId": "/types/config/config-Config",
-      "sourceAttributeIds": ["/types/config/config-Config-nodes"],
-      "targetId": "/types/config/config-nodes-ConfigNodes",
+      "sourceId": "/types/graph/node-title-NodeTitle",
+      "sourceAttributeIds": [
+        "/types/graph/node-title-NodeTitle-style"
+      ],
+      "targetId": "/types/graph/node-style-NodeStyle",
       "type": "association"
     },
     {
-      "sourceId": "/types/config/config-Config",
-      "sourceAttributeIds": ["/types/config/config-Config-theme"],
-      "targetId": "/types/config/theme-Theme",
+      "sourceId": "/types/graph/node-Node",
+      "sourceAttributeIds": [
+        "/types/graph/node-Node-attributes"
+      ],
+      "targetId": "/types/graph/node-attribute-NodeAttribute",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-Node",
+      "sourceAttributeIds": [
+        "/types/graph/node-Node-position"
+      ],
+      "targetId": "/types/graph/node-position-NodePosition",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-Node",
+      "sourceAttributeIds": [
+        "/types/graph/node-Node-style"
+      ],
+      "targetId": "/types/graph/node-style-NodeStyle",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-Node",
+      "sourceAttributeIds": [
+        "/types/graph/node-Node-title"
+      ],
+      "targetId": "/types/graph/node-title-NodeTitle",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-Node",
+      "sourceAttributeIds": [
+        "/types/graph/node-Node-type"
+      ],
+      "targetId": "/types/graph/node-type-NodeType",
       "type": "association"
     },
     {
       "sourceId": "/types/utils/tree-node-TreeNode",
-      "sourceAttributeIds": ["/types/utils/tree-node-TreeNode-checked"],
+      "sourceAttributeIds": [
+        "/types/utils/tree-node-TreeNode-checked"
+      ],
       "targetId": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
       "type": "association"
     },
     {
       "sourceId": "/types/utils/tree-node-TreeNode",
-      "sourceAttributeIds": ["/types/utils/tree-node-TreeNode-children"],
+      "sourceAttributeIds": [
+        "/types/utils/tree-node-TreeNode-children"
+      ],
       "targetId": "/types/utils/tree-node-TreeNode",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-links-filter-ConfigLinksFilter",
+      "sourceAttributeIds": [
+        "/types/config/config-links-filter-ConfigLinksFilter-filter_type"
+      ],
+      "targetId": "/types/graph/link-type-LinkType",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-links-ConfigLinks",
+      "sourceAttributeIds": [
+        "/types/config/config-links-ConfigLinks-filter"
+      ],
+      "targetId": "/types/config/config-links-filter-ConfigLinksFilter",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-links-ConfigLinks",
+      "sourceAttributeIds": [
+        "/types/config/config-links-ConfigLinks-options"
+      ],
+      "targetId": "/types/config/config-links-options-ConfigLinksOptions",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-links-ConfigLinks",
+      "sourceAttributeIds": [
+        "/types/config/config-links-ConfigLinks-linkPathAlgorithm"
+      ],
+      "targetId": "/types/config/link-path-algorithm-LinkPathAlgorithm",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-nodes-filter-ConfigNodesFilter",
+      "sourceAttributeIds": [
+        "/types/config/config-nodes-filter-ConfigNodesFilter-filter_type"
+      ],
+      "targetId": "/types/graph/node-type-NodeType",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-nodes-ConfigNodes",
+      "sourceAttributeIds": [
+        "/types/config/config-nodes-ConfigNodes-filter"
+      ],
+      "targetId": "/types/config/config-nodes-filter-ConfigNodesFilter",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-nodes-ConfigNodes",
+      "sourceAttributeIds": [
+        "/types/config/config-nodes-ConfigNodes-options"
+      ],
+      "targetId": "/types/config/config-nodes-options-ConfigNodesOptions",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-nodes-ConfigNodes",
+      "sourceAttributeIds": [
+        "/types/config/config-nodes-ConfigNodes-styles"
+      ],
+      "targetId": "/types/graph/node-type-NodeType",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-nodes-ConfigNodes",
+      "sourceAttributeIds": [
+        "/types/config/config-nodes-ConfigNodes-styles"
+      ],
+      "targetId": "/types/graph/node-style-NodeStyle",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-Config",
+      "sourceAttributeIds": [
+        "/types/config/config-Config-layoutAlgorithm"
+      ],
+      "targetId": "/types/config/layout-algorithm-LayoutAlgorithm",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-Config",
+      "sourceAttributeIds": [
+        "/types/config/config-Config-links"
+      ],
+      "targetId": "/types/config/config-links-ConfigLinks",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-Config",
+      "sourceAttributeIds": [
+        "/types/config/config-Config-nodes"
+      ],
+      "targetId": "/types/config/config-nodes-ConfigNodes",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-Config",
+      "sourceAttributeIds": [
+        "/types/config/config-Config-theme"
+      ],
+      "targetId": "/types/config/theme-Theme",
       "type": "association"
     }
   ],
