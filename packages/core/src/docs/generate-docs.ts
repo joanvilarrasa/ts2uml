@@ -66,12 +66,12 @@ function processCurrentNodeTOC(treeNode: TreeNode, entries: string[], nodes: Nod
 
   if (treeNode.isFolder) {
     if (hasChildrenToProcess(treeNode, nodes)) {
-      entries.push(`├─ [📁/${treeNode.name}](#-${treeNode.id})\n`);
+      entries.push(`├─ 📁/${treeNode.name}\n`);
     }
   } else if (treeNode.isElement && !treeNode.isFile) {
     const node = nodes.find((n) => n.id === treeNode.id && treeNode.checked === 'checked');
     if (node?.docs) {
-      entries.push(`├─ [ ${node.title.text}](#-${treeNode.id})    <${node.title.nodeType}>\n`);
+      entries.push(`├─ ${node.title.text}    \`<${node.title.nodeType}>\`\n`);
     }
   }
 }
@@ -152,10 +152,9 @@ function processTreeNode(
     markdown += processElementNode(treeNode, nodes, includeAttributes);
   }
   // Process folder node
-  if (treeNode.id !== '/root' && treeNode.isFolder && childrenMarkdown !== '') {
+  if (treeNode.isFolder && hasChildrenToProcess(treeNode, nodes)) {
     markdown += processFolderNode(treeNode, ancestorNodes, childrenMarkdown);
   }
-
   return markdown;
 }
 
@@ -198,14 +197,13 @@ function processFileChildren(
 function processElementNode(treeNode: TreeNode, nodes: Node[], includeAttributes: boolean): string {
   const node = nodes.find((n) => n.id === treeNode.id && treeNode.checked === 'checked');
   if (node?.docs) {
-    return processNodeDocs(node, includeAttributes, treeNode.id);
+    return processNodeDocs(node, includeAttributes);
   }
   return '';
 }
 
 function processFolderNode(treeNode: TreeNode, ancestorNodes: string[], childrenMarkdown: string): string {
-  let markdown = `<a id="-${treeNode.id}"></a>\n`;
-  markdown = '## 📁    ';
+  let markdown = '## 📁    ';
 
   for (const ancestorNode of ancestorNodes) {
     markdown += `/    ${ancestorNode}    `;
@@ -217,9 +215,8 @@ function processFolderNode(treeNode: TreeNode, ancestorNodes: string[], children
   return markdown;
 }
 
-function processNodeDocs(node: Node, includeAttributes: boolean, id: string): string {
+function processNodeDocs(node: Node, includeAttributes: boolean): string {
   let markdown = '\n\n---\n\n';
-  markdown += `<a id="-${id}"></a>\n`;
   markdown += `> ### **${node.title.text}** \`${node.title.nodeType}\`\n\n`;
 
   // Process node documentation

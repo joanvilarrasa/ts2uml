@@ -750,13 +750,13 @@ function processCurrentNodeTOC(treeNode, entries, nodes) {
   }
   if (treeNode.isFolder) {
     if (hasChildrenToProcess(treeNode, nodes)) {
-      entries.push(`\u251C\u2500 [\u{1F4C1}/${treeNode.name}](#-${treeNode.id})
+      entries.push(`\u251C\u2500 \u{1F4C1}/${treeNode.name}
 `);
     }
   } else if (treeNode.isElement && !treeNode.isFile) {
     const node = nodes.find((n) => n.id === treeNode.id && treeNode.checked === "checked");
     if (node?.docs) {
-      entries.push(`\u251C\u2500 [ ${node.title.text}](#-${treeNode.id})    <${node.title.nodeType}>
+      entries.push(`\u251C\u2500 ${node.title.text}    \`<${node.title.nodeType}>\`
 `);
     }
   }
@@ -814,7 +814,7 @@ function processTreeNode(treeNode, nodes, ancestorNodes, includeAttributes) {
   if (treeNode.isElement && !treeNode.isFile) {
     markdown += processElementNode(treeNode, nodes, includeAttributes);
   }
-  if (treeNode.id !== "/root" && treeNode.isFolder && childrenMarkdown !== "") {
+  if (treeNode.isFolder && hasChildrenToProcess(treeNode, nodes)) {
     markdown += processFolderNode(treeNode, ancestorNodes, childrenMarkdown);
   }
   return markdown;
@@ -846,14 +846,12 @@ function processFileChildren(fileNode, nodes, ancestorNodes, includeAttributes) 
 function processElementNode(treeNode, nodes, includeAttributes) {
   const node = nodes.find((n) => n.id === treeNode.id && treeNode.checked === "checked");
   if (node?.docs) {
-    return processNodeDocs(node, includeAttributes, treeNode.id);
+    return processNodeDocs(node, includeAttributes);
   }
   return "";
 }
 function processFolderNode(treeNode, ancestorNodes, childrenMarkdown) {
-  let markdown = `<a id="-${treeNode.id}"></a>
-`;
-  markdown = "## \u{1F4C1}    ";
+  let markdown = "## \u{1F4C1}    ";
   for (const ancestorNode of ancestorNodes) {
     markdown += `/    ${ancestorNode}    `;
   }
@@ -862,10 +860,8 @@ function processFolderNode(treeNode, ancestorNodes, childrenMarkdown) {
   markdown += childrenMarkdown;
   return markdown;
 }
-function processNodeDocs(node, includeAttributes, id) {
+function processNodeDocs(node, includeAttributes) {
   let markdown = "\n\n---\n\n";
-  markdown += `<a id="-${id}"></a>
-`;
   markdown += `> ### **${node.title.text}** \`${node.title.nodeType}\`
 
 `;
