@@ -9,10 +9,11 @@ declare function generateGraph({ files, config, baseDir, }: {
 
 declare function ts2umlToJson(graph: Graph): string;
 
-declare function generateDocs({ graph, title, includeAttributes, }: {
+declare function generateDocs({ graph, includeAttributes, includeTOC, }: {
     graph: Graph;
     title?: string;
     includeAttributes?: boolean;
+    includeTOC?: boolean;
 }): string;
 
 declare function createTreeNodeFromGraph(graph: Graph): {

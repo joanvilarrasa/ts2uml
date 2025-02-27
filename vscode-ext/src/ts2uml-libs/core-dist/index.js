@@ -719,19 +719,20 @@ function computeTreeCheckedStatus(tree) {
 var CLEAN_JSDOC_LINE_REGEX = /\/\*\*|\*\/|\//;
 function generateDocs({
   graph,
-  title = "Docs",
-  includeAttributes = true
+  includeAttributes = true,
+  includeTOC = true
 }) {
   const treeNodes = createTreeNodeFromGraph(graph);
-  let markdown = `# ${title}
-
-`;
-  markdown += "## Models\n\n";
-  const tocEntries = [];
-  for (const rootNodeKey of Object.keys(treeNodes)) {
-    generateTOCEntries(treeNodes[rootNodeKey], tocEntries, graph.nodes);
+  let markdown = "## Models\n\n";
+  if (includeTOC) {
+    markdown += "\n";
+    const tocEntries = [];
+    for (const rootNodeKey of Object.keys(treeNodes)) {
+      generateTOCEntries(treeNodes[rootNodeKey], tocEntries, graph.nodes);
+    }
+    markdown += tocEntries.join("\n");
+    markdown += "\n";
   }
-  markdown += tocEntries.join("\n");
   for (const rootNodeKey of Object.keys(treeNodes)) {
     markdown += processTreeNode(treeNodes[rootNodeKey], graph.nodes, [], includeAttributes);
   }
@@ -749,13 +750,13 @@ function processCurrentNodeTOC(treeNode, entries, nodes) {
   }
   if (treeNode.isFolder) {
     if (hasChildrenToProcess(treeNode, nodes)) {
-      entries.push(`|- [\u{1F4C1}/${treeNode.name}](#-${treeNode.id})
+      entries.push(`\u251C\u2500 [\u{1F4C1}/${treeNode.name}](#-${treeNode.id})
 `);
     }
   } else if (treeNode.isElement && !treeNode.isFile) {
     const node = nodes.find((n) => n.id === treeNode.id && treeNode.checked === "checked");
     if (node?.docs) {
-      entries.push(`|- [ ${node.title.text}](#-${treeNode.id})    <${node.title.nodeType}>
+      entries.push(`\u251C\u2500 [ ${node.title.text}](#-${treeNode.id})    <${node.title.nodeType}>
 `);
     }
   }
@@ -794,18 +795,17 @@ function processFileChildrenTOC(fileNode, entries, nodes) {
     if (fileChildNode?.isElement) {
       const currentEntryCount = entries.length;
       generateTOCEntries(fileChildNode, entries, nodes);
-      indentEntries(entries, currentEntryCount);
+      for (let i = currentEntryCount; i < entries.length; i++) {
+        entries[i] = `.    ${entries[i]}`;
+      }
     }
   }
 }
 function processRegularChildTOC(childNode, entries, nodes) {
   const currentEntryCount = entries.length;
   generateTOCEntries(childNode, entries, nodes);
-  indentEntries(entries, currentEntryCount);
-}
-function indentEntries(entries, startIndex) {
-  for (let i = startIndex; i < entries.length; i++) {
-    entries[i] = `|    ${entries[i]}`;
+  for (let i = currentEntryCount; i < entries.length; i++) {
+    entries[i] = `.    ${entries[i]}`;
   }
 }
 function processTreeNode(treeNode, nodes, ancestorNodes, includeAttributes) {
@@ -846,12 +846,14 @@ function processFileChildren(fileNode, nodes, ancestorNodes, includeAttributes) 
 function processElementNode(treeNode, nodes, includeAttributes) {
   const node = nodes.find((n) => n.id === treeNode.id && treeNode.checked === "checked");
   if (node?.docs) {
-    return processNodeDocs(node, includeAttributes);
+    return processNodeDocs(node, includeAttributes, treeNode.id);
   }
   return "";
 }
 function processFolderNode(treeNode, ancestorNodes, childrenMarkdown) {
-  let markdown = "## \u{1F4C1}    ";
+  let markdown = `<a id="-${treeNode.id}"></a>
+`;
+  markdown = "## \u{1F4C1}    ";
   for (const ancestorNode of ancestorNodes) {
     markdown += `/    ${ancestorNode}    `;
   }
@@ -860,8 +862,10 @@ function processFolderNode(treeNode, ancestorNodes, childrenMarkdown) {
   markdown += childrenMarkdown;
   return markdown;
 }
-function processNodeDocs(node, includeAttributes) {
+function processNodeDocs(node, includeAttributes, id) {
   let markdown = "\n\n---\n\n";
+  markdown += `<a id="-${id}"></a>
+`;
   markdown += `> ### **${node.title.text}** \`${node.title.nodeType}\`
 
 `;

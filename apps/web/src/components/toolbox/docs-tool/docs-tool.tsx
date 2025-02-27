@@ -7,7 +7,7 @@ import { Tooltip } from '@/components/ui/tooltip';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { GraphManager } from '@/lib/graph-manager';
 import { generateDocs } from '@ts2uml/core/src/docs/generate-docs';
-import { Clipboard, FileText, Image, ListTree, SquarePen } from 'lucide-react';
+import { Clipboard, FileText, ListTree, SquarePen, TableProperties } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { Button } from '../../ui/button';
@@ -16,7 +16,7 @@ import { DocsToolMarkdown } from './docs-tool-markdown';
 export function DocsTool() {
     const gm: GraphManager = GraphManager.getInstance();
     const [includeAttributes, setIncludeAttributes] = useState(true);
-    const [includeImage, setIncludeImage] = useState(true);
+    const [includeTOC, setIncludeTOC] = useState(true);
     const [docsContent, setDocsContent] = useState<string>('');
 
     function handleGenerateDocs() {
@@ -25,7 +25,7 @@ export function DocsTool() {
             const docs = generateDocs({
                 graph: currentGraph,
                 includeAttributes,
-                title: 'Docs'
+                includeTOC
             });
             setDocsContent(docs);
             toast.success('Documentation generated successfully');
@@ -57,10 +57,32 @@ export function DocsTool() {
             </TooltipProvider>
             <SheetContent className="w-[900px] sm:max-w-[900px]">
                 <SheetHeader>
-                    <SheetTitle className="flex flex-col items-start justify-center gap-2">
+                    <SheetTitle className='flex w-full flex-col items-start justify-center gap-2'>
                         <span className="">{'Documentation'}</span>
                         <Separator orientation="horizontal" className="bg-foreground/10" />
-                        <div className="flex items-start gap-2">
+                        <div className="flex w-full flex-col items-start gap-2">
+                            <div className='flex w-full flex-col gap-2'>
+                                <span className='text-muted-foreground text-xs'>
+                                    {"Configure:"}
+                                </span>
+                                <div className="flex items-center gap-2 pb-2">
+                                    <CheckboxPartial
+                                        checked={includeTOC ? 'checked' : 'unchecked'}
+                                        onClick={() => setIncludeTOC(!includeTOC)}
+                                    />
+                                    <ListTree className="h-4 w-4" />
+                                    <span className="text-xs">Include Table of Contents</span>
+                                </div>
+                                <div className="flex items-center gap-2 pb-2">
+                                    <CheckboxPartial
+                                        checked={includeAttributes ? 'checked' : 'unchecked'}
+                                        onClick={() => setIncludeAttributes(!includeAttributes)}
+                                    />
+                                    <TableProperties className="h-4 w-4" />
+                                    <span className="text-xs">Include Attributes</span>
+                                </div>
+                            </div>
+                            <Separator orientation="horizontal" className="bg-foreground/10" />
                             <div className="flex flex-col gap-2">
                                 <span className='text-muted-foreground text-xs'>
                                     {"Generate:"}
@@ -68,35 +90,12 @@ export function DocsTool() {
                                 <div className="flex gap-2">
                                     <Button variant="default" onClick={handleGenerateDocs}>
                                         <span className="font-medium">Generate</span>
-                                        <SquarePen className='ml-2 h-3 w-3' />
+                                        <SquarePen />
                                     </Button>
-                                    <Button variant="outline" size="icon" onClick={handleCopyDocs}>
+                                    <Button variant="outline" onClick={handleCopyDocs}>
+                                        <span className="font-medium">Copy</span>
                                         <Clipboard />
                                     </Button>
-                                </div>
-                            </div>
-                            <Separator orientation="vertical" className="bg-foreground/10" />
-                            <div className="flex flex-col gap-2">
-                                <span className='text-muted-foreground text-xs'>
-                                    {"Configure:"}
-                                </span>
-                                <div className="flex flex-col">
-                                    <div className="flex items-center gap-2 pb-2">
-                                        <CheckboxPartial
-                                            checked={includeAttributes ? 'checked' : 'unchecked'}
-                                            onClick={() => setIncludeAttributes(!includeAttributes)}
-                                        />
-                                        <ListTree className="h-4 w-4" />
-                                        <span className="text-xs">Include attributes</span>
-                                    </div>
-                                    <div className="flex items-center gap-2 pb-2">
-                                        <CheckboxPartial
-                                            checked={includeImage ? 'checked' : 'unchecked'}
-                                            onClick={() => setIncludeImage(!includeImage)}
-                                        />
-                                        <Image className="h-4 w-4" />
-                                        <span className="text-xs">Include image</span>
-                                    </div>
                                 </div>
                             </div>
                         </div>

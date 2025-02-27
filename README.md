@@ -74,7 +74,6 @@ Don't lose your masterpiece:
 Don't lose your masterpiece:
 - ✅ Generate a markdown documentation of your types based on the jsdocs insied the code
 - ✅ Optionally show a table with the attributes for each interface and class (methods coming soon)
-- ⬜ Add an image of the graph (coming soon)
 
 ### 🔍 Explore the code (extension only)
 - ✅ Click on the top right corner of a node to open the code of the node in the editor

@@ -5,30 +5,31 @@ const CLEAN_JSDOC_LINE_REGEX = /\/\*\*|\*\/|\//;
 
 export function generateDocs({
   graph,
-  title = 'Docs',
   includeAttributes = true,
+  includeTOC = true,
 }: {
   graph: Graph;
   title?: string;
   includeAttributes?: boolean;
+  includeTOC?: boolean;
 }): string {
   // Create tree structure from graph
   const treeNodes = createTreeNodeFromGraph(graph);
 
-  // Start building markdown
-  let markdown = `# ${title}\n\n`;
-
   // Add table of contents
-  markdown += '## Models\n\n';
+  let markdown = '## Models\n\n';
 
   // Generate TOC entries
-  const tocEntries: string[] = [];
-  for (const rootNodeKey of Object.keys(treeNodes)) {
-    generateTOCEntries(treeNodes[rootNodeKey], tocEntries, graph.nodes);
+  if (includeTOC) {
+    markdown += '\n';
+    const tocEntries: string[] = [];
+    for (const rootNodeKey of Object.keys(treeNodes)) {
+      generateTOCEntries(treeNodes[rootNodeKey], tocEntries, graph.nodes);
+    }
+    // in the last entry, remove the last \n
+    markdown += tocEntries.join('\n');
+    markdown += '\n';
   }
-
-  // Add TOC entries to markdown
-  markdown += tocEntries.join('\n');
 
   // Process tree nodes recursively
   for (const rootNodeKey of Object.keys(treeNodes)) {
@@ -65,12 +66,12 @@ function processCurrentNodeTOC(treeNode: TreeNode, entries: string[], nodes: Nod
 
   if (treeNode.isFolder) {
     if (hasChildrenToProcess(treeNode, nodes)) {
-      entries.push(`|- [📁/${treeNode.name}](#-${treeNode.id})\n`);
+      entries.push(`├─ [📁/${treeNode.name}](#-${treeNode.id})\n`);
     }
   } else if (treeNode.isElement && !treeNode.isFile) {
     const node = nodes.find((n) => n.id === treeNode.id && treeNode.checked === 'checked');
     if (node?.docs) {
-      entries.push(`|- [ ${node.title.text}](#-${treeNode.id})    <${node.title.nodeType}>\n`);
+      entries.push(`├─ [ ${node.title.text}](#-${treeNode.id})    <${node.title.nodeType}>\n`);
     }
   }
 }
@@ -121,26 +122,18 @@ function processFileChildrenTOC(fileNode: TreeNode, entries: string[], nodes: No
     if (fileChildNode?.isElement) {
       const currentEntryCount = entries.length;
       generateTOCEntries(fileChildNode, entries, nodes);
-      indentEntries(entries, currentEntryCount);
+      for (let i = currentEntryCount; i < entries.length; i++) {
+        entries[i] = `.    ${entries[i]}`;
+      }
     }
   }
 }
 
-/**
- * Process regular (non-file) child for TOC entries
- */
 function processRegularChildTOC(childNode: TreeNode, entries: string[], nodes: Node[]): void {
   const currentEntryCount = entries.length;
   generateTOCEntries(childNode, entries, nodes);
-  indentEntries(entries, currentEntryCount);
-}
-
-/**
- * Indent entries from startIndex to the end of the entries array
- */
-function indentEntries(entries: string[], startIndex: number): void {
-  for (let i = startIndex; i < entries.length; i++) {
-    entries[i] = `|    ${entries[i]}`;
+  for (let i = currentEntryCount; i < entries.length; i++) {
+    entries[i] = `.    ${entries[i]}`;
   }
 }
 
@@ -205,13 +198,14 @@ function processFileChildren(
 function processElementNode(treeNode: TreeNode, nodes: Node[], includeAttributes: boolean): string {
   const node = nodes.find((n) => n.id === treeNode.id && treeNode.checked === 'checked');
   if (node?.docs) {
-    return processNodeDocs(node, includeAttributes);
+    return processNodeDocs(node, includeAttributes, treeNode.id);
   }
   return '';
 }
 
 function processFolderNode(treeNode: TreeNode, ancestorNodes: string[], childrenMarkdown: string): string {
-  let markdown = '## 📁    ';
+  let markdown = `<a id="-${treeNode.id}"></a>\n`;
+  markdown = '## 📁    ';
 
   for (const ancestorNode of ancestorNodes) {
     markdown += `/    ${ancestorNode}    `;
@@ -223,8 +217,9 @@ function processFolderNode(treeNode: TreeNode, ancestorNodes: string[], children
   return markdown;
 }
 
-function processNodeDocs(node: Node, includeAttributes: boolean): string {
+function processNodeDocs(node: Node, includeAttributes: boolean, id: string): string {
   let markdown = '\n\n---\n\n';
+  markdown += `<a id="-${id}"></a>\n`;
   markdown += `> ### **${node.title.text}** \`${node.title.nodeType}\`\n\n`;
 
   // Process node documentation
