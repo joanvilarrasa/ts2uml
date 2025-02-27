@@ -5,6 +5,15 @@ See it in the marketplace [here](https://marketplace.visualstudio.com/items?item
 
 ⚠️ Please keep in mind that this is a passion project and is still in early development. Expect bugs and unintended behaviors.
 
+## 💡 The idea
+
+One of the usual flows when building software is to create diagrams of the types and then code them. This leads to:
+- Having to maintain both the diagram and the code (no one does this for an extended period of time).
+- Or deprecating the diagram as soon as you have to modify the original idea (which always happens).
+
+The idea for this project is to give you a tool that generates a diagram form your code so that you can:
+- Start by coding and only maintain the code
+- Whenever you need a diagram to think about the structure or onboard a new member just generate it!
 
 ### 🤔 Why did I build this?
 
