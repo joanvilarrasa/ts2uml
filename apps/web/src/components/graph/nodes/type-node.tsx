@@ -26,6 +26,7 @@ export function TypeNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>) 
   };
   return (
     <Card
+      id={node.id}
       className="hover:shadow-[0px_0px_25px_5px_hsl(var(--type))]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

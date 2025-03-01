@@ -27,6 +27,7 @@ export function UnionNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>)
 
   return (
     <Card
+      id={node.id}
       className="hover:shadow-[0px_0px_25px_5px_hsl(var(--union))]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

@@ -53,9 +53,9 @@ export class HoverManager {
       const linkElement = document.getElementById(`${link.sourceId}-${link.targetId}`);
       if (linkElement) {
         if (action === 'add') {
-          linkElement.classList.add('!stroke-[4px]');
+          linkElement.classList.add('!stroke-[5px]');
         } else {
-          linkElement.classList.remove('!stroke-[4px]');
+          linkElement.classList.remove('!stroke-[5px]');
         }
       }
     }

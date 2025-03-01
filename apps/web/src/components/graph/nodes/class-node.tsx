@@ -31,6 +31,7 @@ export function ClassNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>)
 
   return (
     <Card
+      id={node.id}
       className="hover:shadow-[0px_0px_25px_5px_hsl(var(--class))]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -57,7 +58,8 @@ export function ClassNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>)
           )}
           {attributes.map((attribute, index) => (
             <div
-              key={`${node.id}-${index}`}
+              id={attribute.id}
+              key={`${attribute.id}`}
               className={cn(
                 'flex items-center justify-start border-border/10 border-b px-4',
                 index === attributes.length - 1 && 'border-border'
@@ -76,9 +78,10 @@ export function ClassNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>)
               <span className="font-bold text-sm">Methods</span>
             </div>
           )}
-          {methods.map((method, index) => (
+          {methods.map((method) => (
             <div
-              key={`${node.id}-${attributes.length + index}`}
+              id={method.id}
+              key={`${method.id}`}
               className={cn('flex items-center justify-start border-border/10 border-b px-4')}
               style={{ height: NODE_ATTRIBUTE_HEIGHT }}
             >

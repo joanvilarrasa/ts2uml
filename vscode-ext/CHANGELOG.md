@@ -2,6 +2,10 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.60] - Highlights
+
+- Added highlights when hovering the nodes
+
 ### [v0.0.59] - Better filtering
 
 - Added filtering by name (starts with, ends with or includes)
