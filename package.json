@@ -1,7 +1,7 @@
 {
   "name": "ts2uml",
   "private": "true",
-  "version": "0.0.63",
+  "version": "0.0.64",
   "workspaces": [
     "apps/web",
     "packages/core",
