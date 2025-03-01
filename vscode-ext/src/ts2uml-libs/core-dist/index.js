@@ -715,52 +715,7 @@ function computeTreeCheckedStatus(tree) {
   }
 }
 
-// src/docs/generate-docs.ts
-var CLEAN_JSDOC_LINE_REGEX = /\/\*\*|\*\/|\//;
-function generateDocs({
-  graph,
-  includeAttributes = true,
-  includeTOC = true
-}) {
-  const treeNodes = createTreeNodeFromGraph(graph);
-  let markdown = "## Models\n\n";
-  if (includeTOC) {
-    markdown += "\n";
-    const tocEntries = [];
-    for (const rootNodeKey of Object.keys(treeNodes)) {
-      generateTOCEntries(treeNodes[rootNodeKey], tocEntries, graph.nodes);
-    }
-    markdown += tocEntries.join("\n");
-    markdown += "\n";
-  }
-  for (const rootNodeKey of Object.keys(treeNodes)) {
-    markdown += processTreeNode(treeNodes[rootNodeKey], graph.nodes, [], includeAttributes);
-  }
-  return markdown;
-}
-function generateTOCEntries(treeNode, entries, nodes) {
-  processCurrentNodeTOC(treeNode, entries, nodes);
-  if (treeNode.children) {
-    processChildrenTOC(treeNode, entries, nodes);
-  }
-}
-function processCurrentNodeTOC(treeNode, entries, nodes) {
-  if (treeNode.id === "/root") {
-    return;
-  }
-  if (treeNode.isFolder) {
-    if (hasChildrenToProcess(treeNode, nodes)) {
-      entries.push(`\u251C\u2500 \u{1F4C1}/${treeNode.name}
-`);
-    }
-  } else if (treeNode.isElement && !treeNode.isFile) {
-    const node = nodes.find((n) => n.id === treeNode.id && treeNode.checked === "checked");
-    if (node?.docs) {
-      entries.push(`\u251C\u2500 ${node.title.text}    \`<${node.title.nodeType}>\`
-`);
-    }
-  }
-}
+// src/docs/has-children-to-process.ts
 function hasChildrenToProcess(treeNode, nodes) {
   if (!treeNode.children) {
     return false;
@@ -775,12 +730,31 @@ function hasChildrenToProcess(treeNode, nodes) {
   }
   return false;
 }
+
+// src/docs/generate-toc-entries.ts
+function generateTOCEntries(treeNode, entries, nodes) {
+  if (treeNode.isFolder) {
+    if (hasChildrenToProcess(treeNode, nodes)) {
+      entries.push(`\u251C\u2500 \u{1F4C1}/${treeNode.name}
+`);
+    }
+  } else if (treeNode.isElement && !treeNode.isFile) {
+    const node = nodes.find((n) => n.id === treeNode.id && treeNode.checked === "checked");
+    if (node?.docs) {
+      entries.push(`\u251C\u2500 ${node.title.text}    \`<${node.title.nodeType}>\`
+`);
+    }
+  }
+  if (treeNode.children) {
+    processChildrenTOC(treeNode, entries, nodes);
+  }
+}
 function processChildrenTOC(treeNode, entries, nodes) {
   if (!treeNode.children) {
     return;
   }
   for (const childNode of Object.values(treeNode.children)) {
-    if (childNode.isFile && childNode.children) {
+    if (childNode.isFile && hasChildrenToProcess(childNode, nodes)) {
       processFileChildrenTOC(childNode, entries, nodes);
     } else if (childNode.isFolder || childNode.isElement) {
       processRegularChildTOC(childNode, entries, nodes);
@@ -805,8 +779,37 @@ function processRegularChildTOC(childNode, entries, nodes) {
   const currentEntryCount = entries.length;
   generateTOCEntries(childNode, entries, nodes);
   for (let i = currentEntryCount; i < entries.length; i++) {
-    entries[i] = `.    ${entries[i]}`;
+    if (entries[i] !== "/root") {
+      entries[i] = `.    ${entries[i]}`;
+    }
   }
+}
+
+// src/docs/generate-docs.ts
+var CLEAN_JSDOC_LINE_REGEX = /\/\*\*|\*\/|\//;
+function generateDocs({
+  graph,
+  includeAttributes = true,
+  includeTOC = true
+}) {
+  let treeNodes = createTreeNodeFromGraph(graph);
+  while (Object.keys(treeNodes).length === 1 && treeNodes.root !== void 0) {
+    treeNodes = treeNodes.root.children ?? {};
+  }
+  let markdown = "## Models\n\n";
+  if (includeTOC) {
+    markdown += "\n";
+    const tocEntries = [];
+    for (const rootNodeKey of Object.keys(treeNodes)) {
+      generateTOCEntries(treeNodes[rootNodeKey], tocEntries, graph.nodes);
+    }
+    markdown += tocEntries.join("\n");
+    markdown += "\n";
+  }
+  for (const rootNodeKey of Object.keys(treeNodes)) {
+    markdown += processTreeNode(treeNodes[rootNodeKey], graph.nodes, [], includeAttributes);
+  }
+  return markdown;
 }
 function processTreeNode(treeNode, nodes, ancestorNodes, includeAttributes) {
   let markdown = "";
@@ -853,7 +856,9 @@ function processElementNode(treeNode, nodes, includeAttributes) {
 function processFolderNode(treeNode, ancestorNodes, childrenMarkdown) {
   let markdown = "## \u{1F4C1}    ";
   for (const ancestorNode of ancestorNodes) {
-    markdown += `/    ${ancestorNode}    `;
+    if (ancestorNode !== "/.") {
+      markdown += `/    ${ancestorNode}    `;
+    }
   }
   markdown += `/    ${treeNode.name}
 `;

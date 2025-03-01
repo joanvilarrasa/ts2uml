@@ -2,6 +2,10 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.57] - Better docs
+
+- Improved docs
+
 ### [v0.0.56] - Extenedd properties 
 
 - Fixed bug where the docs were not being generated properly

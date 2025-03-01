@@ -1,5 +1,7 @@
 import type { Graph, Node, TreeNode } from '@ts2uml/models';
 import { createTreeNodeFromGraph } from '../tree-node/create-tree-node-from-graph.ts';
+import { generateTOCEntries } from './generate-toc-entries.ts';
+import { hasChildrenToProcess } from './has-children-to-process.ts';
 
 const CLEAN_JSDOC_LINE_REGEX = /\/\*\*|\*\/|\//;
 
@@ -14,9 +16,13 @@ export function generateDocs({
   includeTOC?: boolean;
 }): string {
   // Create tree structure from graph
-  const treeNodes = createTreeNodeFromGraph(graph);
+  let treeNodes = createTreeNodeFromGraph(graph);
+  // remove the root node
+  while (Object.keys(treeNodes).length === 1 && treeNodes.root !== undefined) {
+    treeNodes = treeNodes.root.children ?? {};
+  }
 
-  // Add table of contents
+  // Add a title
   let markdown = '## Models\n\n';
 
   // Generate TOC entries
@@ -37,104 +43,6 @@ export function generateDocs({
   }
 
   return markdown;
-}
-
-/**
- * Generates table of contents entries recursively
- * @param treeNode - The current tree node
- * @param entries - Array to collect TOC entries
- * @param nodes - All nodes from the graph
- */
-function generateTOCEntries(treeNode: TreeNode, entries: string[], nodes: Node[]): void {
-  // Process current node
-  processCurrentNodeTOC(treeNode, entries, nodes);
-
-  // Process children
-  if (treeNode.children) {
-    processChildrenTOC(treeNode, entries, nodes);
-  }
-}
-
-/**
- * Process the current node for TOC entry
- */
-function processCurrentNodeTOC(treeNode: TreeNode, entries: string[], nodes: Node[]): void {
-  // Skip the root node
-  if (treeNode.id === '/root') {
-    return;
-  }
-
-  if (treeNode.isFolder) {
-    if (hasChildrenToProcess(treeNode, nodes)) {
-      entries.push(`├─ 📁/${treeNode.name}\n`);
-    }
-  } else if (treeNode.isElement && !treeNode.isFile) {
-    const node = nodes.find((n) => n.id === treeNode.id && treeNode.checked === 'checked');
-    if (node?.docs) {
-      entries.push(`├─ ${node.title.text}    \`<${node.title.nodeType}>\`\n`);
-    }
-  }
-}
-
-function hasChildrenToProcess(treeNode: TreeNode, nodes: Node[]): boolean {
-  if (!treeNode.children) {
-    return false;
-  }
-  if (
-    Object.values(treeNode.children).some((child) => {
-      if (!child.isElement) {
-        return hasChildrenToProcess(child, nodes);
-      }
-      return nodes.some((n) => n.id === child.id && child.checked === 'checked');
-    })
-  ) {
-    return true;
-  }
-  return false;
-}
-
-/**
- * Process children nodes for TOC entries
- */
-function processChildrenTOC(treeNode: TreeNode, entries: string[], nodes: Node[]): void {
-  if (!treeNode.children) {
-    return;
-  }
-
-  for (const childNode of Object.values(treeNode.children)) {
-    if (childNode.isFile && childNode.children) {
-      processFileChildrenTOC(childNode, entries, nodes);
-    } else if (childNode.isFolder || childNode.isElement) {
-      processRegularChildTOC(childNode, entries, nodes);
-    }
-  }
-}
-
-/**
- * Process file children for TOC entries
- */
-function processFileChildrenTOC(fileNode: TreeNode, entries: string[], nodes: Node[]): void {
-  if (!fileNode.children) {
-    return;
-  }
-
-  for (const fileChildNode of Object.values(fileNode.children)) {
-    if (fileChildNode?.isElement) {
-      const currentEntryCount = entries.length;
-      generateTOCEntries(fileChildNode, entries, nodes);
-      for (let i = currentEntryCount; i < entries.length; i++) {
-        entries[i] = `.    ${entries[i]}`;
-      }
-    }
-  }
-}
-
-function processRegularChildTOC(childNode: TreeNode, entries: string[], nodes: Node[]): void {
-  const currentEntryCount = entries.length;
-  generateTOCEntries(childNode, entries, nodes);
-  for (let i = currentEntryCount; i < entries.length; i++) {
-    entries[i] = `.    ${entries[i]}`;
-  }
 }
 
 function processTreeNode(
@@ -206,7 +114,9 @@ function processFolderNode(treeNode: TreeNode, ancestorNodes: string[], children
   let markdown = '## 📁    ';
 
   for (const ancestorNode of ancestorNodes) {
-    markdown += `/    ${ancestorNode}    `;
+    if (ancestorNode !== '/.') {
+      markdown += `/    ${ancestorNode}    `;
+    }
   }
 
   markdown += `/    ${treeNode.name}\n`;
