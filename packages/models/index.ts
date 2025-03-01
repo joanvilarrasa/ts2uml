@@ -9,7 +9,6 @@ export * from './src/types/config/config-nodes-filter.ts';
 export * from './src/types/config/config-nodes-options.ts';
 export * from './src/types/config/layout-algorithm.ts';
 export * from './src/types/config/link-path-algorithm.ts';
-export * from './src/types/export/export-format.ts';
 export * from './src/types/graph/graph.ts';
 export * from './src/types/graph/link.ts';
 export * from './src/types/graph/link-type.ts';
@@ -30,6 +29,7 @@ export * from './src/types/messages/msg-update-visible-nodes.ts';
 export * from './src/types/messages/msg-page-ready.ts';
 
 // Export default values
+export * from './src/defaults/constants.ts';
 export * from './src/defaults/colors.ts';
 export * from './src/defaults/dark-node-styles.ts';
 export * from './src/defaults/light-node-styles.ts';

@@ -1,4 +1,4 @@
-import { NODE_TITLE_HEIGHT } from '@/lib/constants';
+import { NODE_TITLE_HEIGHT } from '@ts2uml/models';
 import * as React from 'react';
 import { cn } from '../../lib/utils';
 

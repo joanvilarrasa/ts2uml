@@ -1,7 +1,7 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { GraphManager } from '@/lib/graph-manager';
-import { getLeafIds } from '@/lib/tree-node/get-leaf-ids';
 import { createTreeNodeFromGraph } from '@ts2uml/core/src/tree-node/create-tree-node-from-graph.ts';
+import { getLeafIds } from '@ts2uml/core/src/tree-node/get-leaf-ids';
 import { type TreeNode, createMsgUpdateVisibleNodes } from '@ts2uml/models';
 import { useEffect, useState } from 'react';
 import { FilterToolByPathTreeNode } from './filter-tool-by-path-tree-node';

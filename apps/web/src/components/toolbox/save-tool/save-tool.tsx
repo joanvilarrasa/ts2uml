@@ -5,11 +5,10 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { Tooltip } from '@/components/ui/tooltip';
 import { TooltipContent } from '@/components/ui/tooltip';
 import { TooltipTrigger } from '@/components/ui/tooltip';
-import { EXPORT_IMAGE_HEIGHT } from '@/lib/constants';
-import { EXPORT_IMAGE_WIDTH } from '@/lib/constants';
 import { cn, dataURLToBlob } from '@/lib/utils';
+import { ts2umlToExcalidraw } from '@ts2uml/core/src/export/ts2uml-to-excalidraw';
 import { ts2umlToJson } from '@ts2uml/core/src/export/ts2uml-to-json';
-import { type ExportFormat, ZExportFormat } from '@ts2uml/models';
+import { EXPORT_IMAGE_HEIGHT, EXPORT_IMAGE_WIDTH } from '@ts2uml/models';
 import { getViewportForBounds } from '@xyflow/react';
 import { getNodesBounds } from '@xyflow/react';
 import { useReactFlow } from '@xyflow/react';
@@ -22,57 +21,55 @@ import { Button } from '../../ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover';
 
 export function SaveTool() {
+  type ExportFormat = 'png' | 'png-transparent' | 'json' | 'excalidraw';
   const gm: GraphManager = GraphManager.getInstance();
   const { getNodes } = useReactFlow();
   const [isOpen, setIsOpen] = useState(false);
   const [exportFormat, setExportFormat] = useState<ExportFormat>('png');
   const [exportName, setExportName] = useState('');
-  const exportFormatFileOptions = ZExportFormat.extract(['json']);
-  const exportFormatImageOptions = ZExportFormat.extract(['png', 'png-transparent']);
 
   async function handleExport(target: 'download' | 'clipboard') {
     const actualExportName = exportName === '' ? 'ts2uml' : exportName;
     gm.updateNodePositions(getNodes());
-    if (exportFormat === 'json') {
-      const content = ts2umlToJson(gm.getGraph());
-      if (target === 'download') {
-        exportJson(content, actualExportName);
-      } else {
-        const loaderToastId = toast.loading('Copying JSON to clipboard...');
-        await clipboardJson(content);
-        toast.dismiss(loaderToastId);
-        toast.success('JSON copied to clipboard!', { style: { border: '1px solid hsl(var(--primary))' } });
-      }
+
+    if (exportFormat === 'json' || exportFormat === 'excalidraw') {
+      await exportJson(actualExportName, target);
     } else if (exportFormat === 'png' || exportFormat === 'png-transparent') {
-      const loaderToastId = toast.loading('Generating PNG...');
-      const content = await toPngImage(exportFormat === 'png');
-      toast.dismiss(loaderToastId);
-      if (target === 'download') {
-        exportPng(content, actualExportName);
-      } else {
-        await clipboardPng(content);
-        toast.success('PNG copied to clipboard!', { style: { border: '1px solid hsl(var(--primary))' } });
-      }
+      await exportPng(actualExportName, target);
     }
   }
 
-  function exportJson(content: string, name: string) {
-    const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(content)}`;
-    const a = document.createElement('a');
-    a.setAttribute('download', `${name}.json`);
-    a.setAttribute('href', dataUri);
-    a.click();
-  }
-  async function clipboardJson(content: string) {
-    await navigator.clipboard.writeText(content);
+  async function exportJson(name: string, target: 'download' | 'clipboard') {
+    const content = exportFormat === 'json' ? ts2umlToJson(gm.getGraph()) : ts2umlToExcalidraw(gm.getGraph());
+    if (target === 'download') {
+      const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(content)}`;
+      const a = document.createElement('a');
+      a.setAttribute('download', `${name}.json`);
+      a.setAttribute('href', dataUri);
+      a.click();
+    } else {
+      const loaderToastId = toast.loading('Copying JSON to clipboard...');
+      await navigator.clipboard.writeText(content);
+      toast.dismiss(loaderToastId);
+      toast.success('JSON copied to clipboard!', { style: { border: '1px solid hsl(var(--primary))' } });
+    }
   }
 
-  function exportPng(dataUrl: string, name: string) {
-    const a = document.createElement('a');
-    a.setAttribute('download', `${name}.png`);
-    a.setAttribute('href', dataUrl);
-    a.click();
+  async function exportPng(name: string, target: 'download' | 'clipboard') {
+    const loaderToastId = toast.loading('Generating PNG...');
+    const content = await ts2uml2Png(exportFormat === 'png');
+    toast.dismiss(loaderToastId);
+    if (target === 'download') {
+      const a = document.createElement('a');
+      a.setAttribute('download', `${name}.png`);
+      a.setAttribute('href', content);
+      a.click();
+    } else {
+      await clipboardPng(content);
+      toast.success('PNG copied to clipboard!', { style: { border: '1px solid hsl(var(--primary))' } });
+    }
   }
+
   async function clipboardPng(dataUrl: string) {
     const blob = dataURLToBlob(dataUrl);
     try {
@@ -83,7 +80,7 @@ export function SaveTool() {
     }
   }
 
-  async function toPngImage(withBackground?: boolean): Promise<string> {
+  async function ts2uml2Png(withBackground?: boolean): Promise<string> {
     const nodesBounds = getNodesBounds(getNodes().filter((n) => !n.hidden));
     const viewport = getViewportForBounds(nodesBounds, EXPORT_IMAGE_WIDTH, EXPORT_IMAGE_HEIGHT, 0.1, 10, 0);
 
@@ -150,24 +147,29 @@ export function SaveTool() {
               <div className="flex flex-col gap-2">
                 <span className="text-xs">{'Image'}</span>
                 <div className="flex flex-col gap-2">
-                  {exportFormatImageOptions.options.map((t) => (
-                    <div className="flex items-center justify-start gap-2" key={t}>
-                      <RadioGroupItem value={t} id={t} />
-                      <span className="text-sm">{t}</span>
-                    </div>
-                  ))}
+                  <div className="flex items-center justify-start gap-2">
+                    <RadioGroupItem value={'png'} />
+                    <span className="text-sm">{'png'}</span>
+                  </div>
+                  <div className="flex items-center justify-start gap-2">
+                    <RadioGroupItem value={'png-transparent'} />
+                    <span className="text-sm">{'png-transparent'}</span>
+                  </div>
                 </div>
               </div>
               <Separator className="h-11/12 bg-foreground/10" orientation="vertical" />
               <div className="flex flex-col gap-2">
-                <span className="text-xs">{'File'}</span>
+                <span className="text-xs">{'JSON'}</span>
                 <div className="flex flex-col gap-2">
-                  {exportFormatFileOptions.options.map((t) => (
-                    <div className="flex items-center justify-start gap-2" key={t}>
-                      <RadioGroupItem value={t} id={t} />
-                      <span className="text-sm">{t}</span>
-                    </div>
-                  ))}
+                  <div className="flex items-center justify-start gap-2">
+                    <RadioGroupItem value={'json'} />
+                    <span className="text-sm">{'ts2uml'}</span>
+                  </div>
+                  {/* This is work in progress */}
+                  {/* <div className="flex items-center justify-start gap-2">
+                    <RadioGroupItem value={'excalidraw'} />
+                    <span className="text-sm">{'excalidraw'}</span>
+                  </div> */}
                 </div>
               </div>
             </div>

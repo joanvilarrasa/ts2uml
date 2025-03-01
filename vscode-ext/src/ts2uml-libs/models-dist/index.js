@@ -4265,9 +4265,6 @@ function createConfig(data) {
   });
 }
 
-// src/types/export/export-format.ts
-var ZExportFormat = z.enum(["json", "png", "png-transparent"]);
-
 // src/types/graph/link.ts
 var ZLink = z.object({
   sourceId: z.string({ invalid_type_error: "sourceId must be a string" }),
@@ -4473,6 +4470,13 @@ function createMsgPageReady() {
     type: "page-ready"
   });
 }
+
+// src/defaults/constants.ts
+var EXPORT_IMAGE_WIDTH = 3840;
+var EXPORT_IMAGE_HEIGHT = 2160;
+var NODE_TITLE_HEIGHT = 70;
+var NODE_ATTRIBUTE_HEIGHT = 30;
+var CHAR_WIDTH = 8.5;
 
 // src/defaults/colors.ts
 var LIGHT_THEME_COLORS = {
@@ -4737,6 +4741,7 @@ function updateDeep(data, updates, schema) {
 // src/types/utils/checkbox-partial-checked-status.ts
 var ZCheckboxPartialCheckedStatus = z.enum(["checked", "unchecked", "partial"]);
 export {
+  CHAR_WIDTH,
   DARK_THEME_COLORS,
   DEFAULT_DARK_CLASS_STYLE,
   DEFAULT_DARK_INTERFACE_STYLE,
@@ -4748,7 +4753,11 @@ export {
   DEFAULT_LIGHT_TYPE_STYLE,
   DEFAULT_LIGHT_UNION_STYLE,
   DEFAULT_LIGHT_VARIABLE_STYLE,
+  EXPORT_IMAGE_HEIGHT,
+  EXPORT_IMAGE_WIDTH,
   LIGHT_THEME_COLORS,
+  NODE_ATTRIBUTE_HEIGHT,
+  NODE_TITLE_HEIGHT,
   ZCheckboxPartialCheckedStatus,
   ZConfig,
   ZConfigLinks,
@@ -4758,7 +4767,6 @@ export {
   ZConfigNodesFilter,
   ZConfigNodesFilterName,
   ZConfigNodesOptions,
-  ZExportFormat,
   ZGraph,
   ZLayoutAlgorithm,
   ZLink,

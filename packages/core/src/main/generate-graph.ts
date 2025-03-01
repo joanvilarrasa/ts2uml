@@ -1,6 +1,6 @@
-import { isTypeScriptFile } from '@/file-utils/is-typescript-file.ts';
 import { type Config, createConfig } from '@ts2uml/models';
 import { Project } from 'ts-morph';
+import { isTypeScriptFile } from '../file-utils/is-typescript-file.ts';
 import { getGraphFromProject } from '../ts-morph-to-graph/get-graph-from-project.ts';
 
 export function generateGraph({

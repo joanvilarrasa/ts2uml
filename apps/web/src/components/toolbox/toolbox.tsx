@@ -1,7 +1,3 @@
-import { type Graph, createMsgLoadGraph } from '@ts2uml/models';
-import { Settings } from 'lucide-react';
-import demoGraph from '../../assets/demo-graph.json';
-import { Button } from '../ui/button';
 import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
 import { DocsTool } from './docs-tool/docs-tool';
@@ -13,10 +9,6 @@ import { ShareTool } from './share-tool/share-tool';
 import ThemeToggle from './theme-toggle';
 
 export function Toolbox() {
-  function loadGraph() {
-    window.postMessage(createMsgLoadGraph({ graph: demoGraph as Graph }));
-  }
-
   return (
     <Card>
       <CardContent className="flex items-center justify-center gap-2 px-2 py-1">
@@ -24,9 +16,6 @@ export function Toolbox() {
           <div className="flex items-center">
             <FilterTool />
             <LayoutTool />
-            <Button variant="ghost" size="icon" disabled={true} onClick={loadGraph}>
-              <Settings />
-            </Button>
           </div>
           <div className="flex justify-center">
             <span className="text-[0.7rem] text-foreground/60">Edit graph</span>

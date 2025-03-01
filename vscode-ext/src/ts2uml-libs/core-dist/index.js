@@ -1,12 +1,12 @@
+// src/main/generate-graph.ts
+import { createConfig } from "@ts2uml/models";
+import { Project } from "ts-morph";
+
 // src/file-utils/is-typescript-file.ts
 function isTypeScriptFile(filename) {
   const ext = filename.toLowerCase().split(".").pop();
   return ext === "ts" || ext === "tsx";
 }
-
-// src/main/generate-graph.ts
-import { createConfig } from "@ts2uml/models";
-import { Project } from "ts-morph";
 
 // src/ts-morph-to-graph/get-graph-from-project.ts
 import { createLink } from "@ts2uml/models";
@@ -599,6 +599,176 @@ function ts2umlToJson(graph) {
   return JSON.stringify(graph);
 }
 
+// src/export/ts2uml-to-excalidraw.ts
+import {
+  DEFAULT_LIGHT_CLASS_STYLE,
+  DEFAULT_LIGHT_INTERFACE_STYLE,
+  DEFAULT_LIGHT_TYPE_STYLE,
+  DEFAULT_LIGHT_UNION_STYLE,
+  DEFAULT_LIGHT_VARIABLE_STYLE
+} from "@ts2uml/models";
+
+// src/xyflow/compute-node-size.ts
+import { CHAR_WIDTH, NODE_ATTRIBUTE_HEIGHT, NODE_TITLE_HEIGHT } from "@ts2uml/models";
+function computeNodeWidth(node) {
+  let maxWidth = 0;
+  const titleWidth = node.title.text.length * CHAR_WIDTH;
+  maxWidth = Math.max(maxWidth, titleWidth);
+  for (const attribute of node.attributes) {
+    let length = attribute.text.length;
+    if (attribute.extended) {
+      length += attribute.extended.ancestorNodeName?.length ?? 0;
+      length += 2;
+    }
+    const attributeWidth = length * CHAR_WIDTH;
+    maxWidth = Math.max(maxWidth, attributeWidth);
+  }
+  return maxWidth + 100;
+}
+function computeNodeHeight(node) {
+  return NODE_TITLE_HEIGHT + node.attributes.length * NODE_ATTRIBUTE_HEIGHT + 8;
+}
+
+// src/export/ts2uml-to-excalidraw.ts
+function ts2umlToExcalidraw(graph) {
+  const NODE_TITLE_HEIGHT2 = 70;
+  const ATTRIBUTE_HEIGHT = 30;
+  const FONT_SIZE = 16;
+  const FONT_FAMILY = 1;
+  const ATTRIBUTE_PADDING = 10;
+  const elements = [];
+  const nodeMap = /* @__PURE__ */ new Map();
+  for (const node of graph.nodes) {
+    const nodeHeight = computeNodeHeight(node) - ATTRIBUTE_PADDING;
+    const nodeWidth = computeNodeWidth(node);
+    const x = node.position.x;
+    const y = node.position.y;
+    const relatedLinks = graph.links?.filter((link) => link.sourceId === node.id || link.targetId === node.id);
+    const nodeElement = {
+      id: node.id,
+      type: "rectangle",
+      x,
+      y,
+      width: nodeWidth,
+      height: nodeHeight,
+      strokeColor: "#000000",
+      backgroundColor: "#ffffff",
+      fillStyle: "solid",
+      groupIds: [`${node.id}-group`],
+      boundElements: relatedLinks.map((link) => ({
+        id: `${link.sourceId}-${link.targetId}`,
+        type: "arrow"
+      }))
+    };
+    elements.push(nodeElement);
+    const titleRectangle = {
+      id: node.title.id,
+      type: "rectangle",
+      x,
+      y,
+      width: nodeWidth,
+      height: NODE_TITLE_HEIGHT2,
+      backgroundColor: getNodeBackgroundColor(node.type),
+      fillStyle: "hachure",
+      groupIds: [`${node.id}-group`],
+      boundElements: [
+        {
+          id: `${node.title.id}-label`,
+          type: "text"
+        }
+      ]
+    };
+    const titleLabel = {
+      id: `${node.title.id}-label`,
+      x,
+      y,
+      backgroundColor: getNodeBackgroundColor(node.type),
+      width: nodeWidth,
+      height: NODE_TITLE_HEIGHT2,
+      type: "text",
+      text: node.title.text,
+      textAlign: "center",
+      verticalAlign: "middle",
+      groupIds: [`${node.id}-group`],
+      fontSize: FONT_SIZE,
+      fontFamily: FONT_FAMILY,
+      originalText: node.title.text
+    };
+    elements.push(titleLabel);
+    elements.push(titleRectangle);
+    if (node.attributes && node.attributes.length > 0) {
+      for (const [attrIndex, attr] of node.attributes.entries()) {
+        const attrY = y + NODE_TITLE_HEIGHT2 + attrIndex * ATTRIBUTE_HEIGHT;
+        const attrRectangle = {
+          id: attr.id,
+          type: "rectangle",
+          x,
+          y: attrY,
+          width: nodeWidth,
+          height: ATTRIBUTE_HEIGHT,
+          groupIds: [`${node.id}-group`],
+          boundElements: [
+            {
+              id: `${attr.id}-label`,
+              type: "text"
+            }
+          ]
+        };
+        const attrLabel = {
+          id: `${attr.id}-label`,
+          x: x + ATTRIBUTE_PADDING,
+          y: attrY,
+          width: nodeWidth,
+          height: ATTRIBUTE_HEIGHT,
+          groupIds: [`${node.id}-group`],
+          type: "text",
+          text: `${attr.text || attr.name}`,
+          textAlign: "left",
+          verticalAlign: "top",
+          fontSize: FONT_SIZE - 2,
+          fontFamily: FONT_FAMILY,
+          originalText: `${attr.text || attr.name}`
+        };
+        elements.push(attrLabel);
+        elements.push(attrRectangle);
+      }
+    }
+    nodeMap.set(node.id, {
+      id: node.id,
+      x,
+      y,
+      width: nodeWidth,
+      height: nodeHeight
+    });
+  }
+  return JSON.stringify({
+    type: "excalidraw",
+    version: 2,
+    source: "ts2uml-export",
+    elements,
+    appState: {
+      viewBackgroundColor: "#ffffff",
+      gridSize: null
+    }
+  });
+}
+function getNodeBackgroundColor(nodeType) {
+  switch (nodeType) {
+    case "class":
+      return DEFAULT_LIGHT_CLASS_STYLE.backgroundColor ?? "#c7eeff";
+    case "interface":
+      return DEFAULT_LIGHT_INTERFACE_STYLE.backgroundColor ?? "#7ec0c4";
+    case "union":
+      return DEFAULT_LIGHT_UNION_STYLE.backgroundColor ?? "#e7ccff";
+    case "type":
+      return DEFAULT_LIGHT_TYPE_STYLE.backgroundColor ?? "#bdd8ff";
+    case "variable":
+      return DEFAULT_LIGHT_VARIABLE_STYLE.backgroundColor ?? "#ffd1d1";
+    default:
+      return "transparent";
+  }
+}
+
 // src/tree-node/create-tree-node-from-graph.ts
 function createTreeNodeFromGraph(graph) {
   const innerTree = {};
@@ -896,9 +1066,24 @@ function cleanJSDoc(jsDoc, lineJoin) {
   const cleaned = jsDoc.split("\n").map((line) => line.replace(CLEAN_JSDOC_LINE_REGEX, "").replace(/\*/g, "").trim()).filter((line) => line.trim() !== "").join(lineJoin);
   return cleaned;
 }
+
+// src/tree-node/get-leaf-ids.ts
+function getLeafIds(tree) {
+  if (tree.isElement) {
+    return [tree.id];
+  }
+  if (!tree.children) {
+    return [];
+  }
+  return Object.values(tree.children).flatMap(getLeafIds);
+}
 export {
+  computeNodeHeight,
+  computeNodeWidth,
   createTreeNodeFromGraph,
   generateDocs,
   generateGraph,
+  getLeafIds,
+  ts2umlToExcalidraw,
   ts2umlToJson
 };

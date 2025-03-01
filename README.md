@@ -102,3 +102,9 @@ For now if you got any suggestions or bugs, you can:
 ## 📝 License
 
 [MIT](LICENSE)
+
+---
+
+---
+
+# Technical 

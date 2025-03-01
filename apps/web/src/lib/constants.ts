@@ -8,13 +8,6 @@ import { UnionNodeComponent } from '@/components/graph/nodes/union-node';
 import type { LayoutOptions } from 'elkjs';
 
 /**
- * Default values for the node title and attribute height, this helps me compute the size of the node
- */
-export const NODE_TITLE_HEIGHT = 70;
-export const NODE_ATTRIBUTE_HEIGHT = 30;
-export const CHAR_WIDTH = 8.5;
-
-/**
  * Node type components for React Flow
  */
 export const RF_NODE_TYPES = {
@@ -54,9 +47,3 @@ export const ELK_DEFAULT_LAYOUT_OPTIONS: LayoutOptions = {
   'elk.radial.radius': '0.0',
   'elk.radial.compactor': 'RADIAL_COMPACTION',
 };
-
-/**
- * Default image size for export
- */
-export const EXPORT_IMAGE_WIDTH = 3840;
-export const EXPORT_IMAGE_HEIGHT = 2160;

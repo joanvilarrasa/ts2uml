@@ -1,6 +1,5 @@
-import { NODE_ATTRIBUTE_HEIGHT } from '@/lib/constants';
 import { HoverManager } from '@/lib/hover-manager';
-import type { Node } from '@ts2uml/models';
+import { NODE_ATTRIBUTE_HEIGHT, type Node } from '@ts2uml/models';
 import {
   Handle as RF_Handle,
   type Node as RF_Node,

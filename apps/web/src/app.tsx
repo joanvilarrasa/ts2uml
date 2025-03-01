@@ -9,6 +9,7 @@ import {
 } from '@xyflow/react';
 import { useEffect, useState } from 'react';
 import '@xyflow/react/dist/style.css';
+import { computeNodeHeight, computeNodeWidth } from '@ts2uml/core';
 import {
   type MsgLoadGraph,
   type MsgUpdateLinkPathAlgorithm,
@@ -29,7 +30,6 @@ import { toast } from 'sonner';
 import { Toolbox } from './components/toolbox/toolbox';
 import { ELK_DEFAULT_LAYOUT_OPTIONS, RF_EDGE_TYPES, RF_NODE_TYPES } from './lib/constants';
 import { GraphManager } from './lib/graph-manager';
-import { computeNodeHeight, computeNodeWidth } from './lib/react-flow/compute-node-size';
 import { isNodeHidden } from './lib/react-flow/is-node-hidden';
 import { linkToRFEdge } from './lib/react-flow/link-to-rf-edge';
 import { nodeToRFNode } from './lib/react-flow/node-to-rf-node';
