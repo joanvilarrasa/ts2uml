@@ -61,6 +61,7 @@ export function FilterToolByName() {
         <div className="flex flex-col items-start justify-start gap-1">
           <span className="text-xs">{'Ends with:'}</span>
           <div className="flex items-center justify-start gap-1">
+            <span className="text-foreground/20 text-xs">{'...'}</span>
             <Input
               className="h-6 w-28"
               type="text"
@@ -68,7 +69,6 @@ export function FilterToolByName() {
               value={endsWithFilter}
               onChange={(e) => handleInputChange('ends_with', e.target.value)}
             />
-            <span className="text-foreground/20 text-xs">{'...'}</span>
           </div>
         </div>
         <div className="flex flex-col items-start justify-start gap-1">

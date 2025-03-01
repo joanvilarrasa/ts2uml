@@ -1,6 +1,6 @@
 {
   "name": "@ts2uml/core",
-  "version": "0.0.64",
+  "version": "0.0.65",
   "module": "index.ts",
   "type": "module",
   "scripts": {
