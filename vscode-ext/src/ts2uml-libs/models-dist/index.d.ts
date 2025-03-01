@@ -441,6 +441,7 @@ interface NodePosition {
      */
     y: number;
 }
+declare const ZNodePosition: z.ZodType<NodePosition>;
 declare function createNodePosition(data?: Partial<NodePosition>): NodePosition;
 
 /**
@@ -557,7 +558,7 @@ interface MsgLoadGraph {
 declare const ZMsgLoadGraph: z.ZodType<MsgLoadGraph>;
 declare function createMsgLoadGraph(data?: Partial<MsgLoadGraph>): MsgLoadGraph;
 
-declare const ZMsgType: z.ZodEnum<["load-graph", "update-layout-algorithm", "update-link-path-algorithm", "update-visible-nodes", "open-node-code"]>;
+declare const ZMsgType: z.ZodEnum<["load-graph", "update-layout-algorithm", "update-link-path-algorithm", "update-visible-nodes", "open-node-code", "page-ready"]>;
 /**
  * Represents the different types of messages that are sent between components of the web app
  * - `load-graph`: Load a graph
@@ -565,6 +566,7 @@ declare const ZMsgType: z.ZodEnum<["load-graph", "update-layout-algorithm", "upd
  * - `update-link-path-algorithm`: Update the link path algorithm
  * - `update-visible-nodes`: Update the visible nodes
  * - `open-node-code`: Open the code of a node (only available in the extension)
+ * - `page-ready`: The page is ready to be used (this is sent from the extension webview to the extension to tell it to send the graph. It is used to solve a race condition between the webview and the extension)
  */
 type MsgType = z.infer<typeof ZMsgType>;
 
@@ -643,6 +645,19 @@ interface MsgUpdateVisibleNodes {
 }
 declare const ZMsgUpdateVisibleNodes: z.ZodType<MsgUpdateVisibleNodes>;
 declare function createMsgUpdateVisibleNodes(data?: Partial<MsgUpdateVisibleNodes>): MsgUpdateVisibleNodes;
+
+/**
+ * Represents a relationship/link between two nodes in the diagram.
+ */
+interface MsgPageReady {
+    /**
+     * The type of message
+     * @see {@link MsgType}
+     */
+    type: 'page-ready';
+}
+declare const ZMsgPageReady: z.ZodType<MsgPageReady>;
+declare function createMsgPageReady(): MsgPageReady;
 
 declare const DEFAULT_THEME: Theme;
 declare const LIGHT_THEME_COLORS: {
@@ -765,4 +780,4 @@ interface TreeNode {
     name: string;
 }
 
-export { type CheckboxPartialCheckedStatus, type Config, type ConfigLinks, type ConfigLinksFilter, type ConfigLinksOptions, type ConfigNodes, type ConfigNodesFilter, type ConfigNodesOptions, DARK_THEME_COLORS, DEFAULT_DARK_CLASS_STYLE, DEFAULT_DARK_INTERFACE_STYLE, DEFAULT_DARK_TYPE_STYLE, DEFAULT_DARK_UNION_STYLE, DEFAULT_DARK_VARIABLE_STYLE, DEFAULT_LIGHT_CLASS_STYLE, DEFAULT_LIGHT_INTERFACE_STYLE, DEFAULT_LIGHT_TYPE_STYLE, DEFAULT_LIGHT_UNION_STYLE, DEFAULT_LIGHT_VARIABLE_STYLE, DEFAULT_THEME, type ExportFormat, type Graph, LIGHT_THEME_COLORS, type LayoutAlgorithm, type Link, type LinkPathAlgorithm, type LinkType, type MsgLoadGraph, type MsgOpenNodeCode, type MsgType, type MsgUpdateLayoutAlgorithm, type MsgUpdateLinkPathAlgorithm, type MsgUpdateVisibleNodes, type Node, type NodeAttribute, type NodeAttributeScope, type NodeAttributeType, type NodePosition, type NodeStyle, type NodeTitle, type NodeType, type Theme, type TreeNode, ZConfig, ZConfigLinks, ZConfigLinksFilter, ZConfigLinksOptions, ZConfigNodes, ZConfigNodesFilter, ZConfigNodesOptions, ZExportFormat, ZGraph, ZLayoutAlgorithm, ZLink, ZLinkPathAlgorithm, ZLinkType, ZMsgLoadGraph, ZMsgOpenNodeCode, ZMsgType, ZMsgUpdateLayoutAlgorithm, ZMsgUpdateLinkPathAlgorithm, ZMsgUpdateVisibleNodes, ZNode, ZNodeAttribute, ZNodeAttributeScope, ZNodeAttributeType, ZNodeStyle, ZNodeTitle, ZNodeType, ZTheme, createConfig, createConfigLinks, createConfigLinksFilter, createConfigLinksOptions, createConfigNodes, createConfigNodesFilter, createConfigNodesOptions, createGraph, createLink, createMsgLoadGraph, createMsgOpenNodeCode, createMsgUpdateLayoutAlgorithm, createMsgUpdateLinkPathAlgorithm, createMsgUpdateVisibleNodes, createNode, createNodeAttribute, createNodePosition, createNodeStyle, createNodeTitle, is, update, updateDeep, validate };
+export { type CheckboxPartialCheckedStatus, type Config, type ConfigLinks, type ConfigLinksFilter, type ConfigLinksOptions, type ConfigNodes, type ConfigNodesFilter, type ConfigNodesOptions, DARK_THEME_COLORS, DEFAULT_DARK_CLASS_STYLE, DEFAULT_DARK_INTERFACE_STYLE, DEFAULT_DARK_TYPE_STYLE, DEFAULT_DARK_UNION_STYLE, DEFAULT_DARK_VARIABLE_STYLE, DEFAULT_LIGHT_CLASS_STYLE, DEFAULT_LIGHT_INTERFACE_STYLE, DEFAULT_LIGHT_TYPE_STYLE, DEFAULT_LIGHT_UNION_STYLE, DEFAULT_LIGHT_VARIABLE_STYLE, DEFAULT_THEME, type ExportFormat, type Graph, LIGHT_THEME_COLORS, type LayoutAlgorithm, type Link, type LinkPathAlgorithm, type LinkType, type MsgLoadGraph, type MsgOpenNodeCode, type MsgPageReady, type MsgType, type MsgUpdateLayoutAlgorithm, type MsgUpdateLinkPathAlgorithm, type MsgUpdateVisibleNodes, type Node, type NodeAttribute, type NodeAttributeScope, type NodeAttributeType, type NodePosition, type NodeStyle, type NodeTitle, type NodeType, type Theme, type TreeNode, ZCheckboxPartialCheckedStatus, ZConfig, ZConfigLinks, ZConfigLinksFilter, ZConfigLinksOptions, ZConfigNodes, ZConfigNodesFilter, ZConfigNodesOptions, ZExportFormat, ZGraph, ZLayoutAlgorithm, ZLink, ZLinkPathAlgorithm, ZLinkType, ZMsgLoadGraph, ZMsgOpenNodeCode, ZMsgPageReady, ZMsgType, ZMsgUpdateLayoutAlgorithm, ZMsgUpdateLinkPathAlgorithm, ZMsgUpdateVisibleNodes, ZNode, ZNodeAttribute, ZNodeAttributeScope, ZNodeAttributeType, ZNodePosition, ZNodeStyle, ZNodeTitle, ZNodeType, ZTheme, createConfig, createConfigLinks, createConfigLinksFilter, createConfigLinksOptions, createConfigNodes, createConfigNodesFilter, createConfigNodesOptions, createGraph, createLink, createMsgLoadGraph, createMsgOpenNodeCode, createMsgPageReady, createMsgUpdateLayoutAlgorithm, createMsgUpdateLinkPathAlgorithm, createMsgUpdateVisibleNodes, createNode, createNodeAttribute, createNodePosition, createNodeStyle, createNodeTitle, is, update, updateDeep, validate };

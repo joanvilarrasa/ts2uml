@@ -4260,6 +4260,9 @@ function createConfig(data) {
   });
 }
 
+// src/types/export/export-format.ts
+var ZExportFormat = z.enum(["json", "png", "png-transparent"]);
+
 // src/types/graph/link.ts
 var ZLink = z.object({
   sourceId: z.string({ invalid_type_error: "sourceId must be a string" }),
@@ -4394,7 +4397,8 @@ var ZMsgType = z.enum([
   "update-layout-algorithm",
   "update-link-path-algorithm",
   "update-visible-nodes",
-  "open-node-code"
+  "open-node-code",
+  "page-ready"
 ]);
 
 // src/types/messages/msg-load-graph.ts
@@ -4461,8 +4465,15 @@ function createMsgUpdateVisibleNodes(data) {
   });
 }
 
-// src/types/export/export-format.ts
-var ZExportFormat = z.enum(["json", "png", "png-transparent"]);
+// src/types/messages/msg-page-ready.ts
+var ZMsgPageReady = z.object({
+  type: ZMsgType.extract(["page-ready"])
+});
+function createMsgPageReady() {
+  return ZMsgPageReady.parse({
+    type: "page-ready"
+  });
+}
 
 // src/defaults/colors.ts
 var DEFAULT_THEME = "light";
@@ -4759,6 +4770,9 @@ function updateDeep(data, updates, schema) {
   }
   return data;
 }
+
+// src/types/utils/checkbox-partial-checked-status.ts
+var ZCheckboxPartialCheckedStatus = z.enum(["checked", "unchecked", "partial"]);
 export {
   DARK_THEME_COLORS,
   DEFAULT_DARK_CLASS_STYLE,
@@ -4773,6 +4787,7 @@ export {
   DEFAULT_LIGHT_VARIABLE_STYLE,
   DEFAULT_THEME,
   LIGHT_THEME_COLORS,
+  ZCheckboxPartialCheckedStatus,
   ZConfig,
   ZConfigLinks,
   ZConfigLinksFilter,
@@ -4788,6 +4803,7 @@ export {
   ZLinkType,
   ZMsgLoadGraph,
   ZMsgOpenNodeCode,
+  ZMsgPageReady,
   ZMsgType,
   ZMsgUpdateLayoutAlgorithm,
   ZMsgUpdateLinkPathAlgorithm,
@@ -4796,6 +4812,7 @@ export {
   ZNodeAttribute,
   ZNodeAttributeScope,
   ZNodeAttributeType,
+  ZNodePosition,
   ZNodeStyle,
   ZNodeTitle,
   ZNodeType,
@@ -4811,6 +4828,7 @@ export {
   createLink,
   createMsgLoadGraph,
   createMsgOpenNodeCode,
+  createMsgPageReady,
   createMsgUpdateLayoutAlgorithm,
   createMsgUpdateLinkPathAlgorithm,
   createMsgUpdateVisibleNodes,

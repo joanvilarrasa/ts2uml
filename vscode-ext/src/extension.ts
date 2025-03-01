@@ -1,30 +1,12 @@
 import * as vscode from 'vscode';
 import { generateGraph } from './ts2uml-libs/core-dist';
-import { createMsgLoadGraph, Graph, is, MsgOpenNodeCode, ZMsgOpenNodeCode } from './ts2uml-libs/models-dist';
+import { createMsgLoadGraph, is, MsgOpenNodeCode, ZMsgOpenNodeCode, MsgPageReady, ZMsgPageReady } from './ts2uml-libs/models-dist';
 import { join } from 'node:path';
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand('ts2uml.generateUml', async (uri: vscode.Uri) => {
       UMLPanel.createOrShow(context.extensionUri, uri.fsPath);
-      vscode.window.withProgress(
-        {
-          location: vscode.ProgressLocation.Notification,
-          title: "Generating UML...",
-          cancellable: false
-        },
-        async (progress, token) => {
-          const dir = uri.fsPath;
-          const files = await getFiles(dir);
-          const initialD3Graph = generateGraph({
-            files,
-            baseDir: dir,
-          });
-          UMLPanel.currentPanel?.postMessage(createMsgLoadGraph({ graph: initialD3Graph }));
-          vscode.window.showInformationMessage("UML generated!");
-        }
-      );
-
     })
   );
 }
@@ -99,29 +81,10 @@ class UMLPanel {
     this._panel.webview.onDidReceiveMessage(
       (message) => {
         if(is<MsgOpenNodeCode>(message, ZMsgOpenNodeCode) && UMLPanel.currentPath !== null) {
-          const node = message.node;
-          const relativeFilePath = node.id.split('-').slice(0, -1).join('-');
-          const relativePathParts = relativeFilePath.split('/');
-          const finalPath = join(UMLPanel.currentPath, ...relativePathParts);
-          
-          // Try to open the file with .ts and .tsx extensions
-          const tryOpenFile = (path: string, extensions: string[], index: number = 0) => {
-            if (index >= extensions.length) {
-              vscode.window.showErrorMessage(`File not found: ${finalPath}.ts or ${finalPath}.tsx`);
-              return;
-            }
-            
-            const fileUri = vscode.Uri.file(`${path}${extensions[index]}`);
-            vscode.workspace.fs.stat(fileUri).then(() => {
-                vscode.window.showTextDocument(fileUri, { preview: false, viewColumn: vscode.ViewColumn.Beside });
-              },
-              (error) => {
-                tryOpenFile(path, extensions, index + 1);
-              }
-            );
-          };
-          
-          tryOpenFile(finalPath, ['.ts', '.tsx']);
+          this.handleMsgOpenNodeCode(message);
+        }
+        if(is<MsgPageReady>(message, ZMsgPageReady) && UMLPanel.currentPath !== null) {
+          this.handleMsgPageReady();
         }
       },
       null,
@@ -129,11 +92,56 @@ class UMLPanel {
     );
   }
 
-  public doRefactor() {
-    // Send a message to the webview webview.
-    // You can send any JSON serializable data.
-    this._panel.webview.postMessage({ command: 'refactor' });
+  public async genGraph(dir: string) {
+    const files = await getFiles(dir);
+    const initialGraph = generateGraph({
+      files,
+      baseDir: dir,
+    });
+    return initialGraph;
   }
+
+  public async handleMsgPageReady() {
+    vscode.window.withProgress(
+      {
+        location: vscode.ProgressLocation.Notification,
+        title: "Generating UML...",
+        cancellable: false
+      },
+      async (progress, token) => {
+        const initialGraph = await this.genGraph(UMLPanel.currentPath ?? '');
+        this.postMessage(createMsgLoadGraph({ graph: initialGraph }));
+        vscode.window.showInformationMessage("UML generated!");
+      }
+    );
+  }
+
+  public handleMsgOpenNodeCode(message: MsgOpenNodeCode) {
+    const node = message.node;
+    const relativeFilePath = node.id.split('-').slice(0, -1).join('-');
+    const relativePathParts = relativeFilePath.split('/');
+    const finalPath = join(UMLPanel.currentPath ?? '', ...relativePathParts);
+    
+    // Try to open the file with .ts and .tsx extensions
+    const tryOpenFile = (path: string, extensions: string[], index: number = 0) => {
+      if (index >= extensions.length) {
+        vscode.window.showErrorMessage(`File not found: ${finalPath}.ts or ${finalPath}.tsx`);
+        return;
+      }
+      
+      const fileUri = vscode.Uri.file(`${path}${extensions[index]}`);
+      vscode.workspace.fs.stat(fileUri).then(() => {
+          vscode.window.showTextDocument(fileUri, { preview: false, viewColumn: vscode.ViewColumn.Beside });
+        },
+        (error) => {
+          tryOpenFile(path, extensions, index + 1);
+        }
+      );
+    };
+    
+    tryOpenFile(finalPath, ['.ts', '.tsx']);
+  }
+
 
   public postMessage(message: any) {
     this._panel.webview.postMessage(message);

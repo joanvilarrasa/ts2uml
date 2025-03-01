@@ -9,11 +9,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../ui/card';
 import { OpenNodeCodeButton } from './open-node-code';
 
-interface InterfaceNodeProps extends RF_NodeProps<RF_Node<{ data: Node }>> {
-  onInfoClick?: (nodeId: string) => void;
-}
-
-export function InterfaceNodeComponent(props: InterfaceNodeProps) {
+export function InterfaceNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>) {
   const node = props.data.data;
   const title = props.data.data.title;
   const attributes = props.data.data.attributes;

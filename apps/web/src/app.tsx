@@ -17,6 +17,7 @@ import {
   ZMsgLoadGraph,
   ZMsgUpdateLinkPathAlgorithm,
   ZMsgUpdateVisibleNodes,
+  createMsgPageReady,
   is,
 } from '@ts2uml/models';
 import {
@@ -147,6 +148,10 @@ export default function App() {
 
   useEffect(() => {
     window.addEventListener('message', messageHandler);
+    // If we are in the extension environment, we need to send a message to the extension to tell it that the page is ready so that it starts generating the graph
+    if (import.meta.env.VITE_ENV === 'extension') {
+      setTimeout(() => { window.postMessage(createMsgPageReady()) }, 10);
+    }
     return () => {
       window.removeEventListener('message', messageHandler);
     };
