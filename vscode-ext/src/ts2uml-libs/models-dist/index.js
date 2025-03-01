@@ -4251,28 +4251,17 @@ function createConfigNodes(data) {
 // src/types/config/layout-algorithm.ts
 var ZLayoutAlgorithm = z.enum(["layered", "mrtree", "force", "radial", "box", "random"]);
 
-// src/types/config/theme.ts
-var ZTheme = z.enum(["light", "dark"]).default("light");
-
 // src/types/config/config.ts
 var ZConfig = z.object({
   layoutAlgorithm: ZLayoutAlgorithm,
   links: ZConfigLinks,
-  metadata: z.object({
-    version: z.string().default("0.0.1")
-  }),
-  nodes: ZConfigNodes,
-  theme: ZTheme
+  nodes: ZConfigNodes
 });
 function createConfig(data) {
   return ZConfig.parse({
     layoutAlgorithm: data?.layoutAlgorithm ?? "layered",
     links: createConfigLinks(data?.links),
-    metadata: {
-      version: data?.metadata?.version ?? "0.0.1"
-    },
-    nodes: createConfigNodes(data?.nodes),
-    theme: data?.theme ?? "light"
+    nodes: createConfigNodes(data?.nodes)
   });
 }
 
@@ -4341,13 +4330,11 @@ function createNodeAttribute(data) {
 
 // src/types/graph/node-position.ts
 var ZNodePosition = z.object({
-  locked: z.boolean().optional(),
   x: z.number(),
   y: z.number()
 });
 function createNodePosition(data) {
   return ZNodePosition.parse({
-    locked: data?.locked ?? false,
     x: data?.x ?? 0,
     y: data?.y ?? 0
   });
@@ -4488,7 +4475,6 @@ function createMsgPageReady() {
 }
 
 // src/defaults/colors.ts
-var DEFAULT_THEME = "light";
 var LIGHT_THEME_COLORS = {
   background: "#f1ede2",
   foreground: "#000000",
@@ -4504,54 +4490,19 @@ var DARK_THEME_COLORS = {
 
 // src/defaults/dark-node-styles.ts
 var DEFAULT_DARK_CLASS_STYLE = {
-  backgroundColor: "#4980af",
-  borderColor: "black",
-  borderWidth: "1px",
-  color: "black",
-  fontSize: "16px",
-  fontWeight: "normal",
-  height: "20px",
-  width: "100px"
+  backgroundColor: "#4980af"
 };
 var DEFAULT_DARK_UNION_STYLE = {
-  backgroundColor: "#8d578c",
-  borderColor: "black",
-  borderWidth: "1px",
-  color: "black",
-  fontSize: "16px",
-  fontWeight: "normal",
-  height: "20px",
-  width: "100px"
+  backgroundColor: "#8d578c"
 };
 var DEFAULT_DARK_INTERFACE_STYLE = {
-  backgroundColor: "#4B999A",
-  borderColor: "black",
-  borderWidth: "1px",
-  color: "black",
-  fontSize: "16px",
-  fontWeight: "normal",
-  height: "20px",
-  width: "100px"
+  backgroundColor: "#4B999A"
 };
 var DEFAULT_DARK_TYPE_STYLE = {
-  backgroundColor: "#8d578c",
-  borderColor: "black",
-  borderWidth: "1px",
-  color: "black",
-  fontSize: "16px",
-  fontWeight: "normal",
-  height: "20px",
-  width: "100px"
+  backgroundColor: "#8d578c"
 };
 var DEFAULT_DARK_VARIABLE_STYLE = {
-  backgroundColor: "#e9d382",
-  borderColor: "black",
-  borderWidth: "1px",
-  color: "black",
-  fontSize: "16px",
-  fontWeight: "normal",
-  height: "20px",
-  width: "100px"
+  backgroundColor: "#e9d382"
 };
 
 // ../../node_modules/zod-validation-error/dist/index.mjs
@@ -4797,7 +4748,6 @@ export {
   DEFAULT_LIGHT_TYPE_STYLE,
   DEFAULT_LIGHT_UNION_STYLE,
   DEFAULT_LIGHT_VARIABLE_STYLE,
-  DEFAULT_THEME,
   LIGHT_THEME_COLORS,
   ZCheckboxPartialCheckedStatus,
   ZConfig,
@@ -4829,7 +4779,6 @@ export {
   ZNodeStyle,
   ZNodeTitle,
   ZNodeType,
-  ZTheme,
   createConfig,
   createConfigLinks,
   createConfigLinksFilter,

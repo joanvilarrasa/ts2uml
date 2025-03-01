@@ -16,9 +16,7 @@
           "id": "/types/messages/msg-load-graph-MsgLoadGraph-graph",
           "name": "graph",
           "style": {},
-          "targets": [
-            "/types/graph/graph-Graph"
-          ],
+          "targets": ["/types/graph/graph-Graph"],
           "text": "graph: Graph;",
           "type": "attribute"
         },
@@ -35,7 +33,6 @@
       "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
       "id": "/types/messages/msg-load-graph-MsgLoadGraph",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -54,9 +51,7 @@
           "id": "/types/messages/msg-open-node-code-MsgOpenNodeCode-node",
           "name": "node",
           "style": {},
-          "targets": [
-            "/types/graph/node-Node"
-          ],
+          "targets": ["/types/graph/node-Node"],
           "text": "node: Node;",
           "type": "attribute"
         },
@@ -73,7 +68,6 @@
       "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
       "id": "/types/messages/msg-open-node-code-MsgOpenNodeCode",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -100,7 +94,6 @@
       "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
       "id": "/types/messages/msg-page-ready-MsgPageReady",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -160,7 +153,6 @@
       "docs": "/**\n * Represents the different types of messages that are sent between components of the web app\n * - `load-graph`: Load a graph\n * - `update-layout-algorithm`: Update the layout algorithm\n * - `update-link-path-algorithm`: Update the link path algorithm\n * - `update-visible-nodes`: Update the visible nodes\n * - `open-node-code`: Open the code of a node (only available in the extension)\n * - `page-ready`: The page is ready to be used (this is sent from the extension webview to the extension to tell it to send the graph. It is used to solve a race condition between the webview and the extension)\n */",
       "id": "/types/messages/msg-type-MsgType",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -179,9 +171,7 @@
           "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-layoutAlgorithm",
           "name": "layoutAlgorithm",
           "style": {},
-          "targets": [
-            "/types/config/layout-algorithm-LayoutAlgorithm"
-          ],
+          "targets": ["/types/config/layout-algorithm-LayoutAlgorithm"],
           "text": "layoutAlgorithm: LayoutAlgorithm;",
           "type": "attribute"
         },
@@ -198,7 +188,6 @@
       "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
       "id": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -217,9 +206,7 @@
           "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm-linkPathAlgorithm",
           "name": "linkPathAlgorithm",
           "style": {},
-          "targets": [
-            "/types/config/link-path-algorithm-LinkPathAlgorithm"
-          ],
+          "targets": ["/types/config/link-path-algorithm-LinkPathAlgorithm"],
           "text": "linkPathAlgorithm: LinkPathAlgorithm;",
           "type": "attribute"
         },
@@ -236,7 +223,6 @@
       "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
       "id": "/types/messages/msg-update-link-path-algorithm-MsgUpdateLinkPathAlgorithm",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -263,7 +249,6 @@
       "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
       "id": "/types/messages/msg-update-visible-nodes-MsgUpdateVisibleNodes",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -278,755 +263,11 @@
     {
       "attributes": [
         {
-          "docs": "/**\n   * Configuration for the graph\n   * @see {@link Config}\n   */",
-          "id": "/types/graph/graph-Graph-config",
-          "name": "config",
-          "style": {},
-          "targets": [
-            "/types/config/config-Config"
-          ],
-          "text": "config: Config;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Array of nodes in the graph (classes, interfaces, etc)\n   * @see {@link Node}\n   */",
-          "id": "/types/graph/graph-Graph-nodes",
-          "name": "nodes",
-          "style": {},
-          "targets": [
-            "/types/graph/node-Node"
-          ],
-          "text": "nodes: Node[];",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Array of links/relationships between nodes\n   * @see {@link Link}\n   */",
-          "id": "/types/graph/graph-Graph-links",
-          "name": "links",
-          "style": {},
-          "targets": [
-            "/types/graph/link-Link"
-          ],
-          "text": "links: Link[];",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents a graph/diagram containing nodes and their links.\n */",
-      "id": "/types/graph/graph-Graph",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/graph/graph-Graph-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "Graph"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/graph/link-type-LinkType-association",
-          "name": "association",
-          "style": {},
-          "text": "association",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/graph/link-type-LinkType-inheritance",
-          "name": "inheritance",
-          "style": {},
-          "text": "inheritance",
-          "type": "unionOption"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of relationships between nodes in the diagram.\n * - `association`: Indicates a basic association between nodes\n * - `inheritance`: Indicates an inheritance/extends relationship\n */",
-      "id": "/types/graph/link-type-LinkType",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/graph/link-type-LinkType-TITLE",
-        "nodeType": "union",
-        "style": {},
-        "text": "LinkType"
-      },
-      "type": "union"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * The unique identifier of the source node\n   * @see {@link Node}\n   */",
-          "id": "/types/graph/link-Link-sourceId",
-          "name": "sourceId",
-          "style": {},
-          "targets": [],
-          "text": "sourceId: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The unique identifier of the source attribute\n   * @see {@link NodeAttribute}\n   */",
-          "id": "/types/graph/link-Link-sourceAttributeIds",
-          "name": "sourceAttributeIds",
-          "style": {},
-          "targets": [],
-          "text": "sourceAttributeIds: string[];",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The unique identifier of the target node\n   * @see {@link Node}\n   */",
-          "id": "/types/graph/link-Link-targetId",
-          "name": "targetId",
-          "style": {},
-          "targets": [],
-          "text": "targetId: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Optional text label to display on the relationship\n   */",
-          "id": "/types/graph/link-Link-text",
-          "name": "text",
-          "style": {},
-          "targets": [],
-          "text": "text?: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The type of relationship between the nodes\n   * @see {@link LinkType}\n   */",
-          "id": "/types/graph/link-Link-type",
-          "name": "type",
-          "style": {},
-          "targets": [
-            "/types/graph/link-type-LinkType"
-          ],
-          "text": "type: LinkType;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
-      "id": "/types/graph/link-Link",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/graph/link-Link-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "Link"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * The id of the Node that this attribute extends from\n   */",
-          "id": "/types/graph/node-attribute-extended-NodeAttributeExtended-ancestorNodeId",
-          "name": "ancestorNodeId",
-          "style": {},
-          "targets": [],
-          "text": "ancestorNodeId?: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The name of the Node that this attribute extends from\n   */",
-          "id": "/types/graph/node-attribute-extended-NodeAttributeExtended-ancestorNodeName",
-          "name": "ancestorNodeName",
-          "style": {},
-          "targets": [],
-          "text": "ancestorNodeName?: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The id of the node that this attribute extends from\n   */",
-          "id": "/types/graph/node-attribute-extended-NodeAttributeExtended-fatherNodeId",
-          "name": "fatherNodeId",
-          "style": {},
-          "targets": [],
-          "text": "fatherNodeId?: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The name of the Node that this attribute extends from\n   */",
-          "id": "/types/graph/node-attribute-extended-NodeAttributeExtended-fatherNodeName",
-          "name": "fatherNodeName",
-          "style": {},
-          "targets": [],
-          "text": "fatherNodeName?: string;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents an attribute or method within a node in the diagram.\n */",
-      "id": "/types/graph/node-attribute-extended-NodeAttributeExtended",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/graph/node-attribute-extended-NodeAttributeExtended-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "NodeAttributeExtended"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/graph/node-attribute-scope-NodeAttributeScope-private",
-          "name": "private",
-          "style": {},
-          "text": "private",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/graph/node-attribute-scope-NodeAttributeScope-protected",
-          "name": "protected",
-          "style": {},
-          "text": "protected",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/graph/node-attribute-scope-NodeAttributeScope-public",
-          "name": "public",
-          "style": {},
-          "text": "public",
-          "type": "unionOption"
-        }
-      ],
-      "docs": "/**\n * Represents the visibility/access level of a node attribute.\n * - `private`: Attribute is only accessible within the class\n * - `protected`: Attribute is only accessible to the class and its subclasses\n * - `public`: Attribute is publicly accessible\n */",
-      "id": "/types/graph/node-attribute-scope-NodeAttributeScope",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/graph/node-attribute-scope-NodeAttributeScope-TITLE",
-        "nodeType": "union",
-        "style": {},
-        "text": "NodeAttributeScope"
-      },
-      "type": "union"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/graph/node-attribute-type-NodeAttributeType-attribute",
-          "name": "attribute",
-          "style": {},
-          "text": "attribute",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/graph/node-attribute-type-NodeAttributeType-unionOption",
-          "name": "unionOption",
-          "style": {},
-          "text": "unionOption",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/graph/node-attribute-type-NodeAttributeType-method",
-          "name": "method",
-          "style": {},
-          "text": "method",
-          "type": "unionOption"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of attributes that can be displayed in a node.\n * - `attribute`: Represents a class/interface property or field\n * - `unionOption`: Represents an enum value or type union option\n * - `method`: Represents a class/interface method or function\n */",
-      "id": "/types/graph/node-attribute-type-NodeAttributeType",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/graph/node-attribute-type-NodeAttributeType-TITLE",
-        "nodeType": "union",
-        "style": {},
-        "text": "NodeAttributeType"
-      },
-      "type": "union"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * Unique identifier for the attribute\n   */",
-          "id": "/types/graph/node-attribute-NodeAttribute-id",
-          "name": "id",
-          "style": {},
-          "targets": [],
-          "text": "id: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * jsdocs documentation for the attribute\n   */",
-          "id": "/types/graph/node-attribute-NodeAttribute-docs",
-          "name": "docs",
-          "style": {},
-          "targets": [],
-          "text": "docs?: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Whether the attribute is static\n   */",
-          "id": "/types/graph/node-attribute-NodeAttribute-isStatic",
-          "name": "isStatic",
-          "style": {},
-          "targets": [],
-          "text": "isStatic?: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * If the attribute is extended, this will contain the extended information\n   */",
-          "id": "/types/graph/node-attribute-NodeAttribute-extended",
-          "name": "extended",
-          "style": {},
-          "targets": [
-            "/types/graph/node-attribute-extended-NodeAttributeExtended"
-          ],
-          "text": "extended?: NodeAttributeExtended;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The name of the attribute\n   */",
-          "id": "/types/graph/node-attribute-NodeAttribute-name",
-          "name": "name",
-          "style": {},
-          "targets": [],
-          "text": "name: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The visibility/access level of the attribute (public, protected, private)\n   * @see {@link NodeAttributeScope}\n   */",
-          "id": "/types/graph/node-attribute-NodeAttribute-scope",
-          "name": "scope",
-          "style": {},
-          "targets": [
-            "/types/graph/node-attribute-scope-NodeAttributeScope"
-          ],
-          "text": "scope?: NodeAttributeScope;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The styling configuration for this attribute\n   * @see {@link NodeStyle}\n   */",
-          "id": "/types/graph/node-attribute-NodeAttribute-style",
-          "name": "style",
-          "style": {},
-          "targets": [
-            "/types/graph/node-style-NodeStyle"
-          ],
-          "text": "style?: NodeStyle;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The target nodeIds that this attribute points to.\n   */",
-          "id": "/types/graph/node-attribute-NodeAttribute-targets",
-          "name": "targets",
-          "style": {},
-          "targets": [],
-          "text": "targets?: string[];",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The text content/label of the attribute\n   */",
-          "id": "/types/graph/node-attribute-NodeAttribute-text",
-          "name": "text",
-          "style": {},
-          "targets": [],
-          "text": "text: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The type of attribute (attribute, method, separator, etc)\n   * @see {@link NodeAttributeType}\n   */",
-          "id": "/types/graph/node-attribute-NodeAttribute-type",
-          "name": "type",
-          "style": {},
-          "targets": [
-            "/types/graph/node-attribute-type-NodeAttributeType"
-          ],
-          "text": "type: NodeAttributeType;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents an attribute or method within a node in the diagram.\n */",
-      "id": "/types/graph/node-attribute-NodeAttribute",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/graph/node-attribute-NodeAttribute-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "NodeAttribute"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * Whether the node is locked in place\n   */",
-          "id": "/types/graph/node-position-NodePosition-locked",
-          "name": "locked",
-          "style": {},
-          "targets": [],
-          "text": "locked: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The x position of the node\n   */",
-          "id": "/types/graph/node-position-NodePosition-x",
-          "name": "x",
-          "style": {},
-          "targets": [],
-          "text": "x: number;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The y position of the node\n   */",
-          "id": "/types/graph/node-position-NodePosition-y",
-          "name": "y",
-          "style": {},
-          "targets": [],
-          "text": "y: number;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents a node position in the graph\n */",
-      "id": "/types/graph/node-position-NodePosition",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/graph/node-position-NodePosition-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "NodePosition"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * The background color of the node element\n   */",
-          "id": "/types/graph/node-style-NodeStyle-backgroundColor",
-          "name": "backgroundColor",
-          "style": {},
-          "targets": [],
-          "text": "backgroundColor?: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The border color of the node element\n   */",
-          "id": "/types/graph/node-style-NodeStyle-borderColor",
-          "name": "borderColor",
-          "style": {},
-          "targets": [],
-          "text": "borderColor?: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The border width of the node element\n   */",
-          "id": "/types/graph/node-style-NodeStyle-borderWidth",
-          "name": "borderWidth",
-          "style": {},
-          "targets": [],
-          "text": "borderWidth?: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The text color of the node element\n   */",
-          "id": "/types/graph/node-style-NodeStyle-color",
-          "name": "color",
-          "style": {},
-          "targets": [],
-          "text": "color?: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The font size of text within the node element\n   */",
-          "id": "/types/graph/node-style-NodeStyle-fontSize",
-          "name": "fontSize",
-          "style": {},
-          "targets": [],
-          "text": "fontSize?: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The font weight of text within the node element\n   */",
-          "id": "/types/graph/node-style-NodeStyle-fontWeight",
-          "name": "fontWeight",
-          "style": {},
-          "targets": [],
-          "text": "fontWeight?: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The height of the node element\n   */",
-          "id": "/types/graph/node-style-NodeStyle-height",
-          "name": "height",
-          "style": {},
-          "targets": [],
-          "text": "height?: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The width of the node element\n   */",
-          "id": "/types/graph/node-style-NodeStyle-width",
-          "name": "width",
-          "style": {},
-          "targets": [],
-          "text": "width?: string;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "",
-      "id": "/types/graph/node-style-NodeStyle",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/graph/node-style-NodeStyle-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "NodeStyle"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * Unique identifier for the title\n   */",
-          "id": "/types/graph/node-title-NodeTitle-id",
-          "name": "id",
-          "style": {},
-          "targets": [],
-          "text": "id: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The type of node (class, interface, etc)\n   * @see {@link NodeType}\n   */",
-          "id": "/types/graph/node-title-NodeTitle-nodeType",
-          "name": "nodeType",
-          "style": {},
-          "targets": [
-            "/types/graph/node-type-NodeType"
-          ],
-          "text": "nodeType: NodeType;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The styling configuration for the title section\n   * @see {@link NodeStyle}\n   */",
-          "id": "/types/graph/node-title-NodeTitle-style",
-          "name": "style",
-          "style": {},
-          "targets": [
-            "/types/graph/node-style-NodeStyle"
-          ],
-          "text": "style?: NodeStyle;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The text content/label displayed in the title\n   */",
-          "id": "/types/graph/node-title-NodeTitle-text",
-          "name": "text",
-          "style": {},
-          "targets": [],
-          "text": "text: string;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents the title/header section of a node in the diagram.\n */",
-      "id": "/types/graph/node-title-NodeTitle",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/graph/node-title-NodeTitle-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "NodeTitle"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
-          "id": "/types/graph/node-type-NodeType-class",
-          "name": "class",
-          "style": {},
-          "text": "class",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/graph/node-type-NodeType-union",
-          "name": "union",
-          "style": {},
-          "text": "union",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/graph/node-type-NodeType-interface",
-          "name": "interface",
-          "style": {},
-          "text": "interface",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/graph/node-type-NodeType-type",
-          "name": "type",
-          "style": {},
-          "text": "type",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/graph/node-type-NodeType-variable",
-          "name": "variable",
-          "style": {},
-          "text": "variable",
-          "type": "unionOption"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of nodes that can be displayed in the diagram.\n * - `class`: Represents a class definition\n * - `union`: Represents a union type, it can be an enum or a type that unions multiple types\n * - `interface`: Represents an interface definition\n * - `type`: Represents a type definition\n * - `variable`: Represents a variable declaration\n */",
-      "id": "/types/graph/node-type-NodeType",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/graph/node-type-NodeType-TITLE",
-        "nodeType": "union",
-        "style": {},
-        "text": "NodeType"
-      },
-      "type": "union"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "/**\n   * Array of attributes, methods, or other items displayed in the node body\n   * @see {@link NodeAttribute}\n   */",
-          "id": "/types/graph/node-Node-attributes",
-          "name": "attributes",
-          "style": {},
-          "targets": [
-            "/types/graph/node-attribute-NodeAttribute"
-          ],
-          "text": "attributes: NodeAttribute[];",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * jsdocs documentation for the node\n   */",
-          "id": "/types/graph/node-Node-docs",
-          "name": "docs",
-          "style": {},
-          "targets": [],
-          "text": "docs?: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The names of the Nodes that this node extends from\n   */",
-          "id": "/types/graph/node-Node-extends",
-          "name": "extends",
-          "style": {},
-          "targets": [],
-          "text": "extends?: string[];",
-          "type": "attribute"
-        },
-        {
-          "docs": "/** Unique identifier for the node */",
-          "id": "/types/graph/node-Node-id",
-          "name": "id",
-          "style": {},
-          "targets": [],
-          "text": "id: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The position of the node in the graph\n   * @see {@link NodePosition}\n   */",
-          "id": "/types/graph/node-Node-position",
-          "name": "position",
-          "style": {},
-          "targets": [
-            "/types/graph/node-position-NodePosition"
-          ],
-          "text": "position: NodePosition;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * Optional styling configuration for the node\n   * @see {@link NodeStyle}\n   */",
-          "id": "/types/graph/node-Node-style",
-          "name": "style",
-          "style": {},
-          "targets": [
-            "/types/graph/node-style-NodeStyle"
-          ],
-          "text": "style?: NodeStyle;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The title/header section of the node\n   * @see {@link NodeTitle}\n   */",
-          "id": "/types/graph/node-Node-title",
-          "name": "title",
-          "style": {},
-          "targets": [
-            "/types/graph/node-title-NodeTitle"
-          ],
-          "text": "title: NodeTitle;",
-          "type": "attribute"
-        },
-        {
-          "docs": "/**\n   * The type of node (class, interface, etc)\n   * @see {@link NodeType}\n   */",
-          "id": "/types/graph/node-Node-type",
-          "name": "type",
-          "style": {},
-          "targets": [
-            "/types/graph/node-type-NodeType"
-          ],
-          "text": "type: NodeType;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "/**\n * Represents a node in the diagram, which can be a class, interface, type, enum, function, or variable.\n */",
-      "id": "/types/graph/node-Node",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/graph/node-Node-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "Node"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
           "docs": "/**\n   * Array of link types to filter links by their type (e.g., inheritance, implementation, etc.).\n   * If a link type is provided, all links of that type will be excluded from the diagram.\n   * Empty array means no type filtering.\n   * @see {@link LinkType}\n   */",
           "id": "/types/config/config-links-filter-ConfigLinksFilter-filter_type",
           "name": "filter_type",
           "style": {},
-          "targets": [
-            "/types/graph/link-type-LinkType"
-          ],
+          "targets": ["/types/graph/link-type-LinkType"],
           "text": "filter_type: LinkType[];",
           "type": "attribute"
         }
@@ -1034,7 +275,6 @@
       "docs": "/**\n * Interface defining the configuration for filtering links (relationships) in the diagram.\n */",
       "id": "/types/config/config-links-filter-ConfigLinksFilter",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -1079,7 +319,6 @@
       "docs": "/**\n * Interface defining the display options for links (relationships) in the diagram.\n */",
       "id": "/types/config/config-links-options-ConfigLinksOptions",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -1098,9 +337,7 @@
           "id": "/types/config/config-links-ConfigLinks-filter",
           "name": "filter",
           "style": {},
-          "targets": [
-            "/types/config/config-links-filter-ConfigLinksFilter"
-          ],
+          "targets": ["/types/config/config-links-filter-ConfigLinksFilter"],
           "text": "filter: ConfigLinksFilter;",
           "type": "attribute"
         },
@@ -1109,9 +346,7 @@
           "id": "/types/config/config-links-ConfigLinks-options",
           "name": "options",
           "style": {},
-          "targets": [
-            "/types/config/config-links-options-ConfigLinksOptions"
-          ],
+          "targets": ["/types/config/config-links-options-ConfigLinksOptions"],
           "text": "options: ConfigLinksOptions;",
           "type": "attribute"
         },
@@ -1120,9 +355,7 @@
           "id": "/types/config/config-links-ConfigLinks-linkPathAlgorithm",
           "name": "linkPathAlgorithm",
           "style": {},
-          "targets": [
-            "/types/config/link-path-algorithm-LinkPathAlgorithm"
-          ],
+          "targets": ["/types/config/link-path-algorithm-LinkPathAlgorithm"],
           "text": "linkPathAlgorithm: LinkPathAlgorithm;",
           "type": "attribute"
         }
@@ -1130,7 +363,6 @@
       "docs": "/**\n * Interface defining the configuration for displaying links (relationships) in the diagram.\n */",
       "id": "/types/config/config-links-ConfigLinks",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -1175,7 +407,6 @@
       "docs": "/**\n * Interface defining filters for nodes to be displayed in the diagram.\n */",
       "id": "/types/config/config-nodes-filter-name-ConfigNodesFilterName",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -1194,9 +425,7 @@
           "id": "/types/config/config-nodes-filter-ConfigNodesFilter-filter_name",
           "name": "filter_name",
           "style": {},
-          "targets": [
-            "/types/config/config-nodes-filter-name-ConfigNodesFilterName"
-          ],
+          "targets": ["/types/config/config-nodes-filter-name-ConfigNodesFilterName"],
           "text": "filter_name: ConfigNodesFilterName;",
           "type": "attribute"
         },
@@ -1214,9 +443,7 @@
           "id": "/types/config/config-nodes-filter-ConfigNodesFilter-filter_type",
           "name": "filter_type",
           "style": {},
-          "targets": [
-            "/types/graph/node-type-NodeType"
-          ],
+          "targets": ["/types/graph/node-type-NodeType"],
           "text": "filter_type: NodeType[];",
           "type": "attribute"
         }
@@ -1224,7 +451,6 @@
       "docs": "/**\n * Interface defining filters for nodes to be displayed in the diagram.\n */",
       "id": "/types/config/config-nodes-filter-ConfigNodesFilter",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -1368,7 +594,6 @@
       "docs": "/**\n * Type defining display options that control what information is shown inside the nodes.\n */",
       "id": "/types/config/config-nodes-options-ConfigNodesOptions",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -1387,9 +612,7 @@
           "id": "/types/config/config-nodes-ConfigNodes-filter",
           "name": "filter",
           "style": {},
-          "targets": [
-            "/types/config/config-nodes-filter-ConfigNodesFilter"
-          ],
+          "targets": ["/types/config/config-nodes-filter-ConfigNodesFilter"],
           "text": "filter: ConfigNodesFilter;",
           "type": "attribute"
         },
@@ -1398,9 +621,7 @@
           "id": "/types/config/config-nodes-ConfigNodes-options",
           "name": "options",
           "style": {},
-          "targets": [
-            "/types/config/config-nodes-options-ConfigNodesOptions"
-          ],
+          "targets": ["/types/config/config-nodes-options-ConfigNodesOptions"],
           "text": "options: ConfigNodesOptions;",
           "type": "attribute"
         },
@@ -1409,10 +630,7 @@
           "id": "/types/config/config-nodes-ConfigNodes-styles",
           "name": "styles",
           "style": {},
-          "targets": [
-            "/types/graph/node-type-NodeType",
-            "/types/graph/node-style-NodeStyle"
-          ],
+          "targets": ["/types/graph/node-type-NodeType", "/types/graph/node-style-NodeStyle"],
           "text": "styles: { [k in NodeType]?: NodeStyle };",
           "type": "attribute"
         }
@@ -1420,7 +638,6 @@
       "docs": "/**\n * Interface defining the configuration for displaying nodes in the diagram.\n */",
       "id": "/types/config/config-nodes-ConfigNodes",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -1439,9 +656,7 @@
           "id": "/types/config/config-Config-layoutAlgorithm",
           "name": "layoutAlgorithm",
           "style": {},
-          "targets": [
-            "/types/config/layout-algorithm-LayoutAlgorithm"
-          ],
+          "targets": ["/types/config/layout-algorithm-LayoutAlgorithm"],
           "text": "layoutAlgorithm: LayoutAlgorithm;",
           "type": "attribute"
         },
@@ -1450,9 +665,7 @@
           "id": "/types/config/config-Config-links",
           "name": "links",
           "style": {},
-          "targets": [
-            "/types/config/config-links-ConfigLinks"
-          ],
+          "targets": ["/types/config/config-links-ConfigLinks"],
           "text": "links: ConfigLinks;",
           "type": "attribute"
         },
@@ -1461,9 +674,7 @@
           "id": "/types/config/config-Config-nodes",
           "name": "nodes",
           "style": {},
-          "targets": [
-            "/types/config/config-nodes-ConfigNodes"
-          ],
+          "targets": ["/types/config/config-nodes-ConfigNodes"],
           "text": "nodes: ConfigNodes;",
           "type": "attribute"
         }
@@ -1471,7 +682,6 @@
       "docs": "/**\n * Main configuration object that controls the overall diagram appearance and behavior.\n * Contains settings for theme, display options, and filtering of nodes and relationships.\n */",
       "id": "/types/config/config-Config",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -1531,7 +741,6 @@
       "docs": "/**\n * Represents the different types of layout algorithms for the diagram.\n * - `layered`: Layered layout\n * - `mrtree`: Multi-root tree layout\n * - `force`: Force-directed layout\n * - `radial`: Radial layout\n * - `box`: Box layout\n * - `random`: Random layout\n */",
       "id": "/types/config/layout-algorithm-LayoutAlgorithm",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -1570,7 +779,6 @@
       "docs": "/**\n * What type of links should be used to connect the nodes.\n * - `straight`: Straight lines\n * - `bezier`: Bezier curves\n * - `step`: Step lines\n */",
       "id": "/types/config/link-path-algorithm-LinkPathAlgorithm",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -1581,6 +789,697 @@
         "text": "LinkPathAlgorithm"
       },
       "type": "union"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * Configuration for the graph\n   * @see {@link Config}\n   */",
+          "id": "/types/graph/graph-Graph-config",
+          "name": "config",
+          "style": {},
+          "targets": ["/types/config/config-Config"],
+          "text": "config: Config;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Array of nodes in the graph (classes, interfaces, etc)\n   * @see {@link Node}\n   */",
+          "id": "/types/graph/graph-Graph-nodes",
+          "name": "nodes",
+          "style": {},
+          "targets": ["/types/graph/node-Node"],
+          "text": "nodes: Node[];",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Array of links/relationships between nodes\n   * @see {@link Link}\n   */",
+          "id": "/types/graph/graph-Graph-links",
+          "name": "links",
+          "style": {},
+          "targets": ["/types/graph/link-Link"],
+          "text": "links: Link[];",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a graph/diagram containing nodes and their links.\n */",
+      "id": "/types/graph/graph-Graph",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/graph/graph-Graph-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Graph"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/graph/link-type-LinkType-association",
+          "name": "association",
+          "style": {},
+          "text": "association",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/graph/link-type-LinkType-inheritance",
+          "name": "inheritance",
+          "style": {},
+          "text": "inheritance",
+          "type": "unionOption"
+        }
+      ],
+      "docs": "/**\n * Represents the different types of relationships between nodes in the diagram.\n * - `association`: Indicates a basic association between nodes\n * - `inheritance`: Indicates an inheritance/extends relationship\n */",
+      "id": "/types/graph/link-type-LinkType",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/graph/link-type-LinkType-TITLE",
+        "nodeType": "union",
+        "style": {},
+        "text": "LinkType"
+      },
+      "type": "union"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * The unique identifier of the source node\n   * @see {@link Node}\n   */",
+          "id": "/types/graph/link-Link-sourceId",
+          "name": "sourceId",
+          "style": {},
+          "targets": [],
+          "text": "sourceId: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The unique identifier of the source attribute\n   * @see {@link NodeAttribute}\n   */",
+          "id": "/types/graph/link-Link-sourceAttributeIds",
+          "name": "sourceAttributeIds",
+          "style": {},
+          "targets": [],
+          "text": "sourceAttributeIds: string[];",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The unique identifier of the target node\n   * @see {@link Node}\n   */",
+          "id": "/types/graph/link-Link-targetId",
+          "name": "targetId",
+          "style": {},
+          "targets": [],
+          "text": "targetId: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Optional text label to display on the relationship\n   */",
+          "id": "/types/graph/link-Link-text",
+          "name": "text",
+          "style": {},
+          "targets": [],
+          "text": "text?: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of relationship between the nodes\n   * @see {@link LinkType}\n   */",
+          "id": "/types/graph/link-Link-type",
+          "name": "type",
+          "style": {},
+          "targets": ["/types/graph/link-type-LinkType"],
+          "text": "type: LinkType;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/graph/link-Link",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/graph/link-Link-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Link"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * The id of the Node that this attribute extends from\n   */",
+          "id": "/types/graph/node-attribute-extended-NodeAttributeExtended-ancestorNodeId",
+          "name": "ancestorNodeId",
+          "style": {},
+          "targets": [],
+          "text": "ancestorNodeId?: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The name of the Node that this attribute extends from\n   */",
+          "id": "/types/graph/node-attribute-extended-NodeAttributeExtended-ancestorNodeName",
+          "name": "ancestorNodeName",
+          "style": {},
+          "targets": [],
+          "text": "ancestorNodeName?: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The id of the node that this attribute extends from\n   */",
+          "id": "/types/graph/node-attribute-extended-NodeAttributeExtended-fatherNodeId",
+          "name": "fatherNodeId",
+          "style": {},
+          "targets": [],
+          "text": "fatherNodeId?: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The name of the Node that this attribute extends from\n   */",
+          "id": "/types/graph/node-attribute-extended-NodeAttributeExtended-fatherNodeName",
+          "name": "fatherNodeName",
+          "style": {},
+          "targets": [],
+          "text": "fatherNodeName?: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents an attribute or method within a node in the diagram.\n */",
+      "id": "/types/graph/node-attribute-extended-NodeAttributeExtended",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/graph/node-attribute-extended-NodeAttributeExtended-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "NodeAttributeExtended"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/graph/node-attribute-scope-NodeAttributeScope-private",
+          "name": "private",
+          "style": {},
+          "text": "private",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/graph/node-attribute-scope-NodeAttributeScope-protected",
+          "name": "protected",
+          "style": {},
+          "text": "protected",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/graph/node-attribute-scope-NodeAttributeScope-public",
+          "name": "public",
+          "style": {},
+          "text": "public",
+          "type": "unionOption"
+        }
+      ],
+      "docs": "/**\n * Represents the visibility/access level of a node attribute.\n * - `private`: Attribute is only accessible within the class\n * - `protected`: Attribute is only accessible to the class and its subclasses\n * - `public`: Attribute is publicly accessible\n */",
+      "id": "/types/graph/node-attribute-scope-NodeAttributeScope",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/graph/node-attribute-scope-NodeAttributeScope-TITLE",
+        "nodeType": "union",
+        "style": {},
+        "text": "NodeAttributeScope"
+      },
+      "type": "union"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/graph/node-attribute-type-NodeAttributeType-attribute",
+          "name": "attribute",
+          "style": {},
+          "text": "attribute",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/graph/node-attribute-type-NodeAttributeType-unionOption",
+          "name": "unionOption",
+          "style": {},
+          "text": "unionOption",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/graph/node-attribute-type-NodeAttributeType-method",
+          "name": "method",
+          "style": {},
+          "text": "method",
+          "type": "unionOption"
+        }
+      ],
+      "docs": "/**\n * Represents the different types of attributes that can be displayed in a node.\n * - `attribute`: Represents a class/interface property or field\n * - `unionOption`: Represents an enum value or type union option\n * - `method`: Represents a class/interface method or function\n */",
+      "id": "/types/graph/node-attribute-type-NodeAttributeType",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/graph/node-attribute-type-NodeAttributeType-TITLE",
+        "nodeType": "union",
+        "style": {},
+        "text": "NodeAttributeType"
+      },
+      "type": "union"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * Unique identifier for the attribute\n   */",
+          "id": "/types/graph/node-attribute-NodeAttribute-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * jsdocs documentation for the attribute\n   */",
+          "id": "/types/graph/node-attribute-NodeAttribute-docs",
+          "name": "docs",
+          "style": {},
+          "targets": [],
+          "text": "docs?: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Whether the attribute is static\n   */",
+          "id": "/types/graph/node-attribute-NodeAttribute-isStatic",
+          "name": "isStatic",
+          "style": {},
+          "targets": [],
+          "text": "isStatic?: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * If the attribute is extended, this will contain the extended information\n   */",
+          "id": "/types/graph/node-attribute-NodeAttribute-extended",
+          "name": "extended",
+          "style": {},
+          "targets": ["/types/graph/node-attribute-extended-NodeAttributeExtended"],
+          "text": "extended?: NodeAttributeExtended;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The name of the attribute\n   */",
+          "id": "/types/graph/node-attribute-NodeAttribute-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The visibility/access level of the attribute (public, protected, private)\n   * @see {@link NodeAttributeScope}\n   */",
+          "id": "/types/graph/node-attribute-NodeAttribute-scope",
+          "name": "scope",
+          "style": {},
+          "targets": ["/types/graph/node-attribute-scope-NodeAttributeScope"],
+          "text": "scope?: NodeAttributeScope;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The styling configuration for this attribute\n   * @see {@link NodeStyle}\n   */",
+          "id": "/types/graph/node-attribute-NodeAttribute-style",
+          "name": "style",
+          "style": {},
+          "targets": ["/types/graph/node-style-NodeStyle"],
+          "text": "style?: NodeStyle;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The target nodeIds that this attribute points to.\n   */",
+          "id": "/types/graph/node-attribute-NodeAttribute-targets",
+          "name": "targets",
+          "style": {},
+          "targets": [],
+          "text": "targets?: string[];",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The text content/label of the attribute\n   */",
+          "id": "/types/graph/node-attribute-NodeAttribute-text",
+          "name": "text",
+          "style": {},
+          "targets": [],
+          "text": "text: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of attribute (attribute, method, separator, etc)\n   * @see {@link NodeAttributeType}\n   */",
+          "id": "/types/graph/node-attribute-NodeAttribute-type",
+          "name": "type",
+          "style": {},
+          "targets": ["/types/graph/node-attribute-type-NodeAttributeType"],
+          "text": "type: NodeAttributeType;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents an attribute or method within a node in the diagram.\n */",
+      "id": "/types/graph/node-attribute-NodeAttribute",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/graph/node-attribute-NodeAttribute-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "NodeAttribute"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * The x position of the node\n   */",
+          "id": "/types/graph/node-position-NodePosition-x",
+          "name": "x",
+          "style": {},
+          "targets": [],
+          "text": "x: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The y position of the node\n   */",
+          "id": "/types/graph/node-position-NodePosition-y",
+          "name": "y",
+          "style": {},
+          "targets": [],
+          "text": "y: number;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a node position in the graph\n */",
+      "id": "/types/graph/node-position-NodePosition",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/graph/node-position-NodePosition-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "NodePosition"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * The background color of the node element\n   */",
+          "id": "/types/graph/node-style-NodeStyle-backgroundColor",
+          "name": "backgroundColor",
+          "style": {},
+          "targets": [],
+          "text": "backgroundColor?: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The border color of the node element\n   */",
+          "id": "/types/graph/node-style-NodeStyle-borderColor",
+          "name": "borderColor",
+          "style": {},
+          "targets": [],
+          "text": "borderColor?: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The border width of the node element\n   */",
+          "id": "/types/graph/node-style-NodeStyle-borderWidth",
+          "name": "borderWidth",
+          "style": {},
+          "targets": [],
+          "text": "borderWidth?: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The text color of the node element\n   */",
+          "id": "/types/graph/node-style-NodeStyle-color",
+          "name": "color",
+          "style": {},
+          "targets": [],
+          "text": "color?: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The font size of text within the node element\n   */",
+          "id": "/types/graph/node-style-NodeStyle-fontSize",
+          "name": "fontSize",
+          "style": {},
+          "targets": [],
+          "text": "fontSize?: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The font weight of text within the node element\n   */",
+          "id": "/types/graph/node-style-NodeStyle-fontWeight",
+          "name": "fontWeight",
+          "style": {},
+          "targets": [],
+          "text": "fontWeight?: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The height of the node element\n   */",
+          "id": "/types/graph/node-style-NodeStyle-height",
+          "name": "height",
+          "style": {},
+          "targets": [],
+          "text": "height?: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The width of the node element\n   */",
+          "id": "/types/graph/node-style-NodeStyle-width",
+          "name": "width",
+          "style": {},
+          "targets": [],
+          "text": "width?: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/types/graph/node-style-NodeStyle",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/graph/node-style-NodeStyle-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "NodeStyle"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * Unique identifier for the title\n   */",
+          "id": "/types/graph/node-title-NodeTitle-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of node (class, interface, etc)\n   * @see {@link NodeType}\n   */",
+          "id": "/types/graph/node-title-NodeTitle-nodeType",
+          "name": "nodeType",
+          "style": {},
+          "targets": ["/types/graph/node-type-NodeType"],
+          "text": "nodeType: NodeType;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The styling configuration for the title section\n   * @see {@link NodeStyle}\n   */",
+          "id": "/types/graph/node-title-NodeTitle-style",
+          "name": "style",
+          "style": {},
+          "targets": ["/types/graph/node-style-NodeStyle"],
+          "text": "style?: NodeStyle;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The text content/label displayed in the title\n   */",
+          "id": "/types/graph/node-title-NodeTitle-text",
+          "name": "text",
+          "style": {},
+          "targets": [],
+          "text": "text: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents the title/header section of a node in the diagram.\n */",
+      "id": "/types/graph/node-title-NodeTitle",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/graph/node-title-NodeTitle-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "NodeTitle"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/graph/node-type-NodeType-class",
+          "name": "class",
+          "style": {},
+          "text": "class",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/graph/node-type-NodeType-union",
+          "name": "union",
+          "style": {},
+          "text": "union",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/graph/node-type-NodeType-interface",
+          "name": "interface",
+          "style": {},
+          "text": "interface",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/graph/node-type-NodeType-type",
+          "name": "type",
+          "style": {},
+          "text": "type",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/graph/node-type-NodeType-variable",
+          "name": "variable",
+          "style": {},
+          "text": "variable",
+          "type": "unionOption"
+        }
+      ],
+      "docs": "/**\n * Represents the different types of nodes that can be displayed in the diagram.\n * - `class`: Represents a class definition\n * - `union`: Represents a union type, it can be an enum or a type that unions multiple types\n * - `interface`: Represents an interface definition\n * - `type`: Represents a type definition\n * - `variable`: Represents a variable declaration\n */",
+      "id": "/types/graph/node-type-NodeType",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/graph/node-type-NodeType-TITLE",
+        "nodeType": "union",
+        "style": {},
+        "text": "NodeType"
+      },
+      "type": "union"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * Array of attributes, methods, or other items displayed in the node body\n   * @see {@link NodeAttribute}\n   */",
+          "id": "/types/graph/node-Node-attributes",
+          "name": "attributes",
+          "style": {},
+          "targets": ["/types/graph/node-attribute-NodeAttribute"],
+          "text": "attributes: NodeAttribute[];",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * jsdocs documentation for the node\n   */",
+          "id": "/types/graph/node-Node-docs",
+          "name": "docs",
+          "style": {},
+          "targets": [],
+          "text": "docs?: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The names of the Nodes that this node extends from\n   */",
+          "id": "/types/graph/node-Node-extends",
+          "name": "extends",
+          "style": {},
+          "targets": [],
+          "text": "extends?: string[];",
+          "type": "attribute"
+        },
+        {
+          "docs": "/** Unique identifier for the node */",
+          "id": "/types/graph/node-Node-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The position of the node in the graph\n   * @see {@link NodePosition}\n   */",
+          "id": "/types/graph/node-Node-position",
+          "name": "position",
+          "style": {},
+          "targets": ["/types/graph/node-position-NodePosition"],
+          "text": "position: NodePosition;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * Optional styling configuration for the node\n   * @see {@link NodeStyle}\n   */",
+          "id": "/types/graph/node-Node-style",
+          "name": "style",
+          "style": {},
+          "targets": ["/types/graph/node-style-NodeStyle"],
+          "text": "style?: NodeStyle;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The title/header section of the node\n   * @see {@link NodeTitle}\n   */",
+          "id": "/types/graph/node-Node-title",
+          "name": "title",
+          "style": {},
+          "targets": ["/types/graph/node-title-NodeTitle"],
+          "text": "title: NodeTitle;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\n   * The type of node (class, interface, etc)\n   * @see {@link NodeType}\n   */",
+          "id": "/types/graph/node-Node-type",
+          "name": "type",
+          "style": {},
+          "targets": ["/types/graph/node-type-NodeType"],
+          "text": "type: NodeType;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a node in the diagram, which can be a class, interface, type, enum, function, or variable.\n */",
+      "id": "/types/graph/node-Node",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/graph/node-Node-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Node"
+      },
+      "type": "interface"
     },
     {
       "attributes": [
@@ -1609,7 +1508,6 @@
       "docs": "/**\n * Represents the different types of messages that are sent between components of the web\n * - `checked`: The checkbox is checked\n * - `unchecked`: The checkbox is unchecked\n * - `partial`: The checkbox is partially checked\n */",
       "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -1664,9 +1562,7 @@
           "id": "/types/utils/tree-node-TreeNode-checked",
           "name": "checked",
           "style": {},
-          "targets": [
-            "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus"
-          ],
+          "targets": ["/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus"],
           "text": "checked: CheckboxPartialCheckedStatus;",
           "type": "attribute"
         },
@@ -1675,9 +1571,7 @@
           "id": "/types/utils/tree-node-TreeNode-children",
           "name": "children",
           "style": {},
-          "targets": [
-            "/types/utils/tree-node-TreeNode"
-          ],
+          "targets": ["/types/utils/tree-node-TreeNode"],
           "text": "children?: { [key: string]: TreeNode };",
           "type": "attribute"
         },
@@ -1694,7 +1588,6 @@
       "docs": "",
       "id": "/types/utils/tree-node-TreeNode",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -1733,7 +1626,6 @@
       "docs": "/**\n * Represents the different formats that can be used to export the graph\n * - `json`: JSON format\n * - `png`: PNG format\n * - `png-transparent`: PNG format with transparent background\n */",
       "id": "/types/export/export-format-ExportFormat",
       "position": {
-        "locked": false,
         "x": 0,
         "y": 0
       },
@@ -1749,25 +1641,19 @@
   "links": [
     {
       "sourceId": "/types/messages/msg-load-graph-MsgLoadGraph",
-      "sourceAttributeIds": [
-        "/types/messages/msg-load-graph-MsgLoadGraph-graph"
-      ],
+      "sourceAttributeIds": ["/types/messages/msg-load-graph-MsgLoadGraph-graph"],
       "targetId": "/types/graph/graph-Graph",
       "type": "association"
     },
     {
       "sourceId": "/types/messages/msg-open-node-code-MsgOpenNodeCode",
-      "sourceAttributeIds": [
-        "/types/messages/msg-open-node-code-MsgOpenNodeCode-node"
-      ],
+      "sourceAttributeIds": ["/types/messages/msg-open-node-code-MsgOpenNodeCode-node"],
       "targetId": "/types/graph/node-Node",
       "type": "association"
     },
     {
       "sourceId": "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm",
-      "sourceAttributeIds": [
-        "/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-layoutAlgorithm"
-      ],
+      "sourceAttributeIds": ["/types/messages/msg-update-layout-algorithm-MsgUpdateLayoutAlgorithm-layoutAlgorithm"],
       "targetId": "/types/config/layout-algorithm-LayoutAlgorithm",
       "type": "association"
     },
@@ -1780,242 +1666,182 @@
       "type": "association"
     },
     {
-      "sourceId": "/types/graph/graph-Graph",
-      "sourceAttributeIds": [
-        "/types/graph/graph-Graph-config"
-      ],
-      "targetId": "/types/config/config-Config",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/graph-Graph",
-      "sourceAttributeIds": [
-        "/types/graph/graph-Graph-nodes"
-      ],
-      "targetId": "/types/graph/node-Node",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/graph-Graph",
-      "sourceAttributeIds": [
-        "/types/graph/graph-Graph-links"
-      ],
-      "targetId": "/types/graph/link-Link",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/link-Link",
-      "sourceAttributeIds": [
-        "/types/graph/link-Link-type"
-      ],
-      "targetId": "/types/graph/link-type-LinkType",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-attribute-NodeAttribute",
-      "sourceAttributeIds": [
-        "/types/graph/node-attribute-NodeAttribute-extended"
-      ],
-      "targetId": "/types/graph/node-attribute-extended-NodeAttributeExtended",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-attribute-NodeAttribute",
-      "sourceAttributeIds": [
-        "/types/graph/node-attribute-NodeAttribute-scope"
-      ],
-      "targetId": "/types/graph/node-attribute-scope-NodeAttributeScope",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-attribute-NodeAttribute",
-      "sourceAttributeIds": [
-        "/types/graph/node-attribute-NodeAttribute-style"
-      ],
-      "targetId": "/types/graph/node-style-NodeStyle",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-attribute-NodeAttribute",
-      "sourceAttributeIds": [
-        "/types/graph/node-attribute-NodeAttribute-type"
-      ],
-      "targetId": "/types/graph/node-attribute-type-NodeAttributeType",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-title-NodeTitle",
-      "sourceAttributeIds": [
-        "/types/graph/node-title-NodeTitle-nodeType"
-      ],
-      "targetId": "/types/graph/node-type-NodeType",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-title-NodeTitle",
-      "sourceAttributeIds": [
-        "/types/graph/node-title-NodeTitle-style"
-      ],
-      "targetId": "/types/graph/node-style-NodeStyle",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": [
-        "/types/graph/node-Node-attributes"
-      ],
-      "targetId": "/types/graph/node-attribute-NodeAttribute",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": [
-        "/types/graph/node-Node-position"
-      ],
-      "targetId": "/types/graph/node-position-NodePosition",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": [
-        "/types/graph/node-Node-style"
-      ],
-      "targetId": "/types/graph/node-style-NodeStyle",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": [
-        "/types/graph/node-Node-title"
-      ],
-      "targetId": "/types/graph/node-title-NodeTitle",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/graph/node-Node",
-      "sourceAttributeIds": [
-        "/types/graph/node-Node-type"
-      ],
-      "targetId": "/types/graph/node-type-NodeType",
-      "type": "association"
-    },
-    {
       "sourceId": "/types/config/config-links-filter-ConfigLinksFilter",
-      "sourceAttributeIds": [
-        "/types/config/config-links-filter-ConfigLinksFilter-filter_type"
-      ],
+      "sourceAttributeIds": ["/types/config/config-links-filter-ConfigLinksFilter-filter_type"],
       "targetId": "/types/graph/link-type-LinkType",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-links-ConfigLinks",
-      "sourceAttributeIds": [
-        "/types/config/config-links-ConfigLinks-filter"
-      ],
+      "sourceAttributeIds": ["/types/config/config-links-ConfigLinks-filter"],
       "targetId": "/types/config/config-links-filter-ConfigLinksFilter",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-links-ConfigLinks",
-      "sourceAttributeIds": [
-        "/types/config/config-links-ConfigLinks-options"
-      ],
+      "sourceAttributeIds": ["/types/config/config-links-ConfigLinks-options"],
       "targetId": "/types/config/config-links-options-ConfigLinksOptions",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-links-ConfigLinks",
-      "sourceAttributeIds": [
-        "/types/config/config-links-ConfigLinks-linkPathAlgorithm"
-      ],
+      "sourceAttributeIds": ["/types/config/config-links-ConfigLinks-linkPathAlgorithm"],
       "targetId": "/types/config/link-path-algorithm-LinkPathAlgorithm",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-nodes-filter-ConfigNodesFilter",
-      "sourceAttributeIds": [
-        "/types/config/config-nodes-filter-ConfigNodesFilter-filter_name"
-      ],
+      "sourceAttributeIds": ["/types/config/config-nodes-filter-ConfigNodesFilter-filter_name"],
       "targetId": "/types/config/config-nodes-filter-name-ConfigNodesFilterName",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-nodes-filter-ConfigNodesFilter",
-      "sourceAttributeIds": [
-        "/types/config/config-nodes-filter-ConfigNodesFilter-filter_type"
-      ],
+      "sourceAttributeIds": ["/types/config/config-nodes-filter-ConfigNodesFilter-filter_type"],
       "targetId": "/types/graph/node-type-NodeType",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourceAttributeIds": [
-        "/types/config/config-nodes-ConfigNodes-filter"
-      ],
+      "sourceAttributeIds": ["/types/config/config-nodes-ConfigNodes-filter"],
       "targetId": "/types/config/config-nodes-filter-ConfigNodesFilter",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourceAttributeIds": [
-        "/types/config/config-nodes-ConfigNodes-options"
-      ],
+      "sourceAttributeIds": ["/types/config/config-nodes-ConfigNodes-options"],
       "targetId": "/types/config/config-nodes-options-ConfigNodesOptions",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourceAttributeIds": [
-        "/types/config/config-nodes-ConfigNodes-styles"
-      ],
+      "sourceAttributeIds": ["/types/config/config-nodes-ConfigNodes-styles"],
       "targetId": "/types/graph/node-type-NodeType",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-nodes-ConfigNodes",
-      "sourceAttributeIds": [
-        "/types/config/config-nodes-ConfigNodes-styles"
-      ],
+      "sourceAttributeIds": ["/types/config/config-nodes-ConfigNodes-styles"],
       "targetId": "/types/graph/node-style-NodeStyle",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-Config",
-      "sourceAttributeIds": [
-        "/types/config/config-Config-layoutAlgorithm"
-      ],
+      "sourceAttributeIds": ["/types/config/config-Config-layoutAlgorithm"],
       "targetId": "/types/config/layout-algorithm-LayoutAlgorithm",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-Config",
-      "sourceAttributeIds": [
-        "/types/config/config-Config-links"
-      ],
+      "sourceAttributeIds": ["/types/config/config-Config-links"],
       "targetId": "/types/config/config-links-ConfigLinks",
       "type": "association"
     },
     {
       "sourceId": "/types/config/config-Config",
-      "sourceAttributeIds": [
-        "/types/config/config-Config-nodes"
-      ],
+      "sourceAttributeIds": ["/types/config/config-Config-nodes"],
       "targetId": "/types/config/config-nodes-ConfigNodes",
       "type": "association"
     },
     {
+      "sourceId": "/types/graph/graph-Graph",
+      "sourceAttributeIds": ["/types/graph/graph-Graph-config"],
+      "targetId": "/types/config/config-Config",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/graph-Graph",
+      "sourceAttributeIds": ["/types/graph/graph-Graph-nodes"],
+      "targetId": "/types/graph/node-Node",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/graph-Graph",
+      "sourceAttributeIds": ["/types/graph/graph-Graph-links"],
+      "targetId": "/types/graph/link-Link",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/link-Link",
+      "sourceAttributeIds": ["/types/graph/link-Link-type"],
+      "targetId": "/types/graph/link-type-LinkType",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-attribute-NodeAttribute",
+      "sourceAttributeIds": ["/types/graph/node-attribute-NodeAttribute-extended"],
+      "targetId": "/types/graph/node-attribute-extended-NodeAttributeExtended",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-attribute-NodeAttribute",
+      "sourceAttributeIds": ["/types/graph/node-attribute-NodeAttribute-scope"],
+      "targetId": "/types/graph/node-attribute-scope-NodeAttributeScope",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-attribute-NodeAttribute",
+      "sourceAttributeIds": ["/types/graph/node-attribute-NodeAttribute-style"],
+      "targetId": "/types/graph/node-style-NodeStyle",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-attribute-NodeAttribute",
+      "sourceAttributeIds": ["/types/graph/node-attribute-NodeAttribute-type"],
+      "targetId": "/types/graph/node-attribute-type-NodeAttributeType",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-title-NodeTitle",
+      "sourceAttributeIds": ["/types/graph/node-title-NodeTitle-nodeType"],
+      "targetId": "/types/graph/node-type-NodeType",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-title-NodeTitle",
+      "sourceAttributeIds": ["/types/graph/node-title-NodeTitle-style"],
+      "targetId": "/types/graph/node-style-NodeStyle",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-Node",
+      "sourceAttributeIds": ["/types/graph/node-Node-attributes"],
+      "targetId": "/types/graph/node-attribute-NodeAttribute",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-Node",
+      "sourceAttributeIds": ["/types/graph/node-Node-position"],
+      "targetId": "/types/graph/node-position-NodePosition",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-Node",
+      "sourceAttributeIds": ["/types/graph/node-Node-style"],
+      "targetId": "/types/graph/node-style-NodeStyle",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-Node",
+      "sourceAttributeIds": ["/types/graph/node-Node-title"],
+      "targetId": "/types/graph/node-title-NodeTitle",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/graph/node-Node",
+      "sourceAttributeIds": ["/types/graph/node-Node-type"],
+      "targetId": "/types/graph/node-type-NodeType",
+      "type": "association"
+    },
+    {
       "sourceId": "/types/utils/tree-node-TreeNode",
-      "sourceAttributeIds": [
-        "/types/utils/tree-node-TreeNode-checked"
-      ],
+      "sourceAttributeIds": ["/types/utils/tree-node-TreeNode-checked"],
       "targetId": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
       "type": "association"
     },
     {
       "sourceId": "/types/utils/tree-node-TreeNode",
-      "sourceAttributeIds": [
-        "/types/utils/tree-node-TreeNode-children"
-      ],
+      "sourceAttributeIds": ["/types/utils/tree-node-TreeNode-children"],
       "targetId": "/types/utils/tree-node-TreeNode",
       "type": "association"
     }

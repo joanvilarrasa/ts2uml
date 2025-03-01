@@ -1,7 +1,3 @@
-import type { Theme } from '../types/config/theme.ts';
-
-export const DEFAULT_THEME: Theme = 'light';
-
 export const LIGHT_THEME_COLORS = {
   background: '#f1ede2',
   foreground: '#000000',

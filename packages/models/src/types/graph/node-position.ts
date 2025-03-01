@@ -5,11 +5,6 @@ import { z } from 'zod';
  */
 export interface NodePosition {
   /**
-   * Whether the node is locked in place
-   */
-  locked: boolean;
-
-  /**
    * The x position of the node
    */
   x: number;
@@ -21,14 +16,12 @@ export interface NodePosition {
 }
 
 export const ZNodePosition = z.object({
-  locked: z.boolean().optional(),
   x: z.number(),
   y: z.number(),
 }) as z.ZodType<NodePosition>;
 
 export function createNodePosition(data?: Partial<NodePosition>): NodePosition {
   return ZNodePosition.parse({
-    locked: data?.locked ?? false,
     x: data?.x ?? 0,
     y: data?.y ?? 0,
   });
