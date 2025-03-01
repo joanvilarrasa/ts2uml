@@ -1,4 +1,5 @@
 import { NODE_ATTRIBUTE_HEIGHT } from '@/lib/constants';
+import { HoverManager } from '@/lib/hover-manager';
 import type { Node } from '@ts2uml/models';
 import {
   Handle as RF_Handle,
@@ -14,9 +15,22 @@ export function InterfaceNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node 
   const title = props.data.data.title;
   const attributes = props.data.data.attributes;
   const isExtension = import.meta.env.VITE_ENV === 'extension';
+  const hoverManager = HoverManager.getInstance();
+
+  const handleMouseEnter = () => {
+    hoverManager.setHoveredNode(node);
+  };
+
+  const handleMouseLeave = () => {
+    hoverManager.setHoveredNode(null);
+  };
 
   return (
-    <Card>
+    <Card
+      className="hover:shadow-[0px_0px_25px_5px_hsl(var(--interface))]"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="group flex flex-col bg-interface/40 p-1">
         <CardHeader className="relative">
           <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
@@ -28,9 +42,10 @@ export function InterfaceNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node 
           )}
         </CardHeader>
         <CardContent className="bg-card">
-          {attributes.map((attribute, index) => (
+          {attributes.map((attribute) => (
             <div
-              key={`${node.id}-${index}`}
+              id={attribute.id}
+              key={`${attribute.id}`}
               className="flex items-center justify-between px-4"
               style={{ height: NODE_ATTRIBUTE_HEIGHT }}
             >

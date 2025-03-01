@@ -1,4 +1,5 @@
 import { NODE_ATTRIBUTE_HEIGHT } from '@/lib/constants';
+import { HoverManager } from '@/lib/hover-manager';
 import type { Node } from '@ts2uml/models';
 import {
   Handle as RF_Handle,
@@ -14,9 +15,22 @@ export function UnionNodeComponent(props: RF_NodeProps<RF_Node<{ data: Node }>>)
   const title = props.data.data.title;
   const attributes = props.data.data.attributes;
   const isExtension = import.meta.env.VITE_ENV === 'extension';
+  const hoverManager = HoverManager.getInstance();
+
+  const handleMouseEnter = () => {
+    hoverManager.setHoveredNode(node);
+  };
+
+  const handleMouseLeave = () => {
+    hoverManager.setHoveredNode(null);
+  };
 
   return (
-    <Card>
+    <Card
+      className="hover:shadow-[0px_0px_25px_5px_hsl(var(--union))]"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="group flex flex-col bg-union/40 p-1">
         <CardHeader>
           <CardDescription>{`<<${title.nodeType}>>`}</CardDescription>
