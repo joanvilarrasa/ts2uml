@@ -4146,13 +4146,29 @@ function createNodeStyle(data) {
 // src/types/graph/node-type.ts
 var ZNodeType = z.enum(["class", "union", "interface", "type", "variable"]);
 
+// src/types/config/config-nodes-filter-name.ts
+var ZConfigNodesFilterName = z.object({
+  starts_with: z.string(),
+  ends_with: z.string(),
+  includes: z.string()
+});
+function createConfigNodesFilterName(data) {
+  return ZConfigNodesFilterName.parse({
+    starts_with: data?.starts_with ?? "",
+    ends_with: data?.ends_with ?? "",
+    includes: data?.includes ?? ""
+  });
+}
+
 // src/types/config/config-nodes-filter.ts
 var ZConfigNodesFilter = z.object({
+  filter_name: ZConfigNodesFilterName,
   filter_node: z.array(z.string()).optional(),
   filter_type: ZNodeType.array().optional()
 });
 function createConfigNodesFilter(data) {
   return ZConfigNodesFilter.parse({
+    filter_name: createConfigNodesFilterName(data?.filter_name),
     filter_node: data?.filter_node ?? [],
     filter_type: data?.filter_type ?? []
   });
@@ -4453,14 +4469,10 @@ function createMsgUpdateLinkPathAlgorithm(data) {
 
 // src/types/messages/msg-update-visible-nodes.ts
 var ZMsgUpdateVisibleNodes = z.object({
-  nodeIdsToAdd: z.array(z.string({ invalid_type_error: "nodeIdsToAdd must be an array of strings" })),
-  nodeIdsToRemove: z.array(z.string({ invalid_type_error: "nodeIdsToRemove must be an array of strings" })),
   type: ZMsgType.extract(["update-visible-nodes"])
 });
-function createMsgUpdateVisibleNodes(data) {
+function createMsgUpdateVisibleNodes() {
   return ZMsgUpdateVisibleNodes.parse({
-    nodeIdsToAdd: data?.nodeIdsToAdd ?? [],
-    nodeIdsToRemove: data?.nodeIdsToRemove ?? [],
     type: "update-visible-nodes"
   });
 }
@@ -4794,6 +4806,7 @@ export {
   ZConfigLinksOptions,
   ZConfigNodes,
   ZConfigNodesFilter,
+  ZConfigNodesFilterName,
   ZConfigNodesOptions,
   ZExportFormat,
   ZGraph,
@@ -4823,6 +4836,7 @@ export {
   createConfigLinksOptions,
   createConfigNodes,
   createConfigNodesFilter,
+  createConfigNodesFilterName,
   createConfigNodesOptions,
   createGraph,
   createLink,

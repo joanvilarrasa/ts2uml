@@ -4,6 +4,7 @@ export * from './src/types/config/config-links.ts';
 export * from './src/types/config/config-links-filter.ts';
 export * from './src/types/config/config-links-options.ts';
 export * from './src/types/config/config-nodes.ts';
+export * from './src/types/config/config-nodes-filter-name.ts';
 export * from './src/types/config/config-nodes-filter.ts';
 export * from './src/types/config/config-nodes-options.ts';
 export * from './src/types/config/layout-algorithm.ts';

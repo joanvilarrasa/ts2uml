@@ -84,6 +84,33 @@
     {
       "attributes": [
         {
+          "docs": "/**\n   * The type of message\n   * @see {@link MsgType}\n   */",
+          "id": "/types/messages/msg-page-ready-MsgPageReady-type",
+          "name": "type",
+          "style": {},
+          "targets": [],
+          "text": "type: 'page-ready';",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\n * Represents a relationship/link between two nodes in the diagram.\n */",
+      "id": "/types/messages/msg-page-ready-MsgPageReady",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/messages/msg-page-ready-MsgPageReady-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "MsgPageReady"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
           "id": "/types/messages/msg-type-MsgType-load-graph",
           "name": "load-graph",
           "style": {},
@@ -117,9 +144,16 @@
           "style": {},
           "text": "open-node-code",
           "type": "unionOption"
+        },
+        {
+          "id": "/types/messages/msg-type-MsgType-page-ready",
+          "name": "page-ready",
+          "style": {},
+          "text": "page-ready",
+          "type": "unionOption"
         }
       ],
-      "docs": "/**\n * Represents the different types of messages that are sent between components of the web app\n * - `load-graph`: Load a graph\n * - `update-layout-algorithm`: Update the layout algorithm\n * - `update-link-path-algorithm`: Update the link path algorithm\n * - `update-visible-nodes`: Update the visible nodes\n * - `open-node-code`: Open the code of a node (only available in the extension)\n */",
+      "docs": "/**\n * Represents the different types of messages that are sent between components of the web app\n * - `load-graph`: Load a graph\n * - `update-layout-algorithm`: Update the layout algorithm\n * - `update-link-path-algorithm`: Update the link path algorithm\n * - `update-visible-nodes`: Update the visible nodes\n * - `open-node-code`: Open the code of a node (only available in the extension)\n * - `page-ready`: The page is ready to be used (this is sent from the extension webview to the extension to tell it to send the graph. It is used to solve a race condition between the webview and the extension)\n */",
       "id": "/types/messages/msg-type-MsgType",
       "position": {
         "locked": false,
@@ -254,126 +288,6 @@
     {
       "attributes": [
         {
-          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-checked",
-          "name": "checked",
-          "style": {},
-          "text": "checked",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-unchecked",
-          "name": "unchecked",
-          "style": {},
-          "text": "unchecked",
-          "type": "unionOption"
-        },
-        {
-          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-partial",
-          "name": "partial",
-          "style": {},
-          "text": "partial",
-          "type": "unionOption"
-        }
-      ],
-      "docs": "/**\n * Represents the different types of messages that are sent between components of the web\n * - `checked`: The checkbox is checked\n * - `unchecked`: The checkbox is unchecked\n * - `partial`: The checkbox is partially checked\n */",
-      "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-TITLE",
-        "nodeType": "union",
-        "style": {},
-        "text": "CheckboxPartialCheckedStatus"
-      },
-      "type": "union"
-    },
-    {
-      "attributes": [
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-id",
-          "name": "id",
-          "style": {},
-          "targets": [],
-          "text": "id: string;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-isFolder",
-          "name": "isFolder",
-          "style": {},
-          "targets": [],
-          "text": "isFolder: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-isFile",
-          "name": "isFile",
-          "style": {},
-          "targets": [],
-          "text": "isFile: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-isElement",
-          "name": "isElement",
-          "style": {},
-          "targets": [],
-          "text": "isElement: boolean;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-checked",
-          "name": "checked",
-          "style": {},
-          "targets": ["/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus"],
-          "text": "checked: CheckboxPartialCheckedStatus;",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-children",
-          "name": "children",
-          "style": {},
-          "targets": ["/types/utils/tree-node-TreeNode"],
-          "text": "children?: { [key: string]: TreeNode };",
-          "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/types/utils/tree-node-TreeNode-name",
-          "name": "name",
-          "style": {},
-          "targets": [],
-          "text": "name: string;",
-          "type": "attribute"
-        }
-      ],
-      "docs": "",
-      "id": "/types/utils/tree-node-TreeNode",
-      "position": {
-        "locked": false,
-        "x": 0,
-        "y": 0
-      },
-      "title": {
-        "id": "/types/utils/tree-node-TreeNode-TITLE",
-        "nodeType": "interface",
-        "style": {},
-        "text": "TreeNode"
-      },
-      "type": "interface"
-    },
-    {
-      "attributes": [
-        {
           "docs": "/**\n   * Array of link types to filter links by their type (e.g., inheritance, implementation, etc.).\n   * If a link type is provided, all links of that type will be excluded from the diagram.\n   * Empty array means no type filtering.\n   * @see {@link LinkType}\n   */",
           "id": "/types/config/config-links-filter-ConfigLinksFilter-filter_type",
           "name": "filter_type",
@@ -490,6 +404,60 @@
     },
     {
       "attributes": [
+        {
+          "docs": "/**\r\n   * Filter nodes by their name starting with the given string.\r\n   */",
+          "id": "/types/config/config-nodes-filter-name-ConfigNodesFilterName-starts_with",
+          "name": "starts_with",
+          "style": {},
+          "targets": [],
+          "text": "starts_with: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\r\n   * Filter nodes by their name ending with the given string.\r\n   */",
+          "id": "/types/config/config-nodes-filter-name-ConfigNodesFilterName-ends_with",
+          "name": "ends_with",
+          "style": {},
+          "targets": [],
+          "text": "ends_with: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "/**\r\n   * Filter nodes by their name containing the given string.\r\n   */",
+          "id": "/types/config/config-nodes-filter-name-ConfigNodesFilterName-includes",
+          "name": "includes",
+          "style": {},
+          "targets": [],
+          "text": "includes: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "/**\r\n * Interface defining filters for nodes to be displayed in the diagram.\r\n */",
+      "id": "/types/config/config-nodes-filter-name-ConfigNodesFilterName",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/config/config-nodes-filter-name-ConfigNodesFilterName-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "ConfigNodesFilterName"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "/**\n   * Filter nodes by their name.\n   */",
+          "id": "/types/config/config-nodes-filter-ConfigNodesFilter-filter_name",
+          "name": "filter_name",
+          "style": {},
+          "targets": ["/types/config/config-nodes-filter-name-ConfigNodesFilterName"],
+          "text": "filter_name: ConfigNodesFilterName;",
+          "type": "attribute"
+        },
         {
           "docs": "/**\n   * Array of strings to filter nodes by their file path or name.\n   * This array can contain directories, files and concrete node ids.\n   * If a directory is provided, all nodes within that directory will be excluded from the diagram.\n   * If a file is provided, all nodes within that file will be excluded from the diagram.\n   * If a concrete node id is provided, the node with that id will be excluded from the diagram.\n   * Empty array means no path filtering.\n   */",
           "id": "/types/config/config-nodes-filter-ConfigNodesFilter-filter_node",
@@ -910,41 +878,122 @@
     {
       "attributes": [
         {
-          "id": "/types/export/export-format-ExportFormat-json",
-          "name": "json",
+          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-checked",
+          "name": "checked",
           "style": {},
-          "text": "json",
+          "text": "checked",
           "type": "unionOption"
         },
         {
-          "id": "/types/export/export-format-ExportFormat-png",
-          "name": "png",
+          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-unchecked",
+          "name": "unchecked",
           "style": {},
-          "text": "png",
+          "text": "unchecked",
           "type": "unionOption"
         },
         {
-          "id": "/types/export/export-format-ExportFormat-png-transparent",
-          "name": "png-transparent",
+          "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-partial",
+          "name": "partial",
           "style": {},
-          "text": "png-transparent",
+          "text": "partial",
           "type": "unionOption"
         }
       ],
-      "docs": "/**\n * Represents the different formats that can be used to export the graph\n * - `json`: JSON format\n * - `png`: PNG format\n * - `png-transparent`: PNG format with transparent background\n */",
-      "id": "/types/export/export-format-ExportFormat",
+      "docs": "/**\n * Represents the different types of messages that are sent between components of the web\n * - `checked`: The checkbox is checked\n * - `unchecked`: The checkbox is unchecked\n * - `partial`: The checkbox is partially checked\n */",
+      "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
       "position": {
         "locked": false,
         "x": 0,
         "y": 0
       },
       "title": {
-        "id": "/types/export/export-format-ExportFormat-TITLE",
+        "id": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus-TITLE",
         "nodeType": "union",
         "style": {},
-        "text": "ExportFormat"
+        "text": "CheckboxPartialCheckedStatus"
       },
       "type": "union"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isFolder",
+          "name": "isFolder",
+          "style": {},
+          "targets": [],
+          "text": "isFolder: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isFile",
+          "name": "isFile",
+          "style": {},
+          "targets": [],
+          "text": "isFile: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-isElement",
+          "name": "isElement",
+          "style": {},
+          "targets": [],
+          "text": "isElement: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-checked",
+          "name": "checked",
+          "style": {},
+          "targets": ["/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus"],
+          "text": "checked: CheckboxPartialCheckedStatus;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-children",
+          "name": "children",
+          "style": {},
+          "targets": ["/types/utils/tree-node-TreeNode"],
+          "text": "children?: { [key: string]: TreeNode };",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/types/utils/tree-node-TreeNode-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/types/utils/tree-node-TreeNode",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/utils/tree-node-TreeNode-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "TreeNode"
+      },
+      "type": "interface"
     },
     {
       "attributes": [
@@ -1657,6 +1706,45 @@
         "text": "Node"
       },
       "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/types/export/export-format-ExportFormat-json",
+          "name": "json",
+          "style": {},
+          "text": "json",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/export/export-format-ExportFormat-png",
+          "name": "png",
+          "style": {},
+          "text": "png",
+          "type": "unionOption"
+        },
+        {
+          "id": "/types/export/export-format-ExportFormat-png-transparent",
+          "name": "png-transparent",
+          "style": {},
+          "text": "png-transparent",
+          "type": "unionOption"
+        }
+      ],
+      "docs": "/**\n * Represents the different formats that can be used to export the graph\n * - `json`: JSON format\n * - `png`: PNG format\n * - `png-transparent`: PNG format with transparent background\n */",
+      "id": "/types/export/export-format-ExportFormat",
+      "position": {
+        "locked": false,
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/types/export/export-format-ExportFormat-TITLE",
+        "nodeType": "union",
+        "style": {},
+        "text": "ExportFormat"
+      },
+      "type": "union"
     }
   ],
   "links": [
@@ -1687,18 +1775,6 @@
       "type": "association"
     },
     {
-      "sourceId": "/types/utils/tree-node-TreeNode",
-      "sourceAttributeIds": ["/types/utils/tree-node-TreeNode-checked"],
-      "targetId": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
-      "type": "association"
-    },
-    {
-      "sourceId": "/types/utils/tree-node-TreeNode",
-      "sourceAttributeIds": ["/types/utils/tree-node-TreeNode-children"],
-      "targetId": "/types/utils/tree-node-TreeNode",
-      "type": "association"
-    },
-    {
       "sourceId": "/types/config/config-links-filter-ConfigLinksFilter",
       "sourceAttributeIds": ["/types/config/config-links-filter-ConfigLinksFilter-filter_type"],
       "targetId": "/types/graph/link-type-LinkType",
@@ -1720,6 +1796,12 @@
       "sourceId": "/types/config/config-links-ConfigLinks",
       "sourceAttributeIds": ["/types/config/config-links-ConfigLinks-linkPathAlgorithm"],
       "targetId": "/types/config/link-path-algorithm-LinkPathAlgorithm",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/config/config-nodes-filter-ConfigNodesFilter",
+      "sourceAttributeIds": ["/types/config/config-nodes-filter-ConfigNodesFilter-filter_name"],
+      "targetId": "/types/config/config-nodes-filter-name-ConfigNodesFilterName",
       "type": "association"
     },
     {
@@ -1774,6 +1856,18 @@
       "sourceId": "/types/config/config-Config",
       "sourceAttributeIds": ["/types/config/config-Config-theme"],
       "targetId": "/types/config/theme-Theme",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/utils/tree-node-TreeNode",
+      "sourceAttributeIds": ["/types/utils/tree-node-TreeNode-checked"],
+      "targetId": "/types/utils/checkbox-partial-checked-status-CheckboxPartialCheckedStatus",
+      "type": "association"
+    },
+    {
+      "sourceId": "/types/utils/tree-node-TreeNode",
+      "sourceAttributeIds": ["/types/utils/tree-node-TreeNode-children"],
+      "targetId": "/types/utils/tree-node-TreeNode",
       "type": "association"
     },
     {
@@ -1881,6 +1975,11 @@
     },
     "nodes": {
       "filter": {
+        "filter_name": {
+          "starts_with": "",
+          "ends_with": "",
+          "includes": ""
+        },
         "filter_node": [],
         "filter_type": []
       },

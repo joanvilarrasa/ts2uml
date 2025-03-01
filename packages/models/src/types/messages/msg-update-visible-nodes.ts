@@ -6,18 +6,6 @@ import { ZMsgType } from './msg-type.ts';
  */
 export interface MsgUpdateVisibleNodes {
   /**
-   * A list of node ids to add to the diagram
-   * @see {@link Node}
-   */
-  nodeIdsToAdd: string[];
-
-  /**
-   * A list of node ids to remove from the diagram
-   * @see {@link Node}
-   */
-  nodeIdsToRemove: string[];
-
-  /**
    * The type of message
    * @see {@link MsgType}
    */
@@ -25,15 +13,11 @@ export interface MsgUpdateVisibleNodes {
 }
 
 export const ZMsgUpdateVisibleNodes = z.object({
-  nodeIdsToAdd: z.array(z.string({ invalid_type_error: 'nodeIdsToAdd must be an array of strings' })),
-  nodeIdsToRemove: z.array(z.string({ invalid_type_error: 'nodeIdsToRemove must be an array of strings' })),
   type: ZMsgType.extract(['update-visible-nodes']),
 }) as z.ZodType<MsgUpdateVisibleNodes>;
 
-export function createMsgUpdateVisibleNodes(data?: Partial<MsgUpdateVisibleNodes>): MsgUpdateVisibleNodes {
+export function createMsgUpdateVisibleNodes(): MsgUpdateVisibleNodes {
   return ZMsgUpdateVisibleNodes.parse({
-    nodeIdsToAdd: data?.nodeIdsToAdd ?? [],
-    nodeIdsToRemove: data?.nodeIdsToRemove ?? [],
     type: 'update-visible-nodes',
   });
 }

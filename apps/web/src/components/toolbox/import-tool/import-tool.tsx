@@ -79,13 +79,23 @@ export function ImportTool() {
 
         <div className="flex flex-col gap-4">
           <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Input id="import-diagram" type="file" accept=".json" onChange={handleFileChange} />
+            <Input
+              className={cn(
+                'h-24 file:border-0 file:border-e file:border-e-foreground/20 file:text-foreground',
+                selectedFile && 'h-9 border-primary file:text-foreground/20'
+              )}
+              id="import-diagram"
+              type="file"
+              accept=".json"
+              onChange={handleFileChange}
+            />
           </div>
-
-          <Button variant="default" onClick={handleConfirmImport} disabled={!selectedFile}>
-            <span className="font-medium">Import diagram</span>
-            <Upload className="h-3 w-3" />
-          </Button>
+          {selectedFile && (
+            <Button variant="default" onClick={handleConfirmImport}>
+              <span className="font-medium">Import diagram</span>
+              <Upload className="h-3 w-3" />
+            </Button>
+          )}
 
           <div className="flex items-center gap-2">
             <CheckboxPartial

@@ -2,6 +2,13 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.59] - Better filtering
+
+- Added filtering by name (starts with, ends with or includes)
+- Fixed small bugs with filtering (if a node was filtered by path and you filtered it in the types and then unfiltered the type it would appear again)
+- Small redesign of the filter and layout tools (put the sections horizontally instead of vertical)
+- Small redesign of the import tool (hide the button until a file is loaded)
+
 ### [v0.0.57] - Better docs
 
 - Improved docs

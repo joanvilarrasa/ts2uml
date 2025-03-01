@@ -30,6 +30,7 @@ import { Toolbox } from './components/toolbox/toolbox';
 import { ELK_DEFAULT_LAYOUT_OPTIONS, RF_EDGE_TYPES, RF_NODE_TYPES } from './lib/constants';
 import { GraphManager } from './lib/graph-manager';
 import { computeNodeHeight, computeNodeWidth } from './lib/react-flow/compute-node-size';
+import { isNodeHidden } from './lib/react-flow/is-node-hidden';
 import { linkToRFEdge } from './lib/react-flow/link-to-rf-edge';
 import { nodeToRFNode } from './lib/react-flow/node-to-rf-node';
 import { useTheme } from './theme-provider';
@@ -53,7 +54,7 @@ export default function App() {
     if (is<MsgLoadGraph>(data, ZMsgLoadGraph)) {
       handleLoadGraph(data);
     } else if (is<MsgUpdateVisibleNodes>(data, ZMsgUpdateVisibleNodes)) {
-      handleUpdateVisibleNodes(data);
+      handleUpdateVisibleNodes();
     } else if (is<MsgUpdateLayoutAlgorithm>(data, ZMsgUpdateLayoutAlgorithm)) {
       handleUpdateLayoutAlgorithm(data);
     } else if (is<MsgUpdateLinkPathAlgorithm>(data, ZMsgUpdateLinkPathAlgorithm)) {
@@ -61,17 +62,14 @@ export default function App() {
     }
   }
 
-  function handleUpdateVisibleNodes({ nodeIdsToAdd, nodeIdsToRemove }: MsgUpdateVisibleNodes) {
-    if (nodeIdsToAdd.length > 0) {
-      for (const nodeId of nodeIdsToAdd) {
-        reactFlow.updateNode(nodeId, { hidden: false });
+  function handleUpdateVisibleNodes() {
+    reactFlow.getNodes().map((node: RF_Node<{ data: Node }>) => {
+      const isCurrentlyHidden = node.hidden;
+      const isHidden = isNodeHidden(node.data.data, gm.getGraph().config);
+      if (isCurrentlyHidden !== isHidden) {
+        reactFlow.updateNode(node.id, { hidden: isHidden });
       }
-    }
-    if (nodeIdsToRemove.length > 0) {
-      for (const nodeId of nodeIdsToRemove) {
-        reactFlow.updateNode(nodeId, { hidden: true });
-      }
-    }
+    });
   }
 
   function handleLoadGraph({ graph, applyLayoutOnLoad }: MsgLoadGraph) {
@@ -150,7 +148,9 @@ export default function App() {
     window.addEventListener('message', messageHandler);
     // If we are in the extension environment, we need to send a message to the extension to tell it that the page is ready so that it starts generating the graph
     if (import.meta.env.VITE_ENV === 'extension') {
-      setTimeout(() => { window.postMessage(createMsgPageReady()) }, 10);
+      setTimeout(() => {
+        window.postMessage(createMsgPageReady());
+      }, 10);
     }
     return () => {
       window.removeEventListener('message', messageHandler);

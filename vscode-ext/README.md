@@ -59,9 +59,9 @@ Thanks to [React Flow](https://reactflow.dev/) you can:
 ### 🔍 Filter Out the Noise
 Got too many types cluttering your view? No worries! You can:
 - ✅ Hide nodes from specific folders or files
-- ✅ Hide nodes by name
+- ✅ Hide nodes by name (starts with, ends with or includes)
+- ✅ Hide nodes by folder, file or node
 - ✅ Hide nodes by type
-- ⬜ Hide nodes by regex (coming soon)
 
 ### 🎨 Configure the graph
 Thanks to [elk.js](https://github.com/kieler/elkjs) and [React Flow](https://reactflow.dev/) you can configure how the graph looks!
