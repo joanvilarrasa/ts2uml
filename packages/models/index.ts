@@ -9,7 +9,6 @@ export * from './src/types/config/config-nodes-filter.ts';
 export * from './src/types/config/config-nodes-options.ts';
 export * from './src/types/config/layout-algorithm.ts';
 export * from './src/types/config/link-path-algorithm.ts';
-export * from './src/types/config/theme.ts';
 export * from './src/types/export/export-format.ts';
 export * from './src/types/graph/graph.ts';
 export * from './src/types/graph/link.ts';
