@@ -8,8 +8,6 @@ import { TooltipTrigger } from '@/components/ui/tooltip';
 import { cn, dataURLToBlob } from '@/lib/utils';
 import { ts2umlToExcalidraw } from '@ts2uml/core/src/export/ts2uml-to-excalidraw';
 import { ts2umlToJson } from '@ts2uml/core/src/export/ts2uml-to-json';
-import { EXPORT_IMAGE_HEIGHT, EXPORT_IMAGE_WIDTH } from '@ts2uml/models';
-import { getViewportForBounds } from '@xyflow/react';
 import { getNodesBounds } from '@xyflow/react';
 import { useReactFlow } from '@xyflow/react';
 import { toPng } from 'html-to-image';
@@ -81,17 +79,32 @@ export function SaveTool() {
   }
 
   async function ts2uml2Png(withBackground?: boolean): Promise<string> {
-    const nodesBounds = getNodesBounds(getNodes().filter((n) => !n.hidden));
-    const viewport = getViewportForBounds(nodesBounds, EXPORT_IMAGE_WIDTH, EXPORT_IMAGE_HEIGHT, 0.1, 10, 0);
+    const visibleNodes = getNodes().filter((n) => !n.hidden);
+    const nodesBounds = getNodesBounds(visibleNodes);
+
+    // Calculate dimensions based on nodes bounds
+    const width = Math.ceil(nodesBounds.width);
+    const height = Math.ceil(nodesBounds.height);
+
+    // Set viewport to show all nodes at scale 1
+    const viewport = {
+      x: -nodesBounds.x,
+      y: -nodesBounds.y,
+      zoom: 1
+    };
 
     const options: { [key: string]: unknown } = {
       backgroundColor: withBackground ? 'hsl(var(--background))' : 'transparent',
-      width: EXPORT_IMAGE_WIDTH,
-      height: EXPORT_IMAGE_HEIGHT,
+      width,
+      height,
+      skipAutoScale: true,
+      skipFonts: true,
+      quality: 1,
       style: {
-        width: `${EXPORT_IMAGE_WIDTH}px`,
-        height: `${EXPORT_IMAGE_HEIGHT}px`,
+        width: `${width}px`,
+        height: `${height}px`,
         transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
+        stroke: 'black',
       },
     };
     const element = document.querySelector('.react-flow__viewport') as HTMLElement;
