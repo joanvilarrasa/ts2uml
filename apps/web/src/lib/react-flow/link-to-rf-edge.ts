@@ -10,7 +10,7 @@ export function linkToRFEdge(link: Link, config: Config): RF_Edge {
     markerEnd: {
       width: 10,
       height: 10,
-      color: 'hsl(var(--foreground))',
+      color: 'var(--xy-edge-stroke)',
       type: MarkerType.ArrowClosed,
     },
   };

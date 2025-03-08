@@ -1,5 +1,5 @@
 import { getEdgeParams } from '@/lib/react-flow/get-edge-params';
-import { type InternalNode, getStraightPath, useInternalNode } from '@xyflow/react';
+import { BaseEdge, type InternalNode, getStraightPath, useInternalNode } from '@xyflow/react';
 
 export interface FloatingEdgeStraightProps {
   id: string;
@@ -25,5 +25,5 @@ export function FloatingEdgeStraight({ id, source, target, markerEnd }: Floating
     targetY: ty,
   });
 
-  return <path id={id} className="react-flow__edge-path" d={edgePath} markerEnd={markerEnd} />;
+  return <BaseEdge id={id} path={edgePath} markerEnd={markerEnd} stroke="var(--xy-edge-stroke)" />;
 }

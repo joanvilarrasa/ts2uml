@@ -54,7 +54,7 @@ body {
 
     --xy-background-color: transparent;
     --xy-background-color-default: transparent;
-    --xy-edge-stroke: hsl(var(--foreground) / 0.6);
+    --xy-edge-stroke: #777777;
     --xy-edge-stroke-width: 2px;
   }
   .dark {
@@ -100,14 +100,17 @@ body {
 
     --xy-background-color: transparent;
     --xy-background-color-default: transparent;
+    --xy-edge-stroke: #afafaf;
   }
 }
 @layer base {
   * {
     @apply border-border;
+    @apply border-border outline-ring/50;
   }
   body {
     @apply text-foreground;
+    @apply bg-background text-foreground;
   }
 }
 
@@ -119,13 +122,4 @@ body {
 [data-state="closed"] .chevron-right-collapsible-icon {
   transform: rotate(0deg);
   transition: transform 0.2s ease;
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
 }

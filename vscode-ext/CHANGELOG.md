@@ -2,6 +2,10 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.67] - Highlights
+
+- Fixed bug where the lines were not rendering in the png export
+
 ### [v0.0.65] - Highlights
 
 - Fixed visual bug for th filters by name (put the ... at the beggining of ends with clause)

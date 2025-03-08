@@ -104,7 +104,6 @@ export function SaveTool() {
         width: `${width}px`,
         height: `${height}px`,
         transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
-        stroke: 'black',
       },
     };
     const element = document.querySelector('.react-flow__viewport') as HTMLElement;

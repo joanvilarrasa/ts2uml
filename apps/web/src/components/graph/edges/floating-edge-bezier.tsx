@@ -1,5 +1,5 @@
 import { getEdgeParams } from '@/lib/react-flow/get-edge-params';
-import { type InternalNode, getSimpleBezierPath, useInternalNode } from '@xyflow/react';
+import { BaseEdge, type InternalNode, getSimpleBezierPath, useInternalNode, } from '@xyflow/react';
 
 export interface FloatingEdgeBezierProps {
   id: string;
@@ -25,5 +25,5 @@ export function FloatingEdgeBezier({ id, source, target, markerEnd }: FloatingEd
     targetY: ty,
   });
 
-  return <path id={id} className="react-flow__edge-path" d={edgePath} markerEnd={markerEnd} />;
+  return <BaseEdge id={id} path={edgePath} markerEnd={markerEnd} color="var(--xy-edge-stroke)" />;
 }
