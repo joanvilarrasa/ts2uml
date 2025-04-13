@@ -2,11 +2,7 @@
   "name": "ts2uml",
   "private": "true",
   "version": "0.0.67",
-  "workspaces": [
-    "apps/web",
-    "packages/core",
-    "packages/models"
-  ],
+  "workspaces": ["apps/web", "packages/core", "packages/models"],
   "scripts": {
     "build:all": "bun run build:models && bun run build:core && bun run build:vscode && bun run build:web",
     "build:core": "cd packages/core && bun run build",
@@ -34,7 +30,8 @@
     "lint:models": "cd packages/models && bun run lint",
     "lint:web": "cd apps/web && bun run lint",
     "publish:all": "git add . && git commit -m \"v$(node -p 'require(\"./package.json\").version')\" && git push && cd vscode-ext && vsce publish",
-    "publish:vscode": "cd vscode-ext && vsce publish"
+    "publish:vscode": "cd vscode-ext && vsce publish",
+    "test:core": "cd packages/core && bun run test"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
@@ -46,7 +43,5 @@
     "zod": "^3.24.1",
     "zod-validation-error": "^3.4.0"
   },
-  "trustedDependencies": [
-    "@biomejs/biome"
-  ]
+  "trustedDependencies": ["@biomejs/biome"]
 }
