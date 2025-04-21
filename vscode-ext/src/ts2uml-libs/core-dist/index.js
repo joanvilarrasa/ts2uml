@@ -108,7 +108,8 @@ function getImportedPath(text) {
   return match?.[1];
 }
 function getImportedName(text) {
-  return text.split(".").pop();
+  const lastPart = text.split(".").pop() || "";
+  return lastPart.replace(/<.*>/g, "");
 }
 
 // src/ts-morph-to-graph/add-union-type-node.ts
