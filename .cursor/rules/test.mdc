@@ -1,0 +1,21 @@
+---
+description: 
+globs: packages/core/test/**/*
+alwaysApply: false
+---
+Below is a consolidated set of rules that **must be strictly followed**. These guidelines enforce the testing metodologies.
+
+---
+
+## File Name Conventions
+
+- For every test you must have a separate folder in the test folder.
+- Inside the folder of a test there must be a test file (extension .test.ts) with the same name of the folder.
+- Inside the folder of a test there must be a folder named "test-files" that contains the typescript files to be tested
+- The name of the folder and the test file must follow this convention "{testId}-{x}f{y}n{z}e-{complexity}" where
+- {testId} is the test number identifier. It is an autoincrement.
+- {x} is the number of test files.
+- {y} is the number of nodes that should result from the test files.
+- {z} is the number of edges that should result from the test files.
+
+---
