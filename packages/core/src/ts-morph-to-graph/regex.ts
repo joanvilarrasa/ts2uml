@@ -7,5 +7,6 @@ export function getImportedPath(text: string) {
   return match?.[1];
 }
 export function getImportedName(text: string) {
-  return text.split('.').pop();
+  const lastPart = text.split('.').pop() || '';
+  return lastPart.replace(/<.*>/g, '');
 }
