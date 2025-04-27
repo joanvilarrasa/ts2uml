@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { findTypeScriptFiles } from '../../src/file-utils/find-typescript-files';
 import { generateGraph } from '../../src/main/generate-graph';
 
-test('1-2f2n1e-easy', async () => {
+test('13-1f2n1e-hard-generic', async () => {
   // Arrange
   const demoTypesDir = join(__dirname, 'test-files');
   const tsFiles = await findTypeScriptFiles(demoTypesDir);
