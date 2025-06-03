@@ -7,6 +7,7 @@ export function linkToRFEdge(link: Link, config: Config): RF_Edge {
     source: link.sourceId,
     target: link.targetId,
     type: `floating-${config.links.linkPathAlgorithm}`,
+
     markerEnd: {
       width: 10,
       height: 10,

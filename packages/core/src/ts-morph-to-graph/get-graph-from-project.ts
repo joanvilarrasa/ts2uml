@@ -137,8 +137,51 @@ function getAttributeAncestorAndTargets(
 
 function computeLinks(nodes: Node[], links: Link[]): void {
   for (const node of nodes) {
+    // Handle attribute links
     for (const attribute of node.attributes) {
       computeAttributeLinks(attribute, links, node.id);
+    }
+
+    // Handle interface implementations
+    if (node.implements && node.implements.length > 0) {
+      for (const interfaceId of node.implements) {
+        const link = links.find((link) => link.sourceId === node.id && link.targetId === interfaceId);
+        if (link) {
+          // Link already exists, update its type if needed
+          if (link.type !== 'implements') {
+            link.type = 'implements';
+          }
+        } else {
+          const newLink = createLink({
+            sourceId: node.id,
+            targetId: interfaceId,
+            sourceAttributeIds: [],
+            type: 'implements',
+          });
+          links.push(newLink);
+        }
+      }
+    }
+
+    // Handle class inheritance
+    if (node.extends && node.extends.length > 0) {
+      for (const baseClassId of node.extends) {
+        const link = links.find((link) => link.sourceId === node.id && link.targetId === baseClassId);
+        if (link) {
+          // Link already exists, update its type if needed
+          if (link.type !== 'inheritance') {
+            link.type = 'inheritance';
+          }
+        } else {
+          const newLink = createLink({
+            sourceId: node.id,
+            targetId: baseClassId,
+            sourceAttributeIds: [],
+            type: 'inheritance',
+          });
+          links.push(newLink);
+        }
+      }
     }
   }
 }
