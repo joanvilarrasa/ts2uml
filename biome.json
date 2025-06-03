@@ -23,6 +23,9 @@
     "rules": {
       "correctness": {
         "useExhaustiveDependencies": "off"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "off"
       }
     }
   },

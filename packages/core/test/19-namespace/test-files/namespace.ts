@@ -1,3 +1,5 @@
+// biome-ignore lint/correctness/noUnusedVariables: <explanation>
+// biome-ignore lint/style/noNamespace: <explanation>
 namespace Test {
   export interface Foo {
     a: boolean;
@@ -9,6 +11,7 @@ namespace Test {
     d: number;
   }
 
+  // biome-ignore lint/nursery/noEnum: <explanation>
   export enum Baz {
     A = 'A',
     B = 'B',

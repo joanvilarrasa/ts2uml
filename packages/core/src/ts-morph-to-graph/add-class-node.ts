@@ -23,16 +23,30 @@ export function addClassNode(tsMorphClass: ClassDeclaration, filePath: string, n
 
   const attributeNodes = attributes.concat(methods);
 
+  // Get implemented interfaces
+  const implementedInterfaces = tsMorphClass.getImplements().map((impl) => {
+    const interfaceName = impl.getExpression().getText();
+    const interfacePath = getNormalizedFilePath(filePath, impl.getSourceFile().getFilePath());
+    return `${interfacePath}-${interfaceName}`;
+  });
+
+  // Get base class
+  const baseClass = tsMorphClass.getBaseClass();
+  const extendsClasses = baseClass
+    ? [`${getNormalizedFilePath(filePath, baseClass.getSourceFile().getFilePath())}-${baseClass.getName()}`]
+    : undefined;
+
   const node: Node = createNode({
     docs: tsMorphClass
       .getJsDocs()
       .map((doc) => doc.getText())
       .join('\n'),
-
     id: classId,
     type: classType,
     title: titleNode,
     attributes: attributeNodes,
+    implements: implementedInterfaces,
+    extends: extendsClasses,
   });
 
   nodes.push(node);
@@ -54,19 +68,6 @@ function createAttributeNodes(tsMorphClass: ClassDeclaration, classId: string, f
     const attributeId = `${classId}-${prop.getName()}`;
     const targetIds = getTargetIds(prop.getTypeNode()?.getDescendants() ?? [], filePath);
     const tsMorphScope = prop.getScope();
-
-    // Push the links
-    // targetIds.map((targetId) => {
-    //   if (targetId !== classId && !links.find((link) => link.sourceId === classId && link.targetId === targetId)) {
-    //     links.push(
-    //       createLink({
-    //         sourceId: classId,
-    //         targetId: targetId,
-    //         type: 'association',
-    //       })
-    //     );
-    //   }
-    // });
 
     return createNodeAttribute({
       docs: prop
