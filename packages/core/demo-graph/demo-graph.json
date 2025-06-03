@@ -69,9 +69,7 @@
         }
       ],
       "docs": "",
-      "implements": [
-        "/inheritance-Foo"
-      ],
+      "implements": ["/inheritance-Foo"],
       "id": "/inheritance-Bar",
       "position": {
         "x": 0,
@@ -99,9 +97,7 @@
         }
       ],
       "docs": "",
-      "extends": [
-        "/inheritance-Bar"
-      ],
+      "extends": ["/inheritance-Bar"],
       "implements": [],
       "id": "/inheritance-Baz",
       "position": {

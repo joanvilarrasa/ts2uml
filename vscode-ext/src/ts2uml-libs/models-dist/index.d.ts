@@ -1,10 +1,11 @@
 import { z } from 'zod';
 
-declare const ZLinkType: z.ZodEnum<["association", "inheritance"]>;
+declare const ZLinkType: z.ZodEnum<["association", "inheritance", "implements"]>;
 /**
  * Represents the different types of relationships between nodes in the diagram.
  * - `association`: Indicates a basic association between nodes
  * - `inheritance`: Indicates an inheritance/extends relationship
+ * - `implements`: Indicates that a class implements an interface
  */
 type LinkType = z.infer<typeof ZLinkType>;
 
@@ -480,6 +481,10 @@ interface Node {
      * The names of the Nodes that this node extends from
      */
     extends?: string[];
+    /**
+     * The names of the Interfaces that this class implements
+     */
+    implements?: string[];
     /** Unique identifier for the node */
     id: string;
     /**

@@ -370,12 +370,21 @@ function addClassNode(tsMorphClass, filePath, nodes) {
   const attributes = createAttributeNodes4(tsMorphClass, classId, filePath);
   const methods = createMethodNodes(tsMorphClass, classId, filePath);
   const attributeNodes = attributes.concat(methods);
+  const implementedInterfaces = tsMorphClass.getImplements().map((impl) => {
+    const interfaceName = impl.getExpression().getText();
+    const interfacePath = getNormalizedFilePath(filePath, impl.getSourceFile().getFilePath());
+    return `${interfacePath}-${interfaceName}`;
+  });
+  const baseClass = tsMorphClass.getBaseClass();
+  const extendsClasses = baseClass ? [`${getNormalizedFilePath(filePath, baseClass.getSourceFile().getFilePath())}-${baseClass.getName()}`] : void 0;
   const node = createNode4({
     docs: tsMorphClass.getJsDocs().map((doc) => doc.getText()).join("\n"),
     id: classId,
     type: classType,
     title: titleNode,
-    attributes: attributeNodes
+    attributes: attributeNodes,
+    implements: implementedInterfaces,
+    extends: extendsClasses
   });
   nodes.push(node);
 }
@@ -567,6 +576,42 @@ function computeLinks(nodes, links) {
   for (const node of nodes) {
     for (const attribute of node.attributes) {
       computeAttributeLinks(attribute, links, node.id);
+    }
+    if (node.implements && node.implements.length > 0) {
+      for (const interfaceId of node.implements) {
+        const link = links.find((link2) => link2.sourceId === node.id && link2.targetId === interfaceId);
+        if (link) {
+          if (link.type !== "implements") {
+            link.type = "implements";
+          }
+        } else {
+          const newLink = createLink({
+            sourceId: node.id,
+            targetId: interfaceId,
+            sourceAttributeIds: [],
+            type: "implements"
+          });
+          links.push(newLink);
+        }
+      }
+    }
+    if (node.extends && node.extends.length > 0) {
+      for (const baseClassId of node.extends) {
+        const link = links.find((link2) => link2.sourceId === node.id && link2.targetId === baseClassId);
+        if (link) {
+          if (link.type !== "inheritance") {
+            link.type = "inheritance";
+          }
+        } else {
+          const newLink = createLink({
+            sourceId: node.id,
+            targetId: baseClassId,
+            sourceAttributeIds: [],
+            type: "inheritance"
+          });
+          links.push(newLink);
+        }
+      }
     }
   }
 }

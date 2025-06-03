@@ -4059,7 +4059,7 @@ var z = /* @__PURE__ */ Object.freeze({
 });
 
 // src/types/graph/link-type.ts
-var ZLinkType = z.enum(["association", "inheritance"]);
+var ZLinkType = z.enum(["association", "inheritance", "implements"]);
 
 // src/types/config/config-links-filter.ts
 var ZConfigLinksFilter = z.object({
@@ -4358,6 +4358,7 @@ var ZNode = z.object({
   attributes: ZNodeAttribute.array(),
   docs: z.string().optional(),
   extends: z.string().array().optional(),
+  implements: z.string().array().optional(),
   id: z.string({ invalid_type_error: "id must be a string" }),
   position: ZNodePosition,
   style: ZNodeStyle.optional(),
@@ -4369,6 +4370,7 @@ function createNode(data) {
     attributes: data?.attributes ? data.attributes.map((a) => createNodeAttribute(a)) : [],
     docs: data?.docs,
     extends: data?.extends,
+    implements: data?.implements,
     id: data?.id ?? "id",
     position: createNodePosition(data?.position),
     style: data?.style,
