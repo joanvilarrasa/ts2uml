@@ -4,7 +4,538 @@
       "attributes": [
         {
           "docs": "",
-          "id": "/inheritance-Foo-a",
+          "id": "/1-easy/test-files/address-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/1-easy/test-files/address-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/1-easy/test-files/address-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/1-easy/test-files/address-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/1-easy/test-files/address-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/1-easy/test-files/person-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/1-easy/test-files/person-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/1-easy/test-files/person-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/1-easy/test-files/person-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/1-easy/test-files/address-Address"
+          ],
+          "text": "address: Address;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/1-easy/test-files/person-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/1-easy/test-files/person-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/0-easy/test-files/models-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/0-easy/test-files/models-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/0-easy/test-files/models-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/0-easy/test-files/models-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/0-easy/test-files/models-Address"
+          ],
+          "text": "address: Address;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/0-easy/test-files/models-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/0-easy/test-files/models-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/0-easy/test-files/models-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/0-easy/test-files/models-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/0-easy/test-files/models-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/0-easy/test-files/models-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/0-easy/test-files/models-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/5-medium/test-files/types-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/5-medium/test-files/types-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/5-medium/test-files/types-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/5-medium/test-files/types-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/5-medium/test-files/types-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/5-medium/test-files/types-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/5-medium/test-files/types-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/5-medium/test-files/types-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/5-medium/test-files/types-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/5-medium/test-files/types-Address"
+          ],
+          "text": "address: Address;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/5-medium/test-files/types-Person-data",
+          "name": "data",
+          "style": {},
+          "targets": [],
+          "text": "data: T;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/5-medium/test-files/types-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/5-medium/test-files/types-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/4-medium/test-files/address-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/4-medium/test-files/address-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/4-medium/test-files/address-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/4-medium/test-files/address-Address-data",
+          "name": "data",
+          "style": {},
+          "targets": [],
+          "text": "data: T;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/4-medium/test-files/address-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/4-medium/test-files/address-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/4-medium/test-files/person-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/4-medium/test-files/person-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/4-medium/test-files/person-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/4-medium/test-files/person-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/4-medium/test-files/address-Address"
+          ],
+          "text": "address: Address<T>;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/4-medium/test-files/person-Person-data",
+          "name": "data",
+          "style": {},
+          "targets": [],
+          "text": "data: T;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/4-medium/test-files/person-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/4-medium/test-files/person-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/6-medium/test-files/types-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/6-medium/test-files/types-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/6-medium/test-files/types-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/6-medium/test-files/types-Address-data",
+          "name": "data",
+          "style": {},
+          "targets": [],
+          "text": "data: T;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/6-medium/test-files/types-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/6-medium/test-files/types-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/6-medium/test-files/types-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/6-medium/test-files/types-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/6-medium/test-files/types-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/6-medium/test-files/types-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/6-medium/test-files/types-Address"
+          ],
+          "text": "address: Address<string>;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/6-medium/test-files/types-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/6-medium/test-files/types-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/19-namespace/test-files/namespace-Foo-a",
           "name": "a",
           "style": {},
           "targets": [],
@@ -13,7 +544,7 @@
         },
         {
           "docs": "",
-          "id": "/inheritance-Foo-b",
+          "id": "/19-namespace/test-files/namespace-Foo-b",
           "name": "b",
           "style": {},
           "targets": [],
@@ -22,13 +553,13 @@
         }
       ],
       "docs": "",
-      "id": "/inheritance-Foo",
+      "id": "/19-namespace/test-files/namespace-Foo",
       "position": {
         "x": 0,
         "y": 0
       },
       "title": {
-        "id": "/inheritance-Foo-TITLE",
+        "id": "/19-namespace/test-files/namespace-Foo-TITLE",
         "nodeType": "interface",
         "style": {},
         "text": "Foo"
@@ -39,44 +570,34 @@
       "attributes": [
         {
           "docs": "",
-          "id": "/inheritance-Bar-a",
-          "name": "a",
+          "id": "/19-namespace/test-files/namespace-Bar-c",
+          "name": "c",
           "scope": "public",
           "style": {},
           "targets": [],
-          "text": "a: boolean;",
+          "text": "c: string;",
           "type": "attribute"
         },
         {
           "docs": "",
-          "id": "/inheritance-Bar-b",
-          "name": "b",
+          "id": "/19-namespace/test-files/namespace-Bar-d",
+          "name": "d",
           "scope": "public",
           "style": {},
           "targets": [],
-          "text": "b: boolean;",
+          "text": "d: number;",
           "type": "attribute"
-        },
-        {
-          "docs": "",
-          "id": "/inheritance-Bar-foo",
-          "name": "foo",
-          "scope": "public",
-          "style": {},
-          "targets": [],
-          "text": "foo(): Foo;",
-          "type": "method"
         }
       ],
       "docs": "",
-      "implements": ["/inheritance-Foo"],
-      "id": "/inheritance-Bar",
+      "implements": [],
+      "id": "/19-namespace/test-files/namespace-Bar",
       "position": {
         "x": 0,
         "y": 0
       },
       "title": {
-        "id": "/inheritance-Bar-TITLE",
+        "id": "/19-namespace/test-files/namespace-Bar-TITLE",
         "nodeType": "class",
         "style": {},
         "text": "Bar"
@@ -87,7 +608,1505 @@
       "attributes": [
         {
           "docs": "",
-          "id": "/inheritance-Baz-bar",
+          "id": "/19-namespace/test-files/namespace-Baz-A",
+          "name": "A",
+          "style": {},
+          "text": "A = 'A'",
+          "type": "unionOption"
+        },
+        {
+          "docs": "",
+          "id": "/19-namespace/test-files/namespace-Baz-B",
+          "name": "B",
+          "style": {},
+          "text": "B = 'B'",
+          "type": "unionOption"
+        }
+      ],
+      "docs": "",
+      "id": "/19-namespace/test-files/namespace-Baz",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/19-namespace/test-files/namespace-Baz-TITLE",
+        "nodeType": "union",
+        "style": {},
+        "text": "Baz"
+      },
+      "type": "union"
+    },
+    {
+      "attributes": [
+        {
+          "id": "/19-namespace/test-files/namespace-Qux-string",
+          "name": "string",
+          "style": {},
+          "text": "string",
+          "type": "unionOption"
+        },
+        {
+          "id": "/19-namespace/test-files/namespace-Qux-number",
+          "name": "number",
+          "style": {},
+          "text": "number",
+          "type": "unionOption"
+        }
+      ],
+      "docs": "",
+      "id": "/19-namespace/test-files/namespace-Qux",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/19-namespace/test-files/namespace-Qux-TITLE",
+        "nodeType": "union",
+        "style": {},
+        "text": "Qux"
+      },
+      "type": "union"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/14-hard/test-files/types-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/14-hard/test-files/types-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/14-hard/test-files/types-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/14-hard/test-files/types-Address-data",
+          "name": "data",
+          "style": {},
+          "targets": [],
+          "text": "data: T;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/14-hard/test-files/types-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/14-hard/test-files/types-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/14-hard/test-files/types-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/14-hard/test-files/types-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/14-hard/test-files/types-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/14-hard/test-files/types-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/14-hard/test-files/types-Address"
+          ],
+          "text": "address: Address<string>[];",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/14-hard/test-files/types-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/14-hard/test-files/types-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/7-medium/test-files/types-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/7-medium/test-files/types-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/7-medium/test-files/types-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/7-medium/test-files/types-Address-data",
+          "name": "data",
+          "style": {},
+          "targets": [],
+          "text": "data: T;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/7-medium/test-files/types-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/7-medium/test-files/types-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/7-medium/test-files/types-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/7-medium/test-files/types-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/7-medium/test-files/types-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/7-medium/test-files/types-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/7-medium/test-files/types-Address"
+          ],
+          "text": "address: Address<T>;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/7-medium/test-files/types-Person-data",
+          "name": "data",
+          "style": {},
+          "targets": [],
+          "text": "data: T;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/7-medium/test-files/types-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/7-medium/test-files/types-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/2-medium/test-files/address-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/2-medium/test-files/address-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/2-medium/test-files/address-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/2-medium/test-files/address-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/2-medium/test-files/address-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/2-medium/test-files/person-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/2-medium/test-files/person-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/2-medium/test-files/person-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/2-medium/test-files/person-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/2-medium/test-files/address-Address"
+          ],
+          "text": "address: Address;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/2-medium/test-files/person-Person-data",
+          "name": "data",
+          "style": {},
+          "targets": [],
+          "text": "data: T;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/2-medium/test-files/person-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/2-medium/test-files/person-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/15-hard/test-files/types-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/15-hard/test-files/types-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/15-hard/test-files/types-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/15-hard/test-files/types-Address-data",
+          "name": "data",
+          "style": {},
+          "targets": [],
+          "text": "data: T;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/15-hard/test-files/types-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/15-hard/test-files/types-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/15-hard/test-files/types-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/15-hard/test-files/types-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/15-hard/test-files/types-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/15-hard/test-files/types-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/15-hard/test-files/types-Address; }",
+            "/15-hard/test-files/types-Address"
+          ],
+          "text": "address: { [key: string]: Address<T> }[];",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/15-hard/test-files/types-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/15-hard/test-files/types-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/12-hard/test-files/types-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/12-hard/test-files/types-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/12-hard/test-files/types-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/12-hard/test-files/types-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/12-hard/test-files/types-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/12-hard/test-files/types-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/12-hard/test-files/types-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/12-hard/test-files/types-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/12-hard/test-files/types-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/12-hard/test-files/types-Address"
+          ],
+          "text": "address: string | Address[];",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/12-hard/test-files/types-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/12-hard/test-files/types-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/11-hard/test-files/types-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/11-hard/test-files/types-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/11-hard/test-files/types-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/11-hard/test-files/types-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/11-hard/test-files/types-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/11-hard/test-files/types-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/11-hard/test-files/types-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/11-hard/test-files/types-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/11-hard/test-files/types-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/11-hard/test-files/types-Address; }",
+            "/11-hard/test-files/types-Address"
+          ],
+          "text": "address: { [key: string]: Address }[];",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/11-hard/test-files/types-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/11-hard/test-files/types-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/8-medium/test-files/types-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/8-medium/test-files/types-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/8-medium/test-files/types-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/8-medium/test-files/types-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/8-medium/test-files/types-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/8-medium/test-files/types-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/8-medium/test-files/types-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/8-medium/test-files/types-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/8-medium/test-files/types-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/8-medium/test-files/types-Address"
+          ],
+          "text": "address: Address[];",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/8-medium/test-files/types-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/8-medium/test-files/types-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/16-hard/test-files/types-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/16-hard/test-files/types-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/16-hard/test-files/types-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/16-hard/test-files/types-Address-data",
+          "name": "data",
+          "style": {},
+          "targets": [],
+          "text": "data: T;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/16-hard/test-files/types-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/16-hard/test-files/types-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/16-hard/test-files/types-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/16-hard/test-files/types-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/16-hard/test-files/types-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/16-hard/test-files/types-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/16-hard/test-files/types-Address; }",
+            "/16-hard/test-files/types-Address"
+          ],
+          "text": "address: { [key: string]: Address<string> }[];",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/16-hard/test-files/types-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/16-hard/test-files/types-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/13-hard/test-files/types-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/13-hard/test-files/types-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/13-hard/test-files/types-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/13-hard/test-files/types-Address-data",
+          "name": "data",
+          "style": {},
+          "targets": [],
+          "text": "data: T;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/13-hard/test-files/types-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/13-hard/test-files/types-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/13-hard/test-files/types-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/13-hard/test-files/types-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/13-hard/test-files/types-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/13-hard/test-files/types-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/13-hard/test-files/types-Address"
+          ],
+          "text": "address: Address<T>[];",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/13-hard/test-files/types-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/13-hard/test-files/types-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/20-interface-implementation/test-files/interface-implementation-Foo-a",
+          "name": "a",
+          "style": {},
+          "targets": [],
+          "text": "a: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/20-interface-implementation/test-files/interface-implementation-Foo-b",
+          "name": "b",
+          "style": {},
+          "targets": [],
+          "text": "b: boolean;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/20-interface-implementation/test-files/interface-implementation-Foo",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/20-interface-implementation/test-files/interface-implementation-Foo-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Foo"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/20-interface-implementation/test-files/interface-implementation-Bar-a",
+          "name": "a",
+          "scope": "public",
+          "style": {},
+          "targets": [],
+          "text": "a: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/20-interface-implementation/test-files/interface-implementation-Bar-b",
+          "name": "b",
+          "scope": "public",
+          "style": {},
+          "targets": [],
+          "text": "b: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/20-interface-implementation/test-files/interface-implementation-Bar-foo",
+          "name": "foo",
+          "scope": "public",
+          "style": {},
+          "targets": [],
+          "text": "foo(): Foo;",
+          "type": "method"
+        }
+      ],
+      "docs": "",
+      "implements": [
+        "/20-interface-implementation/test-files/interface-implementation-Foo"
+      ],
+      "id": "/20-interface-implementation/test-files/interface-implementation-Bar",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/20-interface-implementation/test-files/interface-implementation-Bar-TITLE",
+        "nodeType": "class",
+        "style": {},
+        "text": "Bar"
+      },
+      "type": "class"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/10-medium/test-files/types-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/10-medium/test-files/types-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/10-medium/test-files/types-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/10-medium/test-files/types-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/10-medium/test-files/types-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/10-medium/test-files/types-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/10-medium/test-files/types-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/10-medium/test-files/types-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/10-medium/test-files/types-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/10-medium/test-files/types-Address"
+          ],
+          "text": "address: string | Address;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/10-medium/test-files/types-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/10-medium/test-files/types-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/17-hard/test-files/types-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/17-hard/test-files/types-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/17-hard/test-files/types-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/17-hard/test-files/types-Address-data",
+          "name": "data",
+          "style": {},
+          "targets": [],
+          "text": "data: T;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/17-hard/test-files/types-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/17-hard/test-files/types-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/17-hard/test-files/types-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/17-hard/test-files/types-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/17-hard/test-files/types-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/17-hard/test-files/types-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/17-hard/test-files/types-Address; }",
+            "/17-hard/test-files/types-Address"
+          ],
+          "text": "address: string | { [key: string]: Address<string> }[];",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/17-hard/test-files/types-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/17-hard/test-files/types-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/9-medium/test-files/types-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/9-medium/test-files/types-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/9-medium/test-files/types-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/9-medium/test-files/types-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/9-medium/test-files/types-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/9-medium/test-files/types-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/9-medium/test-files/types-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/9-medium/test-files/types-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/9-medium/test-files/types-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/9-medium/test-files/types-Address"
+          ],
+          "text": "address: { [key: string]: Address };",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/9-medium/test-files/types-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/9-medium/test-files/types-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/21-inheritance/test-files/inheritance-Foo-a",
+          "name": "a",
+          "style": {},
+          "targets": [],
+          "text": "a: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/21-inheritance/test-files/inheritance-Foo-b",
+          "name": "b",
+          "style": {},
+          "targets": [],
+          "text": "b: boolean;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/21-inheritance/test-files/inheritance-Foo",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/21-inheritance/test-files/inheritance-Foo-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Foo"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/21-inheritance/test-files/inheritance-Bar-a",
+          "name": "a",
+          "scope": "public",
+          "style": {},
+          "targets": [],
+          "text": "a: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/21-inheritance/test-files/inheritance-Bar-b",
+          "name": "b",
+          "scope": "public",
+          "style": {},
+          "targets": [],
+          "text": "b: boolean;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/21-inheritance/test-files/inheritance-Bar-foo",
+          "name": "foo",
+          "scope": "public",
+          "style": {},
+          "targets": [],
+          "text": "foo(): Foo;",
+          "type": "method"
+        }
+      ],
+      "docs": "",
+      "implements": [
+        "/21-inheritance/test-files/inheritance-Foo"
+      ],
+      "id": "/21-inheritance/test-files/inheritance-Bar",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/21-inheritance/test-files/inheritance-Bar-TITLE",
+        "nodeType": "class",
+        "style": {},
+        "text": "Bar"
+      },
+      "type": "class"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/21-inheritance/test-files/inheritance-Baz-bar",
           "name": "bar",
           "scope": "public",
           "style": {},
@@ -97,34 +2116,411 @@
         }
       ],
       "docs": "",
-      "extends": ["/inheritance-Bar"],
+      "extends": [
+        "/21-inheritance/test-files/inheritance-Bar"
+      ],
       "implements": [],
-      "id": "/inheritance-Baz",
+      "id": "/21-inheritance/test-files/inheritance-Baz",
       "position": {
         "x": 0,
         "y": 0
       },
       "title": {
-        "id": "/inheritance-Baz-TITLE",
+        "id": "/21-inheritance/test-files/inheritance-Baz-TITLE",
         "nodeType": "class",
         "style": {},
         "text": "Baz"
       },
       "type": "class"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/18-hard/test-files/types-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/18-hard/test-files/types-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/18-hard/test-files/types-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/18-hard/test-files/types-Address-data",
+          "name": "data",
+          "style": {},
+          "targets": [],
+          "text": "data: T;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/18-hard/test-files/types-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/18-hard/test-files/types-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/18-hard/test-files/types-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/18-hard/test-files/types-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/18-hard/test-files/types-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/18-hard/test-files/types-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/18-hard/test-files/types-Address; }",
+            "/18-hard/test-files/types-Address"
+          ],
+          "text": "address: string | { [key: string]: Address<T> }[];",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/18-hard/test-files/types-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/18-hard/test-files/types-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/3-medium/test-files/address-Address-street",
+          "name": "street",
+          "style": {},
+          "targets": [],
+          "text": "street: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/3-medium/test-files/address-Address-city",
+          "name": "city",
+          "style": {},
+          "targets": [],
+          "text": "city: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/3-medium/test-files/address-Address-country",
+          "name": "country",
+          "style": {},
+          "targets": [],
+          "text": "country: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/3-medium/test-files/address-Address-data",
+          "name": "data",
+          "style": {},
+          "targets": [],
+          "text": "data: T;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/3-medium/test-files/address-Address",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/3-medium/test-files/address-Address-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Address"
+      },
+      "type": "interface"
+    },
+    {
+      "attributes": [
+        {
+          "docs": "",
+          "id": "/3-medium/test-files/person-Person-id",
+          "name": "id",
+          "style": {},
+          "targets": [],
+          "text": "id: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/3-medium/test-files/person-Person-name",
+          "name": "name",
+          "style": {},
+          "targets": [],
+          "text": "name: string;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/3-medium/test-files/person-Person-age",
+          "name": "age",
+          "style": {},
+          "targets": [],
+          "text": "age: number;",
+          "type": "attribute"
+        },
+        {
+          "docs": "",
+          "id": "/3-medium/test-files/person-Person-address",
+          "name": "address",
+          "style": {},
+          "targets": [
+            "/3-medium/test-files/address-Address"
+          ],
+          "text": "address: Address<string>;",
+          "type": "attribute"
+        }
+      ],
+      "docs": "",
+      "id": "/3-medium/test-files/person-Person",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "title": {
+        "id": "/3-medium/test-files/person-Person-TITLE",
+        "nodeType": "interface",
+        "style": {},
+        "text": "Person"
+      },
+      "type": "interface"
     }
   ],
   "links": [
     {
-      "sourceId": "/inheritance-Bar",
+      "sourceId": "/1-easy/test-files/person-Person",
+      "sourceAttributeIds": [
+        "/1-easy/test-files/person-Person-address"
+      ],
+      "targetId": "/1-easy/test-files/address-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/0-easy/test-files/models-Person",
+      "sourceAttributeIds": [
+        "/0-easy/test-files/models-Person-address"
+      ],
+      "targetId": "/0-easy/test-files/models-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/5-medium/test-files/types-Person",
+      "sourceAttributeIds": [
+        "/5-medium/test-files/types-Person-address"
+      ],
+      "targetId": "/5-medium/test-files/types-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/4-medium/test-files/person-Person",
+      "sourceAttributeIds": [
+        "/4-medium/test-files/person-Person-address"
+      ],
+      "targetId": "/4-medium/test-files/address-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/6-medium/test-files/types-Person",
+      "sourceAttributeIds": [
+        "/6-medium/test-files/types-Person-address"
+      ],
+      "targetId": "/6-medium/test-files/types-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/14-hard/test-files/types-Person",
+      "sourceAttributeIds": [
+        "/14-hard/test-files/types-Person-address"
+      ],
+      "targetId": "/14-hard/test-files/types-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/7-medium/test-files/types-Person",
+      "sourceAttributeIds": [
+        "/7-medium/test-files/types-Person-address"
+      ],
+      "targetId": "/7-medium/test-files/types-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/2-medium/test-files/person-Person",
+      "sourceAttributeIds": [
+        "/2-medium/test-files/person-Person-address"
+      ],
+      "targetId": "/2-medium/test-files/address-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/15-hard/test-files/types-Person",
+      "sourceAttributeIds": [
+        "/15-hard/test-files/types-Person-address"
+      ],
+      "targetId": "/15-hard/test-files/types-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/12-hard/test-files/types-Person",
+      "sourceAttributeIds": [
+        "/12-hard/test-files/types-Person-address"
+      ],
+      "targetId": "/12-hard/test-files/types-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/11-hard/test-files/types-Person",
+      "sourceAttributeIds": [
+        "/11-hard/test-files/types-Person-address"
+      ],
+      "targetId": "/11-hard/test-files/types-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/8-medium/test-files/types-Person",
+      "sourceAttributeIds": [
+        "/8-medium/test-files/types-Person-address"
+      ],
+      "targetId": "/8-medium/test-files/types-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/16-hard/test-files/types-Person",
+      "sourceAttributeIds": [
+        "/16-hard/test-files/types-Person-address"
+      ],
+      "targetId": "/16-hard/test-files/types-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/13-hard/test-files/types-Person",
+      "sourceAttributeIds": [
+        "/13-hard/test-files/types-Person-address"
+      ],
+      "targetId": "/13-hard/test-files/types-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/20-interface-implementation/test-files/interface-implementation-Bar",
       "sourceAttributeIds": [],
-      "targetId": "/inheritance-Foo",
+      "targetId": "/20-interface-implementation/test-files/interface-implementation-Foo",
       "type": "implements"
     },
     {
-      "sourceId": "/inheritance-Baz",
+      "sourceId": "/10-medium/test-files/types-Person",
+      "sourceAttributeIds": [
+        "/10-medium/test-files/types-Person-address"
+      ],
+      "targetId": "/10-medium/test-files/types-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/17-hard/test-files/types-Person",
+      "sourceAttributeIds": [
+        "/17-hard/test-files/types-Person-address"
+      ],
+      "targetId": "/17-hard/test-files/types-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/9-medium/test-files/types-Person",
+      "sourceAttributeIds": [
+        "/9-medium/test-files/types-Person-address"
+      ],
+      "targetId": "/9-medium/test-files/types-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/21-inheritance/test-files/inheritance-Bar",
       "sourceAttributeIds": [],
-      "targetId": "/inheritance-Bar",
+      "targetId": "/21-inheritance/test-files/inheritance-Foo",
+      "type": "implements"
+    },
+    {
+      "sourceId": "/21-inheritance/test-files/inheritance-Baz",
+      "sourceAttributeIds": [],
+      "targetId": "/21-inheritance/test-files/inheritance-Bar",
       "type": "inheritance"
+    },
+    {
+      "sourceId": "/18-hard/test-files/types-Person",
+      "sourceAttributeIds": [
+        "/18-hard/test-files/types-Person-address"
+      ],
+      "targetId": "/18-hard/test-files/types-Address",
+      "type": "association"
+    },
+    {
+      "sourceId": "/3-medium/test-files/person-Person",
+      "sourceAttributeIds": [
+        "/3-medium/test-files/person-Person-address"
+      ],
+      "targetId": "/3-medium/test-files/address-Address",
+      "type": "association"
     }
   ],
   "config": {
