@@ -82,19 +82,22 @@ export function SaveTool() {
     const visibleNodes = getNodes().filter((n) => !n.hidden);
     const nodesBounds = getNodesBounds(visibleNodes);
 
-    // Calculate dimensions based on nodes bounds
-    const width = Math.ceil(nodesBounds.width);
-    const height = Math.ceil(nodesBounds.height);
+    // Add padding to prevent cutting off edges
+    const padding = 100; // px
 
-    // Set viewport to show all nodes at scale 1
+    // Calculate dimensions based on nodes bounds + padding
+    const width = Math.ceil(nodesBounds.width) + padding * 2;
+    const height = Math.ceil(nodesBounds.height) + padding * 2;
+
+    // Set viewport to show all nodes at scale 1, with padding
     const viewport = {
-      x: -nodesBounds.x,
-      y: -nodesBounds.y,
+      x: -nodesBounds.x + padding,
+      y: -nodesBounds.y + padding,
       zoom: 1
     };
 
     const options: { [key: string]: unknown } = {
-      backgroundColor: withBackground ? 'hsl(var(--background))' : 'transparent',
+      backgroundColor: withBackground ? 'black' : 'transparent',
       width,
       height,
       skipAutoScale: true,
