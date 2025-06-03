@@ -1,5 +1,12 @@
 import { type Config, type Graph, type Link, type Node, type NodeAttribute, createLink } from '@ts2uml/models';
-import type { ClassDeclaration, EnumDeclaration, InterfaceDeclaration, Project, TypeAliasDeclaration } from 'ts-morph';
+import type {
+  ClassDeclaration,
+  EnumDeclaration,
+  InterfaceDeclaration,
+  ModuleDeclaration,
+  Project,
+  TypeAliasDeclaration,
+} from 'ts-morph';
 import { addEnumNode } from './add-enum-node.ts';
 import { addUnionTypeNode } from './add-union-type-node.ts';
 
@@ -14,6 +21,39 @@ export function getGraphFromProject(project: Project, filePath: string, config: 
   // Iterate over all source files in the project
   const sourceFiles = project.getSourceFiles();
   for (const sourceFile of sourceFiles) {
+    // Process namespaces and their contents
+    const tsMorphNamespaces: ModuleDeclaration[] = sourceFile.getModules();
+    for (const tsMorphNamespace of tsMorphNamespaces) {
+      // Process interfaces inside namespace
+      const interfaces = tsMorphNamespace.getInterfaces();
+      for (const iface of interfaces) {
+        addInterfaceNode(iface, filePath, nodes);
+      }
+
+      // Process classes inside namespace
+      const classes = tsMorphNamespace.getClasses();
+      for (const cls of classes) {
+        addClassNode(cls, filePath, nodes);
+      }
+
+      // Process enums inside namespace
+      const enums = tsMorphNamespace.getEnums();
+      for (const enum_ of enums) {
+        addEnumNode(enum_, filePath, nodes);
+      }
+
+      // Process types inside namespace
+      const types = tsMorphNamespace.getTypeAliases();
+      for (const type of types) {
+        if (type.getType().isUnion()) {
+          addUnionTypeNode(type, filePath, nodes);
+        } else {
+          addTypeNode(type, filePath, nodes);
+        }
+      }
+    }
+
+    // Process top-level declarations
     // Interfaces
     const tsMorphInterfaces: InterfaceDeclaration[] = sourceFile.getInterfaces();
     for (const tsMorphInterface of tsMorphInterfaces) {
