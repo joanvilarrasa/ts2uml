@@ -479,6 +479,29 @@ function getGraphFromProject(project, filePath, config) {
   let links = [];
   const sourceFiles = project.getSourceFiles();
   for (const sourceFile of sourceFiles) {
+    const tsMorphNamespaces = sourceFile.getModules();
+    for (const tsMorphNamespace of tsMorphNamespaces) {
+      const interfaces = tsMorphNamespace.getInterfaces();
+      for (const iface of interfaces) {
+        addInterfaceNode(iface, filePath, nodes);
+      }
+      const classes = tsMorphNamespace.getClasses();
+      for (const cls of classes) {
+        addClassNode(cls, filePath, nodes);
+      }
+      const enums = tsMorphNamespace.getEnums();
+      for (const enum_ of enums) {
+        addEnumNode(enum_, filePath, nodes);
+      }
+      const types = tsMorphNamespace.getTypeAliases();
+      for (const type of types) {
+        if (type.getType().isUnion()) {
+          addUnionTypeNode(type, filePath, nodes);
+        } else {
+          addTypeNode(type, filePath, nodes);
+        }
+      }
+    }
     const tsMorphInterfaces = sourceFile.getInterfaces();
     for (const tsMorphInterface of tsMorphInterfaces) {
       addInterfaceNode(tsMorphInterface, filePath, nodes);
