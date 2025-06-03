@@ -3,7 +3,7 @@
   "displayName": "ts2uml",
   "description": "Generate UML graphs from yout typescript code",
   "publisher": "jvilarrasa",
-  "version": "0.0.71",
+  "version": "0.0.72",
   "icon": "images/logo.png",
   "repository": {
     "type": "git",

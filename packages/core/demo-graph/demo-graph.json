@@ -78,9 +78,7 @@
           "id": "/1-easy/test-files/person-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/1-easy/test-files/address-Address"
-          ],
+          "targets": ["/1-easy/test-files/address-Address"],
           "text": "address: Address;",
           "type": "attribute"
         }
@@ -133,9 +131,7 @@
           "id": "/0-easy/test-files/models-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/0-easy/test-files/models-Address"
-          ],
+          "targets": ["/0-easy/test-files/models-Address"],
           "text": "address: Address;",
           "type": "attribute"
         }
@@ -276,9 +272,7 @@
           "id": "/5-medium/test-files/types-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/5-medium/test-files/types-Address"
-          ],
+          "targets": ["/5-medium/test-files/types-Address"],
           "text": "address: Address;",
           "type": "attribute"
         },
@@ -393,9 +387,7 @@
           "id": "/4-medium/test-files/person-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/4-medium/test-files/address-Address"
-          ],
+          "targets": ["/4-medium/test-files/address-Address"],
           "text": "address: Address<T>;",
           "type": "attribute"
         },
@@ -510,9 +502,7 @@
           "id": "/6-medium/test-files/types-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/6-medium/test-files/types-Address"
-          ],
+          "targets": ["/6-medium/test-files/types-Address"],
           "text": "address: Address<string>;",
           "type": "attribute"
         }
@@ -755,9 +745,7 @@
           "id": "/14-hard/test-files/types-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/14-hard/test-files/types-Address"
-          ],
+          "targets": ["/14-hard/test-files/types-Address"],
           "text": "address: Address<string>[];",
           "type": "attribute"
         }
@@ -863,9 +851,7 @@
           "id": "/7-medium/test-files/types-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/7-medium/test-files/types-Address"
-          ],
+          "targets": ["/7-medium/test-files/types-Address"],
           "text": "address: Address<T>;",
           "type": "attribute"
         },
@@ -971,9 +957,7 @@
           "id": "/2-medium/test-files/person-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/2-medium/test-files/address-Address"
-          ],
+          "targets": ["/2-medium/test-files/address-Address"],
           "text": "address: Address;",
           "type": "attribute"
         },
@@ -1088,10 +1072,7 @@
           "id": "/15-hard/test-files/types-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/15-hard/test-files/types-Address; }",
-            "/15-hard/test-files/types-Address"
-          ],
+          "targets": ["/15-hard/test-files/types-Address; }", "/15-hard/test-files/types-Address"],
           "text": "address: { [key: string]: Address<T> }[];",
           "type": "attribute"
         }
@@ -1188,9 +1169,7 @@
           "id": "/12-hard/test-files/types-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/12-hard/test-files/types-Address"
-          ],
+          "targets": ["/12-hard/test-files/types-Address"],
           "text": "address: string | Address[];",
           "type": "attribute"
         }
@@ -1287,10 +1266,7 @@
           "id": "/11-hard/test-files/types-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/11-hard/test-files/types-Address; }",
-            "/11-hard/test-files/types-Address"
-          ],
+          "targets": ["/11-hard/test-files/types-Address; }", "/11-hard/test-files/types-Address"],
           "text": "address: { [key: string]: Address }[];",
           "type": "attribute"
         }
@@ -1387,9 +1363,7 @@
           "id": "/8-medium/test-files/types-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/8-medium/test-files/types-Address"
-          ],
+          "targets": ["/8-medium/test-files/types-Address"],
           "text": "address: Address[];",
           "type": "attribute"
         }
@@ -1495,10 +1469,7 @@
           "id": "/16-hard/test-files/types-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/16-hard/test-files/types-Address; }",
-            "/16-hard/test-files/types-Address"
-          ],
+          "targets": ["/16-hard/test-files/types-Address; }", "/16-hard/test-files/types-Address"],
           "text": "address: { [key: string]: Address<string> }[];",
           "type": "attribute"
         }
@@ -1604,9 +1575,7 @@
           "id": "/13-hard/test-files/types-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/13-hard/test-files/types-Address"
-          ],
+          "targets": ["/13-hard/test-files/types-Address"],
           "text": "address: Address<T>[];",
           "type": "attribute"
         }
@@ -1694,9 +1663,7 @@
         }
       ],
       "docs": "",
-      "implements": [
-        "/20-interface-implementation/test-files/interface-implementation-Foo"
-      ],
+      "implements": ["/20-interface-implementation/test-files/interface-implementation-Foo"],
       "id": "/20-interface-implementation/test-files/interface-implementation-Bar",
       "position": {
         "x": 0,
@@ -1788,9 +1755,7 @@
           "id": "/10-medium/test-files/types-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/10-medium/test-files/types-Address"
-          ],
+          "targets": ["/10-medium/test-files/types-Address"],
           "text": "address: string | Address;",
           "type": "attribute"
         }
@@ -1896,10 +1861,7 @@
           "id": "/17-hard/test-files/types-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/17-hard/test-files/types-Address; }",
-            "/17-hard/test-files/types-Address"
-          ],
+          "targets": ["/17-hard/test-files/types-Address; }", "/17-hard/test-files/types-Address"],
           "text": "address: string | { [key: string]: Address<string> }[];",
           "type": "attribute"
         }
@@ -1996,9 +1958,7 @@
           "id": "/9-medium/test-files/types-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/9-medium/test-files/types-Address"
-          ],
+          "targets": ["/9-medium/test-files/types-Address"],
           "text": "address: { [key: string]: Address };",
           "type": "attribute"
         }
@@ -2086,9 +2046,7 @@
         }
       ],
       "docs": "",
-      "implements": [
-        "/21-inheritance/test-files/inheritance-Foo"
-      ],
+      "implements": ["/21-inheritance/test-files/inheritance-Foo"],
       "id": "/21-inheritance/test-files/inheritance-Bar",
       "position": {
         "x": 0,
@@ -2116,9 +2074,7 @@
         }
       ],
       "docs": "",
-      "extends": [
-        "/21-inheritance/test-files/inheritance-Bar"
-      ],
+      "extends": ["/21-inheritance/test-files/inheritance-Bar"],
       "implements": [],
       "id": "/21-inheritance/test-files/inheritance-Baz",
       "position": {
@@ -2220,10 +2176,7 @@
           "id": "/18-hard/test-files/types-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/18-hard/test-files/types-Address; }",
-            "/18-hard/test-files/types-Address"
-          ],
+          "targets": ["/18-hard/test-files/types-Address; }", "/18-hard/test-files/types-Address"],
           "text": "address: string | { [key: string]: Address<T> }[];",
           "type": "attribute"
         }
@@ -2329,9 +2282,7 @@
           "id": "/3-medium/test-files/person-Person-address",
           "name": "address",
           "style": {},
-          "targets": [
-            "/3-medium/test-files/address-Address"
-          ],
+          "targets": ["/3-medium/test-files/address-Address"],
           "text": "address: Address<string>;",
           "type": "attribute"
         }
@@ -2354,113 +2305,85 @@
   "links": [
     {
       "sourceId": "/1-easy/test-files/person-Person",
-      "sourceAttributeIds": [
-        "/1-easy/test-files/person-Person-address"
-      ],
+      "sourceAttributeIds": ["/1-easy/test-files/person-Person-address"],
       "targetId": "/1-easy/test-files/address-Address",
       "type": "association"
     },
     {
       "sourceId": "/0-easy/test-files/models-Person",
-      "sourceAttributeIds": [
-        "/0-easy/test-files/models-Person-address"
-      ],
+      "sourceAttributeIds": ["/0-easy/test-files/models-Person-address"],
       "targetId": "/0-easy/test-files/models-Address",
       "type": "association"
     },
     {
       "sourceId": "/5-medium/test-files/types-Person",
-      "sourceAttributeIds": [
-        "/5-medium/test-files/types-Person-address"
-      ],
+      "sourceAttributeIds": ["/5-medium/test-files/types-Person-address"],
       "targetId": "/5-medium/test-files/types-Address",
       "type": "association"
     },
     {
       "sourceId": "/4-medium/test-files/person-Person",
-      "sourceAttributeIds": [
-        "/4-medium/test-files/person-Person-address"
-      ],
+      "sourceAttributeIds": ["/4-medium/test-files/person-Person-address"],
       "targetId": "/4-medium/test-files/address-Address",
       "type": "association"
     },
     {
       "sourceId": "/6-medium/test-files/types-Person",
-      "sourceAttributeIds": [
-        "/6-medium/test-files/types-Person-address"
-      ],
+      "sourceAttributeIds": ["/6-medium/test-files/types-Person-address"],
       "targetId": "/6-medium/test-files/types-Address",
       "type": "association"
     },
     {
       "sourceId": "/14-hard/test-files/types-Person",
-      "sourceAttributeIds": [
-        "/14-hard/test-files/types-Person-address"
-      ],
+      "sourceAttributeIds": ["/14-hard/test-files/types-Person-address"],
       "targetId": "/14-hard/test-files/types-Address",
       "type": "association"
     },
     {
       "sourceId": "/7-medium/test-files/types-Person",
-      "sourceAttributeIds": [
-        "/7-medium/test-files/types-Person-address"
-      ],
+      "sourceAttributeIds": ["/7-medium/test-files/types-Person-address"],
       "targetId": "/7-medium/test-files/types-Address",
       "type": "association"
     },
     {
       "sourceId": "/2-medium/test-files/person-Person",
-      "sourceAttributeIds": [
-        "/2-medium/test-files/person-Person-address"
-      ],
+      "sourceAttributeIds": ["/2-medium/test-files/person-Person-address"],
       "targetId": "/2-medium/test-files/address-Address",
       "type": "association"
     },
     {
       "sourceId": "/15-hard/test-files/types-Person",
-      "sourceAttributeIds": [
-        "/15-hard/test-files/types-Person-address"
-      ],
+      "sourceAttributeIds": ["/15-hard/test-files/types-Person-address"],
       "targetId": "/15-hard/test-files/types-Address",
       "type": "association"
     },
     {
       "sourceId": "/12-hard/test-files/types-Person",
-      "sourceAttributeIds": [
-        "/12-hard/test-files/types-Person-address"
-      ],
+      "sourceAttributeIds": ["/12-hard/test-files/types-Person-address"],
       "targetId": "/12-hard/test-files/types-Address",
       "type": "association"
     },
     {
       "sourceId": "/11-hard/test-files/types-Person",
-      "sourceAttributeIds": [
-        "/11-hard/test-files/types-Person-address"
-      ],
+      "sourceAttributeIds": ["/11-hard/test-files/types-Person-address"],
       "targetId": "/11-hard/test-files/types-Address",
       "type": "association"
     },
     {
       "sourceId": "/8-medium/test-files/types-Person",
-      "sourceAttributeIds": [
-        "/8-medium/test-files/types-Person-address"
-      ],
+      "sourceAttributeIds": ["/8-medium/test-files/types-Person-address"],
       "targetId": "/8-medium/test-files/types-Address",
       "type": "association"
     },
     {
       "sourceId": "/16-hard/test-files/types-Person",
-      "sourceAttributeIds": [
-        "/16-hard/test-files/types-Person-address"
-      ],
+      "sourceAttributeIds": ["/16-hard/test-files/types-Person-address"],
       "targetId": "/16-hard/test-files/types-Address",
       "type": "association"
     },
     {
       "sourceId": "/13-hard/test-files/types-Person",
-      "sourceAttributeIds": [
-        "/13-hard/test-files/types-Person-address"
-      ],
+      "sourceAttributeIds": ["/13-hard/test-files/types-Person-address"],
       "targetId": "/13-hard/test-files/types-Address",
       "type": "association"
     },
@@ -2472,25 +2395,19 @@
     },
     {
       "sourceId": "/10-medium/test-files/types-Person",
-      "sourceAttributeIds": [
-        "/10-medium/test-files/types-Person-address"
-      ],
+      "sourceAttributeIds": ["/10-medium/test-files/types-Person-address"],
       "targetId": "/10-medium/test-files/types-Address",
       "type": "association"
     },
     {
       "sourceId": "/17-hard/test-files/types-Person",
-      "sourceAttributeIds": [
-        "/17-hard/test-files/types-Person-address"
-      ],
+      "sourceAttributeIds": ["/17-hard/test-files/types-Person-address"],
       "targetId": "/17-hard/test-files/types-Address",
       "type": "association"
     },
     {
       "sourceId": "/9-medium/test-files/types-Person",
-      "sourceAttributeIds": [
-        "/9-medium/test-files/types-Person-address"
-      ],
+      "sourceAttributeIds": ["/9-medium/test-files/types-Person-address"],
       "targetId": "/9-medium/test-files/types-Address",
       "type": "association"
     },
@@ -2508,17 +2425,13 @@
     },
     {
       "sourceId": "/18-hard/test-files/types-Person",
-      "sourceAttributeIds": [
-        "/18-hard/test-files/types-Person-address"
-      ],
+      "sourceAttributeIds": ["/18-hard/test-files/types-Person-address"],
       "targetId": "/18-hard/test-files/types-Address",
       "type": "association"
     },
     {
       "sourceId": "/3-medium/test-files/person-Person",
-      "sourceAttributeIds": [
-        "/3-medium/test-files/person-Person-address"
-      ],
+      "sourceAttributeIds": ["/3-medium/test-files/person-Person-address"],
       "targetId": "/3-medium/test-files/address-Address",
       "type": "association"
     }

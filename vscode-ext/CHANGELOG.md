@@ -2,6 +2,10 @@
 
 All notable changes to the "ts2uml" extension will be documented in this file.
 
+### [v0.0.72] - Highlights
+
+- Fixed a few bugs.
+
 ### [v0.0.68] - Highlights
 
 - Fixed bug where using <T> did not compute the links properly.
