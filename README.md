@@ -1,5 +1,11 @@
 # ts2uml 🎨
 
+# ⚠️ I am abandoning this project to go work on other things. I am also shutting down the server so the sharing functionality will no longer work. ⚠️
+
+Below is the readme as it was when the project was active.
+
+----
+
 Hey! 👋 This is **ts2uml** - a tool that turns your TypeScript code into pretty UML diagrams. 
 See it in the marketplace [here](https://marketplace.visualstudio.com/items?itemName=jvilarrasa.ts2uml)
 
